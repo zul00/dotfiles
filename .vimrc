@@ -1,3 +1,4 @@
+" vim:fdm=marker
 " Source = https://dougblack.io/words/a-good-vimrc.html
 " http://usevim.com/2012/05/09/clean-vimrc/
 "
