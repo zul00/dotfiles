@@ -1,30 +1,40 @@
 " Source = https://dougblack.io/words/a-good-vimrc.html
+" http://usevim.com/2012/05/09/clean-vimrc/
 "
-"
-"" Font & Colors
+" Font & Colors {{{
 colorscheme desert
 syntax on
 set guifont=consolas
 set colorcolumn=80
+" }}}
 
-"" Tab
+" Tab {{{
 set expandtab
 set shiftwidth=4
 set tabstop=4
 set autoindent
+" }}}
 
-"" Numbering
+" Numbering {{{
 set number
 set relativenumber
 set ruler
+" }}}
 
-"" Menu
+" Menu {{{
 set wildmenu
+" }}}
 
-"" Case
+" Case {{{
 set ignorecase
 set smartcase
+" }}}
 
-"" Others
+" Others {{{
 set lazyredraw
 set autoread
+" }}}
+
+" Key Remap {{{
+nmap <F12> :tabe $HOME/.vimrc
+" }}}
