@@ -2,6 +2,27 @@
 " Source = https://dougblack.io/words/a-good-vimrc.html
 " http://usevim.com/2012/05/09/clean-vimrc/
 "
+
+" Vundle {{{
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
+call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Plugin list
+Plugin 'vim-latex/vim-latex'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Syntastic'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+"}}}
+
 " Font & Colors {{{
 colorscheme desert
 syntax on
@@ -37,5 +58,16 @@ set autoread
 " }}}
 
 " Key Remap {{{
+nmap <F2> :!%
+nmap <F3> :!ipython
+nmap <F4> :wa :!ipython -m pdb %
+nmap <F5> k:wa :!ipython %
+nmap <F6> k:wa :!ipython -i %
+nmap <F7> k:SyntasticCheck 
+nmap <F8> :!ctags -R .
+nmap <F10> :wa:!python setup.py build_ext --inplace
+vmap <F11> I#
 nmap <F12> :tabe $HOME/.vimrc
+vmap <C-c> "*y
+nmap <leader>so :w:so%
 " }}}
