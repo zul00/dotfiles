@@ -59,7 +59,7 @@ set autoread
 
 " Key Remap {{{
 nmap <F2> :!%
-nmap <F3> :!ipython
+nmap <F3> :!ipython
 nmap <F4> :wa :!ipython -m pdb %
 nmap <F5> k:wa :!ipython %
 nmap <F6> k:wa :!ipython -i %
@@ -69,5 +69,11 @@ nmap <F10> :wa:!python setup.py build_ext --inplace
 vmap <F11> I#
 nmap <F12> :tabe $HOME/.vimrc
 vmap <C-c> "*y
+
+" leader map
 nmap <leader>so :w:so%
+nmap <leader>q :q
+nmap <leader>w :w
+nmap <leader>wa :wa
+nmap <leader>o :only
 " }}}
