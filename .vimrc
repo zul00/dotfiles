@@ -52,6 +52,11 @@ set ignorecase
 set smartcase
 " }}}
 
+" Search {{{
+set hlsearch
+set incsearch
+" }}}
+
 " Others {{{
 set lazyredraw
 set autoread
@@ -73,7 +78,9 @@ vmap <C-c> "*y
 " leader map
 nmap <leader>so :w:so%
 nmap <leader>q :q
+nmap <leader>q! :q!
 nmap <leader>w :w
 nmap <leader>wa :wa
 nmap <leader>o :only
+nmap <leader>to :tabonly
 " }}}
