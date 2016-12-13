@@ -63,24 +63,24 @@ set autoread
 " }}}
 
 " Key Remap {{{
-nmap <F2> :!%
-nmap <F3> :!ipython
-nmap <F4> :wa :!ipython -m pdb %
-nmap <F5> k:wa :!ipython %
-nmap <F6> k:wa :!ipython -i %
-nmap <F7> k:SyntasticCheck 
-nmap <F8> :!ctags -R .
-nmap <F10> :wa:!python setup.py build_ext --inplace
+nmap <F2> :!%<CR>
+nmap <F3> :!ipython<CR>
+nmap <F4> :wa<CR> :!ipython -m pdb %<CR>
+nmap <F5> k:wa<CR> :!ipython %<CR>
+nmap <F6> k:wa<CR> :!ipython -i %<CR>
+nmap <F7> k:SyntasticCheck<CR> 
+nmap <F8> :!ctags -R .<CR>
+nmap <F10> :wa<CR>:!python setup.py build_ext --inplace<CR>
 vmap <F11> I#
-nmap <F12> :tabe $HOME/.vimrc
+nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 
 " leader map
-nmap <leader>so :w:so%
-nmap <leader>q :q
-nmap <leader>q! :q!
-nmap <leader>w :w
-nmap <leader>wa :wa
-nmap <leader>o :only
-nmap <leader>to :tabonly
+nmap <leader>so :w<CR>:so%<CR>
+nmap <leader>q :q<CR>
+nmap <leader>q! :q!<CR>
+nmap <leader>w :w<CR>
+nmap <leader>wa :wa<CR>
+nmap <leader>o :only<CR>
+nmap <leader>to :tabonly<CR>
 " }}}
