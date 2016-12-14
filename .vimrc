@@ -82,6 +82,7 @@ nmap <leader>q :q<CR>
 nmap <leader>q! :q!<CR>
 nmap <leader>w :w<CR>
 nmap <leader>wa :wa<CR>
+nmap <leader>wq :wq<CR>
 nmap <leader>o :only<CR>
 nmap <leader>to :tabonly<CR>
 " }}}
