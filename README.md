@@ -10,7 +10,7 @@ dotfiles for various Unix Component
 ### To Do List ###
 #### Features
 ##### 1. i3
-1. Create i3 basic configuration
+1. ~~Create i3 basic configuration~~
 2. Update Xresources
     a. Which font?
     b. What color?
@@ -19,8 +19,8 @@ dotfiles for various Unix Component
 5. Display sound status
 
 ##### 2. VIM
-1. Vim survival vimrc
-2. Different vimrc for different
+1. ~~Vim survival vimrc~~
+2. Different vimrc for different syntax
 
 ##### 3. Script
 1. Install oh-my-zsh
