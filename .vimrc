@@ -60,6 +60,7 @@ set incsearch
 " Others {{{
 set lazyredraw
 set autoread
+set showcmd
 " }}}
 
 " Key Remap {{{
