@@ -24,7 +24,7 @@ dotfiles for various Unix Component
 
 ##### 3. Script
 1. Install oh-my-zsh
-2. Install Vundle
+2. ~~Install Vundle~~
 
 
 ##### 4. Template
