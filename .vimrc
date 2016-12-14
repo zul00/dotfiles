@@ -77,12 +77,13 @@ nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 
 " leader map
-nmap <leader>so :w<CR>:so%<CR>
+nmap <leader>o :only<CR>
 nmap <leader>q :q<CR>
 nmap <leader>q! :q!<CR>
+nmap <leader>qa :qa<CR>
+nmap <leader>so :w<CR>:so%<CR>
+nmap <leader>to :tabonly<CR>
 nmap <leader>w :w<CR>
 nmap <leader>wa :wa<CR>
 nmap <leader>wq :wq<CR>
-nmap <leader>o :only<CR>
-nmap <leader>to :tabonly<CR>
 " }}}
