@@ -22,6 +22,7 @@ Plugin 'vim-latex/vim-latex'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Syntastic'
 Plugin 'desert256.vim'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

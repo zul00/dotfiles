@@ -4,7 +4,9 @@
 dotfiles for various Unix Component
 
 ### Current Feature ###
-.vimrc
+####vimrc
+####i3
+1. Keybind to chromium
 
 
 ### To Do List ###
@@ -14,9 +16,10 @@ dotfiles for various Unix Component
 2. Update Xresources
     a. Which font?
     b. What color?
-3. Apply font Awesome to distinguish new 
+3. ~~Apply font Awesome to distinguish new~~
 4. Config i3lock
 5. Display sound status
+6. ~~Added some keybind for chromium~~
 
 ##### 2. VIM
 1. ~~Vim survival vimrc~~
