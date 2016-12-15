@@ -26,7 +26,7 @@ dotfiles for various Unix Component
 2. Different vimrc for different syntax
 
 ##### 3. Script
-1. Install oh-my-zsh
+1. ~~Install oh-my-zsh~~
 2. ~~Install Vundle~~
 
 
