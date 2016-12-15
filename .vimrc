@@ -1,3 +1,6 @@
+" @file: .vimrc
+" @author: zulkarnaen
+"
 " vim:fdm=marker
 " Source = https://dougblack.io/words/a-good-vimrc.html
 " http://usevim.com/2012/05/09/clean-vimrc/
@@ -18,15 +21,16 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-latex/vim-latex'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Syntastic'
+Plugin 'desert256.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
 
 " Font & Colors {{{
-colorscheme desert
+colorscheme desert256
 syntax on
-set guifont=consolas
+set guifont=monospace
 set colorcolumn=80
 " }}}
 
