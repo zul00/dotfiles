@@ -35,4 +35,4 @@ dotfiles for various Unix Component
 2. Config keyboard
 
 #### Bugs
-1. Wrong desert color in terminal vim
+1. ~~Wrong desert color in terminal vim~~
