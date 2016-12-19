@@ -35,7 +35,7 @@ set guifont=monospace
 set colorcolumn=80
 " }}}
 
-" Tab {{{
+" Formatting {{{
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -66,6 +66,7 @@ set incsearch
 set lazyredraw
 set autoread
 set showcmd
+set scrolloff=2
 " }}}
 
 " Key Remap {{{

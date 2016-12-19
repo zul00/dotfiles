@@ -1,5 +1,5 @@
 ! basic
-URxvt.font: xft:monospace:size=9
+URxvt.font: xft:inconsolata:size=11:antialias=true:hinting=true
 URxvt.scrollBar: False
 
 ! special
