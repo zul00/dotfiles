@@ -1,3 +1,6 @@
+" @file: .vimrc
+" @author: zulkarnaen
+"
 " vim:fdm=marker
 " Source = https://dougblack.io/words/a-good-vimrc.html
 " http://usevim.com/2012/05/09/clean-vimrc/
@@ -18,19 +21,21 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-latex/vim-latex'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Syntastic'
+Plugin 'desert256.vim'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
 
 " Font & Colors {{{
-colorscheme desert
+colorscheme desert256
 syntax on
 set guifont=consolas
 set colorcolumn=80
 " }}}
 
-" Tab {{{
+" Formatting {{{
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -61,6 +66,7 @@ set incsearch
 set lazyredraw
 set autoread
 set showcmd
+set scrolloff=2
 " }}}
 
 " Key Remap {{{
@@ -77,17 +83,19 @@ nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 
 " leader map
+nmap <leader>do :diffoff<CR>
+nmap <leader>dt :windo diffthis<CR>
+nmap <leader>du :diffu<CR>
 nmap <leader>g :diffget<CR>
 nmap <leader>o :only<CR>
 nmap <leader>q :q<CR>
 nmap <leader>q! :q!<CR>
+nmap <leader>qa :qa<CR>
 nmap <leader>so :w<CR>:so%<CR>
 nmap <leader>to :tabonly<CR>
 nmap <leader>w :w<CR>
 nmap <leader>wa :wa<CR>
-nmap <leader>dt :windo diffthis<CR>
-nmap <leader>do :diffoff<CR>
-nmap <leader>du :diffu<CR>
+nmap <leader>wq :wq<CR>
 if &diff
     nmap <leader>i :set diffopt+=iwhite<CR>
     nmap <leader>i! :set diffopt-=iwhite<CR>

@@ -1,19 +1,23 @@
 *.swp
 *~
-NTU*
+*history
+*history
+*pid
+*pid
 3D Objects/*
 AppData/*
 Contacts/*
 Desktop/*
 Documents/*
+Downloads/
+Downloads/
 Downloads/*
+Dropbox/
 Favorites/*
 Links/*
 Music/*
+NTU*
 OneDrive/*
 Saved Games/*
 Searches/*
 Videos/*
-*history
-*pid
-Downloads/
