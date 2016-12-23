@@ -95,10 +95,15 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# workspace alias
+set $ws1 "1. gen "
+set $ws2 "2. www "
+set $ws3 "3. todo "
+
 # switch to workspace
-bindsym $mod+1 workspace 1. gen 
-bindsym $mod+2 workspace 2. www 
-bindsym $mod+3 workspace 3. todo 
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -108,9 +113,9 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace number 4
 bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
@@ -135,8 +140,11 @@ bar {
 
 # BindKey
 ## taskwarrior
-bindsym $mod+t exec ~/scripts/taskwarrior.sh
-# resize
+bindsym $mod+t workspace $ws3; \
+            append_layout ~/.i3/layout/ws-task.json; \
+            exec ~/scripts/taskwarrior.sh;
+
+## resize
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
