@@ -2,5 +2,11 @@
 *~
 *history
 *pid
+*.tmp
+.histfile
+.lesshst
+.viminfo
+.fehbg
+.dropbox*
 Downloads/
 Dropbox/
