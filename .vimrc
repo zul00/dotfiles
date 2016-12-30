@@ -11,8 +11,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
-call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+set rtp+=$HOME/.vim/bundle/Vundle.vim/
+call vundle#begin('$USERPROFILE/.vim/bundle/')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -23,6 +23,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Syntastic'
 Plugin 'desert256.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
+Plugin 'vimwiki'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -101,3 +104,7 @@ if &diff
     nmap <leader>i! :set diffopt-=iwhite<CR>
 endif
 " }}}
+
+"{{{ VimWiki
+let g:vimwiki_list = [{'path': '~\Dropbox\WikiNote'}]
+"}}}
