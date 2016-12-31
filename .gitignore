@@ -1,3 +1,4 @@
+*.pre-oh-my-zsh
 *.swp
 *.tmp
 *history
