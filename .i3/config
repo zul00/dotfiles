@@ -139,6 +139,11 @@ bar {
 }
 
 # BindKey
+## MediaKey
+bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+
 ## taskwarrior
 bindsym $mod+t workspace $ws3; \
             append_layout ~/.i3/layout/ws-task.json; \
