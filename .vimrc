@@ -23,6 +23,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Syntastic'
 Plugin 'desert256.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vimwiki'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -92,4 +93,8 @@ nmap <leader>to :tabonly<CR>
 nmap <leader>w :w<CR>
 nmap <leader>wa :wa<CR>
 nmap <leader>wq :wq<CR>
+" }}}
+
+" VimWIki {{{
+let g:vimwiki_list = [{'path':'~/Dropbox/VimWiki', 'path_html':'~/Dropbox/VimWiki/html'}]
 " }}}
