@@ -98,7 +98,7 @@ bindsym $mod+a focus parent
 # workspace alias
 set $ws1 "1. gen "
 set $ws2 "2. gen "
-set $ws3 "3. www "
+set $ws3 "3. mail "
 set $ws4 "4. www "
 set $ws5 "5. www "
 set $ws6 "6. todo "
@@ -147,6 +147,10 @@ bar {
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+
+## Vimwiki
+bindsym $mod+n workspace $ws7; \
+            exec urxvt -title "Vimwiki" -e vim "+:VimwikiIndex"
 
 ## taskwarrior
 bindsym $mod+t workspace $ws6; \
