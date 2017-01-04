@@ -111,7 +111,7 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace 7
+bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
@@ -147,6 +147,9 @@ bar {
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 ## Vimwiki
 bindsym $mod+n workspace $ws7; \
@@ -198,5 +201,5 @@ mode "www" {
 bindsym $mod+i mode "www"
 
 # App at startup
-exec_always feh --bg-scale /home/zul/Pictures/wallpaper.jpg
+exec_always feh --bg-scale -z /home/zul/Pictures/wallpaper/
 
