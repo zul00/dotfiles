@@ -96,13 +96,13 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace alias
-set $ws1 "1. gen "
+set $ws1 "1. gen "
 set $ws2 "2. gen "
 set $ws3 "3. mail "
 set $ws4 "4. www "
 set $ws5 "5. www "
 set $ws6 "6. todo "
-set $ws7 "7. note "
+set $ws7 "7. note "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -115,6 +115,8 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+workspace 9 output VGA1
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -202,4 +204,3 @@ bindsym $mod+i mode "www"
 
 # App at startup
 exec_always feh --bg-scale -z /home/zul/Pictures/wallpaper/
-
