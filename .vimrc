@@ -23,7 +23,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Syntastic'
 Plugin 'desert256.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
+Plugin 'itchyny/calendar.vim'
+Plugin 'vimlatex'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -97,4 +100,8 @@ nmap <leader>wq :wq<CR>
 
 " VimWIki {{{
 let g:vimwiki_list = [{'path':'~/Dropbox/VimWiki', 'path_html':'~/Dropbox/VimWiki/html'}]
+" }}}
+
+" latex-suite {{{
+let g:tex_flavor='latex'
 " }}}
