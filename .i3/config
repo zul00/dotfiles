@@ -97,9 +97,9 @@ bindsym $mod+a focus parent
 
 # workspace alias
 set $ws1 "1. gen "
-set $ws2 "2. gen "
-set $ws3 "3. mail "
-set $ws4 "4. www "
+set $ws2 "2. gen "
+set $ws3 "3. gen "
+set $ws4 "4. mail "
 set $ws5 "5. www "
 set $ws6 "6. todo "
 set $ws7 "7. note "
@@ -126,9 +126,9 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9 
-bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -145,6 +145,16 @@ bar {
 }
 
 # BindKey
+## Power Management
+#bindsym XF86Sleep exec i3lock -c 000000 && sysmtemctl suspend
+#bindsym XF86ScreenSaver exec i3lock -c 000000
+
+bindsym XF86Sleep exec ~/scripts/lockscreen/lockscreen.sh && sysmtemctl suspend
+bindsym XF86ScreenSaver exec ~/scripts/lockscreen/lockscreen.sh
+
+## Touchpad Toggle
+#bindsym XF86TouchpadToggle exec xinit
+
 ## MediaKey
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
@@ -153,6 +163,9 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+## printscreen
+bindsym Print --release\
+            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'mv $f ~/Pictures/shots/'
 ## Vimwiki
 bindsym $mod+n workspace $ws7; \
             exec urxvt -title "Vimwiki" -e vim "+:VimwikiIndex"
@@ -185,14 +198,14 @@ bindsym $mod+r mode "resize"
 ## www
 mode "www" {
     # Email n WhatsApp
-    bindsym e   workspace $ws3;\
+    bindsym e   workspace $ws4;\
         exec /usr/bin/chromium --new-window gmail.com web.whatsapp.com;\
         exec /usr/bin/chromium --new-window inbox.google.com;\
         layout stacking;\
         mode "default"
     
     # Empty Chrome
-    bindsym Return  workspace $ws4;\
+    bindsym Return  workspace $ws5;\
         exec /usr/bin/chromium --new-window;\
         layout stacking;\
         mode "default"
@@ -203,4 +216,4 @@ mode "www" {
 bindsym $mod+i mode "www"
 
 # App at startup
-exec_always feh --bg-scale -z /home/zul/Pictures/wallpaper/
+exec_always feh --bg-fill -z /home/zul/Pictures/wallpaper/
