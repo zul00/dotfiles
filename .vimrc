@@ -27,6 +27,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
 Plugin 'itchyny/calendar.vim'
 Plugin 'vimlatex'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -74,15 +76,6 @@ set scrolloff=2
 " }}}
 
 " Key Remap {{{
-nmap <F2> :!%<CR>
-nmap <F3> :!ipython<CR>
-nmap <F4> :wa<CR> :!ipython -m pdb %<CR>
-nmap <F5> k:wa<CR> :!ipython %<CR>
-nmap <F6> k:wa<CR> :!ipython -i %<CR>
-nmap <F7> k:SyntasticCheck<CR> 
-nmap <F8> :!ctags -R .<CR>
-nmap <F10> :wa<CR>:!python setup.py build_ext --inplace<CR>
-vmap <F11> I#
 nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 
@@ -104,4 +97,13 @@ let g:vimwiki_list = [{'path':'~/Dropbox/VimWiki', 'path_html':'~/Dropbox/VimWik
 
 " latex-suite {{{
 let g:tex_flavor='latex'
+" }}}
+
+" {{{ Powerline
+set laststatus=2
+let g:airline_powerline_fonts = 1
+" }}}
+
+" {{{ Syntastic
+let g:syntastic_python_python_exec = '/usr/bin/python2'
 " }}}

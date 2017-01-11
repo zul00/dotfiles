@@ -5,4 +5,3 @@
 
 set sw=2
 set iskeyword+=:
-set colorcolumn=0
