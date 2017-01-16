@@ -29,6 +29,7 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'vimlatex'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'farseer90718/vim-taskwarrior'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -89,6 +90,11 @@ nmap <leader>to :tabonly<CR>
 nmap <leader>w :w<CR>
 nmap <leader>wa :wa<CR>
 nmap <leader>wq :wq<CR>
+" }}}
+
+" {{{ abbrev
+abbrev eplug e ~/.vim/ftplugin/
+
 " }}}
 
 " VimWIki {{{
