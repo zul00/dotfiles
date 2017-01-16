@@ -1,8 +1,10 @@
 ! basic
 URxvt.font: xft:\
         inconsolata for Powerline:size=9:\
-        size=10:antialias=true:hinting=true
+        size=10:hinting=true
+!size=10:antialias=true:hinting=true
 URxvt.scrollBar: False
+URxvt.depth:     24
 
 ! special
 *.foreground:   #c5c8c6
