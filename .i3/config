@@ -153,7 +153,7 @@ bar {
 #bindsym XF86Sleep exec i3lock -c 000000 && sysmtemctl suspend
 #bindsym XF86ScreenSaver exec i3lock -c 000000
 
-bindsym XF86Sleep exec ~/scripts/lockscreen/lockscreen.sh && sysmtemctl suspend
+bindsym XF86Sleep exec --no-startup-id "/home/zul/scripts/lockscreen/lockscreen.sh && systemctl suspend"
 bindsym XF86ScreenSaver exec ~/scripts/lockscreen/lockscreen.sh
 
 ## Touchpad Toggle
@@ -221,3 +221,4 @@ bindsym $sup+i mode "www"
 
 # App at startup
 exec_always feh --bg-fill -z /home/zul/Pictures/wallpaper/
+exec_always ~/.dropbox-dist/dropboxd
