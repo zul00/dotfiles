@@ -3,7 +3,12 @@
 " @brief:   Setting for vim filetype. Some setting is following suggestion
 " from latex-suite vim plugin.
 
-set sw=2
+" Formatting {{{
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set autoindent
+" }}}
 set iskeyword+=:
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats='pdf, aux'
