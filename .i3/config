@@ -120,7 +120,7 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-workspace 9 output VGA1
+workspace $ws9 output VGA1
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -205,13 +205,13 @@ mode "www" {
     bindsym e   workspace $ws4;\
         exec /usr/bin/chromium --new-window gmail.com web.whatsapp.com;\
         exec /usr/bin/chromium --new-window inbox.google.com;\
-        layout stacking;\
+        layout tabbed;\
         mode "default"
     
     # Empty Chrome
     bindsym Return  workspace $ws5;\
         exec /usr/bin/chromium --new-window;\
-        layout stacking;\
+        layout tabbed;\
         mode "default"
 
     bindsym $sup+i  mode "default"
