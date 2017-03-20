@@ -4,15 +4,15 @@
 " vim:fdm=marker
 " Source = https://dougblack.io/words/a-good-vimrc.html
 " http://usevim.com/2012/05/09/clean-vimrc/
-"
+
 
 " Vundle {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$HOME/.vim/bundle/Vundle.vim/
-call vundle#begin('$USERPROFILE/.vim/bundle/')
+set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
+call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -25,6 +25,7 @@ Plugin 'desert256.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
+Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
 
 call vundle#end()            " required
@@ -106,5 +107,9 @@ endif
 " }}}
 
 "{{{ VimWiki
-let g:vimwiki_list = [{'path': '~\Dropbox\WikiNote'}]
+let g:vimwiki_list = [{'path': '~\Dropbox\VimWiki'}]
+"}}}
+
+"{{{ Abbreviation
+abbreviate ftplug ~\vimfiles\ftplugin\
 "}}}
