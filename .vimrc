@@ -29,7 +29,6 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'vimlatex'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'farseer90718/vim-taskwarrior'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -40,6 +39,7 @@ colorscheme desert256
 syntax on
 set guifont=monospace
 set colorcolumn=80
+set t_Co=256
 " }}}
 
 " Formatting {{{
@@ -113,3 +113,8 @@ let g:airline_powerline_fonts = 1
 " {{{ Syntastic
 let g:syntastic_python_python_exec = '/usr/bin/python2'
 " }}}
+
+" {{{ FileType
+autocmd BufRead,BufNewFile *.ino set filetype=c 
+" }}}
+
