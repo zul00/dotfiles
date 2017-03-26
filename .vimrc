@@ -23,10 +23,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Syntastic'
 Plugin 'desert256.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
+Plugin 'vimlatex'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -37,6 +36,7 @@ colorscheme desert256
 syntax on
 set guifont=consolas
 set colorcolumn=80
+set t_Co=256
 " }}}
 
 " Formatting {{{
@@ -74,15 +74,6 @@ set scrolloff=2
 " }}}
 
 " Key Remap {{{
-nmap <F2> :!%<CR>
-nmap <F3> :!ipython<CR>
-nmap <F4> :wa<CR> :!ipython -m pdb %<CR>
-nmap <F5> k:wa<CR> :!ipython %<CR>
-nmap <F6> k:wa<CR> :!ipython -i %<CR>
-nmap <F7> k:SyntasticCheck<CR> 
-nmap <F8> :!ctags -R .<CR>
-nmap <F10> :wa<CR>:!python setup.py build_ext --inplace<CR>
-vmap <F11> I#
 nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 
@@ -106,10 +97,15 @@ if &diff
 endif
 " }}}
 
-"{{{ VimWiki
+" Abbreviation {{{ 
+abbrev eplug e ~/.vim/ftplugin/
+
+" }}}
+
+" VimWiki {{{ 
 let g:vimwiki_list = [{'path': '~\Dropbox\VimWiki'}]
 "}}}
 
-"{{{ Abbreviation
-abbreviate ftplug ~\vimfiles\ftplugin\
-"}}}
+" FileType {{{ 
+autocmd BufRead,BufNewFile *.ino set filetype=c 
+" }}}
