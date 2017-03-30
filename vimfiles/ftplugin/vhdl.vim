@@ -10,15 +10,11 @@ set tabstop=2
 set autoindent
 " }}}
 
-" Shortcut {{{
-" commenting
-vmap <F11> I--
-" }}}
-
 " NerdTree {{{
 let NERDTreeIgnore=['\.mpf*', '\.mti', '\.wlf', '\.bak', '\.qpf', '\.qws']
 " }}}
 
 " Key Remap {{{
-nmap <F4> :!del work\_lock<CR>
+nmap <F4> :!del work\_lock<CR>      " Delete _lock
+vmap <F11> :'<,'> normal I--<CR>    " Commenting
 " }}}
