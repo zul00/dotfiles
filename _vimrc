@@ -1,4 +1,4 @@
-" @file: .vimrc
+" @file: vimrc
 " @author: zulkarnaen
 "
 " vim:fdm=marker
@@ -23,9 +23,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Syntastic'
 Plugin 'desert256.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
-Plugin 'vimlatex'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -36,7 +37,6 @@ colorscheme desert256
 syntax on
 set guifont=consolas
 set colorcolumn=80
-set t_Co=256
 " }}}
 
 " Formatting {{{
@@ -74,7 +74,17 @@ set scrolloff=2
 " }}}
 
 " Key Remap {{{
-nmap <F12> :tabe $HOME/.vimrc<CR>
+nmap <F2> :!%<CR>
+nmap <F3> :!ipython<CR>
+nmap <F4> :wa<CR> :!ipython -m pdb %<CR>
+nmap <F5> k:wa<CR> :!ipython %<CR>
+nmap <F6> k:wa<CR> :!ipython -i %<CR>
+nmap <F7> k:SyntasticCheck<CR> 
+nmap <F8> :!ctags -R .<CR>
+nmap <F10> :wa<CR>:!python setup.py build_ext --inplace<CR>
+vmap <F11> I#
+nmap <F12> :tabe $HOME/_vimrc<CR>
+nmap <S-F12> :tabe $HOME/vimfiles/ftplugin<CR>
 vmap <C-c> "*y
 
 " leader map
@@ -97,15 +107,10 @@ if &diff
 endif
 " }}}
 
-" Abbreviation {{{ 
-abbrev eplug e ~/.vim/ftplugin/
-
-" }}}
-
-" VimWiki {{{ 
+"{{{ VimWiki
 let g:vimwiki_list = [{'path': '~\Dropbox\VimWiki'}]
 "}}}
 
-" FileType {{{ 
-autocmd BufRead,BufNewFile *.ino set filetype=c 
-" }}}
+"{{{ Abbreviation
+abbreviate ftplug ~\vimfiles\ftplugin\
+"}}}
