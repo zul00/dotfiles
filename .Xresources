@@ -1,10 +1,22 @@
 ! basic
-URxvt.font: xft:\
-        inconsolata for Powerline:size=9:\
-        size=10:hinting=true
+! as recommended from ArchWiki
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+! URxvt
+URxvt.font: xft:Inconsolata for Powerline:size=10:style=Medium
 !size=10:antialias=true:hinting=true
 URxvt.scrollBar: False
 URxvt.depth:     24
+
+xterm*VT100*width: true
+xterm*VT100*faceName: inconsolata:size=9:antialias=false
+xterm.scrollBar: False
+xterm.depth:     24
 
 ! special
 *.foreground:   #c5c8c6
