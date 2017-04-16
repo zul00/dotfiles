@@ -4,7 +4,7 @@
 " vim:fdm=marker
 " Source = https://dougblack.io/words/a-good-vimrc.html
 " http://usevim.com/2012/05/09/clean-vimrc/
-"
+
 
 " Vundle {{{
 set nocompatible              " be iMproved, required
@@ -83,6 +83,10 @@ nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 
 " leader map
+nmap <leader>do :diffoff<CR>
+nmap <leader>dt :windo diffthis<CR>
+nmap <leader>du :diffu<CR>
+nmap <leader>g :diffget<CR>
 nmap <leader>o :only<CR>
 nmap <leader>q :q<CR>
 nmap <leader>q! :q!<CR>
@@ -92,14 +96,18 @@ nmap <leader>to :tabonly<CR>
 nmap <leader>w :w<CR>
 nmap <leader>wa :wa<CR>
 nmap <leader>wq :wq<CR>
+if &diff
+    nmap <leader>i :set diffopt+=iwhite<CR>
+    nmap <leader>i! :set diffopt-=iwhite<CR>
+endif
 " }}}
 
-" {{{ Abbrev
+" Abbreviation {{{ 
 abbrev eplug e ~/.vim/ftplugin/
 
 " }}}
 
-" VimWIki {{{
+" VimWiki {{{ 
 let g:vimwiki_list = [{'path':'~/Dropbox/VimWiki', 'path_html':'~/Dropbox/VimWiki/html'}]
 " }}}
 
@@ -116,7 +124,6 @@ let g:airline_powerline_fonts = 1
 let g:syntastic_python_python_exec = '/usr/bin/python2'
 " }}}
 
-" {{{ FileType
+" FileType {{{ 
 autocmd BufRead,BufNewFile *.ino set filetype=c 
 " }}}
-
