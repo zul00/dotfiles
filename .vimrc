@@ -77,6 +77,8 @@ set scrolloff=2
 " }}}
 
 " Key Remap {{{
+nmap <F2> :!ctags -R *<CR>
+nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
 nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 
@@ -92,7 +94,7 @@ nmap <leader>wa :wa<CR>
 nmap <leader>wq :wq<CR>
 " }}}
 
-" {{{ abbrev
+" {{{ Abbrev
 abbrev eplug e ~/.vim/ftplugin/
 
 " }}}
