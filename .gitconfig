@@ -1,0 +1,6 @@
+[user]
+	email = zul.zulkarnaen@gmail.com
+	name = zul00
+[alias]
+    co = checkout
+    glog = log --graph --decorate --all
