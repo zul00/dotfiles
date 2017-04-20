@@ -9,6 +9,17 @@ set shiftwidth=2
 set tabstop=2
 set autoindent
 " }}}
+
+" Key Remap {{{
+nmap <F6> :wa<CR> <leader>ll
+nmap <F8> <leader>lv
+" }}}
+
+" NerdTree {{{
+let NERDTreeIgnore=['\.pdf', '\.dvi', '\.aux', '\.gz', '\.log', '\.toc', '\.out']
+" }}}
+
+" Latex-Suite {{{
 set iskeyword+=:
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats='pdf, aux'
@@ -21,4 +32,5 @@ let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 -interaction=nonstopmode $*'
 "" without the extension.
 "" Using the filename, without the extension, not in uppercase though, but
 "" that's okay for a servername, it automatically get uppercased
-"let theuniqueserv = expand("%:r")
+let theuniqueserv = expand("%:r")
+" }}}

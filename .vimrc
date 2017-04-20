@@ -29,6 +29,7 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'vimlatex'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'embear/vim-localvimrc'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -77,16 +78,14 @@ set scrolloff=2
 " }}}
 
 " Key Remap {{{
+" Other key
 nmap <F2> :!ctags -R *<CR>
-nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
+nmap <F11> :tabe $HOME/.vim/ftplugin<CR>
 nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 
 " leader map
-nmap <leader>do :diffoff<CR>
 nmap <leader>dt :windo diffthis<CR>
-nmap <leader>du :diffu<CR>
-nmap <leader>g :diffget<CR>
 nmap <leader>o :only<CR>
 nmap <leader>q :q<CR>
 nmap <leader>q! :q!<CR>
@@ -99,12 +98,15 @@ nmap <leader>wq :wq<CR>
 if &diff
     nmap <leader>i :set diffopt+=iwhite<CR>
     nmap <leader>i! :set diffopt-=iwhite<CR>
+    vmap <leader>g :diffget<CR>
+    vmap <leader>p :diffput<CR>
+    nmap <leader>u :diffu<CR>
+    nmap <leader>o :diffoff<CR>
 endif
 " }}}
 
 " Abbreviation {{{ 
 abbrev eplug e ~/.vim/ftplugin/
-
 " }}}
 
 " VimWiki {{{ 
@@ -126,4 +128,8 @@ let g:syntastic_python_python_exec = '/usr/bin/python2'
 
 " FileType {{{ 
 autocmd BufRead,BufNewFile *.ino set filetype=c 
+" }}}
+
+" localvimrc {{{
+let g:localvimrc_sandbox = 0
 " }}}
