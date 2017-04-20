@@ -91,7 +91,8 @@ vmap <C-c> "*y
 nmap <leader>do :diffoff<CR>
 nmap <leader>dt :windo diffthis<CR>
 nmap <leader>du :diffu<CR>
-nmap <leader>g :diffget<CR>
+nmap <leader>dp :'<,'>diffput<CR>
+nmap <leader>dg :'<,'>diffget<CR>
 nmap <leader>o :only<CR>
 nmap <leader>q :q<CR>
 nmap <leader>q! :q!<CR>

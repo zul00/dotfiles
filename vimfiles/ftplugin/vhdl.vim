@@ -11,7 +11,10 @@ set autoindent
 " }}}
 
 " NerdTree {{{
-let NERDTreeIgnore=['\.mpf*', '\.mti', '\.wlf', '\.bak', '\.qpf', '\.qws']
+let NERDTreeIgnore=[
+      \'\.mpf*', '\.mti', '\.wlf', '\.bak', '\.qpf', '\.qws',
+      \ 'db/*', 'output_files/*', 'simulation/*', 'work/*',
+      \ '\.qsf']
 " }}}
 
 " Key Remap {{{
