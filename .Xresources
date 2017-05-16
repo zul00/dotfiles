@@ -8,8 +8,9 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 ! URxvt
-URxvt.font: xft:Inconsolata for Powerline:size=10:style=Medium
-!size=10:antialias=true:hinting=true
+URxvt.font: xft:\
+    inconsolata:size=10:hinting=true:antialias=true\
+    for Powerline:size=10:style=Medium
 URxvt.scrollBar: False
 URxvt.depth:     24
 
