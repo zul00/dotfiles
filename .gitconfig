@@ -3,4 +3,4 @@
 	name = zul00
 [alias]
     co = checkout
-    glog = log --graph --decorate --all
+    glog = log --graph --decorate --all --color
