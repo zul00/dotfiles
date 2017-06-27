@@ -41,6 +41,7 @@ syntax on
 set guifont=monospace
 set colorcolumn=80
 set t_Co=256
+set background=dark
 " }}}
 
 " Formatting {{{
