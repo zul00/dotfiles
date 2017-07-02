@@ -49,7 +49,7 @@ font-2 = siji:pixelsize=8;1
 font-3 = FontAwesome:size=10;0
 
 modules-left = i3
-modules-center = 
+modules-center = clock
 modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
@@ -241,15 +241,24 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-[module/date]
+[module/clock]
 type = internal/date
 interval = 5
 
+time = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-overline = #0a6cf5
+
+label = %date% %time%
+
+[module/date]
+type = internal/date
+interval = 1
+
 date = " %Y-%m-%d"
 date-alt = " %Y-%m-%d"
-
-time =  %H:%M:%S
-time-alt =  %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
