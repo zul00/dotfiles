@@ -243,7 +243,7 @@ format-disconnected =
 
 [module/clock]
 type = internal/date
-interval = 5
+interval = 1
 
 time = %H:%M:%S
 
@@ -255,7 +255,7 @@ label = %date% %time%
 
 [module/date]
 type = internal/date
-interval = 1
+interval = 30
 
 date = " %Y-%m-%d"
 date-alt = " %Y-%m-%d"
