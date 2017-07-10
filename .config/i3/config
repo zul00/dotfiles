@@ -11,6 +11,7 @@
 
 set $mod Mod1
 set $sup Mod4
+set $browser /usr/bin/firefox-nightly
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -65,16 +66,16 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left 40px
+bindsym $mod+Shift+j move down 40px
+bindsym $mod+Shift+k move up 40px
+bindsym $mod+Shift+l move right 40px
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left 40px
+bindsym $mod+Shift+Down move down 40px
+bindsym $mod+Shift+Up move up 40px
+bindsym $mod+Shift+Right move right 40px
 
 # split in horizontal orientation
 bindsym $mod+Shift+v split h; exec notify-send 'tile horizontally'
@@ -110,16 +111,16 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # workspace alias
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6 "
+set $ws7 "7 "
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "0"
 set $wsp " "
 
 # switch to workspace
@@ -172,9 +173,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+#bar {
+#        status_command i3status
+#}
 
 # BindKey
 ## Power Management
@@ -218,16 +219,24 @@ bindsym $sup+t workspace $ws6; \
 
 ## resize
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 30 px or 30 ppt
+        bindsym j resize grow height 30 px or 30 ppt
+        bindsym k resize shrink height 30 px or 30 ppt
+        bindsym l resize grow width 30 px or 30 ppt
+        bindsym Shift+h resize shrink width 5 px or 5 ppt
+        bindsym Shift+j resize grow height 5 px or 5 ppt
+        bindsym Shift+k resize shrink height 5 px or 5 ppt
+        bindsym Shift+l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-       bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 30 px or 30 ppt
+        bindsym Down resize grow height 30 px or 30 ppt
+        bindsym Up resize shrink height 30 px or 30 ppt
+        bindsym Right resize grow width 30 px or 30 ppt
+        bindsym Shift+Left resize shrink width 5 px or 5 ppt
+        bindsym Shift+Down resize grow height 5 px or 5 ppt
+        bindsym Shift+Up resize shrink height 5 px or 5 ppt
+        bindsym Shift+Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -240,14 +249,14 @@ bindsym $mod+r mode "resize"
 mode "www" {
     # Email n WhatsApp
     bindsym e   workspace $ws4;\
-        exec /usr/bin/chromium --new-window web.whatsapp.com;\
-        exec /usr/bin/chromium --new-window inbox.google.com https://inbox.google.com/u/1/;\
+        exec --no-startup-id $browser -new-window -url web.whatsapp.com;\
+        exec --no-startup-id $browser -new-tab -url inbox.google.com -new-tab -url inbox.google.com/u/1;\
         layout tabbed;\
         mode "default"
     
     # Empty Chrome
     bindsym Return  workspace $ws5;\
-        exec /usr/bin/chromium --new-window;\
+        exec --no-startup-id $browser;\
         layout tabbed;\
         mode "default"
 
@@ -262,3 +271,4 @@ smart_gaps on
 # App at startup
 exec_always feh --bg-fill -z /home/zul/Dropbox/Wallpaper/
 exec_always ~/.dropbox-dist/dropboxd
+exec_always ~/.config/polybar/launch.sh
