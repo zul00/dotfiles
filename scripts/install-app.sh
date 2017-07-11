@@ -1,6 +1,7 @@
 #!/bin/bash
 # Basic
 sudo pacman -S task gvim chromium rxvt-unicode
+sudo pacaur -S firefox-nightly
 # File Manager
 sudo pacman -S ranger w3m
 sudo pacman -S feh scrot
@@ -14,5 +15,7 @@ yaourt -S tasksh tty-clock
 yaourt -S playerctl
 # Programming
 pacman -S ctags
+# Printing
+pacman -S cups samba system-config-printer
 
 
