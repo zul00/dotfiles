@@ -179,16 +179,25 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # BindKey
 ## Power Management
-#bindsym XF86Sleep exec i3lock -c 000000 && sysmtemctl suspend
-#bindsym XF86ScreenSaver exec i3lock -c 000000
+set $Locker "/home/zul/scripts/lockscreen/lockscreen.sh"
+set $LockerSusp "/home/zul/scripts/lockscreen/lockscreen.sh && systemctl suspend"
 
-bindsym $sup+l exec --no-startup-id "/home/zul/scripts/lockscreen/lockscreen.sh && systemctl suspend"
-bindsym XF86Sleep exec --no-startup-id "/home/zul/scripts/lockscreen/lockscreen.sh"
-bindsym XF86ScreenSaver exec ~/scripts/lockscreen/lockscreen.sh
-bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $LockerSusp, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym Pause mode "$mode_system"
 
 ## Touchpad Toggle
-#bindsym XF86TouchpadToggle exec xinit
+bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
 
 ## MediaKey
 bindsym XF86AudioMute exec amixer -q set Master toggle && pkill -RTMIN+10 i3blocks
