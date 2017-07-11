@@ -4,4 +4,4 @@ display=`xrandr | grep -w connected | egrep -v LVDS | egrep -o '[A-Z]{4,}-[1-4]{
 
 echo $display
 
-~/.screenlayout/hdmi_left.sh
+./display.sh $display
