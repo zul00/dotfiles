@@ -1,6 +1,6 @@
-" @file:    c.tex
+" @file:    c.vim
 " @author:  Zulkarnaen
-" @brief:   Setting for c filetype.vim
+" @brief:   Setting for c filetype
 
 " Formatting {{{ 
 set shiftwidth=2

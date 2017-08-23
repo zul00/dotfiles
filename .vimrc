@@ -18,18 +18,20 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugin list
-Plugin 'vim-latex/vim-latex'
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-vinegar'
 Plugin 'Syntastic'
 Plugin 'desert256.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
 Plugin 'itchyny/calendar.vim'
-Plugin 'vimlatex'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'embear/vim-localvimrc'
+Plugin 'lervag/vimtex'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -76,6 +78,8 @@ set lazyredraw
 set autoread
 set showcmd
 set scrolloff=2
+set ttymouse=xterm2
+set mouse=a
 " }}}
 
 " Key Remap {{{
@@ -120,7 +124,7 @@ let g:tex_flavor='latex'
 
 " {{{ Powerline
 set laststatus=2
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 " }}}
 
 " {{{ Syntastic
@@ -133,4 +137,15 @@ autocmd BufRead,BufNewFile *.ino set filetype=c
 
 " localvimrc {{{
 let g:localvimrc_sandbox = 0
+" }}}
+
+" UltiSnips {{{
+" Trigger configuration.
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+
+" :UltiSnipsEdit opens to a split window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 " }}}
