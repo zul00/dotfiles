@@ -8,9 +8,12 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 ! URxvt
-URxvt.font: xft:\
-    inconsolata:size=10:hinting=true:antialias=true\
-    for Powerline:size=10:style=Medium
+URxvt.font: xft: Inconsolata for Powerline:\
+            size=10:hinting=true:antialias=true:style=Medium,\
+            xft: FontAwesome:size=10
+
+URxvt.boldFont: xft: Inconsolata for Powerline:\
+            size=10:bold:hinting=true:antialias=true:style=Medium
 URxvt.scrollBar: False
 URxvt.depth:     24
 
@@ -28,40 +31,40 @@ rofi.color-normal: #32302f, #ebdbb2, #3c3836, #665c54, #fbf1c7
 rofi.color-active: #d79921, #32302f, #d79921, #fabd2f, #32302f
 rofi.color-urgent: #cc241d, #32302f, #cc241d, #fb4934, #32302f
 
+! COLOR - Monokai (modified)
 ! special
-*.foreground:   #c5c8c6
-*.background:   #1d1f21
-*.cursorColor:  #c5c8c6
+*.foreground:   #f1ebeb
+*.background:   #272822
+*.cursorColor:  #f1ebeb
 
 ! black
-*.color0:       #1d1f21
-*.color8:       #969896
+*.color0:       #48483e
+*.color8:       #76715e
 
 ! red
-*.color1:       #cc342b
-*.color9:       #cc342b
+*.color1:       #dc2566
+*.color9:       #fa2772
 
 ! green
-*.color2:       #198844
-*.color10:      #198844
+*.color2:       #8fc029
+*.color10:      #a7e22e
 
 ! yellow
-*.color3:       #fba922
-*.color11:      #fba922
+*.color3:       #d4c96e
+*.color11:      #e7db75
 
 ! blue
-*.color4:       #3971ed
-*.color12:      #3971ed
+*.color4:       #55bcce
+*.color12:      #66d9ee
 
 ! magenta
-*.color5:       #a36ac7
-*.color13:      #a36ac7
+*.color5:       #9358fe
+*.color13:      #ae82ff
 
 ! cyan
-*.color6:       #3971ed
-*.color14:      #3971ed
+*.color6:       #104030
+*.color14:      #66efd5
 
 ! white
-*.color7:       #c5c8c6
-*.color15:      #ffffff
+*.color7:       #acada1
 
