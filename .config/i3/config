@@ -9,13 +9,15 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
-set $sup Mod4
-set $browser /usr/bin/firefox-nightly
+set $mod Mod4
+
+# default app
+set $browser    /usr/bin/firefox-nightly
+set $term       /usr/bin/termite
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: monospace, FontAwesome 8
+font pango: Inconsolata 8, FontAwesome 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -33,13 +35,17 @@ for_window [class="^.*"] border pixel 1
 gaps inner 10
 gaps outer 10
 
+# Rule for apps
+for_window [class="Qalculate-gtk"] floating enable
+for_window [class="SpeedCrunch"] floating enable
+
 bindsym $mod+Shift+Tab workspace back_and_forth
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec /usr/bin/urxvt -vb
+bindsym $mod+Return exec $term
 #i3-sensible-terminal
 
 # kill focused window
@@ -87,9 +93,8 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+o layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -204,6 +209,7 @@ mode "mode_display" {
     bindsym k exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh above" restart mode "default"
     bindsym j exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh below" restart mode "default"
     bindsym m exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh same" restart mode "default"
+    bindsym o exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh off" restart mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -226,18 +232,16 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym Print --release\
             exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'mv $f ~/Pictures/shots/'
 ## Vimwiki
-bindsym $sup+n workspace $ws7; \
-            exec urxvt -title "Vimwiki" -e vim "+:VimwikiIndex"
+bindsym $mod+n workspace $ws7; \
+            exec $term --title "Vimwiki" -e vim "+:VimwikiIndex"
 
 ## Ranger
-bindsym $sup+e exec urxvt -vb -title "Ranger" -e ranger
-## Arandr
-bindsym $sup+d exec arandr
+bindsym $mod+e exec $term --title "Ranger" -e ranger
 ## Spotify
-bindsym $sup+s workspace $ws10; exec spotify;
+bindsym $mod+s workspace $ws10; exec spotify;
 
 ## taskwarrior
-bindsym $sup+t workspace $ws6; \
+bindsym $mod+t workspace $ws6; \
             append_layout ~/.i3/layout/ws-task.json; \
             exec ~/scripts/taskwarrior.sh;
 
@@ -284,10 +288,10 @@ mode "www" {
         layout tabbed;\
         mode "default"
 
-    bindsym $sup+i  mode "default"
+    bindsym $mod+i  mode "default"
     bindsym Escape  mode "default"
 }
-bindsym $sup+i mode "www"
+bindsym $mod+i mode "www"
 
 # i3-gaps settings
 smart_gaps on
@@ -296,3 +300,4 @@ smart_gaps on
 exec_always feh --bg-fill -z /home/zul/Dropbox/Wallpaper/
 exec_always ~/.dropbox-dist/dropboxd
 exec_always ~/.config/polybar/launch.sh
+exec ~/scripts/lockscreen/autolock.sh
