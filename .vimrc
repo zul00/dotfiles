@@ -147,5 +147,6 @@ let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 " :UltiSnipsEdit opens to a split window.
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories=['usnip']
+let g:UltiSnipsSnippetsDir='~/.template/usnip'
 " }}}
