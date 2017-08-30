@@ -85,11 +85,13 @@ set mouse=a
 " Key Remap {{{
 " Other key
 nmap <F2> :!ctags -R *<CR>
-nmap <F11> :tabe $HOME/.vim/ftplugin<CR>
+nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
 nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
+imap jj <ESC>
 
 " leader map
+let mapleader = ','
 nmap <leader>dt :windo diffthis<CR>
 nmap <leader>o :only<CR>
 nmap <leader>q :q<CR>
@@ -108,6 +110,9 @@ if &diff
     nmap <leader>u :diffu<CR>
     nmap <leader>o :diffoff<CR>
 endif
+nmap <leader>gst :Gstatus<CR>
+nmap <leader>gwr :Gwrite<CR>
+nmap <leader>gvd :Gvdiff<CR>
 " }}}
 
 " Abbreviation {{{ 
@@ -147,6 +152,5 @@ let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 " :UltiSnipsEdit opens to a split window.
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=['usnip']
-let g:UltiSnipsSnippetsDir='~/.template/usnip'
+let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips/'
 " }}}
