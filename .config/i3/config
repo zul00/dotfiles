@@ -14,6 +14,7 @@ set $mod Mod4
 # default app
 set $browser    /usr/bin/firefox-nightly
 set $term       /usr/bin/termite
+set $extdisp    VGA-1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -35,9 +36,11 @@ for_window [class="^.*"] border pixel 1
 gaps inner 10
 gaps outer 10
 
-# Rule for apps
+# Rule and exception for apps
+# use xprop the check window properties
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="SpeedCrunch"] floating enable
+for_window [class="Arandr"] floating enable
 
 bindsym $mod+Shift+Tab workspace back_and_forth
 
@@ -119,14 +122,16 @@ bindsym $mod+minus scratchpad show
 set $ws1 "1 "
 set $ws2 "2 "
 set $ws3 "3 "
-set $ws4 "4 "
-set $ws5 "5 "
-set $ws6 "6 "
-set $ws7 "7 "
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "0"
-set $wsp " "
+set $ws4 "4 "
+set $ws5 "5  "
+set $ws6 "6 "
+set $ws7 "7  "
+set $ws8 "8  "
+set $ws9 "9  "
+set $ws10 "0  "
+
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -139,7 +144,6 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-bindsym $mod+p workspace $wsp
 
 workspace $ws1 output LVDS-1
 workspace $ws2 output LVDS-1
@@ -147,11 +151,10 @@ workspace $ws3 output LVDS-1
 workspace $ws4 output LVDS-1
 workspace $ws5 output LVDS-1
 workspace $ws6 output LVDS-1
-workspace $ws7 output LVDS-1
-workspace $ws8 output LVDS-1
-workspace $ws9 output LVDS-1
-workspace $ws10 output LVDS-1
-workspace $wsp output HDMI-1
+workspace $ws7 output $extdisp
+workspace $ws8 output $extdisp
+workspace $ws9 output $extdisp
+workspace $ws10 output $extdisp
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -164,7 +167,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
-bindsym $mod+Shift+p move container to workspace $wsp
 
 bindsym $mod+Next       workspace next
 
@@ -238,7 +240,7 @@ bindsym $mod+n workspace $ws7; \
 ## Ranger
 bindsym $mod+e exec $term --title "Ranger" -e ranger
 ## Spotify
-bindsym $mod+s workspace $ws10; exec spotify;
+bindsym $mod+s workspace $ws6; exec spotify;
 
 ## taskwarrior
 bindsym $mod+t workspace $ws6; \
@@ -301,3 +303,4 @@ exec_always feh --bg-fill -z /home/zul/Dropbox/Wallpaper/
 exec_always ~/.dropbox-dist/dropboxd
 exec_always ~/.config/polybar/launch.sh
 exec ~/scripts/lockscreen/autolock.sh
+exec /usr/bin/redshift
