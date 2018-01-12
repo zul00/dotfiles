@@ -26,24 +26,28 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
 Plugin 'itchyny/calendar.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'embear/vim-localvimrc'
 Plugin 'lervag/vimtex'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'chriskempson/base16-vim'
+Plugin 'reedes/vim-pencil'
+Plugin 'reedes/vim-lexical'
+Plugin 'blindFS/vim-reveal'
+Plugin 'ledger/vim-ledger'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 "}}}
 
 " Font & Colors {{{
-colorscheme desert256
 syntax on
 set guifont=monospace
 set colorcolumn=80
 set t_Co=256
 set background=dark
+let base16colorspace=256
+colorscheme base16-monokai
 " }}}
 
 " Formatting {{{
@@ -89,6 +93,8 @@ nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
 nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 imap jj <ESC>
+map <space> <leader>
+vmap <space><space> <ESC>
 
 " leader map
 let mapleader = ','
@@ -113,6 +119,7 @@ endif
 nmap <leader>gst :Gstatus<CR>
 nmap <leader>gwr :Gwrite<CR>
 nmap <leader>gvd :Gvdiff<CR>
+nmap <leader>glg :Git lg2<CR>
 " }}}
 
 " Abbreviation {{{ 
@@ -127,9 +134,9 @@ let g:vimwiki_list = [{'path':'~/Dropbox/VimWiki', 'path_html':'~/Dropbox/VimWik
 let g:tex_flavor='latex'
 " }}}
 
-" {{{ Powerline
+" {{{ Statusline
 set laststatus=2
-let g:airline_powerline_fonts=1
+set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
 " }}}
 
 " {{{ Syntastic
@@ -154,3 +161,17 @@ let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips/'
 " }}}
+
+" VimDiff {{{
+autocmd FilterWritePre * if &diff | setlocal wrap< | endif
+" }}}
+
+augroup pencil
+  autocmd!
+  autocmd FileType tex call pencil#init()
+augroup END
+
+augroup lexical
+  autocmd!
+  autocmd FileType tex call lexical#init()
+augroup END
