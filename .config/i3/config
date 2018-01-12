@@ -13,8 +13,8 @@ set $mod Mod4
 
 # default app
 set $browser    /usr/bin/firefox-nightly
-set $term       /usr/bin/termite
-set $extdisp    VGA-1
+set $term       /usr/bin/urxvt
+set $extdisp    HDMI-1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -41,6 +41,11 @@ gaps outer 10
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="SpeedCrunch"] floating enable
 for_window [class="Arandr"] floating enable
+for_window [class="Tk"] floating enable
+for_window [class="Dwarf_Fortress"] floating enable
+for_window [class="Display"] floating disable
+
+for_window [class=".*"] title_format "<b>%title</b>"
 
 bindsym $mod+Shift+Tab workspace back_and_forth
 
@@ -300,7 +305,7 @@ smart_gaps on
 
 # App at startup
 exec_always feh --bg-fill -z /home/zul/Dropbox/Wallpaper/
-exec_always ~/.dropbox-dist/dropboxd
+exec ~/.dropbox-dist/dropboxd
 exec_always ~/.config/polybar/launch.sh
 exec ~/scripts/lockscreen/autolock.sh
 exec /usr/bin/redshift
