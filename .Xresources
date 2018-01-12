@@ -7,20 +7,29 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-! URxvt
-URxvt.font: xft: Inconsolata for Powerline:\
-            size=10:hinting=true:antialias=true:style=Medium,\
-            xft: FontAwesome:size=10
-
-URxvt.boldFont: xft: Inconsolata for Powerline:\
-            size=10:bold:hinting=true:antialias=true:style=Medium
-URxvt.scrollBar: False
-URxvt.depth:     24
-
+! XTerm
 xterm*VT100*width: true
 xterm*VT100*faceName: inconsolata:size=9:antialias=false
 xterm.scrollBar: False
 xterm.depth:     24
+
+! URxvt
+URxvt.intensityStyles:	false
+!!URxvt.background:       [70]#000000
+URxvt.depth:		32
+URxvt.font: 		xft:monospace:size=10
+URxvt.scrollBar:	false
+URxvt.cursorColor:	white
+
+!! Extensions:
+URxvt.perl-ext-common:	default,matcher,resize-font
+!! matcher
+URxvt.url-launcher:	/usr/bin/xdg-open
+URxvt.matcher.button:	1
+!! resize font
+URxvt.resize-font.smaller:	C-j
+URxvt.resize-font.bigger:	C-k
+
 
 ! ROFI
 !                  bg       border   separator
