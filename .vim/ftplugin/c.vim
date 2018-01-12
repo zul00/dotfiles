@@ -7,6 +7,8 @@ set shiftwidth=2
 set tabstop=2
 " }}}
 
+let g:load_doxygen_syntax=1
+
 " Key Remap {{{ 
 nmap <F4> :!clear<CR><bar>:wa <bar> :make clean<CR>
 nmap <F5> :!clear<CR><bar>:wa <bar> :make<CR>

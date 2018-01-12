@@ -15,10 +15,13 @@ vmap <F10> :normal 0i%<CR>
 " }}}
 
 " NerdTree {{{
-let NERDTreeIgnore=['\.pdf', '\.dvi', '\.aux', '\.gz', '\.log', '\.toc', '\.out']
+let NERDTreeIgnore=['\.pdf', '\.dvi', '\.snm', '\.nav', '\.aux', '\.gz', '\.log', '\.toc', '\.out', '\.vrb']
 " }}}
 
 " vimtex setting {{{
 let g:vimtex_view_method = 'zathura'
+" }}}
 
+" pencil setting {{{
+let g:pencil#wrapModeDefault = 'soft'
 " }}}
