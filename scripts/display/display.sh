@@ -8,7 +8,14 @@ elif [ $2 = "above" ]; then
 elif [ $2 = "below" ]; then
     xrandr --output $1 --below LVDS-1 --auto --rotate normal
 elif [ $2 = "same" ]; then
-    xrandr --output $1 --below LVDS-1 --auto --rotate normal
+    xrandr --output $1 --same-as LVDS-1 --auto --rotate normal
+elif [ $2 = "off" ]; then
+    display=`xrandr | grep connected | grep -v LVDS | grep mm | egrep -o '[A-Z]{4,}-[1-4]{1}'`
+    xrandr --output $display --off
+fi&
+
+if [ $2 = "off" ]; then
+    pacmd set-card-profile 0 "output:analog-stereo+input:analog-stereo"
 else
-    xrandr --output $1 --off
+    pacmd set-card-profile 0 "output:hdmi-stereo+input:analog-stereo"
 fi;
