@@ -9,7 +9,9 @@ param=( --textcolor=ffffff00 --insidecolor=e8dcd000 --ringcolor=e8dcd088 --linec
 playerctl pause
 
 scrot $TMPBG
-ffmpeg -loglevel quiet -i $TMPBG -filter_complex "boxblur=10" -vframes 1 -y $TMPBG
+ffmpeg  -loglevel quiet \
+        -i $TMPBG \
+        -filter_complex "boxblur=10" -vframes 1 -y $TMPBG
 
 #convert $TMPBG -scale 10% -scale 1000% $TMPBG
 #convert $TMPBG $ICON -gravity center -composite -matte $TMPBG
