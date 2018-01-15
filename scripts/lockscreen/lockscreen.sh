@@ -9,10 +9,14 @@ MAINDISP_H=`xrandr | awk '/primary/{print $4}' | awk -Fx '{print $2}' | awk -F+ 
 
 # Generate Lockscreen
 scrot $IMAGE
+## Blur screen capture
 ffmpeg  -loglevel quiet \
         -i $IMAGE \
         -i $ICON \
         -filter_complex "boxblur=10,overlay=($MAINDISP_W-overlay_w)/2+$XOFF:($MAINDISP_H-overlay_h)/2" -vframes 1 -y $IMAGE
+## Added a box for clock and lock
+ffmpeg  -i $IMAGE \
+        -vf "drawbox=x=$XOFF+25:y=$MAINDISP_H-110:w=300:h=80:color=black@0.7:t=max" -y $IMAGE
 
 # Pause media
 playerctl pause
