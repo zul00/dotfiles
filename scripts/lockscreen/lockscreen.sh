@@ -14,7 +14,24 @@ ffmpeg  -loglevel quiet \
         -i $ICON \
         -filter_complex "boxblur=10,overlay=($MAINDISP_W-overlay_w)/2+$XOFF:($MAINDISP_H-overlay_h)/2" -vframes 1 -y $IMAGE
 
-# Lock screen
+# Pause media
 playerctl pause
-param=( --textcolor=ffffff00 --insidecolor=e8dcd000 --ringcolor=e8dcd088 --linecolor=2d283e00 --keyhlcolor=e8dcd0ff --ringvercolor=E9A66Cff --separatorcolor=22222200 --insidevercolor=fadd5c00 --ringwrongcolor=CE325Bff --insidewrongcolor=f1345900 --clock)
-i3lock "${param[@]}" -i $IMAGE -n &
+# Lock screen
+letterEnteredColor=d23c3dff
+letterRemovedColor=d23c3dff
+passwordCorrect=00000000
+passwordIncorrect=d23c3dff
+background=00000000
+foreground=ffffffff
+i3lock \
+		-t -n -i $IMAGE \
+		--timepos="x-90:h-ch+30" \
+		--datepos="tx+24:ty+25" \
+		--clock --datestr "Type password to unlock..." \
+		--insidecolor=$background --ringcolor=$foreground --line-uses-inside \
+		--keyhlcolor=$letterEnteredColor --bshlcolor=$letterRemovedColor --separatorcolor=$background \
+		--insidevercolor=$passwordCorrect --insidewrongcolor=$passwordIncorrect \
+		--ringvercolor=$foreground --ringwrongcolor=$foreground --indpos="x+280:h-70" \
+		--radius=20 --ring-width=4 --veriftext="" --wrongtext="" \
+		--textcolor="$foreground" --timecolor="$foreground" --datecolor="$foreground" \
+        --force-clock
