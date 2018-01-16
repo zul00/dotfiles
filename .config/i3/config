@@ -55,29 +55,35 @@ bindsym $mod+Tab exec rofi -show window
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 ###---KeyBind---###
-# change focus
+# Change Focus
 bindsym $mod+h              focus left
 bindsym $mod+j              focus down
 bindsym $mod+k              focus up
 bindsym $mod+l              focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left           focus left
 bindsym $mod+Down           focus down
 bindsym $mod+Up             focus up
 bindsym $mod+Right          focus right
 
-# move focused window
+# Move Focused Window
 bindsym $mod+Shift+h        move left 40px
 bindsym $mod+Shift+j        move down 40px
 bindsym $mod+Shift+k        move up 40px
 bindsym $mod+Shift+l        move right 40px
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left     move left 40px
 bindsym $mod+Shift+Down     move down 40px
 bindsym $mod+Shift+Up       move up 40px
 bindsym $mod+Shift+Right    move right 40px
+
+# Resize
+bindsym $mod+y              resize shrink width 5 px or 5 ppt
+bindsym $mod+u              resize grow height 5 px or 5 ppt
+bindsym $mod+i              resize shrink height 5 px or 5 ppt
+bindsym $mod+o              resize grow width 5 px or 5 ppt
+bindsym $mod+Shift+y        resize shrink width 30 px or 30 ppt
+bindsym $mod+Shift+u        resize grow height 30 px or 30 ppt
+bindsym $mod+Shift+i        resize shrink height 30 px or 30 ppt
+bindsym $mod+Shift+o        resize grow width 30 px or 30 ppt
 
 # split in horizontal orientation
 bindsym $mod+v split toggle; exec notify-send 'split toggle'
@@ -237,55 +243,6 @@ bindsym $mod+t workspace $ws6; \
             append_layout ~/.i3/layout/ws-task.json; \
             exec ~/scripts/taskwarrior.sh;
 
-## resize
-mode "resize" {
-        bindsym h resize shrink width 30 px or 30 ppt
-        bindsym j resize grow height 30 px or 30 ppt
-        bindsym k resize shrink height 30 px or 30 ppt
-        bindsym l resize grow width 30 px or 30 ppt
-        bindsym Shift+h resize shrink width 5 px or 5 ppt
-        bindsym Shift+j resize grow height 5 px or 5 ppt
-        bindsym Shift+k resize shrink height 5 px or 5 ppt
-        bindsym Shift+l resize grow width 5 px or 5 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 30 px or 30 ppt
-        bindsym Down resize grow height 30 px or 30 ppt
-        bindsym Up resize shrink height 30 px or 30 ppt
-        bindsym Right resize grow width 30 px or 30 ppt
-        bindsym Shift+Left resize shrink width 5 px or 5 ppt
-        bindsym Shift+Down resize grow height 5 px or 5 ppt
-        bindsym Shift+Up resize shrink height 5 px or 5 ppt
-        bindsym Shift+Right resize grow width 5 px or 5 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym $mod+r mode "default"
-        bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-
-## www
-mode "www" {
-    # Email n WhatsApp
-    bindsym e   workspace $ws4;\
-        exec --no-startup-id $browser -new-window -url web.whatsapp.com;\
-        exec --no-startup-id $browser -new-tab -url inbox.google.com -new-tab -url inbox.google.com/u/1;\
-        layout tabbed;\
-        mode "default"
-    
-    # Empty Chrome
-    bindsym Return  workspace $ws5;\
-        exec --no-startup-id $browser;\
-        layout tabbed;\
-        mode "default"
-
-    bindsym $mod+i  mode "default"
-    bindsym Escape  mode "default"
-}
-bindsym $mod+i mode "www"
-
-
 ###---App at startup---###
 # Wallpaper
 exec_always     feh --bg-fill -z /home/zul/Dropbox/Wallpaper/
@@ -301,5 +258,6 @@ exec            /usr/bin/redshift
 exec            --no-startup-id compton --xrender-sync-fence 
 # Unclutter, hide mouse
 exec            --no-startup-id unclutter 
-# Disable buzzer
+# Disable buzzer and switch escape with capslock
 exec            --no-startup-d xset b off
+exec            setxkbmap -option caps:swapescape
