@@ -54,29 +54,30 @@ bindsym $mod+Tab exec rofi -show window
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+###---KeyBind---###
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+h              focus left
+bindsym $mod+j              focus down
+bindsym $mod+k              focus up
+bindsym $mod+l              focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left       focus left
-bindsym $mod+Down       focus down
-bindsym $mod+Up         focus up
-bindsym $mod+Right      focus right
+bindsym $mod+Left           focus left
+bindsym $mod+Down           focus down
+bindsym $mod+Up             focus up
+bindsym $mod+Right          focus right
 
 # move focused window
-bindsym $mod+Shift+h    move left 40px
-bindsym $mod+Shift+j    move down 40px
-bindsym $mod+Shift+k    move up 40px
-bindsym $mod+Shift+l    move right 40px
+bindsym $mod+Shift+h        move left 40px
+bindsym $mod+Shift+j        move down 40px
+bindsym $mod+Shift+k        move up 40px
+bindsym $mod+Shift+l        move right 40px
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left 40px
-bindsym $mod+Shift+Down move down 40px
-bindsym $mod+Shift+Up move up 40px
-bindsym $mod+Shift+Right move right 40px
+bindsym $mod+Shift+Left     move left 40px
+bindsym $mod+Shift+Down     move down 40px
+bindsym $mod+Shift+Up       move up 40px
+bindsym $mod+Shift+Right    move right 40px
 
 # split in horizontal orientation
 bindsym $mod+v split toggle; exec notify-send 'split toggle'
@@ -300,3 +301,5 @@ exec            /usr/bin/redshift
 exec            --no-startup-id compton --xrender-sync-fence 
 # Unclutter, hide mouse
 exec            --no-startup-id unclutter 
+# Disable buzzer
+exec            --no-startup-d xset b off
