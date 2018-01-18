@@ -26,13 +26,27 @@ smart_gaps on
 
 ###---Rules for apps---###
 # use xprop the check window properties
-for_window [class="Qalculate-gtk"] floating enable
-for_window [class="SpeedCrunch"] floating enable
-for_window [class="Arandr"] floating enable
-for_window [class="Tk"] floating enable
+for_window [class="Qalculate-gtk"]  floating enable
+for_window [class="SpeedCrunch"]    floating enable
+for_window [class="Arandr"]         floating enable
+for_window [class="Tk"]             floating enable
 for_window [class="Dwarf_Fortress"] floating enable
-for_window [class="Display"] floating disable
-for_window [class=".*"] title_format "<b>%title</b>"
+for_window [class="Display"]        floating disable
+for_window [class=".*"]             title_format "<b>%title</b>"
+
+# dropdown terminal
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] move position center
+for_window [instance="dropdown"] move scratchpad
+bindsym $mod+d [instance="dropdown"] scratchpad show; move position center
+
+# dropdown calc
+for_window [class="SpeedCrunch"] floating enable
+for_window [class="SpeedCrunch"] resize set 625 400
+for_window [class="SpeedCrunch"] move position center
+for_window [class="SpeedCrunch"] move scratchpad
+bindsym $mod+c [class="SpeedCrunch"] scratchpad show; move position center
 
 bindsym $mod+Shift+Tab workspace back_and_forth
 
@@ -47,12 +61,8 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+r exec rofi -show run
 bindsym $mod+Tab exec rofi -show window
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 ###---KeyBind---###
 # Change Focus
@@ -85,10 +95,10 @@ bindsym $mod+Shift+u        resize grow height 30 px or 30 ppt
 bindsym $mod+Shift+i        resize shrink height 30 px or 30 ppt
 bindsym $mod+Shift+o        resize grow width 30 px or 30 ppt
 
-# split in horizontal orientation
+# Orientation
 bindsym $mod+v split toggle; exec notify-send 'split toggle'
 
-# enter fullscreen mode for the focused container
+# Fullscreen
 bindsym $mod+f fullscreen toggle
 
 # Container layout: tabbed/ split
@@ -96,22 +106,22 @@ bindsym $mod+w              layout toggle split
 bindsym $mod+shift+w        layout tabbed
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space    floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+space          focus mode_toggle
+# Cycle through window
+bindsym $mod+bracketright   workspace next
+bindsym $mod+bracketleft    workspace prev
 
 # focus the parent container
 bindsym $mod+a focus parent
-
 # focus the child container
 #bindsym $mod+d focus child
 
-# move the currently focused window to the scratchpad
+# Move to scratchpad
 bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
+# Show scratchpad
 bindsym $mod+minus scratchpad show
 
 # workspace alias
@@ -126,8 +136,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "0"
 
-bindsym $mod+bracketright workspace next
-bindsym $mod+bracketleft workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -259,5 +267,7 @@ exec            --no-startup-id compton --xrender-sync-fence
 # Unclutter, hide mouse
 exec            --no-startup-id unclutter 
 # Disable buzzer and switch escape with capslock
-exec            --no-startup-d xset b off
+exec            --no-startup-id xset b off
 exec            setxkbmap -option caps:swapescape
+exec            --no-startup-id $term -name dropdown
+exec            --no-startup-id speedcrunch
