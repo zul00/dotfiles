@@ -8,23 +8,18 @@ XOFF=`xrandr | awk -F+ '/primary/{print $2}'`
 MAINDISP_W=`xrandr | awk '/primary/{print $4}' | awk -Fx '{print $1}'`
 MAINDISP_H=`xrandr | awk '/primary/{print $4}' | awk -Fx '{print $2}' | awk -F+ '{print $1}'`
 
+# Pause media
+playerctl pause
+
 # Generate Lockscreen
 scrot $IMAGE
-## Added a box for clock and lock
-ffmpeg  -i $IMAGE \
-        -vf "drawbox=x=$XOFF+25:y=$MAINDISP_H-110:w=300:h=80:color=black@0.8:t=max" \
-        -y $IMAGE \
-        -loglevel quiet
-
-## Blur screen capture
+## Blur screen capture & added box
 ffmpeg   \
         -i $IMAGE \
         -i $ICON \
-        -filter_complex "boxblur=10,overlay=($MAINDISP_W-overlay_w)/2+$XOFF:($MAINDISP_H-overlay_h)/2" -vframes 1 -y $IMAGE \
+        -filter_complex "drawbox=x=$XOFF+25:y=$MAINDISP_H-110:w=300:h=80:color=black@0.8:t=max,boxblur=10,overlay=($MAINDISP_W-overlay_w)/2+$XOFF:($MAINDISP_H-overlay_h)/2" -vframes 1 -y $IMAGE \
         -loglevel quiet
 
-# Pause media
-playerctl pause
 # Lock screen
 letterEnteredColor=d23c3dff
 letterRemovedColor=d23c3dff
@@ -43,4 +38,4 @@ i3lock \
 		--ringvercolor=$foreground --ringwrongcolor=$foreground --indpos="x+280:h-70" \
 		--radius=20 --ring-width=6 --veriftext="" --wrongtext="" \
 		--textcolor="$foreground" --timecolor="$foreground" --datecolor="$foreground" \
-        --force-clock
+        --force-clock &
