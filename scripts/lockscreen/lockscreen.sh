@@ -3,19 +3,18 @@
 # icon source: https://www.iconfinder.com/search/?q=lock&amp;price=premium&amp;license=2
 ICON=$HOME/scripts/lockscreen/icon/1483940564_lock_locked.png
 IMAGE=/tmp/screen.png
-IMAGE2=/tmp/screen2.png
 XOFF=`xrandr | awk -F+ '/primary/{print $2}'`
 MAINDISP_W=`xrandr | awk '/primary/{print $4}' | awk -Fx '{print $1}'`
 MAINDISP_H=`xrandr | awk '/primary/{print $4}' | awk -Fx '{print $2}' | awk -F+ '{print $1}'`
 
 # Pause media
-playerctl pause
+playerctl pause &
+xset dpms force off &
 
 # Generate Lockscreen
-scrot $IMAGE
 ## Blur screen capture & added box
 ffmpeg   \
-        -i $IMAGE \
+        -f x11grab -video_size 3520x1080 -i $DISPLAY \
         -i $ICON \
         -filter_complex "drawbox=x=$XOFF+25:y=$MAINDISP_H-110:w=300:h=80:color=black@0.8:t=max,boxblur=10,overlay=($MAINDISP_W-overlay_w)/2+$XOFF:($MAINDISP_H-overlay_h)/2" -vframes 1 -y $IMAGE \
         -loglevel quiet
