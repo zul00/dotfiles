@@ -209,7 +209,8 @@ bindsym Pause mode "$mode_system"
 
 ## Display
 set $display_toggle "~/scripts/display/toggle_display.sh"
-mode "mode_display" {
+set $mode_display hey hey
+mode "$mode_display" {
     bindsym h exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh left" restart mode "default"
     bindsym l exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh right" restart mode "default"
     bindsym k exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh above" restart mode "default"
@@ -221,7 +222,7 @@ mode "mode_display" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym XF86Display mode "mode_display"
+bindsym XF86Display mode "$mode_display"
 
 ## Touchpad Toggle
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
