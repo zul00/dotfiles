@@ -18,6 +18,25 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+[bar/monitor]
+monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 25
+modules-center = date
+bottom = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+;font-0 = fixed:pixelsize=8;1
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=8;1
+;font-3 = FontAwesome:size=10;0
+font-0 = NotoSans-Regular:size=8;-1
+font-1 = MaterialIcons:size=10;0
+font-2 = Termsynu:size=8:antialias=false;-2
+font-3 = FontAwesome:size=10;0
+
+modules-left = i3
+
 [bar/thebar]
 monitor = ${env:MONITOR:LVDS-1}
 width = 100%
@@ -47,10 +66,11 @@ font-0 = fixed:pixelsize=8;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=8;1
 font-3 = FontAwesome:size=10;0
+font-4 = Mono:pixelsize=9;1
 
-modules-left = i3
-modules-center = date clock
-modules-right = xbacklight volume filesystem cpu wlan eth battery temperature powermenu
+modules-left = i3 xwindow
+modules-center = date
+modules-right = xbacklight volume filesystem cpu memory wlan eth battery temperature powermenu
 
 tray-position = right
 tray-padding = 2
@@ -70,7 +90,9 @@ scroll-down = i3wm-wsprev
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = %title:0:40:...%
+label-padding = 4
+;label-background = ${background-alt}
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -122,7 +144,7 @@ label-empty-padding = 2
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
-index-sort = true
+index-sort = false
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
@@ -139,17 +161,17 @@ label-focused-overline = ${module/bspwm.label-focused-overline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %name%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %name%
 label-visible-background = ${self.label-focused-background}
 label-visible-overline = ${self.label-focused-overline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
@@ -250,7 +272,7 @@ time = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-overline = #0a6cf5
+;format-overline = #0a6cf5
 
 label = %date% %time%
 
@@ -258,24 +280,29 @@ label = %date% %time%
 type = internal/date
 interval = 30
 
-date = "%a, %F"
+date = "%a, %d-%b-%y"
+time = %H:%M
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-overline = #0a6cf5
+;format-prefix = 
+;format-prefix-foreground = ${colors.foreground-alt}
+;format-overline = #0a6cf5
 
-label = %date% %time%
+label = %date%, %time%
+label-font = 5
+label-background = ${colors.background-alt}
+label-padding = 3
 
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
-label-volume =  
-label-volume-foreground = ${root.foreground}
+format-volume = <ramp-volume> <label-volume>
+label-muted =   muted
+label-muted-foreground = #66
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = muted
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55

@@ -1,0 +1,55 @@
+snippet g "Grouping" b
+;; ${1:marking} {{{
+${0:${VISUAL:# something}}
+;; }}} $1
+endsnippet
+
+snippet w "Week" b
+;; Week ${1:xx} {{{
+${0:${VISUAL:# something}}
+;; }}} Week $1
+endsnippet
+
+snippet m "Month" b
+;==========${1:Mmm} '${2:YY}==========;
+$0
+endsnippet
+
+snippet r "Remark" b
+;== ${1:Note}
+$0
+endsnippet
+
+snippet "b(egin)?" "begin{} / end{}" br
+\begin{${1:something}}
+	${0:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet t "Transaction" b
+${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
+	${5:Expenses}      	${6:0.00} EUR
+	${7:Asset:Bank}$0
+endsnippet
+
+snippet mon "Monday" b
+;== Monday ==;
+endsnippet
+snippet tue "Monday" b
+;== Tuesday ==;
+endsnippet
+snippet wed "Monday" b
+;== Wednesday ==;
+endsnippet
+snippet thu "Monday" b
+;== Thursday ==;
+endsnippet
+snippet fri "Monday" b
+;== Friday ==;
+endsnippet
+snippet sat "Monday" b
+;== Saturday ==;
+endsnippet
+snippet sun "Monday" b
+;== Sunday  ==;
+endsnippet
