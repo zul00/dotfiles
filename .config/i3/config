@@ -7,7 +7,7 @@
 
 # i3 config file (v4)
 #
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox-nightly
@@ -16,23 +16,17 @@ set $extdisp    HDMI-1
 set $mod        Mod4
 
 ###---Visual Settings---###
-#font pango: monospace 9, FontAwesome 8
-font pango:DejaVu Sans Mono 9
-hide_edge_borders both
-for_window [class="^.*"] border pixel 2
+font pango:DejaVu Sans Mono 8
+## gaps
+hide_edge_borders smart
 gaps inner 10
 gaps outer 10
 smart_gaps on
 
 ###---Rules for apps---###
 # use xprop the check window properties
-for_window [class="Qalculate-gtk"]  floating enable
 for_window [class="SpeedCrunch"]    floating enable
 for_window [class="Arandr"]         floating enable
-for_window [class="Tk"]             floating enable
-for_window [class="Dwarf_Fortress"] floating enable
-for_window [class="Display"]        floating disable
-for_window [class=".*"]             title_format "<b>%title</b>"
 
 # dropdown terminal
 for_window [instance="dropdown"] floating enable
@@ -55,15 +49,15 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $term
-#i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start rofi (a program launcher)
-bindsym $mod+r exec rofi -show run
-bindsym $mod+Tab exec rofi -show window
-bindsym $mod+Shift+c exec clipmenu
+# start launcher
+bindsym $mod+r exec dmenu_run
+#bindsym $mod+r exec rofi -show run
+#bindsym $mod+Tab exec rofi -show window
+#bindsym $mod+Shift+c exec clipmenu
 
 ###---KeyBind---###
 # Change Focus
@@ -96,27 +90,29 @@ bindsym $mod+Shift+u        resize grow height 30 px or 30 ppt
 bindsym $mod+Shift+i        resize shrink height 30 px or 30 ppt
 bindsym $mod+Shift+o        resize grow width 30 px or 30 ppt
 
-# Orientation
-bindsym $mod+v split toggle; exec notify-send 'split toggle'
+# Toggle split orientation
+bindsym $mod+v split toggle
 
 # Fullscreen
 bindsym $mod+f fullscreen toggle
 
 # Container layout: tabbed/ split
-bindsym $mod+w              layout toggle split
-bindsym $mod+shift+w        layout tabbed
+bindsym $mod+Shift+t        layout toggle split
+bindsym $mod+t              layout tabbed
 
 # toggle tiling / floating
 bindsym $mod+Shift+space    floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space          focus mode_toggle
+
 # Cycle through window
 bindsym $mod+bracketright   workspace next
 bindsym $mod+bracketleft    workspace prev
 
 # focus the parent container
 bindsym $mod+a focus parent
+
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -136,7 +132,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "0"
-
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -175,13 +170,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 bindsym $mod+Next       workspace next
 
-# reload the configuration file
-#bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -239,20 +231,16 @@ bindsym XF86AudioPrev exec playerctl previous
 
 ## printscreen
 bindsym Print --release\
-            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'mv $f ~/Pictures/shots/'
+            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
 ## Vimwiki
 bindsym $mod+n workspace $ws7; \
             exec $term --title "Vimwiki" -e vim "+:VimwikiIndex"
 
 ## Ranger
 bindsym $mod+e exec $term --title "Ranger" -e ranger
+
 ## Spotify
 bindsym $mod+s workspace $ws6; exec spotify;
-
-## taskwarrior
-bindsym $mod+t workspace $ws6; \
-            append_layout ~/.i3/layout/ws-task.json; \
-            exec ~/scripts/taskwarrior.sh;
 
 ###---App at startup---###
 # Wallpaper
@@ -270,8 +258,9 @@ exec            --no-startup-id compton --xrender-sync-fence
 # Unclutter, hide mouse
 exec            --no-startup-id unclutter 
 # Disable buzzer and switch escape with capslock
-exec            --no-startup-id xset b off
-exec            setxkbmap -option caps:swapescape
+exec_always     --no-startup-id xset b off
+exec_always     setxkbmap -option caps:swapescape
+# Other apps
 exec            --no-startup-id $term -name dropdown
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id clipmenud

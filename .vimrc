@@ -45,6 +45,7 @@ set guifont=monospace
 set colorcolumn=80
 set t_Co=256
 set background=dark
+colorscheme desert
 " }}}
 
 " Formatting {{{
@@ -168,10 +169,5 @@ augroup lexical
   autocmd!
   autocmd FileType tex call lexical#init()
 augroup END
-
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
 
 tnoremap <Esc> <C-\><C-n>
