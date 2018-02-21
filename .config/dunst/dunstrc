@@ -153,13 +153,13 @@
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = off
+    icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
 
     ### History ###
 
@@ -262,7 +262,7 @@
     frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    #icon = /path/to/icon
+    #icon = /usr/share/icons/Adwaita/16x16/status/dialog-error.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
