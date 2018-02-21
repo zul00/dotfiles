@@ -19,7 +19,7 @@ set $mod        Mod4
 #font pango: monospace 9, FontAwesome 8
 font pango:DejaVu Sans Mono 9
 hide_edge_borders both
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 2
 gaps inner 10
 gaps outer 10
 smart_gaps on
@@ -63,6 +63,7 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 bindsym $mod+r exec rofi -show run
 bindsym $mod+Tab exec rofi -show window
+bindsym $mod+Shift+c exec clipmenu
 
 ###---KeyBind---###
 # Change Focus
@@ -175,7 +176,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Next       workspace next
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+#bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -190,8 +191,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # BindKey
 ## Power Management
-set $Locker "/home/zul/scripts/lockscreen/lockscreen.sh"
-set $LockerSusp "/home/zul/scripts/lockscreen/lockscreen.sh && systemctl suspend"
+set $Locker "xautolock -locknow"
+set $LockerSusp "systemctl suspend"
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -209,14 +210,15 @@ bindsym Pause mode "$mode_system"
 
 ## Display
 set $display_toggle "~/scripts/display/toggle_display.sh"
-set $mode_display hey hey
+set $mode_display Display (h) left, (j) down, (k) up, (l) right, (o) off, (m) same
 mode "$mode_display" {
-    bindsym h exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh left" restart mode "default"
-    bindsym l exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh right" restart mode "default"
-    bindsym k exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh above" restart mode "default"
-    bindsym j exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh below" restart mode "default"
-    bindsym m exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh same" restart mode "default"
-    bindsym o exec --no-startup-id "/home/zul/scripts/display/toggle_display.sh off" restart mode "default"
+    bindsym h exec --no-startup-id "/home/zul/scripts/display/display.sh left" restart mode "default"
+    bindsym l exec --no-startup-id "/home/zul/scripts/display/display.sh right" restart mode "default"
+    bindsym k exec --no-startup-id "/home/zul/scripts/display/display.sh above" restart mode "default"
+    bindsym j exec --no-startup-id "/home/zul/scripts/display/display.sh below" restart mode "default"
+    bindsym m exec --no-startup-id "/home/zul/scripts/display/display.sh same" restart mode "default"
+    bindsym o exec --no-startup-id "/home/zul/scripts/display/display.sh off" restart mode "default"
+    bindsym a exec --no-startup-id "arandr" mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -272,3 +274,4 @@ exec            --no-startup-id xset b off
 exec            setxkbmap -option caps:swapescape
 exec            --no-startup-id $term -name dropdown
 exec            --no-startup-id speedcrunch
+exec            --no-startup-id clipmenud

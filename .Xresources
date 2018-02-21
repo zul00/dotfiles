@@ -17,12 +17,14 @@ xterm.depth:     24
 URxvt.intensityStyles:	false
 !!URxvt.background:       [70]#000000
 URxvt.depth:		32
-URxvt.font: 		xft:monospace:size=10
+URxvt.font: 		xft:monospace:size=9
 URxvt.scrollBar:	false
 URxvt.cursorColor:	white
 
 !! Extensions:
-URxvt.perl-ext-common:	default,matcher,resize-font
+URxvt.perl-ext-common:	default,matcher,resize-font,keyboard-select
+!! keyboard-select:
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
 !! matcher
 URxvt.url-launcher:	/usr/bin/xdg-open
 URxvt.matcher.button:	1
@@ -59,6 +61,7 @@ rofi.color-urgent: #cc241d, #32302f, #cc241d, #fb4934, #32302f
 #define base0D #66d9ef
 #define base0E #ae81ff
 #define base0F #cc6633
+!#define background_opacity 98
 
 *foreground:   base05
 #ifdef background_opacity
