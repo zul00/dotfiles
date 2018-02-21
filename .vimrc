@@ -21,15 +21,14 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-vinegar'
 Plugin 'Syntastic'
-Plugin 'desert256.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
 Plugin 'itchyny/calendar.vim'
 Plugin 'embear/vim-localvimrc'
 Plugin 'lervag/vimtex'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 Plugin 'chriskempson/base16-vim'
 Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-lexical'
@@ -46,8 +45,6 @@ set guifont=monospace
 set colorcolumn=80
 set t_Co=256
 set background=dark
-let base16colorspace=256
-colorscheme base16-monokai
 " }}}
 
 " Formatting {{{
@@ -136,7 +133,8 @@ let g:tex_flavor='latex'
 
 " {{{ Statusline
 set laststatus=2
-set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
+"set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 " }}}
 
 " {{{ Syntastic
@@ -166,12 +164,14 @@ let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips/'
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 " }}}
 
-augroup pencil
-  autocmd!
-  autocmd FileType tex call pencil#init()
-augroup END
-
 augroup lexical
   autocmd!
   autocmd FileType tex call lexical#init()
 augroup END
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+tnoremap <Esc> <C-\><C-n>
