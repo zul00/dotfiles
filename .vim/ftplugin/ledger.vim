@@ -7,13 +7,6 @@ nmap <F3> <Esc>k:r !date "+\%Y/\%m/\%d"<CR>$
 imap <F3> <Esc>k:r !date "+\%Y/\%m/\%d"<CR>$
 vmap <F4> :LedgerAlign<CR>
 
-
-"cnoreabbrev Led     :Shell ledger
-cnoreabbrev Lbal    !ledger bal
-cnoreabbrev Lreg    !ledger reg -S date
-cnoreabbrev Lflow   !ledger bal ^Expenses ^Income --invert
-cnoreabbrev Lnet    !ledger bal ^Asset ^Liabilities
-
 if &diff
     set nofoldenable
 else
@@ -28,7 +21,11 @@ let g:ledger_extra_options = '--file main.ledger'
 
 " Found it here http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
 command! -complete=shellcmd -nargs=+ Sh call s:RunShellCommand(<q-args>)
-command! -complete=file -nargs=* Led call s:RunShellCommand('ledger '.<q-args>)
+command! -complete=file -nargs=* Led   call s:RunShellCommand('ledger '.<q-args>)
+command! -complete=file -nargs=* Lbal  call s:RunShellCommand('ledger bal '.<q-args>)
+command! -complete=file -nargs=* Lreg  call s:RunShellCommand('ledger reg -S date'.<q-args>)
+command! -complete=file -nargs=* Lflow call s:RunShellCommand('ledger bal ^Expenses ^Income '.<q-args>)
+command! -complete=file -nargs=* Lnet  call s:RunShellCommand('ledger bal ^Asset ^Liabilities'.<q-args>)
 function! s:RunShellCommand(cmdline)
   "echo a:cmdline
   let expanded_cmdline = a:cmdline

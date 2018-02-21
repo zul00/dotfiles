@@ -23,5 +23,8 @@ let g:vimtex_view_method = 'zathura'
 " }}}
 
 " pencil setting {{{
+call pencil#init()
 let g:pencil#wrapModeDefault = 'soft'
+let g:pencil#conceallevel = 0
 " }}}
+
