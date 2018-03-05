@@ -1,0 +1,32 @@
+priority -50
+
+
+##############
+# CODE STUFF #
+##############
+
+snippet lstpack "Listings Package" b
+\usepackage{listings}
+\usepackage{xcolor}
+endsnippet
+
+snippet defstyle "Define style" b
+\lstdefinestyle{${1:name}}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=${2:language},
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\ttfamily\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\tiny\color{gray}, % the style that is used for the line-numbers
+  numbers=left, % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=7pt, % how far the line-numbers are from the code
+  tabsize=2, % sets default tabsize to 2 spaces
+}
+$0
+endsnippet
