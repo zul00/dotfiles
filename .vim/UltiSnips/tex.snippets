@@ -59,7 +59,13 @@ snippet arti "article" b
 
 $0
 \end{document}
+endsnippet
 
+snippet title "Title" b
+\title{${1:title}}
+\author{${2:auth}}
+\date{${3:date}}
+$0
 endsnippet
 
 
@@ -232,6 +238,16 @@ endsnippet
 
 snippet inlst "Inline Listing"
 \lstinline[style=${2:style}]{${1:text}} $0
+endsnippet
+
+snippet href "Hyperlink" 
+\href{${1:link}}{${2:name}}
+endsnippet
+
+snippet fold "Folding" b
+%{{{ ${1:name}
+${0:${VISUAL:# something}}
+%}}}
 endsnippet
 
 # vim:ft=snippets:
