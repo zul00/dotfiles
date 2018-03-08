@@ -12,7 +12,7 @@
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox-nightly
 set $term       /usr/bin/urxvt
-set $extdisp    HDMI-1
+set $extdisp    HDMI1
 set $mod        Mod4
 
 ###---Visual Settings---###
@@ -246,6 +246,8 @@ bindsym $mod+s workspace $ws6; exec spotify;
 ###---App at startup---###
 # Wallpaper
 exec_always     feh --bg-fill -z /home/zul/Dropbox/Wallpaper/
+# Dropbox
+exec            ~/.dropbox-dist/dropboxd
 # Redshift
 exec            /usr/bin/redshift
 # Compton
