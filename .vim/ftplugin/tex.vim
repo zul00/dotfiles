@@ -28,3 +28,6 @@ let g:pencil#wrapModeDefault = 'soft'
 let g:pencil#conceallevel = 0
 " }}}
 
+" Folding setting {{{
+set foldmethod=marker
+" }}}
