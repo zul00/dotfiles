@@ -10,9 +10,8 @@ ${0:${VISUAL:# something}}
 ;; }}} Week $1
 endsnippet
 
-snippet m "Month" b
-;==========${1:Mmm} '${2:YY}==========;
-$0
+snippet m "Month"
+========== ${1:Mmm} '${2:YY} ==========$0
 endsnippet
 
 snippet r "Remark" b
@@ -24,7 +23,12 @@ snippet t "Transaction" b
 ${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
 endsnippet
 
+
 snippet i "item"
+${1:category}                        ${2:0.00} EUR
+endsnippet
+
+snippet in "item with note"
 ${1:category}                        ${2:0.00} EUR    ; ${3:note}${0}
 endsnippet
 
@@ -37,10 +41,20 @@ endsnippet
 
 snippet pay "payment" b
 ${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
-    Asset:Loan:$4                        -${5:0.00} EUR
-    Asset:Bank:ABN
+    ; payment
+    Liabilities:$4                        ${5:0.00} EUR
+    $6
 ${0}
 endsnippet
+
+snippet payed "payment" b
+${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
+    ; payment
+    Asset:Loan:$4                        -${5:0.00} EUR
+    $6
+${0}
+endsnippet
+
 
 snippet c "Comment"
     ; ${1:note}$0
