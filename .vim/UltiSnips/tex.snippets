@@ -153,40 +153,52 @@ $0
 endsnippet
 
 snippet sec "Section" b
-\section{${1:section name}}\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+%{{{ $1
+\section{${1:section name}}\label{sec:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
 $0
+%}}} $1
 endsnippet
 
 snippet sec* "Section" b
-\section*{${1:section name}}\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+%{{{ $1
+\section*{${1:section name}}\label{sec:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
-${0}
+$0
+%}}} $1
 endsnippet
 
 
 snippet sub "Subsection" b
-\subsection{${1:subsection name}}\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+%{{{ $1
+\subsection*{${1:subsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
 $0
+%}}} $1 -tail
 endsnippet
 
 snippet sub* "Subsection" b
-\subsection*{${1:subsection name}}\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+%{{{ $1
+\subsection*{${1:subsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
-${0}
+$0
+%}}} $1
 endsnippet
 
 snippet ssub "Subsubsection" b
-\subsubsection{${1:subsubsection name}}\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+%{{{ $1
+\subsubsection{${1:subsubsection name}}\label{ssub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
 $0
+%}}} $1
 endsnippet
 
 snippet ssub* "Subsubsection" b
-\subsubsection*{${1:subsubsection name}}\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+%{{{ $1
+\subsubsection*{${1:subsubsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
-${0}
+$0
+%}}} $1
 endsnippet
 
 snippet par "Paragraph" b
@@ -248,6 +260,10 @@ snippet fold "Folding" b
 %{{{ ${1:name}
 ${0:${VISUAL:# something}}
 %}}}
+endsnippet
+
+snippet SI "SI" 
+\SI{${1:val}}{${2:unit}} $0
 endsnippet
 
 # vim:ft=snippets:
