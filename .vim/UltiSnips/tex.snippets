@@ -68,6 +68,11 @@ snippet title "Title" b
 $0
 endsnippet
 
+snippet "b(egin)?\[" "begin{}[ / end{}" br
+\begin{${1:something}}[${2:settings}]
+	${0:${VISUAL}}
+\end{$1}
+endsnippet
 
 snippet "b(egin)?" "begin{} / end{}" br
 \begin{${1:something}}
@@ -138,6 +143,10 @@ snippet it "Individual item" b
 \item $0
 endsnippet
 
+snippet it[ "Individual item[" b
+\item[$1] $0
+endsnippet
+
 snippet part "Part" b
 \part{${1:part name}}%
 \label{prt:${2:${1/(\w+)|\W+/(?1:\L$0\E:_)/ga}}}
@@ -171,7 +180,7 @@ endsnippet
 
 snippet sub "Subsection" b
 %{{{ $1
-\subsection*{${1:subsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
+\subsection{${1:subsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
 $0
 %}}} $1 -tail
@@ -264,6 +273,47 @@ endsnippet
 
 snippet SI "SI" 
 \SI{${1:val}}{${2:unit}} $0
+endsnippet
+
+snippet daily "Daily Log" b
+%{{{ ${1:date}
+\subsection{$1}\label{sub:sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
+
+%{{{ Attendance
+\subsubsection*{Attendance}\label{sub:attendance}
+
+\begin{itemize}
+	\item Arrival at $0
+	\item Departure at
+\end{itemize}
+%}}} Attendance
+
+%{{{ Task
+\subsubsection*{Task}\label{sub:task}
+
+\begin{todolist}
+\end{todolist}
+%}}} Task
+
+%{{{ Learned
+\subsubsection*{Learned}\label{sub:learned}
+
+\begin{itemize}
+\end{itemize}
+%}}} Learned
+
+%{{{ Note
+\subsubsection*{Note}\label{ssub:note}
+
+\begin{itemize}
+\end{itemize}
+
+%}}} Note
+
+\rule{\textwidth}{1pt}
+
+%}}} $1 -tail
+
 endsnippet
 
 # vim:ft=snippets:
