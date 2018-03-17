@@ -28,6 +28,7 @@ for_window [class="^.*"] border pixel 2
 # use xprop the check window properties
 for_window [class="SpeedCrunch"]    floating enable
 for_window [class="Arandr"]         floating enable
+for_window [class="Steam"]          floating enable
 
 # dropdown terminal
 for_window [instance="dropdown"] floating enable
@@ -56,9 +57,9 @@ bindsym $mod+Shift+q kill
 
 # start launcher
 bindsym $mod+r exec dmenu_run
+bindsym $mod+Shift+c exec clipmenu
 #bindsym $mod+r exec rofi -show run
 #bindsym $mod+Tab exec rofi -show window
-#bindsym $mod+Shift+c exec clipmenu
 
 ###---KeyBind---###
 # Change Focus
@@ -146,12 +147,12 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-workspace $ws1 output LVDS-1
-workspace $ws2 output LVDS-1
-workspace $ws3 output LVDS-1
-workspace $ws4 output LVDS-1
-workspace $ws5 output LVDS-1
-workspace $ws6 output LVDS-1
+workspace $ws1 output LVDS1
+workspace $ws2 output LVDS1
+workspace $ws3 output LVDS1
+workspace $ws4 output LVDS1
+workspace $ws5 output LVDS1
+workspace $ws6 output LVDS1
 workspace $ws7 output $extdisp
 workspace $ws8 output $extdisp
 workspace $ws9 output $extdisp
@@ -223,16 +224,17 @@ bindsym XF86Display mode "$mode_display"
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
 
 ## MediaKey
-bindsym XF86AudioMute exec amixer -q set Master toggle && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && pkill -RTMIN+10 i3blocks
+set $unmute_script amixer set -q Speaker unmute && amixer -q set Headphone unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle && amixer -q set Speaker toggle && amixer -q set Headphone toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && $unmute_script && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && $unmute_script && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 ## printscreen
 bindsym Print --release\
-            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
+            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -d 1 -e 'mv $f ~/Pictures/screenshots/'
 ## Vimwiki
 bindsym $mod+n workspace $ws7; \
             exec $term --title "Vimwiki" -e vim "+:VimwikiIndex"
@@ -250,6 +252,8 @@ exec_always     feh --bg-fill -z /home/zul/Dropbox/Wallpaper/
 exec            ~/.dropbox-dist/dropboxd
 # Redshift
 exec            /usr/bin/redshift
+# Udiskie
+exec            udiskie
 # Compton
 exec            --no-startup-id compton --xrender-sync-fence 
 # Unclutter, hide mouse
@@ -258,6 +262,6 @@ exec            --no-startup-id unclutter
 exec_always     --no-startup-id xset b off
 exec_always     setxkbmap -option caps:swapescape
 # Other apps
-exec            --no-startup-id $term -name dropdown
+exec            --no-startup-id $term -name dropdown -e tmux new-session -t dropdown
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id clipmenud
