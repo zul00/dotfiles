@@ -50,7 +50,8 @@ bindsym $mod+Shift+Tab workspace back_and_forth
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return         exec $term
+bindsym $mod+Shift+Return   exec $term -e tmux attach-session
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -262,6 +263,6 @@ exec            --no-startup-id unclutter
 exec_always     --no-startup-id xset b off
 exec_always     setxkbmap -option caps:swapescape
 # Other apps
-exec            --no-startup-id $term -name dropdown -e tmux new-session -t dropdown
+exec            --no-startup-id $term -name dropdown -e tmux new-session -s dropdown
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id clipmenud

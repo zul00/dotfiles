@@ -91,5 +91,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Preferred editor
+export EDITOR='vim'
+
 alias x="startx"
 alias ssh="TERM=rxvt ssh"
+
+source ~/scripts/tmuxinator.zsh

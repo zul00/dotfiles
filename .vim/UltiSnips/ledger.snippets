@@ -1,4 +1,4 @@
-snippet g "Grouping" b
+snippet fold "Foldin" b
 ;; ${1:marking} {{{
 ${0:${VISUAL:# something}}
 ;; }}} $1
@@ -30,6 +30,20 @@ endsnippet
 
 snippet in "item with note"
 ${1:category}                        ${2:0.00} EUR    ; ${3:note}${0}
+endsnippet
+
+snippet atm "ATM" b
+${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  Withdraw from ATM
+    Expenses:Cash                        ${4:0.00} EUR
+    Asset:Bank$5
+${0}
+endsnippet
+
+snippet cat "expenses" b
+${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
+    Expenses:$4                        -${5:0.00} EUR    ; ${6:note}
+    Asset:Loan:$4
+${0}
 endsnippet
 
 snippet cat "catering" b
