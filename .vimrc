@@ -171,3 +171,4 @@ augroup lexical
 augroup END
 
 tnoremap <Esc> <C-\><C-n>
+let g:pencil#wrapModeDefault = 'soft'

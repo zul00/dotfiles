@@ -1,7 +1,7 @@
 #!/bin/bash
 # Basic
-sudo pacman -S task gvim chromium rxvt-unicode
-sudo pacaur -S firefox-nightly
+pacaur -S vim rxvt-unicode-256xresources
+sudo pacaur -S firefox
 # File Manager
 sudo pacman -S ranger w3m
 sudo pacman -S feh scrot
@@ -9,13 +9,9 @@ sudo pacman -S feh scrot
 sudo pacman -S zathura zathura-pdf-mupdf
 # Office
 sudo pacman -S texlive-core texlive-science texlive-langextra
-# Productivity
-yaourt -S tasksh tty-clock
 # Media
-yaourt -S playerctl
+pacaur -S playerctl
 # Programming
-pacman -S ctags
+sudo pacman -S ctags
 # Printing
-pacman -S cups samba system-config-printer
-
-
+sudo pacman -S cups samba system-config-printer
