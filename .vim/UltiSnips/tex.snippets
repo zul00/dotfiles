@@ -121,6 +121,16 @@ snippet fig "Figure environment" b
 $0
 endsnippet
 
+snippet sfig "Subfigure environment" b
+\begin{subfigure}[${2:htpb}]{${3:0.5}\textwidth}
+	\centering
+	\includegraphics[width=${4:0.8}\linewidth]{${5:name.ext}}
+	\caption{${6:caption}}
+	\label{fig:${8:${6/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\end{subfigure}
+$0
+endsnippet
+
 snippet enum "Enumerate" b
 \begin{enumerate}
   \item $0
@@ -179,35 +189,27 @@ endsnippet
 
 
 snippet sub "Subsection" b
-%{{{ $1
 \subsection{${1:subsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
 $0
-%}}} $1 -tail
 endsnippet
 
 snippet sub* "Subsection" b
-%{{{ $1
 \subsection*{${1:subsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
 $0
-%}}} $1
 endsnippet
 
 snippet ssub "Subsubsection" b
-%{{{ $1
 \subsubsection{${1:subsubsection name}}\label{ssub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
 $0
-%}}} $1
 endsnippet
 
 snippet ssub* "Subsubsection" b
-%{{{ $1
 \subsubsection*{${1:subsubsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
 
 $0
-%}}} $1
 endsnippet
 
 snippet par "Paragraph" b
@@ -249,7 +251,7 @@ snippet tt "texttt"
 endsnippet
 
 snippet em "Emphasis" 
-\emph{${1:text}} $0
+\emph{${1:${VISUAL:words}}} $0
 endsnippet
 
 snippet pack "usepackage" b
@@ -265,10 +267,26 @@ snippet href "Hyperlink"
 \href{${1:link}}{${2:name}}
 endsnippet
 
+snippet ref "Reference" i
+~\ref{${1:reference}}$0
+endsnippet
+
+snippet foot "footnote" w
+\footnote{${1:note}}$0
+endsnippet
+
+snippet cite "citation" i
+~\cite{${1:citation}}$0
+endsnippet
+
+snippet cite[ "citation[" i
+~\cite[${2:detail}]{${1:citation}}$0
+endsnippet
+
 snippet fold "Folding" b
 %{{{ ${1:name}
 ${0:${VISUAL:# something}}
-%}}}
+%}}} $1 -- tail
 endsnippet
 
 snippet SI "SI" 
