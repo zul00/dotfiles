@@ -254,6 +254,10 @@ snippet em "Emphasis"
 \emph{${1:${VISUAL:words}}} $0
 endsnippet
 
+snippet bf "Bold" 
+\textbf{${1:${VISUAL:words}}} $0
+endsnippet
+
 snippet pack "usepackage" b
 \usepackage{${1:package_name}}
 $0
@@ -287,6 +291,10 @@ snippet fold "Folding" b
 %{{{ ${1:name}
 ${0:${VISUAL:# something}}
 %}}} $1 -- tail
+endsnippet
+
+snippet todo "TODO" b
+{\Large\textbf{\textcolor{red}{TODO: ${1:thing}}}}
 endsnippet
 
 snippet SI "SI" 
