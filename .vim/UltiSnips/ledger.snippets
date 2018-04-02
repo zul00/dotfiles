@@ -14,13 +14,17 @@ snippet m "Month"
 ========== ${1:Mmm} '${2:YY} ==========$0
 endsnippet
 
+snippet line "Line" b
+;;===============================================================;;
+endsnippet
+
 snippet r "Remark" b
 ;== ${1:Note}
 $0
 endsnippet
 
 snippet t "Transaction" b
-${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
+20${1:`!v strftime("%y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
 endsnippet
 
 
@@ -54,7 +58,7 @@ ${0}
 endsnippet
 
 snippet pay "payment" b
-${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
+20${1:`!v strftime("%y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
     ; payment
     Liabilities:$4                        ${5:0.00} EUR
     $6
@@ -62,7 +66,7 @@ ${0}
 endsnippet
 
 snippet payed "payment" b
-${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
+20${1:`!v strftime("%y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
     ; payment
     Asset:Loan:$4                        -${5:0.00} EUR
     $6

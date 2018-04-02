@@ -186,7 +186,9 @@ bar {
 
 # BindKey
 ## Power Management
-set $Locker "xautolock -locknow"
+#http://www.michaelabrahamsen.com/posts/custom-lockscreen-i3lock/
+#set $Locker "xautolock -locknow"
+set $Locker "~/scripts/lockscreen/lockscreen.sh"
 set $LockerSusp "systemctl suspend"
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
