@@ -247,7 +247,7 @@ ${2:${VISUAL:code}}
 endsnippet
 
 snippet tt "texttt" 
-\texttt{${1:text}} $0
+\texttt{${1:${VISUAL:text}}} $0
 endsnippet
 
 snippet em "Emphasis" 
@@ -291,6 +291,10 @@ snippet fold "Folding" b
 %{{{ ${1:name}
 ${0:${VISUAL:# something}}
 %}}} $1 -- tail
+endsnippet
+
+snippet todo "TODO" b
+{\Large\textbf{\textcolor{red}{TODO: ${1:thing}} } }\\\\
 endsnippet
 
 snippet SI "SI" 
