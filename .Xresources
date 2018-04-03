@@ -15,11 +15,26 @@ xterm.depth:     24
 
 ! URxvt
 URxvt.intensityStyles:	false
-!!URxvt.background:       [70]#000000
-URxvt.depth:		32
-URxvt.font: 		xft:monospace:size=9
-URxvt.scrollBar:	false
-URxvt.cursorColor:	white
+!!URxvt.background:     [70]#000000
+URxvt.depth:		    32
+URxvt.font: 		    xft:monospace:size=9
+URxvt.italicFont: 	    xft:monospace:size=9:italic
+URxvt.boldFont: 	    xft:monospace:size=9:bold
+URxvt.boldItalicFont: 	xft:monospace:size=9:bold:italic
+URxvt.scrollBar:	    false
+URxvt.cursorColor:	    white
+
+URxvt.depth: 32
+URxvt*blurRadius: 3
+URxvt*.shading: 15
+URxvt.fading: 5
+URxvt*skipBuiltinGlyphs: true
+URxvt*linespace: 0
+URxvt*letterSpace: 0
+URxvt*externalBorder: 0
+URxvt*internalBorder: 0
+URxvt*.transparent: false
+URxvt*saveLines: 0
 
 !! Extensions:
 URxvt.perl-ext-common:	default,matcher,resize-font,keyboard-select
