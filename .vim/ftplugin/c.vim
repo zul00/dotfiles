@@ -13,7 +13,12 @@ nmap <F5> :!clear<CR><bar>:wa <bar> :make<CR>
 nmap <F6> :!clear<CR><bar>:!./*.bin<CR>
 vmap <F9> :normal 0i//<CR>
 " }}}
-"
+
+" netrw {{{
+let g:netrw_list_hide = 'tags,.git/$,\.o$,\.ko$,\.mod.,\.cmd$,\.symvers$,\.order$,tmp_versions,\.swp'
+" }}}
+
 set foldmethod=marker
 set foldmarker={,}
 let g:load_doxygen_syntax=1
+let c_no_comment_fold = 1
