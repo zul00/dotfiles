@@ -18,7 +18,6 @@ vmap <F9> :normal 0i//<CR>
 let g:netrw_list_hide = 'tags,.git/$,\.o$,\.ko$,\.mod.,\.cmd$,\.symvers$,\.order$,tmp_versions,\.swp'
 " }}}
 
-set foldmethod=marker
-set foldmarker={,}
+set foldmethod=syntax
 let g:load_doxygen_syntax=1
 let c_no_comment_fold = 1
