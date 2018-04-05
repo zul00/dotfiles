@@ -34,6 +34,7 @@ Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-lexical'
 Plugin 'blindFS/vim-reveal'
 Plugin 'ledger/vim-ledger'
+Plugin 'vivien/vim-linux-coding-style'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -45,7 +46,8 @@ set guifont=monospace
 set colorcolumn=80
 set t_Co=256
 set background=dark
-colorscheme desert
+let base16colorspace=256
+colorscheme base16-monokai
 " }}}
 
 " Formatting {{{
@@ -106,6 +108,7 @@ nmap <leader>to :tabonly<CR>
 nmap <leader>w :w<CR>
 nmap <leader>wa :wa<CR>
 nmap <leader>wq :wq<CR>
+nmap <leader>h :noh<CR>
 if &diff
     nmap <leader>i :set diffopt+=iwhite<CR>
     nmap <leader>i! :set diffopt-=iwhite<CR>
