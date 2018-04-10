@@ -14,8 +14,8 @@ set autoindent
 vmap <F10> :normal 0i%<CR>
 " }}}
 
-" NerdTree {{{
-let NERDTreeIgnore=['\.pdf', '\.dvi', '\.snm', '\.nav', '\.aux', '\.gz', '\.log', '\.toc', '\.out', '\.vrb']
+" netrw {{{
+let g:netrw_list_hide = '\.bak,\.pdf,\.aux,\.fls,\.log,\.toc,\.out,\.synctex.gz,\.fdb_latexmk,.git/$,\.swp'
 " }}}
 
 " vimtex setting {{{

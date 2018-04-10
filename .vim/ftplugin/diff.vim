@@ -2,5 +2,5 @@
 " @author:  Zulkarnaen
 " @brief:   Setting for diff filetype
 
-set wrap
+set nowrap
 set nofoldenable

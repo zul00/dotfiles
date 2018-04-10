@@ -22,6 +22,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'Syntastic'
 Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/gv.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
@@ -89,6 +90,7 @@ set mouse=a
 " Key Remap {{{
 " Other key
 nmap <F2> :!ctags -R *<CR>
+set pastetoggle=<F3>
 nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
 nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
@@ -151,6 +153,7 @@ autocmd BufRead,BufNewFile *.ino set filetype=c
 
 " localvimrc {{{
 let g:localvimrc_sandbox = 0
+let g:localvimrc_whitelist='.lvimrc'
 " }}}
 
 " UltiSnips {{{
