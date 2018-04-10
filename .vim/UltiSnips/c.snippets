@@ -104,4 +104,17 @@ snippet fund "function declaration" b
 ${1:void} ${2:function_name}($3);
 endsnippet
 
+snippet "sc(om)?" "Signel line comment" wr
+/* ${1:Your comment} */$0
+endsnippet
+
+snippet "lc(om)?" "Multiline comment" br
+/* ${1:Your comment} 
+ */$0
+endsnippet
+
+snippet "li(ne)?" "Line separator" br
+/* --    ${1:Your text here}    ---------------------------------------- */$0
+endsnippet
+
 # vim:ft=snippets:
