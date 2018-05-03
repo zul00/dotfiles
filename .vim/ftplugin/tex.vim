@@ -4,18 +4,18 @@
 " from latex-suite vim plugin.
 
 " Formatting {{{
-set expandtab
-set shiftwidth=2
-set tabstop=2
+set noexpandtab
+set shiftwidth=4
+set tabstop=4
 set autoindent
 " }}}
 
 " Key Remap {{{
-vmap <F10> :normal 0i%<CR>
+vmap <F9> :normal 0i%<CR>
 " }}}
 
 " netrw {{{
-let g:netrw_list_hide = '\.bak,\.pdf,\.aux,\.fls,\.log,\.toc,\.out,\.synctex.gz,\.fdb_latexmk,.git/$,\.swp'
+let g:netrw_list_hide = '\.pdf,\.aux,\.fls,\.log,\.toc,\.out,\.synctex.gz,\.fdb_latexmk,.git/$,\.swp,\.bcf,\.nav,\.snm,\.blg'
 " }}}
 
 " vimtex setting {{{
