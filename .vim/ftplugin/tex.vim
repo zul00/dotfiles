@@ -11,6 +11,9 @@ set autoindent
 " }}}
 
 " Key Remap {{{
+nmap <F4> :VimtexClean<CR>
+nmap <F5> :VimtexCompile<CR>
+nmap <F6> :VimtexView<CR>
 vmap <F9> :normal 0i%<CR>
 " }}}
 

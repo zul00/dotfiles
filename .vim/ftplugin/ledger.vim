@@ -2,7 +2,6 @@
 " @author:  Zulkarnaen
 " @brief:   Setting for ledger filetype
 
-
 nmap <F3> <Esc>k:r !date "+\%Y/\%m/\%d"<CR>$
 imap <F3> <Esc>k:r !date "+\%Y/\%m/\%d"<CR>$
 vmap <F4> :LedgerAlign<CR>
