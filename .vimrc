@@ -35,7 +35,12 @@ Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-lexical'
 Plugin 'blindFS/vim-reveal'
 Plugin 'ledger/vim-ledger'
+Plugin 'kergoth/vim-bitbake'
 Plugin 'vivien/vim-linux-coding-style'
+Plugin 'vim-scripts/ifdef-highlighting'
+Plugin 'majutsushi/tagbar'
+Plugin 'joe-skb7/cscope-maps'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -123,6 +128,8 @@ nmap <leader>gst :Gstatus<CR>
 nmap <leader>gwr :Gwrite<CR>
 nmap <leader>gvd :Gvdiff<CR>
 nmap <leader>glg :Git lg2<CR>
+nmap <leader>0 :Vex<CR>
+
 " }}}
 
 " Abbreviation {{{ 
@@ -140,7 +147,7 @@ let g:tex_flavor='latex'
 " {{{ Statusline
 set laststatus=2
 "set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
-set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%{fugitive#statusline()}%=%c,%l/%L\ %P
 " }}}
 
 " {{{ Syntastic
@@ -176,5 +183,7 @@ augroup lexical
   autocmd FileType tex call lexical#init()
 augroup END
 
-tnoremap <Esc> <C-\><C-n>
+"tnoremap <Esc> <C-\><C-n>
 let g:pencil#wrapModeDefault = 'soft'
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 22
