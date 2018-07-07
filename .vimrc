@@ -26,7 +26,6 @@ Plugin 'junegunn/gv.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
-Plugin 'LanguageTool'
 Plugin 'itchyny/calendar.vim'
 Plugin 'embear/vim-localvimrc'
 Plugin 'lervag/vimtex'
@@ -102,7 +101,6 @@ vmap <space><space> <ESC>
 
 vnoremap <C-c> "*y :let @+=@*<CR>
 map <C-v> "+P
-
 " leader map
 let mapleader = ','
 nmap <leader>dt :windo diffthis<CR>
@@ -128,6 +126,7 @@ nmap <leader>gst :Gstatus<CR>
 nmap <leader>gwr :Gwrite<CR>
 nmap <leader>gvd :Gvdiff<CR>
 nmap <leader>glg :Git lg2<CR>
+nmap <leader>0 :Vex<CR>
 " }}}
 
 " Abbreviation {{{ 
@@ -145,7 +144,7 @@ let g:tex_flavor='latex'
 " {{{ Statusline
 set laststatus=2
 "set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
-set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%{fugitive#statusline()}%=%c,%l/%L\ %P
 " }}}
 
 " {{{ Syntastic
@@ -181,5 +180,7 @@ augroup lexical
   autocmd FileType tex call lexical#init()
 augroup END
 
-tnoremap <Esc> <C-\><C-n>
+"tnoremap <Esc> <C-\><C-n>
 let g:pencil#wrapModeDefault = 'soft'
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 22
