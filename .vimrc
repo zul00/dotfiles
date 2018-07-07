@@ -26,6 +26,7 @@ Plugin 'junegunn/gv.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'vimwiki'
+Plugin 'LanguageTool'
 Plugin 'itchyny/calendar.vim'
 Plugin 'embear/vim-localvimrc'
 Plugin 'lervag/vimtex'
@@ -36,6 +37,7 @@ Plugin 'reedes/vim-lexical'
 Plugin 'blindFS/vim-reveal'
 Plugin 'ledger/vim-ledger'
 Plugin 'vivien/vim-linux-coding-style'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -97,6 +99,9 @@ vmap <C-c> "*y
 imap jj <ESC>
 map <space> <leader>
 vmap <space><space> <ESC>
+
+vnoremap <C-c> "*y :let @+=@*<CR>
+map <C-v> "+P
 
 " leader map
 let mapleader = ','

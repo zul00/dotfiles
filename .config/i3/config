@@ -11,17 +11,17 @@
 
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox-nightly
-set $term       /usr/bin/urxvt
+set $term       /usr/local/bin/st
 set $extdisp    HDMI1
 set $mod        Mod4
 
 ###---Visual Settings---###
 font pango:DejaVu Sans Mono 8
 ## gaps
-hide_edge_borders smart
-gaps inner 10
-gaps outer 10
-smart_gaps on
+#hide_edge_borders smart
+#gaps inner 10
+#gaps outer 10
+#smart_gaps on
 for_window [class="^.*"] border pixel 2
 
 ###---Rules for apps---###
@@ -50,8 +50,8 @@ bindsym $mod+Shift+Tab workspace back_and_forth
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return         exec $term
-bindsym $mod+Shift+Return   exec $term -e tmux new-session -A -s base
+bindsym $mod+Shift+Return   exec $term
+bindsym $mod+Return         exec $term -e tmux new-session -A -s base
 
 # kill focused window
 bindsym $mod+Shift+q kill

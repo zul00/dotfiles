@@ -10,21 +10,39 @@ ${0:${VISUAL:# something}}
 ;; }}} Week $1
 endsnippet
 
-snippet m "Month"
+snippet h "Month"
 ========== ${1:Mmm} '${2:YY} ==========$0
 endsnippet
 
+snippet m "Month" b
+;;  ====    ${1:Mmm} '${2:YY}    {{{=====================================================
+$0
+;;  }}}    ====================================================================
+endsnippet
+
 snippet line "Line" b
-;;===============================================================;;
+;;=============================================================================
 endsnippet
 
 snippet r "Remark" b
-;== ${1:Note}
-$0
+;;  ====    ${1:Note}    =====================================================$0
 endsnippet
 
 snippet t "Transaction" b
 20${1:`!v strftime("%y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
+endsnippet
+
+snippet hou "Housing" b
+20${1:`!v strftime("%y")`}-${2:`!v strftime("%m")`}-01  ${3:Payee}
+	; housing
+    Income:Housing:$3                                 -${4:0.00} EUR
+    Income:EGW:$3                                     -${5:0.00} EUR
+    Income:WashInt:$3                                 -${6:0.00} EUR
+    Income:Excess:$3                                  -${7:0.00} EUR
+    Income:Sanitary:$3                                -${8:0.00} EUR
+    Income:Meal:$3                                    -${9:0.00} EUR
+    Assets:Loan:$3
+${0}
 endsnippet
 
 
@@ -39,21 +57,21 @@ endsnippet
 snippet atm "ATM" b
 ${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  Withdraw from ATM
     Expenses:Cash                        ${4:0.00} EUR
-    Asset:Bank$5
+    Assets:Bank$5
 ${0}
 endsnippet
 
 snippet cat "expenses" b
 ${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
     Expenses:$4                        -${5:0.00} EUR    ; ${6:note}
-    Asset:Loan:$4
+    Assets:Loan:$4
 ${0}
 endsnippet
 
 snippet cat "catering" b
 ${1:`!v strftime("%Y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
     Income:Catering:$4                        -${5:0.00} EUR    ; ${6:note}
-    Asset:Loan:$4
+    Assets:Loan:$4
 ${0}
 endsnippet
 
@@ -68,7 +86,7 @@ endsnippet
 snippet payed "payment" b
 20${1:`!v strftime("%y")`}-${2:`!v strftime("%m")`}-${3:`!v strftime("%d")`}  ${4:Payee}
     ; payment
-    Asset:Loan:$4                        -${5:0.00} EUR
+    Assets:Loan:$4                        -${5:0.00} EUR
     $6
 ${0}
 endsnippet

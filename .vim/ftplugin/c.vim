@@ -14,6 +14,7 @@ nmap <F5> :!clear<CR><bar>:wa <bar> :make<CR>
 nmap <F6> :!clear<CR><bar>:!./*.bin<CR>
 nmap <F8> :!checkpatch.pl --terse --file --no-tree %<CR>
 vmap <F9> :normal 0i//<CR>
+nmap <F11> :TagbarToggle<CR>
 " }}}
 
 " netrw {{{

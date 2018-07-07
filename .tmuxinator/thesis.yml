@@ -1,0 +1,8 @@
+name: thesis
+root: ~/Kuliah/Thesis
+windows:
+    - report:
+        root: ~/Kuliah/Thesis/report
+        layout: main-horizontal
+        panes:
+            - source ~/.zshrc

@@ -24,6 +24,8 @@ command! -complete=shellcmd -nargs=+ Sh call s:RunShellCommand(<q-args>)
 command! -complete=file -nargs=* Led   call s:RunShellCommand('ledger '.<q-args>)
 command! -complete=file -nargs=* Lacc  call s:RunShellCommand('ledger accounts '.<q-args>)
 command! -complete=file -nargs=* Lbal  call s:RunShellCommand('ledger bal '.<q-args>)
+command! -complete=file -nargs=* Lbalx  call s:RunShellCommand('ledger bal -X EUR'.<q-args>)
+command! -complete=file -nargs=* Lbud  call s:RunShellCommand('ledger budget -X EUR'.<q-args>)
 command! -complete=file -nargs=* Lreg  call s:RunShellCommand('ledger reg -S date '.<q-args>)
 command! -complete=file -nargs=* Lflow call s:RunShellCommand('ledger bal ^Expenses ^Income '.<q-args>)
 command! -complete=file -nargs=* Lnet  call s:RunShellCommand('ledger bal ^Asset ^Liabilities '.<q-args>)
@@ -36,7 +38,7 @@ function! s:RunShellCommand(cmdline)
         let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
      endif
   endfor
-  botright vertical new
+  botright new
   syntax match Number /-\@1<!\d\+\([,.]\d\+\)\+/
   syntax match Special /-\d\+\([,.]\d\+\)\+/
   setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
