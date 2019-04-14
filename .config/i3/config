@@ -268,3 +268,4 @@ exec_always     setxkbmap -option caps:swapescape
 exec            --no-startup-id $term -name dropdown -e tmux new-session -s dropdown
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id clipmenud
+exec            --no-startup-id nm-applet
