@@ -226,6 +226,9 @@ bindsym XF86Display mode "$mode_display"
 ## Touchpad Toggle
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
 
+## System command
+bindsym XF86Launch1 exec --no-startup-id "~/scripts/dmcmd/systemcmd"
+
 ## MediaKey
 set $unmute_script amixer set -q Speaker unmute && amixer -q set Headphone unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle && amixer -q set Speaker toggle && amixer -q set Headphone toggle && pkill -RTMIN+10 i3blocks
