@@ -1,0 +1,14 @@
+#!/bin/bash
+
+option=$'suspend\npoweroff\nreboot\nlogoff\n'
+
+mode=$(echo "$option" | dmenu -i -p "System command:")
+
+#echo "Selected mode $mode"
+
+case $mode in
+    "suspend")  systemctl suspend ;;
+    "poweroff") systemctl poweroff;;
+    "reboot")   systemctl reboot ;;
+    "logoff")   i3-msg exit ;;
+esac
