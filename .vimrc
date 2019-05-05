@@ -99,8 +99,6 @@ imap jj <ESC>
 map <space> <leader>
 vmap <space><space> <ESC>
 
-vnoremap <C-c> "*y :let @+=@*<CR>
-map <C-v> "+P
 " leader map
 let mapleader = ','
 nmap <leader>dt :windo diffthis<CR>
