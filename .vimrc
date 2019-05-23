@@ -37,6 +37,7 @@ Plugin 'blindFS/vim-reveal'
 Plugin 'ledger/vim-ledger'
 Plugin 'vivien/vim-linux-coding-style'
 Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/cscope.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -44,6 +45,7 @@ filetype plugin indent on    " required
 
 " Font & Colors {{{
 syntax on
+set cursorline
 set guifont=monospace
 set colorcolumn=80
 set t_Co=256
@@ -90,7 +92,7 @@ set mouse=a
 
 " Key Remap {{{
 " Other key
-nmap <F2> :!ctags -R *<CR>
+nmap <F2> :!ctags -R *<CR>:!cscope -Rb *<CR>
 set pastetoggle=<F3>
 nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
 nmap <F12> :tabe $HOME/.vimrc<CR>
@@ -125,6 +127,30 @@ nmap <leader>gwr :Gwrite<CR>
 nmap <leader>gvd :Gvdiff<CR>
 nmap <leader>glg :Git lg2<CR>
 nmap <leader>0 :Vex<CR>
+nmap <leader>s :split<CR>
+nmap <leader>v :vsplit<CR>
+nmap <leader>t :tabedit<CR>
+
+" cscope
+nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
+
+" s: Find this C symbol
+nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+" g: Find this definition
+nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
+" c: Find functions calling this function
+nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
+" t: Find this text string
+nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+" e: Find this egrep pattern
+nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+" f: Find this file
+nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+" i: Find files #including this file
+nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
 " }}}
 
 " Abbreviation {{{ 
