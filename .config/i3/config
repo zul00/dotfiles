@@ -10,7 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 ###---Basic Settings---###
-set $browser    /usr/bin/firefox-nightly
+set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
 set $extdisp    HDMI1
 set $mod        Mod4
@@ -68,20 +68,12 @@ bindsym $mod+h              focus left
 bindsym $mod+j              focus down
 bindsym $mod+k              focus up
 bindsym $mod+l              focus right
-bindsym $mod+Left           focus left
-bindsym $mod+Down           focus down
-bindsym $mod+Up             focus up
-bindsym $mod+Right          focus right
 
 # Move Focused Window
 bindsym $mod+Shift+h        move left 40px
 bindsym $mod+Shift+j        move down 40px
 bindsym $mod+Shift+k        move up 40px
 bindsym $mod+Shift+l        move right 40px
-bindsym $mod+Shift+Left     move left 40px
-bindsym $mod+Shift+Down     move down 40px
-bindsym $mod+Shift+Up       move up 40px
-bindsym $mod+Shift+Right    move right 40px
 
 # Resize
 bindsym $mod+y              resize shrink width 5 px or 5 ppt
@@ -171,8 +163,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+Next       workspace next
-
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -182,28 +172,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # finds out, if available)
 bar {
         status_command i3status
+        position top
 }
 
 # BindKey
 ## Power Management
 #http://www.michaelabrahamsen.com/posts/custom-lockscreen-i3lock/
 #set $Locker "xautolock -locknow"
-set $Locker "~/scripts/lockscreen/lockscreen.sh"
+#set $Locker "~/scripts/lockscreen/lockscreen.sh"
+set $Locker "playerctl pause; i3lock-fancy --pixelate -f ..."
 set $LockerSusp "systemctl suspend"
-
-set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $LockerSusp, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym Pause mode "$mode_system"
 
 ## Display
 set $display_toggle "~/scripts/display/toggle_display.sh"
@@ -227,16 +205,17 @@ bindsym XF86Display mode "$mode_display"
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
 
 ## System command
-bindsym XF86Launch1 exec --no-startup-id "~/scripts/dmcmd/systemcmd"
+bindsym Pause exec --no-startup-id "~/scripts/dmcmd/systemcmd"
 
 ## MediaKey
-set $unmute_script amixer set -q Speaker unmute && amixer -q set Headphone unmute
+set $unmute_script amixer set -D pulse -q Master unmute && amixer -D pulse -q set Headphone unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle && amixer -q set Speaker toggle && amixer -q set Headphone toggle && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && $unmute_script && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && $unmute_script && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+Home exec amixer -D pulse -q set Master 5%+ unmute && $unmute_script && pkill -RTMIN+10 i3blocks
+bindsym $mod+End exec amixer -D pulse -q set Master 5%- unmute && $unmute_script && pkill -RTMIN+10 i3blocks
+bindsym $mod+Shift+Prior exec playerctl play-pause
+bindsym $mod+Shift+Next exec playerctl play-pause
+bindsym $mod+Next exec playerctl next
+bindsym $mod+Prior exec playerctl previous
 
 ## printscreen
 bindsym Print --release\
@@ -253,7 +232,7 @@ bindsym $mod+s workspace $ws6; exec spotify;
 
 ###---App at startup---###
 # Wallpaper
-exec_always     feh --bg-fill -z /home/zul/Dropbox/Wallpaper/
+exec_always     feh --bg-fill -z ~/Pictures/wallpaper/
 # Dropbox
 exec            ~/.dropbox-dist/dropboxd
 # Redshift
