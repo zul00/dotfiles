@@ -240,13 +240,14 @@ bindsym XF86AudioPrev exec playerctl previous
 
 ## printscreen
 bindsym Print --release\
-            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -d 1 -e 'mv $f ~/Pictures/screenshots/'
+            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -d 1 -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
 ## Vimwiki
 bindsym $mod+n workspace $ws7; \
             exec $term --title "Vimwiki" -e vim "+:VimwikiIndex"
 
 ## Ranger
 bindsym $mod+e exec $term --title "Ranger" -e ranger
+bindsym $mod+Shift+e exec "nautilus" 
 
 ## Spotify
 bindsym $mod+s workspace $ws6; exec spotify;
