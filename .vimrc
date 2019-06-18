@@ -35,9 +35,9 @@ Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-lexical'
 Plugin 'blindFS/vim-reveal'
 Plugin 'ledger/vim-ledger'
-Plugin 'vivien/vim-linux-coding-style'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/cscope.vim'
+Plugin 'jreybert/vimagit'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -48,7 +48,6 @@ syntax on
 set cursorline
 set guifont=monospace
 set colorcolumn=80
-set t_Co=256
 set background=dark
 let base16colorspace=256
 colorscheme base16-monokai
@@ -63,7 +62,6 @@ set autoindent
 
 " Numbering {{{
 set number
-set relativenumber
 set ruler
 " }}}
 
@@ -92,7 +90,6 @@ set mouse=a
 
 " Key Remap {{{
 " Other key
-nmap <F2> :!ctags -R *<CR>:!cscope -Rb *<CR>
 set pastetoggle=<F3>
 nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
 nmap <F12> :tabe $HOME/.vimrc<CR>
