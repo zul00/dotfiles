@@ -1,6 +1,6 @@
 #!/bin/bash
 
-option=$'suspend\npoweroff\nreboot\nlogoff\n'
+option=$'suspend\npoweroff\nreboot\nlock\nlogoff\n'
 
 mode=$(echo "$option" | dmenu -i -p "System command:")
 
@@ -10,5 +10,6 @@ case $mode in
     "suspend")  systemctl suspend ;;
     "poweroff") systemctl poweroff;;
     "reboot")   systemctl reboot ;;
+    "lock")     i3lock-fancy --pixelate --text "..." --desktop ;;
     "logoff")   i3-msg exit ;;
 esac
