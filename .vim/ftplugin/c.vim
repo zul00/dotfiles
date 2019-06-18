@@ -9,11 +9,11 @@ set noexpandtab
 " }}}
 
 " Key Remap {{{ 
+nmap <F2> :!ctags -R *<CR>:!cscope -Rb<CR> :cscope add cscope.out<CR>
 set  pastetoggle=<F3>
 nmap <F4> :!clear<CR><bar>:wa <bar> :make clean<CR>
 nmap <F5> :!clear<CR><bar>:wa <bar> :make<CR>
-nmap <F6> :!clear<CR><bar>:!./*.bin<CR>
-nmap <silent> <F8> :cexpr system('checkpatch.pl --terse --file --no-tree ' . shellescape(expand('%')))<CR>
+"nmap <silent> <F8> :cexpr system('checkpatch.pl --terse --file --no-tree ' . shellescape(expand('%')))<CR>
 vmap <F9> :normal 0i//<CR>
 nmap <F11> :TagbarToggle<CR>
 " }}}
@@ -27,6 +27,9 @@ let g:load_doxygen_syntax=1
 let g:c_syntax_for_h=1
 let g:c_no_comment_fold = 1
 set tags+=tags;/
+
+" For office related works
+autocmd BufNewFile,BufRead ~/projects/**.[{cpp}h] source ~/.vim/ftplugin/c_twtg.vim
 
 function! RunShellCommand(cmdline)
   "echo a:cmdline
