@@ -29,7 +29,7 @@ let g:c_no_comment_fold = 1
 set tags+=tags;/
 
 " For office related works
-autocmd BufNewFile,BufRead ~/projects/**.[ch] source ~/.vim/ftplugin/c_twtg.vim
+autocmd BufNewFile,BufRead ~/projects/**.[{cpp}h] source ~/.vim/ftplugin/c_twtg.vim
 
 function! RunShellCommand(cmdline)
   "echo a:cmdline
