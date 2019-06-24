@@ -140,12 +140,12 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-workspace $ws1 output LVDS1
-workspace $ws2 output LVDS1
-workspace $ws3 output LVDS1
-workspace $ws4 output LVDS1
-workspace $ws5 output LVDS1
-workspace $ws6 output LVDS1
+workspace $ws1 output LVDS-1
+workspace $ws2 output LVDS-1
+workspace $ws3 output LVDS-1
+workspace $ws4 output LVDS-1
+workspace $ws5 output LVDS-1
+workspace $ws6 output LVDS-1
 workspace $ws7 output $extdisp
 workspace $ws8 output $extdisp
 workspace $ws9 output $extdisp
@@ -166,7 +166,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
