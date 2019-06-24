@@ -208,14 +208,13 @@ bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
 bindsym Pause exec --no-startup-id "~/scripts/dmcmd/systemcmd"
 
 ## MediaKey
-set $unmute_script amixer set -D pulse -q Master unmute && amixer -D pulse -q set Headphone unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle && amixer -q set Speaker toggle && amixer -q set Headphone toggle && pkill -RTMIN+10 i3blocks
-bindsym $mod+Home exec amixer -D pulse -q set Master 5%+ unmute && $unmute_script && pkill -RTMIN+10 i3blocks
-bindsym $mod+End exec amixer -D pulse -q set Master 5%- unmute && $unmute_script && pkill -RTMIN+10 i3blocks
-bindsym $mod+Shift+Prior exec playerctl play-pause
-bindsym $mod+Shift+Next exec playerctl play-pause
-bindsym $mod+Next exec playerctl next
-bindsym $mod+Prior exec playerctl previous
+bindsym $mod+Shift+Next exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+bindsym $mod+Prior exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+bindsym $mod+Next exec pulsemixer --unmute --change-volume -5 && $unmute_script && pkill -RTMIN+10 i3blocks
+bindsym $mod+Up exec playerctl play-stop
+bindsym $mod+Down exec playerctl play-pause
+bindsym $mod+Right exec playerctl next
+bindsym $mod+Left exec playerctl previous
 
 ## printscreen
 bindsym Print --release\
