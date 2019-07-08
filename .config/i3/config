@@ -171,8 +171,10 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        font pango:mono 8
         status_command i3blocks
         position top
+        mode dock
 }
 
 # BindKey
@@ -208,9 +210,15 @@ bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
 bindsym Pause exec --no-startup-id "~/scripts/dmcmd/systemcmd"
 
 ## MediaKey
-bindsym $mod+Shift+Next exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
-bindsym $mod+Prior exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
-bindsym $mod+Next exec pulsemixer --unmute --change-volume -5 && $unmute_script && pkill -RTMIN+10 i3blocks
+bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+
+bindsym $mod+Prior              exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume    exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+
+bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+
 bindsym $mod+Up exec playerctl play-stop
 bindsym $mod+Down exec playerctl play-pause
 bindsym $mod+Right exec playerctl next
