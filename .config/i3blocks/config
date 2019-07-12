@@ -84,10 +84,9 @@ separator=true
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-[cpu_usage]
+[cpu]
 label=CPU
 interval=10
-min_width=CPU: 100.00%
 #separator=false
 
 #[load_average]
