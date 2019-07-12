@@ -49,8 +49,17 @@ signal=10
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
+# CPU usage
+#
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+[cpu]
+label=💻 CPU
+interval=10
+separator=false
+
 [memory]
-label=💻 MEM
+label=MEM
 separator=false
 interval=30
 
@@ -84,15 +93,6 @@ separator=false
 color=#00FF00
 interval=10
 separator=true
-
-# CPU usage
-#
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-[cpu]
-label=CPU
-interval=10
-#separator=false
 
 #[load_average]
 #interval=10

@@ -7,4 +7,17 @@ case $BLOCK_BUTTON in
 - % is of single core." ;;
 esac
 
-sensors | awk '/Core 0/ {print $3}'
+temp=`sensors | awk '/Core 0/ {print $3}'`
+temp_dig=`echo $temp | awk -F '[+.]' '{print $2}'`
+
+echo $temp
+echo $temp_dig
+
+# Color
+if [ $temp_dig -lt 35 ]; then
+    echo "#55AAEE"
+elif [ $temp_dig -lt 75 ]; then
+    echo "#FFCC66"
+else
+    echo "#FF0000"
+fi
