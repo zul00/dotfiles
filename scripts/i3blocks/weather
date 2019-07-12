@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -Ss 'https://wttr.in/?format=1'

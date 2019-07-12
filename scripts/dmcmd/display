@@ -1,0 +1,35 @@
+#!/bin/sh
+
+DISPLAYS=`xrandr | awk '/ connected/{print $1}'`
+
+#PRIMARY=$(echo "$DISPLAYS" | dmenu -i -p "Primary:")
+PRIMARY='LVDS-1'
+SECONDARY=`xrandr | awk '/mm/{print $1}' | awk '!/LVDS-1/{print $0}'`
+
+
+OPTIONS='single\nleft\nright\nabove\nbelow\nsame'
+
+POS=$(echo "$OPTIONS" | dmenu -i -p "Pos:")
+
+
+echo $DISPLAYS
+
+echo $PRIMARY
+echo $SECONDARY
+
+echo $POS
+
+if [ $POS = "right" ]; then
+    xrandr --output $SECONDARY --right-of	$PRIMARY --auto --rotate normal
+elif [ $POS = "left" ]; then
+    xrandr --output $SECONDARY --left-of	$PRIMARY --auto --rotate normal
+elif [ $POS = "above" ]; then
+    xrandr --output $SECONDARY --above		$PRIMARY --auto --rotate normal
+elif [ $POS = "below" ]; then
+    xrandr --output $SECONDARY --below		$PRIMARY --auto --rotate normal
+elif [ $POS = "same" ]; then
+    xrandr --output $SECONDARY --same-as	$PRIMARY --auto --rotate normal
+elif [ $POS = "single" ]; then
+    xrandr --output $SECONDARY --off		--output $PRIMARY --auto
+fi&
+
