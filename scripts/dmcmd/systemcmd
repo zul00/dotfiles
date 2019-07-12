@@ -10,6 +10,6 @@ case $mode in
     "suspend")  systemctl suspend ;;
     "poweroff") systemctl poweroff;;
     "reboot")   systemctl reboot ;;
-    "lock")     i3lock-fancy --pixelate --text "..." --desktop ;;
+    "lock")     playerctl pause && i3lock-fancy --pixelate --text "..." --desktop ;;
     "logoff")   i3-msg exit ;;
 esac
