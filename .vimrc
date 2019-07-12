@@ -86,6 +86,7 @@ set showcmd
 set scrolloff=2
 set ttymouse=xterm2
 set mouse=a
+set clipboard=unnamedplus,unnamed
 " }}}
 
 " Key Remap {{{
