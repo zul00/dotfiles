@@ -1,49 +1,22 @@
 #!/bin/sh
-# Copyright (C) 2014 Julien Bonjean <julien@bonjean.info>
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+case $BLOCK_BUTTON in
+    1) notify-send "🧠 Memory hogs" "$(ps axch -o cmd:15,%mem --sort=-%mem | head)" ;;
+    3) notify-send "🧠 Memory module" "\- Shows Memory Used/Total.
+- Click to show memory hogs." ;;
+esac
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+mem=`free -h | awk '/Mem/{print $3 "/" $2}'`
+mem_ratio=`free | awk '/Mem/{print $3 / $2}'`
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+echo $mem
+echo $mem_ratio
 
-TYPE="${BLOCK_INSTANCE:-mem}"
-
-awk -v type=$TYPE '
-/^MemTotal:/ {
-	mem_total=$2
-}
-/^MemFree:/ {
-	mem_free=$2
-}
-/^Buffers:/ {
-	mem_free+=$2
-}
-/^Cached:/ {
-	mem_free+=$2
-}
-/^SwapTotal:/ {
-	swap_total=$2
-}
-/^SwapFree:/ {
-	swap_free=$2
-}
-END {
-	# full text
-	if (type == "swap")
-		printf("%.1fG\n", (swap_total-swap_free)/1024/1024)
-	else
-		printf("%.1fG\n", mem_free/1024/1024)
-
-	# TODO: short text
-
-	# TODO: color (if less than X%)
-}
-' /proc/meminfo
+# Color
+if [ 1 -eq "$(echo "${mem_ratio} < 0.2" | bc)" ]; then
+    echo "#55AAEE"
+elif [ 1 -eq "$(echo "${mem_ratio} < 0.5" | bc)" ]; then
+    echo "#FFCC66"
+else
+    echo "#FF0000"
+fi
