@@ -84,7 +84,6 @@ set lazyredraw
 set autoread
 set showcmd
 set scrolloff=2
-set ttymouse=xterm2
 set mouse=a
 set clipboard=unnamedplus,unnamed
 " }}}
@@ -124,6 +123,7 @@ nmap <leader>gst :Gstatus<CR>
 nmap <leader>gwr :Gwrite<CR>
 nmap <leader>gvd :Gvdiff<CR>
 nmap <leader>glg :Git lg2<CR>
+nmap <leader>glo :GV --all<CR>
 nmap <leader>0 :Vex<CR>
 nmap <leader>s :split<CR>
 nmap <leader>v :vsplit<CR>
