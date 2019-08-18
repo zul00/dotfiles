@@ -6,41 +6,37 @@
 " http://usevim.com/2012/05/09/clean-vimrc/
 
 
-" Vundle {{{
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Plug {{{
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Plugin list
-"Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-vinegar'
-Plugin 'Syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'junegunn/gv.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-surround'
-Plugin 'vimwiki'
-Plugin 'itchyny/calendar.vim'
-Plugin 'embear/vim-localvimrc'
-Plugin 'lervag/vimtex'
-Plugin 'SirVer/ultisnips'
-Plugin 'chriskempson/base16-vim'
-Plugin 'reedes/vim-pencil'
-Plugin 'reedes/vim-lexical'
-Plugin 'blindFS/vim-reveal'
-Plugin 'ledger/vim-ledger'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/cscope.vim'
-Plugin 'jreybert/vimagit'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
+Plug 'itchyny/calendar.vim'
+Plug 'embear/vim-localvimrc'
+Plug 'lervag/vimtex'
+Plug 'SirVer/ultisnips'
+Plug 'chriskempson/base16-vim'
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-lexical'
+Plug 'blindFS/vim-reveal'
+Plug 'ledger/vim-ledger'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/cscope.vim'
+Plug 'jreybert/vimagit'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 "}}}
 
 " Font & Colors {{{
@@ -84,7 +80,6 @@ set lazyredraw
 set autoread
 set showcmd
 set scrolloff=2
-set ttymouse=xterm2
 set mouse=a
 set clipboard=unnamedplus,unnamed
 " }}}
