@@ -1,21 +1,17 @@
 #!/bin/sh
 
 DISPLAYS=`xrandr | awk '/ connected/{print $1}'`
+echo $DISPLAYS
 
 #PRIMARY=$(echo "$DISPLAYS" | dmenu -i -p "Primary:")
 PRIMARY='LVDS-1'
-SECONDARY=`xrandr | awk '/mm/{print $1}' | awk '!/LVDS-1/{print $0}'`
+SECONDARY=`xrandr | awk '/ connected/{print $1}' | grep -v $PRIMARY | awk '//{print $1}'`
 
+echo "PRI" $PRIMARY
+echo "SEC" $SECONDARY
 
 OPTIONS='single\nleft\nright\nabove\nbelow\nsame'
-
 POS=$(echo "$OPTIONS" | dmenu -i -p "Pos:")
-
-
-echo $DISPLAYS
-
-echo $PRIMARY
-echo $SECONDARY
 
 echo $POS
 
