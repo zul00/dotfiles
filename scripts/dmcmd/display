@@ -7,6 +7,9 @@ echo $DISPLAYS
 PRIMARY='LVDS-1'
 SECONDARY=`xrandr | awk '/ connected/{print $1}' | grep -v $PRIMARY | awk '//{print $1}'`
 
+# Change i3/config
+sed -i -e 's/set $extdisp.*$/set $extdisp    '$SECONDARY'/g' ~/.config/i3/config
+
 echo "PRI" $PRIMARY
 echo "SEC" $SECONDARY
 
