@@ -12,7 +12,8 @@
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
-set $extdisp    HDMI1
+set $primdisp   DP-1
+set $extdisp    HDMI-1
 set $mod        Mod4
 
 ###---Visual Settings---###
@@ -140,12 +141,12 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-workspace $ws1 output LVDS-1
-workspace $ws2 output LVDS-1
-workspace $ws3 output LVDS-1
-workspace $ws4 output LVDS-1
-workspace $ws5 output LVDS-1
-workspace $ws6 output LVDS-1
+workspace $ws1 output $primdisp
+workspace $ws2 output $primdisp
+workspace $ws3 output $primdisp
+workspace $ws4 output $primdisp
+workspace $ws5 output $primdisp
+workspace $ws6 output $primdisp
 workspace $ws7 output $extdisp
 workspace $ws8 output $extdisp
 workspace $ws9 output $extdisp
@@ -186,22 +187,7 @@ set $Locker "playerctl pause; i3lock-fancy --pixelate -f ..."
 set $LockerSusp "systemctl suspend"
 
 ## Display
-set $display_toggle "~/scripts/display/toggle_display.sh"
-set $mode_display Display (h) left, (j) down, (k) up, (l) right, (o) off, (m) same
-mode "$mode_display" {
-    bindsym h exec --no-startup-id "/home/zul/scripts/display/display.sh left" restart mode "default"
-    bindsym l exec --no-startup-id "/home/zul/scripts/display/display.sh right" restart mode "default"
-    bindsym k exec --no-startup-id "/home/zul/scripts/display/display.sh above" restart mode "default"
-    bindsym j exec --no-startup-id "/home/zul/scripts/display/display.sh below" restart mode "default"
-    bindsym m exec --no-startup-id "/home/zul/scripts/display/display.sh same" restart mode "default"
-    bindsym o exec --no-startup-id "/home/zul/scripts/display/display.sh off" restart mode "default"
-    bindsym a exec --no-startup-id "arandr" mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym XF86Display mode "$mode_display"
+bindsym XF86Display exec --no-startup-id "~/scripts/dmcmd/display" bindsym $mod+F5 exec --no-startup-id "~/scripts/dmcmd/display"
 
 ## Touchpad Toggle
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
@@ -226,7 +212,7 @@ bindsym $mod+Left exec playerctl previous
 
 ## printscreen
 bindsym Print --release\
-            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -d 1 -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
+            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
 ## Vimwiki
 bindsym $mod+n workspace $ws7; \
             exec $term --title "Vimwiki" -e vim "+:VimwikiIndex"
