@@ -1,22 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
-DISPLAYS=`xrandr | awk '/ connected/{print $1}'`
+#set -x
 
-#PRIMARY=$(echo "$DISPLAYS" | dmenu -i -p "Primary:")
-PRIMARY='LVDS-1'
-SECONDARY=`xrandr | awk '/mm/{print $1}' | awk '!/LVDS-1/{print $0}'`
+DISPLAYS=`xrandr | awk '$2 ~ /\<connected/ {print $1}'`
+PRIMARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk '/LVDS|DP/ {print}'`
+SECONDARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk -v a="$PRIMARY" '$0 !~ a'`
 
-
-OPTIONS='single\nleft\nright\nabove\nbelow\nsame'
-
-POS=$(echo "$OPTIONS" | dmenu -i -p "Pos:")
-
+OPTIONS=$'single\nleft\nright\nabove\nbelow\nsame'
+POS=$(echo "$OPTIONS" | dmenu -i -p "$SECONDARY pos:")
 
 echo $DISPLAYS
-
 echo $PRIMARY
 echo $SECONDARY
-
 echo $POS
 
 if [ $POS = "right" ]; then
