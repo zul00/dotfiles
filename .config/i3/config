@@ -187,7 +187,8 @@ set $Locker "playerctl pause; i3lock-fancy --pixelate -f ..."
 set $LockerSusp "systemctl suspend"
 
 ## Display
-bindsym XF86Display exec --no-startup-id "~/scripts/dmcmd/display" bindsym $mod+F5 exec --no-startup-id "~/scripts/dmcmd/display"
+bindsym XF86Display exec --no-startup-id "~/scripts/dmcmd/display"
+bindsym $mod+F5 exec --no-startup-id "~/scripts/dmcmd/display"
 
 ## Touchpad Toggle
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
