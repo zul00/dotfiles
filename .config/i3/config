@@ -12,7 +12,8 @@
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
-set $extdisp    VGA-1
+set $primdisp   LVDS-1
+set $extdisp    HDMI-1
 set $mod        Mod4
 
 ###---Visual Settings---###
@@ -140,12 +141,12 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-workspace $ws1 output LVDS-1
-workspace $ws2 output LVDS-1
-workspace $ws3 output LVDS-1
-workspace $ws4 output LVDS-1
-workspace $ws5 output LVDS-1
-workspace $ws6 output LVDS-1
+workspace $ws1 output $primdisp
+workspace $ws2 output $primdisp
+workspace $ws3 output $primdisp
+workspace $ws4 output $primdisp
+workspace $ws5 output $primdisp
+workspace $ws6 output $primdisp
 workspace $ws7 output $extdisp
 workspace $ws8 output $extdisp
 workspace $ws9 output $extdisp
@@ -187,6 +188,7 @@ set $LockerSusp "systemctl suspend"
 
 ## Display
 bindsym XF86Display exec --no-startup-id "~/scripts/dmcmd/display"
+bindsym $mod+F5 exec --no-startup-id "~/scripts/dmcmd/display"
 
 ## Touchpad Toggle
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
@@ -211,7 +213,7 @@ bindsym $mod+Left exec playerctl previous
 
 ## printscreen
 bindsym Print --release\
-            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -d 1 -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
+            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
 ## Vimwiki
 bindsym $mod+n workspace $ws7; \
             exec $term --title "Vimwiki" -e vim "+:VimwikiIndex"

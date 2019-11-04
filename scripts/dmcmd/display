@@ -1,21 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
-DISPLAYS=`xrandr | awk '/ connected/{print $1}'`
+#set -x
+
+DISPLAYS=`xrandr | awk '$2 ~ /\<connected/ {print $1}'`
+PRIMARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk '/LVDS|DP/ {print}'`
+SECONDARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk -v a="$PRIMARY" '$0 !~ a'`
+
+OPTIONS=$'single\nleft\nright\nabove\nbelow\nsame'
+POS=$(echo "$OPTIONS" | dmenu -i -p "$SECONDARY pos:")
+
 echo $DISPLAYS
-
-#PRIMARY=$(echo "$DISPLAYS" | dmenu -i -p "Primary:")
-PRIMARY='LVDS-1'
-SECONDARY=`xrandr | awk '/ connected/{print $1}' | grep -v $PRIMARY | awk '//{print $1}'`
-
-# Change i3/config
-sed -i -e 's/set $extdisp.*$/set $extdisp    '$SECONDARY'/g' ~/.config/i3/config
-
-echo "PRI" $PRIMARY
-echo "SEC" $SECONDARY
-
-OPTIONS='single\nleft\nright\nabove\nbelow\nsame'
-POS=$(echo "$OPTIONS" | dmenu -i -p "Pos:")
-
+echo $PRIMARY
+echo $SECONDARY
 echo $POS
 
 if [ $POS = "right" ]; then
@@ -32,3 +28,9 @@ elif [ $POS = "single" ]; then
     xrandr --output $SECONDARY --off		--output $PRIMARY --auto
 fi&
 
+# Update display setting
+sed -i -e "s/primdisp .*$/primdisp   $PRIMARY/" ~/.config/i3/config
+sed -i -e "s/extdisp .*$/extdisp    $SECONDARY/" ~/.config/i3/config
+
+# Reload i3 config
+i3-msg reload
