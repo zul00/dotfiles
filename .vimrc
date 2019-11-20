@@ -35,6 +35,9 @@ Plug 'ledger/vim-ledger'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/cscope.vim'
 Plug 'jreybert/vimagit'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'metakirby5/codi.vim'
+Plug 'jsfaint/gen_tags.vim'
 
 call plug#end()
 "}}}
