@@ -1,15 +1,15 @@
 #!/bin/bash
 
-option=$'suspend\npoweroff\nreboot\nlock\nlogoff\n'
+option=$'lock\nsuspend\npoweroff\nreboot\nlogoff\n'
 
 mode=$(echo "$option" | dmenu -i -p "System command:")
 
 #echo "Selected mode $mode"
 
 case $mode in
+    "lock")     playerctl pause ; i3lock-fancy --pixelate --text "***" --desktop ;;
     "suspend")  systemctl suspend ;;
     "poweroff") systemctl poweroff;;
     "reboot")   systemctl reboot ;;
-    "lock")     playerctl pause ; i3lock-fancy --pixelate --text "***" --desktop ;;
     "logoff")   i3-msg exit ;;
 esac

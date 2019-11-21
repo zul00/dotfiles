@@ -19,11 +19,11 @@ set $mod        Mod4
 ###---Visual Settings---###
 font pango:DejaVu Sans Mono 8
 ## gaps
-#hide_edge_borders smart
+hide_edge_borders smart
 #gaps inner 10
 #gaps outer 10
 #smart_gaps on
-for_window [class="^.*"] border pixel 2
+default_border pixel 3
 
 ###---Rules for apps---###
 # use xprop the check window properties
