@@ -23,7 +23,9 @@ let g:ledger_fold_blanks = 1
 "let g:ledger_winpos = 'R'
 "let g:ledger_extra_options = '--file main.ledger'
 let g:ledger_bin = 'ledger'
-"let g:ledger_extra_options = '--pedantic --explicit --check-payees'
+let g:ledger_extra_options = '--pedantic --explicit --check-payees'
+
+vnoremap <silent> <Tab> :LedgerAlign<CR>
 
 "
 "" Found it here http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window

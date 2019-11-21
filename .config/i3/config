@@ -12,7 +12,7 @@
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
-set $primdisp   DP-1
+set $primdisp   LVDS-1
 set $extdisp    HDMI-1
 set $mod        Mod4
 
