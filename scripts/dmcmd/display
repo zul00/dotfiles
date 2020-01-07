@@ -3,7 +3,7 @@
 #set -x
 
 DISPLAYS=`xrandr | awk '$2 ~ /\<connected/ {print $1}'`
-PRIMARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk '/LVDS|DP/ {print}'`
+PRIMARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk '/LVDS|DP|DVI-D-1/ {print}'`
 SECONDARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk -v a="$PRIMARY" '$0 !~ a'`
 
 OPTIONS=$'single\nleft\nright\nabove\nbelow\nsame'
