@@ -106,7 +106,12 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-# Preferred editor
+# Preferred application
 export EDITOR='nvim'
+export TERMINAL='st'
+export BROWSER='firefox'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 export LEDGER_FILE="/home/zul/private/budget_ai/main.journal"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
