@@ -28,6 +28,10 @@ command=~/scripts/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+[bluetooth]
+label=bth
+interval=10
+
 # Generic media player support
 #
 # This displays "ARTIST - SONG" if a music is playing.
