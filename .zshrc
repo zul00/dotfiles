@@ -109,4 +109,4 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # Preferred editor
 export EDITOR='nvim'
 
-export LEDGER_FILE="/home/zul/private/budget_ai/main.journal"
+export LEDGER_FILE="/home/zul/documents/ali_imran/budget_ai/main.journal"
