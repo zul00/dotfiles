@@ -12,7 +12,7 @@
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
-set $primdisp   LVDS-1
+set $primdisp   DVI-D-1
 set $extdisp    HDMI-1
 set $mod        Mod4
 
@@ -25,11 +25,25 @@ hide_edge_borders smart
 #smart_gaps on
 default_border pixel 3
 
+# workspace alias
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
 ###---Rules for apps---###
 # use xprop the check window properties
 for_window [class="SpeedCrunch"]    floating enable
 for_window [class="Arandr"]         floating enable
 for_window [class="Steam"]          floating enable
+for_window [class="Matplotlib"]     floating disable
+assign [class="Matplotlib"]         $ws9
 
 # dropdown terminal
 for_window [instance="dropdown"] floating enable
@@ -116,18 +130,6 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+minus move scratchpad
 # Show scratchpad
 bindsym $mod+minus scratchpad show
-
-# workspace alias
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -246,3 +248,4 @@ exec            --no-startup-id $term -name dropdown -e tmux new-session -s drop
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
+exec            --no-startup-id blueman-applet

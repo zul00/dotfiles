@@ -1,6 +1,4 @@
 *.pre-oh-my-zsh
-*.swo
-*.swp
 *.tmp
 *history
 *pid
@@ -27,3 +25,12 @@ Desktop/
 Downloads/
 Dropbox/
 Pictures/
+
+# GNU Global
+GPATH
+GRTAGS
+GTAGS
+
+# Vim
+*.swo
+*.swp

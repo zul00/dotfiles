@@ -16,28 +16,35 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Plugin list
-Plug 'tpope/vim-vinegar'
-Plug 'vim-syntastic/syntastic'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-surround'
-Plug 'vimwiki/vimwiki'
-Plug 'itchyny/calendar.vim'
-Plug 'embear/vim-localvimrc'
-Plug 'lervag/vimtex'
+"Plug 'vim-syntastic/syntastic'
 Plug 'SirVer/ultisnips'
-Plug 'chriskempson/base16-vim'
-Plug 'reedes/vim-pencil'
-Plug 'reedes/vim-lexical'
+Plug 'airblade/vim-gitgutter'
 Plug 'blindFS/vim-reveal'
-Plug 'ledger/vim-ledger'
-Plug 'majutsushi/tagbar'
-Plug 'vim-scripts/cscope.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'embear/vim-localvimrc'
+Plug 'itchyny/calendar.vim'
 Plug 'jreybert/vimagit'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'metakirby5/codi.vim'
 Plug 'jsfaint/gen_tags.vim'
+Plug 'junegunn/gv.vim'
+Plug 'ledger/vim-ledger'
+Plug 'lervag/vimtex'
+Plug 'majutsushi/tagbar'
+Plug 'metakirby5/codi.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-pencil'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-scripts/cscope.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'preservim/nerdtree'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 
 call plug#end()
 "}}}
@@ -46,7 +53,7 @@ call plug#end()
 syntax on
 set cursorline
 set guifont=monospace
-set colorcolumn=80
+set colorcolumn=79
 set background=dark
 let base16colorspace=256
 colorscheme base16-monokai
@@ -127,6 +134,7 @@ nmap <leader>0 :Vex<CR>
 nmap <leader>s :split<CR>
 nmap <leader>v :vsplit<CR>
 nmap <leader>t :tabedit<CR>
+nmap <leader>- :NERDTreeToggle<CR>
 
 " cscope
 nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
@@ -162,14 +170,8 @@ let g:vimwiki_list = [{'path':'~/Dropbox/VimWiki', 'path_html':'~/Dropbox/VimWik
 let g:tex_flavor='latex'
 " }}}
 
-" {{{ Statusline
-set laststatus=2
-"set statusline="%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
-set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%{fugitive#statusline()}%=%c,%l/%L\ %P
-" }}}
-
 " {{{ Syntastic
-let g:syntastic_python_python_exec = '/usr/bin/python2'
+"let g:syntastic_python_python_exec = '/usr/bin/python2'
 " }}}
 
 " FileType {{{ 
@@ -183,7 +185,7 @@ let g:localvimrc_whitelist='.lvimrc'
 
 " UltiSnips {{{
 " Trigger configuration.
-let g:UltiSnipsExpandTrigger='<tab>'
+"let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<c-b>'
 let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
@@ -195,6 +197,78 @@ let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips/'
 " VimDiff {{{
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 " }}}
+
+" {{{ COC
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"""""
+
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, 'E:' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, 'W:' . info['warning'])
+  endif
+  "return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
+  return join(msgs, ' ') 
+endfunction
+
+let g:coc_global_extensions=[
+            \ 'coc-git',
+            \ 'coc-json', 
+            \ 'coc-markdownlint',
+            \ 'coc-python',
+            \ 'coc-yaml', 
+            \ ]
+
+"nmap <silent> gd <Plug>(coc-definition)
+" }}}
+
+
+" {{{ FZF
+nnoremap <C-p> :Files<CR>
+" }}}
+
+
+" {{{ Statusline
+set laststatus=2
+set statusline=%<%f\ %h%m%r%y%{FugitiveStatusline()}%=%{StatusDiagnostic()}%=%-14.(%l,%c%V%)\ %P
+" }}}
+
 
 augroup lexical
   autocmd!
