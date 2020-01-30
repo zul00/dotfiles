@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# set -x
+
+LIST=`ls $HOME/.tmuxinator/ | awk -F '.' '{print $1}'`
+
+SESSION=$(echo "$LIST" | dmenu -i -p "session:")
+
+st -e tmuxinator $SESSION

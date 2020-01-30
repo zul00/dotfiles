@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# set -x
+LIST=`find /opt/ -maxdepth 1 -type d -name "gcc-arm*"`
+
+COMPILER=$(echo "$LIST" | fzf)
+#COMPILER=`echo $COMPILER | sed -e "s/\//\\\//g"`
+# echo $PATH
+# echo $PATH | sed -e "s|:/opt/gcc-arm.*:|$COMPILER/bin:|" 
+PATH=`echo $PATH | sed "s|/opt/gcc[^:]*:|$COMPILER/bin:|"`
+echo $PATH
+
+# sed -i -e "s|\/opt\/gcc-arm.*$|$COMPILER/bin|"
