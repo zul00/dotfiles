@@ -40,10 +40,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/cscope.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'preservim/nerdtree'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'vim-scripts/Conque-GDB'
 
 
 call plug#end()
@@ -258,15 +258,17 @@ let g:coc_global_extensions=[
 "nmap <silent> gd <Plug>(coc-definition)
 " }}}
 
-
 " {{{ FZF
 nnoremap <C-p> :Files<CR>
 " }}}
 
-
 " {{{ Statusline
 set laststatus=2
 set statusline=%<%f\ %h%m%r%y%{FugitiveStatusline()}%=%{StatusDiagnostic()}%=%-14.(%l,%c%V%)\ %P
+" }}}
+
+" {{{ GDB
+let g:ConqueGdb_GdbExe = 'arm-none-eabi-gdb'
 " }}}
 
 
