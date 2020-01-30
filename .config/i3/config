@@ -67,6 +67,7 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Shift+Return   exec $term
 bindsym $mod+Return         exec $term -e tmux new-session -A -s base
+bindsym $mod+m              exec --no-startup-id $HOME/scripts/dmenu/mux
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -189,14 +190,14 @@ set $Locker "playerctl pause; i3lock-fancy --pixelate -f ..."
 set $LockerSusp "systemctl suspend"
 
 ## Display
-bindsym XF86Display exec --no-startup-id "~/scripts/dmcmd/display"
-bindsym $mod+F5 exec --no-startup-id "~/scripts/dmcmd/display"
+bindsym XF86Display exec --no-startup-id "~/scripts/dmenu/display"
+bindsym $mod+F5 exec --no-startup-id "~/scripts/dmenu/display"
 
 ## Touchpad Toggle
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
 
 ## System command
-bindsym Pause exec --no-startup-id "~/scripts/dmcmd/systemcmd"
+bindsym Pause exec --no-startup-id "~/scripts/dmenu/systemcmd"
 
 ## MediaKey
 bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
