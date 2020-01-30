@@ -34,3 +34,8 @@ GTAGS
 # Vim
 *.swo
 *.swp
+*.vim
+
+# ccls
+*.ccls
+*.ccls-cache/*

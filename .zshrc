@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
- export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$PATH:$HOME/src/ccls/Release/
+export PATH=$PATH:$HOME/scripts/
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/zul/.oh-my-zsh"
