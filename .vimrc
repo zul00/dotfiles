@@ -17,14 +17,12 @@ call plug#begin('~/.vim/plugged')
 
 " Plugin list
 "Plug 'vim-syntastic/syntastic'
-Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'blindFS/vim-reveal'
 Plug 'chriskempson/base16-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'itchyny/calendar.vim'
 Plug 'jreybert/vimagit'
-Plug 'jsfaint/gen_tags.vim'
 Plug 'junegunn/gv.vim'
 Plug 'ledger/vim-ledger'
 Plug 'lervag/vimtex'
@@ -34,16 +32,25 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-pencil'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-dispatch'
 Plug 'vim-scripts/cscope.vim'
 Plug 'vimwiki/vimwiki'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/Conque-GDB'
+Plug 'rhysd/vim-clang-format'
+Plug 'tommcdo/vim-fubitive'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'wakatime/vim-wakatime'
 
 
 call plug#end()
@@ -52,7 +59,7 @@ call plug#end()
 " Font & Colors {{{
 syntax on
 set cursorline
-set guifont=monospace
+"set guifont=monospace
 set colorcolumn=79
 set background=dark
 let base16colorspace=256
@@ -101,12 +108,15 @@ nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
 nmap <F12> :tabe $HOME/.vimrc<CR>
 vmap <C-c> "*y
 imap jj <ESC>
+inoremap <C-c> <Esc>
+nnoremap <C-c> <Esc>
 map <space> <leader>
 vmap <space><space> <ESC>
 
 " leader map
 let mapleader = ','
 nmap <leader>dt :windo diffthis<CR>
+nmap <leader>do :diffoff!<CR>
 nmap <leader>o :only<CR>
 nmap <leader>q :q<CR>
 nmap <leader>q! :q!<CR>
@@ -125,16 +135,19 @@ if &diff
     nmap <leader>u :diffu<CR>
     nmap <leader>o :diffoff<CR>
 endif
-nmap <leader>gst :Gstatus<CR>
-nmap <leader>gwr :Gwrite<CR>
-nmap <leader>gvd :Gvdiff<CR>
-nmap <leader>glg :Git lg2<CR>
-nmap <leader>glo :GV --all<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gw :Gwrite<CR>
+nmap <leader>gv :Gvdiff<CR>
+nmap <leader>gl :GV --all<CR>
 nmap <leader>0 :Vex<CR>
 nmap <leader>s :split<CR>
 nmap <leader>v :vsplit<CR>
 nmap <leader>t :tabedit<CR>
 nmap <leader>- :NERDTreeToggle<CR>
+
+" Navigation
+nnoremap j gj
+nnoremap k gk
 
 " cscope
 nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
@@ -158,11 +171,11 @@ nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
 nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
 " }}}
 
-" Abbreviation {{{ 
+" Abbreviation {{{
 abbrev eplug e ~/.vim/ftplugin/
 " }}}
 
-" VimWiki {{{ 
+" VimWiki {{{
 let g:vimwiki_list = [{'path':'~/Dropbox/VimWiki', 'path_html':'~/Dropbox/VimWiki/html'}]
 " }}}
 
@@ -174,8 +187,8 @@ let g:tex_flavor='latex'
 "let g:syntastic_python_python_exec = '/usr/bin/python2'
 " }}}
 
-" FileType {{{ 
-autocmd BufRead,BufNewFile *.ino set filetype=c 
+" FileType {{{
+autocmd BufRead,BufNewFile *.ino set filetype=c
 " }}}
 
 " localvimrc {{{
@@ -244,15 +257,15 @@ function! StatusDiagnostic() abort
     call add(msgs, 'W:' . info['warning'])
   endif
   "return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
-  return join(msgs, ' ') 
+  return join(msgs, ' ')
 endfunction
 
 let g:coc_global_extensions=[
             \ 'coc-git',
-            \ 'coc-json', 
+            \ 'coc-json',
             \ 'coc-markdownlint',
             \ 'coc-python',
-            \ 'coc-yaml', 
+            \ 'coc-yaml',
             \ ]
 
 "nmap <silent> gd <Plug>(coc-definition)
@@ -265,12 +278,25 @@ nnoremap <C-p> :Files<CR>
 " {{{ Statusline
 set laststatus=2
 set statusline=%<%f\ %h%m%r%y%{FugitiveStatusline()}%=%{StatusDiagnostic()}%=%-14.(%l,%c%V%)\ %P
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " }}}
 
 " {{{ GDB
 let g:ConqueGdb_GdbExe = 'arm-none-eabi-gdb'
 " }}}
 
+" Undo function between termintated vim session
+set undofile
+set undodir=/tmp
 
 augroup lexical
   autocmd!
