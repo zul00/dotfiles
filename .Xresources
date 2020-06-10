@@ -14,38 +14,38 @@ xterm.scrollBar: False
 xterm.depth:     24
 
 ! URxvt
-URxvt.intensityStyles:	false
-!!URxvt.background:     [70]#000000
-URxvt.depth:		    32
-URxvt.font: 		    xft:monospace:size=9
-URxvt.italicFont: 	    xft:monospace:size=9:italic
-URxvt.boldFont: 	    xft:monospace:size=9:bold
-URxvt.boldItalicFont: 	xft:monospace:size=9:bold:italic
-URxvt.scrollBar:	    false
-URxvt.cursorColor:	    white
+!URxvt.intensityStyles:	false
+!!!URxvt.background:     [70]#000000
+!URxvt.depth:		    32
+!URxvt.font: 		    xft:monospace:size=9
+!URxvt.italicFont: 	    xft:monospace:size=9:italic
+!URxvt.boldFont: 	    xft:monospace:size=9:bold
+!URxvt.boldItalicFont: 	xft:monospace:size=9:bold:italic
+!URxvt.scrollBar:	    false
+!URxvt.cursorColor:	    white
+!
+!URxvt.depth: 32
+!URxvt*blurRadius: 3
+!URxvt*.shading: 15
+!URxvt.fading: 5
+!URxvt*skipBuiltinGlyphs: true
+!URxvt*linespace: 0
+!URxvt*letterSpace: 0
+!URxvt*externalBorder: 0
+!URxvt*internalBorder: 0
+!URxvt*.transparent: false
+!URxvt*saveLines: 0
 
-URxvt.depth: 32
-URxvt*blurRadius: 3
-URxvt*.shading: 15
-URxvt.fading: 5
-URxvt*skipBuiltinGlyphs: true
-URxvt*linespace: 0
-URxvt*letterSpace: 0
-URxvt*externalBorder: 0
-URxvt*internalBorder: 0
-URxvt*.transparent: false
-URxvt*saveLines: 0
-
-!! Extensions:
-URxvt.perl-ext-common:	default,matcher,resize-font,keyboard-select
-!! keyboard-select:
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-!! matcher
-URxvt.url-launcher:	/usr/bin/xdg-open
-URxvt.matcher.button:	1
-!! resize font
-URxvt.resize-font.smaller:	C-j
-URxvt.resize-font.bigger:	C-k
+!!! Extensions:
+!URxvt.perl-ext-common:	default,matcher,resize-font,keyboard-select
+!!! keyboard-select:
+!URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!!! matcher
+!URxvt.url-launcher:	/usr/bin/xdg-open
+!URxvt.matcher.button:	1
+!!! resize font
+!URxvt.resize-font.smaller:	C-j
+!URxvt.resize-font.bigger:	C-k
 
 
 ! ROFI
@@ -78,13 +78,13 @@ rofi.color-urgent: #cc241d, #32302f, #cc241d, #fb4934, #32302f
 #define base0F #cc6633
 !#define background_opacity 98
 
-*foreground:   base05
-#ifdef background_opacity
-*background:   [background_opacity]base00
-#else
-*background:   base00
-#endif
-*cursorColor:  base05
+!*foreground:   base05
+!#ifdef background_opacity
+!*background:   [background_opacity]base00
+!#else
+!*background:   base00
+!#endif
+!*cursorColor:  base05
 
 *color0:       base00
 *color1:       base08
