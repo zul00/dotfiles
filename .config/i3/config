@@ -12,8 +12,8 @@
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
-set $primdisp   DVI-D-1
-set $extdisp    HDMI-1
+set $primdisp   DVI-D-0
+set $extdisp    HDMI-0
 set $mod        Mod4
 
 ###---Visual Settings---###
@@ -40,6 +40,7 @@ set $ws10 "10"
 ###---Rules for apps---###
 # use xprop the check window properties
 for_window [class="SpeedCrunch"]    floating enable
+for_window [class="TelegramDesktop"]    floating enable
 for_window [class="Arandr"]         floating enable
 for_window [class="Steam"]          floating enable
 for_window [class="Matplotlib"]     floating disable
@@ -58,6 +59,13 @@ for_window [class="SpeedCrunch"] resize set 625 400
 for_window [class="SpeedCrunch"] move position center
 for_window [class="SpeedCrunch"] move scratchpad
 bindsym $mod+c [class="SpeedCrunch"] scratchpad show; move position center
+
+# dropdown telegram
+for_window [class="TelegramDesktop"] floating enable
+for_window [class="TelegramDesktop"] resize set 625 400
+for_window [class="TelegramDesktop"] move position center
+for_window [class="TelegramDesktop"] move scratchpad
+bindsym $mod+t [class="TelegramDesktop"] scratchpad show; move position center
 
 bindsym $mod+Shift+Tab workspace back_and_forth
 
@@ -109,7 +117,7 @@ bindsym $mod+f fullscreen toggle
 
 # Container layout: tabbed/ split
 bindsym $mod+Shift+t        layout toggle split
-bindsym $mod+t              layout tabbed
+# bindsym $mod+t              layout tabbed
 
 # toggle tiling / floating
 bindsym $mod+Shift+space    floating toggle
