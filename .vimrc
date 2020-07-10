@@ -38,6 +38,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
+Plug 'phleet/vim-mercenary'
 Plug 'vim-scripts/cscope.vim'
 Plug 'vimwiki/vimwiki'
 Plug '/usr/local/opt/fzf'
@@ -139,6 +140,7 @@ nmap <leader>gs :Gstatus<CR>
 nmap <leader>gw :Gwrite<CR>
 nmap <leader>gv :Gvdiff<CR>
 nmap <leader>gl :GV --all<CR>
+nmap <leader>gb :Git branch --all<CR>
 nmap <leader>0 :Vex<CR>
 nmap <leader>s :split<CR>
 nmap <leader>v :vsplit<CR>
