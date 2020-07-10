@@ -6,6 +6,9 @@
 
 [alias]
     co = checkout
+    df = diff
+    cm = commit
+    st = status
     lg = !"git lg1"
     lg1 = !"git lg1-specific --all"
     lg2 = !"git lg2-specific --all"
@@ -17,7 +20,7 @@
     gldiff = log --full-diff -p
 
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 
 [diff]
