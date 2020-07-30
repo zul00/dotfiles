@@ -7,7 +7,7 @@ mode=$(echo "$option" | dmenu -i -p "System command:")
 #echo "Selected mode $mode"
 
 case $mode in
-    "lock")     playerctl pause ; i3lock-fancy --pixelate --text "***" --desktop ;;
+    "lock")     playerctl pause ; i3lock-fancy --pixelate ;;
     "suspend")  systemctl suspend ;;
     "poweroff") systemctl poweroff;;
     "reboot")   systemctl reboot ;;
