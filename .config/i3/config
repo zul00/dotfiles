@@ -39,11 +39,10 @@ set $ws10 "10"
 
 ###---Rules for apps---###
 # use xprop the check window properties
-for_window [class="SpeedCrunch"]    floating enable
-for_window [title="TelegramDesktop"]    floating enable
 for_window [class="Arandr"]         floating enable
 for_window [class="Steam"]          floating enable
 for_window [class="Matplotlib"]     floating disable
+for_window [class="mqtt-explorer"]     floating enable
 assign [class="Matplotlib"]         $ws9
 
 # dropdown terminal
@@ -60,12 +59,19 @@ for_window [class="SpeedCrunch"] move position center
 for_window [class="SpeedCrunch"] move scratchpad
 bindsym $mod+Shift+c [class="SpeedCrunch"] scratchpad show; move position center
 
-# dropdown telegram
+# Telegram desktop
 for_window [title="TelegramDesktop"] floating enable
 for_window [title="TelegramDesktop"] resize set 625 400
 for_window [title="TelegramDesktop"] move position center
 for_window [title="TelegramDesktop"] move scratchpad
 bindsym $mod+c [class="TelegramDesktop"] scratchpad show; move position center
+
+# mqtt-explorer
+for_window [class="MQTT-Explorer"] floating enable
+for_window [class="MQTT-Explorer"] resize set 1000 800
+for_window [class="MQTT-Explorer"] move position center
+for_window [class="MQTT-Explorer"] move scratchpad
+bindsym $mod+q [class="MQTT-Explorer"] scratchpad show; move position center
 
 bindsym $mod+Shift+Tab workspace back_and_forth
 
@@ -206,32 +212,37 @@ bindsym $mod+F5 exec --no-startup-id "~/scripts/dmenu/display"
 bindsym XF86TouchpadToggle exec --no-startup-id "~/scripts/toggle_toucpad.sh"
 
 ## System command
-bindsym Pause exec --no-startup-id "~/scripts/dmenu/systemcmd"
+bindsym Pause   exec --no-startup-id "~/scripts/dmenu/systemcmd"
+bindsym $mod+F9 exec --no-startup-id "~/scripts/dmenu/systemcmd"
 
 ## MediaKey
 bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+bindsym $mod+F1                 exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
 
 bindsym $mod+Prior              exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+bindsym $mod+F3                 exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioRaiseVolume    exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
 
 bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+bindsym $mod+F2                 exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
 
-bindsym $mod+Up exec playerctl play-stop
-bindsym $mod+Down exec playerctl play-pause
-bindsym $mod+Right exec playerctl next
-bindsym $mod+Left exec playerctl previous
+bindsym $mod+Up     exec playerctl play-stop
+bindsym $mod+Down   exec playerctl play-pause
+bindsym $mod+Right  exec playerctl next
+bindsym $mod+Left   exec playerctl previous
 
 ## printscreen
 bindsym Print --release\
             exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
+
 ## Vimwiki
 bindsym $mod+n workspace $ws7; \
-            exec $term --title "Vimwiki" -e vim "+:VimwikiIndex"
+            exec $term -T "Vimwiki" -e vim "+:VimwikiIndex"
 
 ## Ranger
-bindsym $mod+e exec $term --title "Ranger" -e ranger
+bindsym $mod+e exec $term -T "Ranger" -e ranger
 bindsym $mod+Shift+e exec "nautilus"
 
 ## Spotify
@@ -254,9 +265,10 @@ exec            --no-startup-id unclutter
 exec_always     --no-startup-id xset b off
 exec_always     setxkbmap -option caps:swapescape
 # Other apps
-exec            --no-startup-id $term -name dropdown -e tmux new-session -s dropdown
+exec            --no-startup-id $term -n dropdown -e tmux new-session -s dropdown
 exec            --no-startup-id speedcrunch
-exec            --no-startup-id telegram-desktop
+exec            --no-startup-id Telegram
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
+exec            --no-startup-id xinput set-prop 12 331 1
