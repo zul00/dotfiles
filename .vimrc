@@ -44,7 +44,6 @@ Plug 'vimwiki/vimwiki'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-scripts/Conque-GDB'
 Plug 'rhysd/vim-clang-format'
 Plug 'tommcdo/vim-fubitive'
 Plug 'christoomey/vim-tmux-navigator'
@@ -292,8 +291,13 @@ endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " }}}
 
-" {{{ GDB
-let g:ConqueGdb_GdbExe = 'arm-none-eabi-gdb'
+" {{{ Highlight
+augroup vimrc_todo
+    au!
+    au Syntax * syn match MyTodo /\v<(REVIEW|FIXME|NOTE|TODO|OPTIMIZE|XXX):/
+          \ containedin=.*Comment,vimCommentTitle
+augroup END
+hi def link MyTodo Todo
 " }}}
 
 " Undo function between termintated vim session
