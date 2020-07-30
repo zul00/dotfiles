@@ -2,16 +2,16 @@
 " @author:  Zulkarnaen
 " @brief:   Setting for c filetype
 
-" Formatting {{{ 
+" Formatting {{{
 set shiftwidth=8
 set tabstop=8
 set noexpandtab
 " }}}
 
-" Key Remap {{{ 
+" Key Remap {{{
 nmap <F2> :!ctags -R *<CR>:!cscope -Rb<CR> :cscope add cscope.out<CR>
 set  pastetoggle=<F3>
-nmap <F4> :!clear<CR><bar>:wa <bar> :make clean<CR>
+" nmap <F4> :!clear<CR><bar>:wa <bar> :make clean<CR>
 nmap <F5> :!clear<CR><bar>:wa <bar> :make<CR>
 "nmap <silent> <F8> :cexpr system('checkpatch.pl --terse --file --no-tree ' . shellescape(expand('%')))<CR>
 vmap <F9> :normal 0i//<CR>
