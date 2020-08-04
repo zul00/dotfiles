@@ -1,13 +1,29 @@
 #!/bin/bash
 
-# set -x
-LIST=`find /opt/ -maxdepth 1 -type d -name "gcc-arm*"`
+#set -x
 
+# List of gcc compiler
+LIST=`find ~/src/gcc-arm-none-eabi -maxdepth 1 -type d -name "gcc-arm*"`
+#cecho $LIST
+
+# Current compiler
+CURRENT=`ls -l /usr/local/bin/arm-none-eabi-gcc`
+echo $CURRENT > /tmp/gcc-arm
+CURRENT2=`awk -F ">" '{print $2}' /tmp/gcc-arm`
+echo $CURRENT2 > /tmp/gcc-arm
+CURRENT3=`awk -F "/" '{print $8}' /tmp/gcc-arm`
+
+# Move to gcc folder
+cd ~/src/gcc-arm-none-eabi/
+
+# Remove current compiler
+sudo stow -D $CURRENT3 -t /usr/local
+
+# Install new compiler
 COMPILER=$(echo "$LIST" | fzf)
-#COMPILER=`echo $COMPILER | sed -e "s/\//\\\//g"`
-# echo $PATH
-# echo $PATH | sed -e "s|:/opt/gcc-arm.*:|$COMPILER/bin:|" 
-PATH=`echo $PATH | sed "s|/opt/gcc[^:]*:|$COMPILER/bin:|"`
-echo $PATH
+echo $COMPILER > /tmp/compiler
+COMP=`awk -F "/" '{print $6}' /tmp/compiler`
+sudo stow $COMP -t /usr/local
 
-# sed -i -e "s|\/opt\/gcc-arm.*$|$COMPILER/bin|"
+# Print out current gcc version
+arm-none-eabi-gcc --version
