@@ -3,6 +3,7 @@
 export PATH=$HOME/bin:$PATH
 export PATH=$PATH:$HOME/src/ccls/Release/
 export PATH=$PATH:$HOME/scripts/
+export PATH=$PATH:$HOME/.local/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/zul/.oh-my-zsh"
