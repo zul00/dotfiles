@@ -9,6 +9,39 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+###---Color configuration---###
+## Base16 Monokai
+# Author: Wimer Hazenberg (http://www.monokai.nl)
+#
+# You can use these variables anywhere in the i3 configuration file.
+
+set $base00 #272822
+set $base01 #383830
+set $base02 #49483e
+set $base03 #75715e
+set $base04 #a59f85
+set $base05 #f8f8f2
+set $base06 #f5f4f1
+set $base07 #f9f8f5
+set $base08 #f92672
+set $base09 #fd971f
+set $base0A #f4bf75
+set $base0B #a6e22e
+set $base0C #a1efe4
+set $base0D #66d9ef
+set $base0E #ae81ff
+set $base0F #cc6633
+
+# Basic color configuration using the Base16 variables for windows and borders.
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base05 $base0D $base00 $base0D $base0C
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused        $base01 $base00 $base05 $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
+client.placeholder      $base00 $base00 $base05 $base00 $base00
+client.background       $base07
+
+
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
@@ -17,7 +50,8 @@ set $extdisp    HDMI-0
 set $mod        Mod4
 
 ###---Visual Settings---###
-font pango:DejaVu Sans Mono 8
+font pango:DejaVuSansMono Nerd Font Mono 8
+
 ## gaps
 hide_edge_borders smart
 #gaps inner 10
@@ -158,10 +192,10 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-workspace $ws1 output $primdisp
-workspace $ws2 output $primdisp
-workspace $ws3 output $primdisp
-workspace $ws4 output $primdisp
+workspace $ws1 output $extdisp
+workspace $ws2 output $extdisp
+workspace $ws3 output $extdisp
+workspace $ws4 output $extdisp
 workspace $ws5 output $primdisp
 workspace $ws6 output $primdisp
 workspace $ws7 output $extdisp
@@ -186,14 +220,26 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Basic bar configuration using the Base16 variables.
 bar {
         font pango:mono 10
         status_command i3blocks
         position top
         mode dock
         tray_output $primdisp
+
+        colors {
+            background $base00
+            separator  $base01
+            statusline $base04
+
+            # State             Border  BG      Text
+            focused_workspace   $base05 $base0D $base00
+            active_workspace    $base05 $base03 $base00
+            inactive_workspace  $base03 $base01 $base05
+            urgent_workspace    $base08 $base08 $base00
+            binding_mode        $base00 $base0A $base00
+        }
 }
 
 # BindKey
@@ -271,4 +317,4 @@ exec            --no-startup-id Telegram
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
-exec            --no-startup-id xinput set-prop 12 331 1
+exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" 331 1
