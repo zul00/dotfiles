@@ -104,47 +104,46 @@ set clipboard=unnamedplus,unnamed
 " Key Remap {{{
 " Other key
 set pastetoggle=<F3>
-nmap <F10> :tabe $HOME/.vim/ftplugin<CR>
-nmap <F12> :tabe $HOME/.vimrc<CR>
-vmap <C-c> "*y
-imap jj <ESC>
+nnoremap <F10> :tabe $HOME/.vim/ftplugin<CR>
+nnoremap <F12> :tabe $HOME/.vimrc<CR>
+vnoremap <C-c> "*y
+inoremap jj <ESC>
 inoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
-map <space> <leader>
-vmap <space><space> <ESC>
+vnoremap <space><space> <ESC>
 
 " leader map
 let mapleader = ','
-nmap <leader>dt :windo diffthis<CR>
-nmap <leader>do :diffoff!<CR>
-nmap <leader>o :only<CR>
-nmap <leader>q :q<CR>
-nmap <leader>q! :q!<CR>
-nmap <leader>qa :qa<CR>
-nmap <leader>so :w<CR>:so%<CR>
-nmap <leader>to :tabonly<CR>
-nmap <leader>w :w<CR>
-nmap <leader>wa :wa<CR>
-nmap <leader>wq :wq<CR>
-nmap <leader>h :noh<CR>
+nnoremap <leader>dt :windo diffthis<CR>
+nnoremap <leader>do :diffoff!<CR>
+nnoremap <leader>o :only<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>q! :q!<CR>
+nnoremap <leader>qa :qa<CR>
+nnoremap <leader>so :w<CR>:so%<CR>
+nnoremap <leader>to :tabonly<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>wa :wa<CR>
+nnoremap <leader>wq :wq<CR>
+nnoremap <leader>h :noh<CR>
 if &diff
-    nmap <leader>i :set diffopt+=iwhite<CR>
-    nmap <leader>i! :set diffopt-=iwhite<CR>
-    vmap <leader>g :diffget<CR>
-    vmap <leader>p :diffput<CR>
-    nmap <leader>u :diffu<CR>
-    nmap <leader>o :diffoff<CR>
+    " TODO: Create a function to toggle it
+    nnoremap <leader>i :set diffopt+=iwhite<CR>
+    nnoremap <leader>i! :set diffopt-=iwhite<CR>
+    vnoremap <leader>g :diffget<CR>
+    vnoremap <leader>p :diffput<CR>
+    nnoremap <leader>u :diffu<CR>
+    nnoremap <leader>o :diffoff<CR>
 endif
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gw :Gwrite<CR>
-nmap <leader>gv :Gvdiff<CR>
-nmap <leader>gl :GV --all<CR>
-nmap <leader>gb :Git branch --all<CR>
-nmap <leader>0 :Vex<CR>
-nmap <leader>s :split<CR>
-nmap <leader>v :vsplit<CR>
-nmap <leader>t :tabedit<CR>
-nmap <leader>- :NERDTreeToggle<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>gv :Gvdiff<CR>
+nnoremap <leader>gl :GV --all<CR>
+nnoremap <leader>gb :Git branch --all<CR>
+nnoremap <leader>0 :Vex<CR>
+nnoremap <leader>s :split<CR>
+nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>t :tabedit<CR>
 
 " Navigation
 nnoremap j gj
@@ -313,3 +312,7 @@ augroup END
 let g:pencil#wrapModeDefault = 'soft'
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 22
+
+let g:airline_powerline_fonts = 1
+
+set wildmode=list:longest,full
