@@ -67,10 +67,24 @@ colorscheme base16-monokai
 " }}}
 
 " Formatting {{{
+" Default indentation
 set expandtab
 set shiftwidth=4
 set tabstop=4
 set autoindent
+set smarttab
+
+" Shows trailing spaces in insert mode
+set list
+" }}}
+
+" Behavior {{{
+" read/write file when switching buffers
+set autowrite
+set autoread
+
+" Reduce redraw rate while executing macros
+set lazyredraw
 " }}}
 
 " Numbering {{{
@@ -90,11 +104,25 @@ set smartcase
 " Search {{{
 set hlsearch
 set incsearch
+
+if executable('rg')
+    " RipGrep FZF wrapper 
+    function! RipgrepFzf(query, fullscreen)
+      let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+      let initial_command = printf(command_fmt, shellescape(a:query))
+      let reload_command = printf(command_fmt, '{q}')
+      let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+      call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+    endfunction
+
+    command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+    " RG search shortcut
+    nnoremap <leader>r :Rg 
+endif
 " }}}
 
 " Others {{{
-set lazyredraw
-set autoread
 set showcmd
 set scrolloff=2
 set mouse=a
@@ -127,19 +155,33 @@ nnoremap <leader>wa :wa<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>h :noh<CR>
 if &diff
-    " TODO: Create a function to toggle it
-    nnoremap <leader>i :set diffopt+=iwhite<CR>
-    nnoremap <leader>i! :set diffopt-=iwhite<CR>
     vnoremap <leader>g :diffget<CR>
     vnoremap <leader>p :diffput<CR>
     nnoremap <leader>u :diffu<CR>
     nnoremap <leader>o :diffoff<CR>
+    nnoremap <leader>iw :call ToggleIgnoreWhiteDiff()<CR>
+
+    " Toggle ignore white in diff
+    let g:diff_ignore_white = 0
+    function! ToggleIgnoreWhiteDiff()
+        if g:diff_ignore_white
+            let g:diff_ignore_white = 0
+            set diffopt-=iwhite
+        else
+            let g:diff_ignore_white = 1
+            set diffopt+=iwhite
+        endif
+    endfunction
 endif
+
+
+" Git shortcuts
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gv :Gvdiff<CR>
 nnoremap <leader>gl :GV --all<CR>
 nnoremap <leader>gb :Git branch --all<CR>
+nnoremap <leader>gt :Git tag --list<CR>
 nnoremap <leader>0 :Vex<CR>
 nnoremap <leader>s :split<CR>
 nnoremap <leader>v :vsplit<CR>
@@ -169,6 +211,19 @@ nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
 nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
+
+nnoremap <leader><leader> :call ToggleQuickfix()<cr>
+function! ToggleQuickfix()
+  for buffer in tabpagebuflist()
+    if bufname(buffer) == ''
+      " then it should be the quickfix window
+      cclose
+      return
+    endif
+  endfor
+
+  copen
+endfunction
 " }}}
 
 " Abbreviation {{{
@@ -279,15 +334,6 @@ nnoremap <C-p> :Files<CR>
 set laststatus=2
 set statusline=%<%f\ %h%m%r%y%{FugitiveStatusline()}%=%{StatusDiagnostic()}%=%-14.(%l,%c%V%)\ %P
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " }}}
 
 " {{{ Highlight
