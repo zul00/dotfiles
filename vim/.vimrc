@@ -101,27 +101,6 @@ set ignorecase
 set smartcase
 " }}}
 
-" Search {{{
-set hlsearch
-set incsearch
-
-if executable('rg')
-    " RipGrep FZF wrapper 
-    function! RipgrepFzf(query, fullscreen)
-      let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-      let initial_command = printf(command_fmt, shellescape(a:query))
-      let reload_command = printf(command_fmt, '{q}')
-      let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-      call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-    endfunction
-
-    command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-    " RG search shortcut
-    nnoremap <leader>r :Rg 
-endif
-" }}}
-
 " Others {{{
 set showcmd
 set scrolloff=2
@@ -224,6 +203,48 @@ function! ToggleQuickfix()
 
   copen
 endfunction
+" }}}
+
+" Search {{{
+set hlsearch
+set incsearch
+
+"     " RipGrep FZF wrapper
+"     function! RipgrepFzf(query, fullscreen)
+"       let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+"       let initial_command = printf(command_fmt, shellescape(a:query))
+"       let reload_command = printf(command_fmt, '{q}')
+"       let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"       call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+"     endfunction
+"
+"     command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+"
+"     " RG search shortcut
+" endif
+
+" function! RipgrepFzf(query, fullscreen)
+"   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+"   let initial_command = printf(command_fmt, shellescape(a:query))
+"   let reload_command = printf(command_fmt, '{q}')
+"   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+" endfunction
+"
+" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+"command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" if executable('rg')
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --no-ignore-vcs --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)
+
+nnoremap <leader>f :Rg 
+" endif
+
 " }}}
 
 " Abbreviation {{{
