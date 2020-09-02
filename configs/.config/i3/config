@@ -45,12 +45,12 @@ client.background       $base07
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
-set $primdisp   DVI-D-0
-set $extdisp    HDMI-0
+set $primdisp   eDP-1-1
+set $extdisp    HDMI-1-1
 set $mod        Mod4
 
 ###---Visual Settings---###
-font pango:DejaVuSansMono Nerd Font Mono 8
+font pango:DejaVuSansMono Nerd Font Mono 12
 
 ## gaps
 hide_edge_borders smart
@@ -121,7 +121,7 @@ bindsym $mod+m              exec --no-startup-id $HOME/bin/dmenu/mux
 bindsym $mod+Shift+q kill
 
 # start launcher
-bindsym $mod+r exec dmenu_run -fn 'DejaVuSansMono Nerd Font Mono-14'
+bindsym $mod+r exec dmenu_run -fn 'DejaVuSansMono Nerd Font Mono-20'
 # bindsym $mod+Shift+c exec clipmenu
 #bindsym $mod+r exec rofi -show run
 #bindsym $mod+Tab exec rofi -show window
@@ -222,7 +222,7 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Basic bar configuration using the Base16 variables.
 bar {
-        font pango:mono 10
+        font pango:DejaVuSansMono Nerd Font Mono 12
         status_command i3blocks
         position top
         mode dock
