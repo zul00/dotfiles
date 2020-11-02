@@ -45,8 +45,8 @@ client.background       $base07
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
-set $primdisp   eDP-1-1
-set $extdisp    HDMI-1-1
+set $primdisp   eDP-1
+set $extdisp    HDMI-1
 set $mod        Mod4
 
 ###---Visual Settings---###
@@ -74,14 +74,23 @@ set $ws10 "10"
 ###---Rules for apps---###
 # use xprop the check window properties
 for_window [class="Arandr"]         floating enable
+for_window [class="otii"]           floating enable
 for_window [class="Steam"]          floating enable
 for_window [class="Matplotlib"]     floating disable
+for_window [class="Pavucontrol"]    floating enable
 for_window [class="mqtt-explorer"]     floating enable
 assign [class="Matplotlib"]         $ws9
 
+# dropdown emacs-org
+for_window [class="Emacs" instance="org"] floating enable
+for_window [class="Emacs" instance="org"] resize set 800 600
+for_window [class="Emacs" instance="org"] move position center
+for_window [class="Emacs" instance="org"] move scratchpad
+bindsym $mod+Shift+o [class="Emacs" instance="org"] scratchpad show; move position center
+
 # dropdown terminal
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] resize set 800 600
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
 bindsym $mod+d [instance="dropdown"] scratchpad show; move position center
@@ -121,7 +130,7 @@ bindsym $mod+m              exec --no-startup-id $HOME/bin/dmenu/mux
 bindsym $mod+Shift+q kill
 
 # start launcher
-bindsym $mod+r exec dmenu_run -fn 'DejaVuSansMono Nerd Font Mono-14'
+bindsym $mod+r exec dmenu_run -fn 'DejaVuSansMono Nerd Font Mono-16'
 # bindsym $mod+Shift+c exec clipmenu
 #bindsym $mod+r exec rofi -show run
 #bindsym $mod+Tab exec rofi -show window
@@ -144,10 +153,10 @@ bindsym $mod+y              resize shrink width 5 px or 5 ppt
 bindsym $mod+u              resize grow height 5 px or 5 ppt
 bindsym $mod+i              resize shrink height 5 px or 5 ppt
 bindsym $mod+o              resize grow width 5 px or 5 ppt
-bindsym $mod+Shift+y        resize shrink width 30 px or 30 ppt
-bindsym $mod+Shift+u        resize grow height 30 px or 30 ppt
-bindsym $mod+Shift+i        resize shrink height 30 px or 30 ppt
-bindsym $mod+Shift+o        resize grow width 30 px or 30 ppt
+# bindsym $mody        resize shrink width 30 px or 30 ppt
+# bindsym $modu        resize grow height 30 px or 30 ppt
+# bindsym $modi        resize shrink height 30 px or 30 ppt
+# bindsym $modo        resize grow width 30 px or 30 ppt
 
 # Toggle split orientation
 bindsym $mod+v split toggle
@@ -222,11 +231,11 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Basic bar configuration using the Base16 variables.
 bar {
-        font pango:DejaVuSansMono Nerd Font Mono 10
+        font pango:DejaVuSansMono Nerd Font Mono 13
         status_command i3blocks
         position top
         mode dock
-        tray_output $primdisp
+        #tray_output $extdisp
 
         colors {
             background $base00
@@ -291,8 +300,8 @@ bindsym $mod+n workspace $ws7; \
 bindsym $mod+e exec $term -T "Ranger" -e ranger
 bindsym $mod+Shift+e exec "nautilus"
 
-## Spotify
-bindsym $mod+s workspace $ws6; exec spotify;
+## Pavucontrol
+bindsym $mod+s workspace $ws6; exec pavucontrol;
 
 ###---App at startup---###
 # Wallpaper
@@ -312,9 +321,14 @@ exec_always     --no-startup-id xset b off
 exec_always     setxkbmap -option caps:swapescape
 # Other apps
 exec            --no-startup-id $term -n dropdown -e tmux new-session -s dropdown
+exec            --no-startup-id emacs --name org
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id Telegram
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
-exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" 331 1
+exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" 303 1
+exec            --no-startup-id caffeine-indicator
+
+# Autolock
+exec            --no-startup-id xautolock -killer "systemctl suspend" -killtime 10 -notify 1 -notifier "notify-send 'soon suspend'" -detectsleep
