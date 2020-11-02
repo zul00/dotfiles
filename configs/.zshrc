@@ -102,6 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias mux='tmuxinator'
+alias fd='fdfind'
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -113,7 +114,10 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 export EDITOR='nvim'
 export TERMINAL='st'
 export BROWSER='firefox'
+
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_COMMAND='fdfind -I --type file'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export LEDGER_FILE="/home/zul/documents/ali_imran/budget_ai/main.journal"
 export LEDGER_FILE="/home/zul/private/budget_ai/main.journal"
