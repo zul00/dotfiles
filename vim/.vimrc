@@ -102,6 +102,7 @@ set smartcase
 " }}}
 
 " Others {{{
+set noswapfile
 set showcmd
 set scrolloff=2
 set mouse=a
@@ -121,7 +122,8 @@ vnoremap <space><space> <ESC>
 
 " leader map
 let mapleader = ','
-nnoremap <leader>dt :windo diffthis<CR>
+nnoremap <leader>dt :diffthis<CR>
+nnoremap <leader>db :windo diffthis<CR>
 nnoremap <leader>do :diffoff!<CR>
 nnoremap <leader>o :only<CR>
 nnoremap <leader>q :q<CR>
@@ -133,25 +135,22 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>wa :wa<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>h :noh<CR>
-if &diff
-    vnoremap <leader>g :diffget<CR>
-    vnoremap <leader>p :diffput<CR>
-    nnoremap <leader>u :diffu<CR>
-    nnoremap <leader>o :diffoff<CR>
-    nnoremap <leader>iw :call ToggleIgnoreWhiteDiff()<CR>
+vnoremap <leader>dg :diffget<CR>
+vnoremap <leader>dp :diffput<CR>
+nnoremap <leader>du :diffu<CR>
+nnoremap <leader>dw :call ToggleIgnoreWhiteDiff()<CR>
 
-    " Toggle ignore white in diff
+" Toggle ignore white in diff
+let g:diff_ignore_white = 0
+function! ToggleIgnoreWhiteDiff()
+if g:diff_ignore_white
     let g:diff_ignore_white = 0
-    function! ToggleIgnoreWhiteDiff()
-        if g:diff_ignore_white
-            let g:diff_ignore_white = 0
-            set diffopt-=iwhite
-        else
-            let g:diff_ignore_white = 1
-            set diffopt+=iwhite
-        endif
-    endfunction
+    set diffopt-=iwhite
+else
+    let g:diff_ignore_white = 1
+    set diffopt+=iwhite
 endif
+endfunction
 
 
 " Git shortcuts
@@ -172,7 +171,6 @@ nnoremap k gk
 
 " cscope
 nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
 
 " s: Find this C symbol
 nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
@@ -235,14 +233,14 @@ set incsearch
 "command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " if executable('rg')
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --ignore-case --no-heading --no-ignore-vcs --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-  \   <bang>0)
+" command! -bang -nargs=* Rg
+"   \ call fzf#vim#grep(
+"   \   'rg --column --line-number --hidden --ignore-case --no-heading --no-ignore-vcs --color=always '.shellescape(<q-args>), 1,
+"   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+"   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+"   \   <bang>0)
 
-nnoremap <leader>f :Rg 
+nnoremap <leader>r :Rg 
 " endif
 
 " }}}
@@ -307,6 +305,9 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+" Disable conceal
+set conceallevel=0
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -349,6 +350,8 @@ let g:coc_global_extensions=[
 
 " {{{ FZF
 nnoremap <C-p> :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>l :Lines<CR>
 " }}}
 
 " {{{ Statusline
