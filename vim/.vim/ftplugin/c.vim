@@ -12,7 +12,7 @@ set noexpandtab
 nmap <F2> :!ctags -R *<CR>:!cscope -Rb<CR> :cscope add cscope.out<CR>
 set  pastetoggle=<F3>
 " nmap <F4> :!clear<CR><bar>:wa <bar> :make clean<CR>
-nmap <F5> :!clear<CR><bar>:wa <bar> :make<CR>
+"nmap <F5> :!clear<CR><bar>:wa <bar> :Make<CR>
 "nmap <silent> <F8> :cexpr system('checkpatch.pl --terse --file --no-tree ' . shellescape(expand('%')))<CR>
 vmap <F9> :normal 0i//<CR>
 nmap <F11> :TagbarToggle<CR>
@@ -50,3 +50,15 @@ function! s:RunShellCommand(cmdline)
   execute '$read !'. expanded_cmdline
   setlocal nomodifiable
 endfunction
+
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap E :Evaluate<CR>
+nnoremap <silent> <leader>lD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+"nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <leader>lr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>l0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> <leader>lW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <leader>lq    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>

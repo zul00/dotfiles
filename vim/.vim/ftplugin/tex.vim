@@ -24,6 +24,8 @@ let g:netrw_list_hide = '\.pdf,\.aux,\.fls,\.log,\.toc,\.out,\.synctex.gz,\.fdb_
 
 " vimtex setting {{{
 let g:vimtex_view_method = 'zathura'
+let g:vimtex_latexmk_progname= '/usr/bin/nvr'
+let g:vimtex_compiler_progname = 'nvr'
 " }}}
 
 " pencil setting {{{

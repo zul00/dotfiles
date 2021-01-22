@@ -1,6 +1,5 @@
 " @file: .vimrc
 " @author: zulkarnaen
-"
 " vim:fdm=marker
 " Source = https://dougblack.io/words/a-good-vimrc.html
 " http://usevim.com/2012/05/09/clean-vimrc/
@@ -16,7 +15,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Plugin list
-"Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'blindFS/vim-reveal'
 Plug 'chriskempson/base16-vim'
@@ -28,7 +27,6 @@ Plug 'ledger/vim-ledger'
 Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
 Plug 'metakirby5/codi.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-pencil'
 Plug 'ryanoasis/vim-devicons'
@@ -38,6 +36,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-repeat'
 Plug 'phleet/vim-mercenary'
 Plug 'vim-scripts/cscope.vim'
 Plug 'vimwiki/vimwiki'
@@ -51,6 +50,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'wakatime/vim-wakatime'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'sirver/UltiSnips'
+Plug 'tools-life/taskwiki'
 
 
 call plug#end()
@@ -286,6 +290,7 @@ autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 " }}}
 
 " {{{ COC
+" TODO: Remove completely
 " if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -307,45 +312,6 @@ set signcolumn=yes
 
 " Disable conceal
 set conceallevel=0
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-"""""
-
-function! StatusDiagnostic() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, 'E:' . info['error'])
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, 'W:' . info['warning'])
-  endif
-  "return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
-  return join(msgs, ' ')
-endfunction
-
-let g:coc_global_extensions=[
-            \ 'coc-git',
-            \ 'coc-json',
-            \ 'coc-markdownlint',
-            \ 'coc-python',
-            \ 'coc-yaml',
-            \ ]
-
-"nmap <silent> gd <Plug>(coc-definition)
 " }}}
 
 " {{{ FZF
@@ -356,8 +322,7 @@ nnoremap <leader>l :Lines<CR>
 
 " {{{ Statusline
 set laststatus=2
-set statusline=%<%f\ %h%m%r%y%{FugitiveStatusline()}%=%{StatusDiagnostic()}%=%-14.(%l,%c%V%)\ %P
-
+" set statusline=%<%f\ %h%m%r%y%{FugitiveStatusline()}%=%{StatusDiagnostic()}%=%-14.(%l,%c%V%)\ %P
 " }}}
 
 " {{{ Highlight
@@ -384,5 +349,7 @@ let g:netrw_liststyle = 3
 let g:netrw_winsize = 22
 
 let g:airline_powerline_fonts = 1
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#branch#format = 2
 
 set wildmode=list:longest,full
