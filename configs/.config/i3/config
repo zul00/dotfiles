@@ -45,8 +45,8 @@ client.background       $base07
 ###---Basic Settings---###
 set $browser    /usr/bin/firefox
 set $term       /usr/local/bin/st
-set $primdisp   eDP-1
-set $extdisp    HDMI-1
+set $primdisp   eDP-1-1
+set $extdisp    HDMI-1-1
 set $mod        Mod4
 
 ###---Visual Settings---###
@@ -54,9 +54,9 @@ font pango:DejaVuSansMono Nerd Font Mono 8
 
 ## gaps
 hide_edge_borders smart
-#gaps inner 10
-#gaps outer 10
-#smart_gaps on
+gaps inner 5
+gaps outer 5
+smart_gaps on
 default_border pixel 3
 
 # workspace alias
@@ -74,23 +74,30 @@ set $ws10 "10"
 ###---Rules for apps---###
 # use xprop the check window properties
 for_window [class="Arandr"]         floating enable
-for_window [class="otii"]           floating enable
 for_window [class="Steam"]          floating enable
 for_window [class="Matplotlib"]     floating disable
 for_window [class="Pavucontrol"]    floating enable
-for_window [class="mqtt-explorer"]     floating enable
+for_window [class="mqtt-explorer"]  floating enable
+for_window [class="Solaar"]         floating enable
 assign [class="Matplotlib"]         $ws9
+
+# dropdown otii
+for_window [title="otii"] floating enable
+for_window [title="otii"] resize set 900 400
+for_window [title="otii"] move position center
+for_window [title="otii"] move scratchpad
+bindsym $mod+w [title="otii"] scratchpad show; move position center
 
 # dropdown emacs-org
 for_window [class="Emacs" instance="org"] floating enable
-for_window [class="Emacs" instance="org"] resize set 800 600
+for_window [class="Emacs" instance="org"] resize set 800 800
 for_window [class="Emacs" instance="org"] move position center
 for_window [class="Emacs" instance="org"] move scratchpad
 bindsym $mod+Shift+o [class="Emacs" instance="org"] scratchpad show; move position center
 
 # dropdown terminal
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 800 600
+for_window [instance="dropdown"] resize set 800 800
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
 bindsym $mod+d [instance="dropdown"] scratchpad show; move position center
@@ -188,6 +195,9 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+minus move scratchpad
 # Show scratchpad
 bindsym $mod+minus scratchpad show
+
+# Toggle lang
+bindsym $mod+F7 exec --no-startup-id "~/dotfiles/scripts/toggle_xkb.sh"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -293,8 +303,7 @@ bindsym Print --release\
             exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
 
 ## Vimwiki
-bindsym $mod+n workspace $ws7; \
-            exec $term -T "Vimwiki" -e vim "+:VimwikiIndex"
+bindsym $mod+n exec $term -T "Vimwiki" -e nvim "+:VimwikiIndex"
 
 ## Ranger
 bindsym $mod+e exec $term -T "Ranger" -e ranger
@@ -327,8 +336,9 @@ exec            --no-startup-id Telegram
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
-exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" 303 1
+exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" "libinput Natural Scrolling Enabled" 1
 exec            --no-startup-id caffeine-indicator
+exec            --no-startup-id solaar -w hide
 
 # Autolock
 exec            --no-startup-id xautolock -killer "systemctl suspend" -killtime 10 -notify 1 -notifier "notify-send 'soon suspend'" -detectsleep
