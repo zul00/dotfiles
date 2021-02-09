@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'blindFS/vim-reveal'
-Plug 'chriskempson/base16-vim'
+Plug 'Soares/base16.nvim'
 Plug 'embear/vim-localvimrc'
 Plug 'itchyny/calendar.vim'
 Plug 'jreybert/vimagit'
@@ -67,7 +67,10 @@ set cursorline
 set colorcolumn=79
 set background=dark
 let base16colorspace=256
-colorscheme base16-monokai
+colorscheme monokai
+set termguicolors
+hi ColorColumn ctermbg=black guibg=black
+hi Comment gui=NONE
 " }}}
 
 " Formatting {{{
@@ -244,6 +247,11 @@ set incsearch
 "   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
 "   \   <bang>0)
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --ignore-dot --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
 nnoremap <leader>r :Rg 
 " endif
 
@@ -254,7 +262,7 @@ abbrev eplug e ~/.vim/ftplugin/
 " }}}
 
 " VimWiki {{{
-let g:vimwiki_list = [{'path':'~/Dropbox/VimWiki', 'path_html':'~/Dropbox/VimWiki/html'}]
+let g:vimwiki_list = [{'syntax': 'markdown', 'path':'~/logbooks/vimwiki', 'path_html':'~/logbooks/vimwiki/html'}]
 " }}}
 
 " latex-suite {{{
@@ -322,6 +330,28 @@ nnoremap <leader>l :Lines<CR>
 
 " {{{ Statusline
 set laststatus=2
+let g:airline_mode_map = {
+            \ '__'     : '-',
+            \ 'c'      : 'C',
+            \ 'i'      : 'I',
+            \ 'ic'     : 'I',
+            \ 'ix'     : 'I',
+            \ 'n'      : 'N',
+            \ 'multi'  : 'M',
+            \ 'ni'     : 'N',
+            \ 'no'     : 'N',
+            \ 'R'      : 'R',
+            \ 'Rv'     : 'R',
+            \ 's'      : 'S',
+            \ 'S'      : 'S',
+            \ ''     : 'S',
+            \ 't'      : 'T',
+            \ 'v'      : 'V',
+            \ 'V'      : 'V',
+            \ ''     : 'V',
+            \ }
+" let g:airline_section_z = (line number, column number)
+
 " set statusline=%<%f\ %h%m%r%y%{FugitiveStatusline()}%=%{StatusDiagnostic()}%=%-14.(%l,%c%V%)\ %P
 " }}}
 
