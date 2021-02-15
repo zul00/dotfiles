@@ -1,6 +1,6 @@
 [user]
-	email = zul.zulkarnaen@gmail.com
-	name = zul00
+    email = zul.zulkarnaen@gmail.com
+    name = zul
 
 [includeIf "gitdir:~/projects/"] # job needs, like workspace/* so all included projects
     path = ~/.gitconfig-job
@@ -21,12 +21,15 @@
     gldiff = log --full-diff -p
 
 [core]
-	editor = nvim
-	excludesfile = ~/.gitignore
+    editor = nvim
+    excludesfile = ~/.gitignore
 
 [diff]
-        tool = meld
+    tool = meld
 [difftool]
-        prompt = false
+    prompt = false
 [difftool "meld"]
-        cmd = meld "$LOCAL" "$REMOTE"
+    cmd = meld "$LOCAL" "$REMOTE"
+
+[pull]
+    rebase = false
