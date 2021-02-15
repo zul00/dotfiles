@@ -1,0 +1,78 @@
+# [Created by task 2.5.1 1/18/2021 09:53:59]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/logbooks/task
+
+# Color theme (uncomment one to use)
+#include /usr/share/taskwarrior/light-16.theme
+#include /usr/share/taskwarrior/light-256.theme
+#include /usr/share/taskwarrior/dark-16.theme
+#include /usr/share/taskwarrior/dark-256.theme
+#include /usr/share/taskwarrior/dark-red-256.theme
+#include /usr/share/taskwarrior/dark-green-256.theme
+include /usr/share/taskwarrior/dark-blue-256.theme
+#include /usr/share/taskwarrior/dark-violets-256.theme
+#include /usr/share/taskwarrior/dark-yellow-green.theme
+#include /usr/share/taskwarrior/dark-gray-256.theme
+#include /usr/share/taskwarrior/dark-gray-blue-256.theme
+#include /usr/share/taskwarrior/solarized-dark-256.theme
+#include /usr/share/taskwarrior/solarized-light-256.theme
+#include /usr/share/taskwarrior/no-color.theme
+
+color=on
+context.work=project:work project.not:work.gitlab
+context.ditto=project:work.ditto
+context.personal=project.not:work project.not:fun -fun
+context.fun=project:fun or +fun
+context.gitlab=project:work.gitlab
+context=work
+
+# Bugwarrior UDAs
+uda.gitlabtitle.type=string
+uda.gitlabtitle.label=Gitlab Title
+uda.gitlabdescription.type=string
+uda.gitlabdescription.label=Gitlab Description
+uda.gitlabcreatedon.type=date
+uda.gitlabcreatedon.label=Gitlab Created
+uda.gitlabupdatedat.type=date
+uda.gitlabupdatedat.label=Gitlab Updated
+uda.gitlabduedate.type=date
+uda.gitlabduedate.label=Gitlab Due Date
+uda.gitlabmilestone.type=string
+uda.gitlabmilestone.label=Gitlab Milestone
+uda.gitlaburl.type=string
+uda.gitlaburl.label=Gitlab URL
+uda.gitlabrepo.type=string
+uda.gitlabrepo.label=Gitlab Repo Slug
+uda.gitlabtype.type=string
+uda.gitlabtype.label=Gitlab Type
+uda.gitlabnumber.type=string
+uda.gitlabnumber.label=Gitlab Issue/MR #
+uda.gitlabstate.type=string
+uda.gitlabstate.label=Gitlab Issue/MR State
+uda.gitlabupvotes.type=numeric
+uda.gitlabupvotes.label=Gitlab Upvotes
+uda.gitlabdownvotes.type=numeric
+uda.gitlabdownvotes.label=Gitlab Downvotes
+uda.gitlabwip.type=numeric
+uda.gitlabwip.label=Gitlab MR Work-In-Progress Flag
+uda.gitlabauthor.type=string
+uda.gitlabauthor.label=Gitlab Author
+uda.gitlabassignee.type=string
+uda.gitlabassignee.label=Gitlab Assignee
+uda.gitlabnamespace.type=string
+uda.gitlabnamespace.label=Gitlab Namespace
+uda.gitlabweight.type=numeric
+uda.gitlabweight.label=Gitlab Weight
+# END Bugwarrior UDAs
+

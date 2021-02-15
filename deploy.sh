@@ -7,6 +7,10 @@ stow emacs
 stow git
 stow tmux
 stow vim
+stow taskwarrior
 
-mkdir ~/bin
+mkdir -p ~/bin
 stow scripts -t ~/bin
+
+mkdir -p ~/.fonts
+stow fonts -t ~/.fonts
