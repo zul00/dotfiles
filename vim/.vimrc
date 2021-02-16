@@ -123,7 +123,7 @@ set clipboard=unnamedplus,unnamed
 " Other key
 set pastetoggle=<F3>
 nnoremap <F10> :tabe $HOME/.vim/ftplugin<CR>
-nnoremap <F12> :tabe $HOME/.vimrc<CR>
+nnoremap <F12> :tabe $HOME/dotfiles/vim/.vimrc<CR>
 vnoremap <C-c> "*y
 inoremap jj <ESC>
 inoremap <C-c> <Esc>
@@ -174,6 +174,11 @@ nnoremap <leader>0 :Vex<CR>
 nnoremap <leader>s :split<CR>
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>t :tabedit<CR>
+
+command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
+command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
 
 " Navigation
 nnoremap j gj
