@@ -13,9 +13,9 @@ echo $mem
 echo $mem_ratio
 
 # Color
-if [ 1 -eq "$(echo "${mem_ratio} < 0.2" | bc)" ]; then
+if [ 1 -eq "$(echo "${mem_ratio} < 0.4" | bc)" ]; then
     echo "#55AAEE"
-elif [ 1 -eq "$(echo "${mem_ratio} < 0.5" | bc)" ]; then
+elif [ 1 -eq "$(echo "${mem_ratio} < 0.7" | bc)" ]; then
     echo "#FFCC66"
 else
     echo "#FF0000"
