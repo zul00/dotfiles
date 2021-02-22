@@ -105,6 +105,7 @@ alias mux='tmuxinator'
 alias fd='fdfind'
 alias v='nvim'
 alias dot='nvim +:"cd ~/dotfiles/"'
+alias book='nvim "+:cd ~/logbooks/"'
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
