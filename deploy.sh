@@ -2,15 +2,22 @@
 
 echo "Deploying dotfiles"
 
-stow configs
+stow configs -t ~/.config
+
 stow emacs
+
+mkdir -p ~/.fonts
+stow fonts -t ~/.fonts
+
 stow git
-stow tmux
-stow vim
-stow taskwarrior
+
+stow home
 
 mkdir -p ~/bin
 stow scripts -t ~/bin
 
-mkdir -p ~/.fonts
-stow fonts -t ~/.fonts
+stow taskwarrior
+
+stow tmux
+
+stow vim
