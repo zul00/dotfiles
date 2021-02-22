@@ -23,6 +23,7 @@ let g:netrw_list_hide = 'tags,.git/$,\.o$,\.ko$,\.mod.,\.cmd$,\.symvers$,\.order
 " }}}
 
 set foldmethod=syntax
+set foldexpr=nvim_treesitter#foldexpr()
 let g:load_doxygen_syntax=1
 let g:c_syntax_for_h=1
 let g:c_no_comment_fold = 1
@@ -62,3 +63,5 @@ nnoremap <silent> <leader>l0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <leader>lW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <leader>lq    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <silent> <leader>db    :Break<cr>
+nnoremap <silent> <leader>dc    :Clear<cr>
