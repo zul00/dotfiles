@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 alias mux='tmuxinator'
 alias fd='fdfind'
 alias v='nvim'
-alias dot='nvim ~/dotfiles/'
+alias dot='nvim +:"cd ~/dotfiles/"'
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
