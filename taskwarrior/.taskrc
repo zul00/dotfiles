@@ -35,7 +35,7 @@ context.ditto=project:work.ditto
 context.personal=project.not:work project.not:fun -fun
 context.fun=project:fun or +fun
 context.gitlab=project:work.gitlab
-context=work
+context=personal
 
 # Bugwarrior UDAs
 uda.gitlabtitle.type=string
