@@ -44,11 +44,21 @@ client.background       $base07
 # }}}
 
 # {{{ Basic configurations
-set $browser    /usr/bin/firefox
+# Variables
 set $term       /usr/local/bin/alacritty
+set $browser    /usr/bin/firefox
+
 set $primdisp   eDP-1-1
 set $extdisp    HDMI-1-1
+
+# Logo key. Use Mod1 for Alt.
 set $mod        Mod4
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
 
 # Font
 font pango:DejaVuSansMono Nerd Font Mono 8
@@ -60,6 +70,7 @@ gaps outer 5
 smart_gaps on
 default_border pixel 3
 
+# Status Bar:
 # Basic bar configuration using the Base16 variables.
 bar {
         font pango:DejaVuSansMono Nerd Font Mono 13

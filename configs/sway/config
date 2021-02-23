@@ -1,28 +1,60 @@
+# vim:fdm=marker
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
 
-### Variables
-#
+# {{{ Basic configuration
+# Variables
+set $term       alacritty
+set $browser    /usr/bin/firefox
+
+set $primdisp   eDP-1-1
+set $extdisp    HDMI-1-1
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term alacritty
+
+# gaps
+hide_edge_borders smart
+gaps inner 5
+gaps outer 5
+smart_gaps on
+default_border pixel 3
+
+# Status Bar:
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    swaybar_command waybar
+
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
+# }}}
 
-### Output configuration
+# {{{ Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
@@ -32,8 +64,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+# }}}
 
-### Idle configuration
+# {{{ Idle configuration
 #
 # Example configuration:
 #
@@ -45,8 +78,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+# }}}
 
-### Input configuration
+# {{{ Input configuration
 #
 # Example configuration:
 #
@@ -59,19 +93,14 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-#
-hide_edge_borders smart
-gaps inner 5
-gaps outer 5
-smart_gaps on
-default_border pixel 3
+# }}}
 
-### Key bindings
+# {{{ Keybinding
 #
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $term -e tmux new-session -A -s BASE
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -181,23 +210,24 @@ default_border pixel 3
     bindsym $mod+minus scratchpad show
 
 #
-# Status Bar:
+# Others:
 #
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+bindsym $mod+F7 exec --no-startup-id "~/dotfiles/scripts/toggle_xkb.sh"
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    #status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-    swaybar_command waybar
+#
+# MediaKey
+#
+bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+bindsym $mod+F1                 exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+bindsym $mod+Prior              exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+bindsym $mod+F3                 exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume    exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
 
-include /etc/sway/config.d/*
+bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+bindsym $mod+F2                 exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+# }}}
 
+    include /etc/sway/config.d/*
