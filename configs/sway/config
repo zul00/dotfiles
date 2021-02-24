@@ -134,9 +134,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # }}}
 
 # {{{ Keybinding
-#
-# Basics:
-#
+## {{{ Basics:
     # Start a terminal
     bindsym $mod+Return exec $term -e tmux new-session -A -s BASE
 
@@ -158,9 +156,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-#
-# Moving around:
-#
+## }}}
+
+## {{{ Moving around:
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -182,9 +180,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
+## }}}
+
+## {{{ Workspaces:
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -209,9 +207,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-#
-# Layout stuff:
-#
+# }}}
+
+## {{{ Layout stuff:
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
@@ -234,9 +232,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
+## }}}
+
+## {{{ Scratchpad:
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
@@ -246,26 +244,25 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+## }}}
 
-#
-# Others:
-#
-bindsym $mod+F7 exec --no-startup-id "~/dotfiles/scripts/toggle_xkb.sh"
+## {{{ Scripts
+    bindsym $mod+F7 exec --no-startup-id "~/dotfiles/scripts/toggle_xkb.sh"
+## }}}
 
-#
-# MediaKey
-#
-bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
-bindsym $mod+F1                 exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+## {{{ MediaKey
+    bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F1                 exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
 
-bindsym $mod+Prior              exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
-bindsym $mod+F3                 exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume    exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+    bindsym $mod+Prior              exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F3                 exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioRaiseVolume    exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
 
-bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
-bindsym $mod+F2                 exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+    bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F2                 exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+## }}}
 # }}}
 
-    include /etc/sway/config.d/*
+include /etc/sway/config.d/*
