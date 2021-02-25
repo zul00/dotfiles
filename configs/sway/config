@@ -135,8 +135,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # {{{ Keybinding
 ## {{{ Basics:
-    # Start a terminal
-    bindsym $mod+Return exec $term -e tmux new-session -A -s BASE
+    # Start apps
+    bindsym $mod+Shift+Return   exec $term
+    bindsym $mod+Return         exec $term -e tmux new-session -A -s BASE
+    bindsym $mod+b              exec $browser
+    bindsym $mod+m              exec --no-startup-id $HOME/bin/dmenu/mux
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -164,25 +167,19 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
 ## }}}
 
 ## {{{ Workspaces:
+    # Cycle through window
+    bindsym $mod+bracketright   workspace next
+    bindsym $mod+bracketleft    workspace prev
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -194,6 +191,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
+
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -213,7 +211,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
+    # bindsym $mod+b splith
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
@@ -234,6 +232,12 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+a focus parent
 ## }}}
 
+## {{{ System command
+    bindsym XF86Favorites exec --no-startup-id "~/bin/dmenu/systemcmd"
+    bindsym Pause   exec --no-startup-id "~/bin/dmenu/systemcmd"
+    bindsym $mod+F9 exec --no-startup-id "~/bin/dmenu/systemcmd"
+## }}}
+
 ## {{{ Scratchpad:
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
@@ -247,6 +251,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 ## }}}
 
 ## {{{ Scripts
+    # Toggle lang
     bindsym $mod+F7 exec --no-startup-id "~/dotfiles/scripts/toggle_xkb.sh"
 ## }}}
 
@@ -262,7 +267,24 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
     bindsym $mod+F2                 exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
     bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+
+    bindsym $mod+Up     exec playerctl play-stop
+    bindsym $mod+Down   exec playerctl play-pause
+    bindsym $mod+Right  exec playerctl next
+    bindsym $mod+Left   exec playerctl previous
 ## }}}
+# }}}
+
+# {{{ Startup apps
+
+# Scratchpad
+for_window [title="dropdown"] floating enable
+for_window [title="dropdown"] resize set 800 800
+for_window [title="dropdown"] move position center
+for_window [title="dropdown"] move scratchpad
+bindsym $mod+d [title="dropdown"] scratchpad show; move position center
+exec --no-startup-id $term -t dropdown -e tmux new-session -s dropdown
+
 # }}}
 
 include /etc/sway/config.d/*
