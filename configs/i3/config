@@ -176,158 +176,175 @@ bindsym $mod+q [class="MQTT-Explorer"] scratchpad show; move position center
 # }}}
 
 # {{{ Keybinding
+## {{{ Basics
+    # Start apps
+    bindsym $mod+Shift+Return   exec $term
+    bindsym $mod+Return         exec $term -e tmux new-session -A -s BASE
+    bindsym $mod+m              exec --no-startup-id $HOME/bin/dmenu/mux
+    bindsym $mod+b              exec $browser
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start launcher
+    bindsym $mod+r exec dmenu_run -fn 'DejaVuSansMono Nerd Font Mono-16'
+    # bindsym $mod+Shift+c exec clipmenu
+
+    # Use Mouse+$mod to drag floating windows to their wanted position
+    floating_modifier $mod
+
+    # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+    bindsym $mod+Shift+r restart
+
+    # exit i3 (logs you out of your X session)
+    bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# }}}
+
+## {{{ Moving around:
+    # Change Focus
+    bindsym $mod+$left              focus left
+    bindsym $mod+$down              focus down
+    bindsym $mod+$up              focus up
+    bindsym $mod+$right              focus right
+
+    # Move Focused Window
+    bindsym $mod+Shift+$left        move left 40px
+    bindsym $mod+Shift+$down        move down 40px
+    bindsym $mod+Shift+$up        move up 40px
+    bindsym $mod+Shift+$right        move right 40px
+
+    # Resize
+    bindsym $mod+y              resize shrink width 5 px or 5 ppt
+    bindsym $mod+u              resize grow height 5 px or 5 ppt
+    bindsym $mod+i              resize shrink height 5 px or 5 ppt
+    bindsym $mod+o              resize grow width 5 px or 5 ppt
+## }}}
 
 bindsym $mod+Shift+Tab workspace back_and_forth
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+## {{{ Workspaces:
+    # Cycle through window
+    bindsym $mod+bracketright   workspace next
+    bindsym $mod+bracketleft    workspace prev
 
-# start a terminal
-bindsym $mod+Shift+Return   exec $term
-bindsym $mod+Return         exec $term -e tmux new-session -A -s BASE
-bindsym $mod+m              exec --no-startup-id $HOME/bin/dmenu/mux
+    # Switch to workspace
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
+    bindsym $mod+0 workspace $ws10
 
-# kill focused window
-bindsym $mod+Shift+q kill
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
+    bindsym $mod+Shift+0 move container to workspace $ws10
+## }}}
 
-# start launcher
-bindsym $mod+r exec dmenu_run -fn 'DejaVuSansMono Nerd Font Mono-16'
-# bindsym $mod+Shift+c exec clipmenu
+## {{{ Layout stuff:
+    # Toggle split orientation
+    bindsym $mod+v split toggle
 
-# Change Focus
-bindsym $mod+h              focus left
-bindsym $mod+j              focus down
-bindsym $mod+k              focus up
-bindsym $mod+l              focus right
+    # Fullscreen
+    bindsym $mod+f fullscreen toggle
 
-# Move Focused Window
-bindsym $mod+Shift+h        move left 40px
-bindsym $mod+Shift+j        move down 40px
-bindsym $mod+Shift+k        move up 40px
-bindsym $mod+Shift+l        move right 40px
+    # Container layout: tabbed/ split
+    bindsym $mod+Shift+t        layout toggle split
+    bindsym $mod+t              layout tabbed
 
-# Resize
-bindsym $mod+y              resize shrink width 5 px or 5 ppt
-bindsym $mod+u              resize grow height 5 px or 5 ppt
-bindsym $mod+i              resize shrink height 5 px or 5 ppt
-bindsym $mod+o              resize grow width 5 px or 5 ppt
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space    floating toggle
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space          focus mode_toggle
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
 
-# Toggle split orientation
-bindsym $mod+v split toggle
+    # focus the child container
+    #bindsym $mod+d focus child
+## }}}
 
-# Fullscreen
-bindsym $mod+f fullscreen toggle
+## {{{ System command
+    bindsym Pause   exec --no-startup-id "~/bin/dmenu/systemcmd"
+    bindsym $mod+F9 exec --no-startup-id "~/bin/dmenu/systemcmd"
+## }}}
 
-# Container layout: tabbed/ split
-bindsym $mod+Shift+t        layout toggle split
-bindsym $mod+t              layout tabbed
 
-# toggle tiling / floating
-bindsym $mod+Shift+space    floating toggle
+## {{{ Scratchpad:
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
 
-# change focus between tiling / floating windows
-bindsym $mod+space          focus mode_toggle
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+## }}}
 
-# Cycle through window
-bindsym $mod+bracketright   workspace next
-bindsym $mod+bracketleft    workspace prev
+## {{{ Scripts
+    # Toggle lang
+    bindsym $mod+F7 exec --no-startup-id "~/dotfiles/scripts/toggle_xkb.sh"
 
-# focus the parent container
-bindsym $mod+a focus parent
+    # Power Management
+    #http://www.michaelabrahamsen.com/posts/custom-lockscreen-i3lock/
+    #set $Locker "xautolock -locknow"
+    #set $Locker "~/bin/lockscreen/lockscreen.sh"
+    set $Locker "playerctl pause; i3lock-fancy --pixelate -f ..."
+    set $LockerSusp "systemctl suspend"
 
-# focus the child container
-#bindsym $mod+d focus child
+    ## Display
+    bindsym XF86Display exec --no-startup-id "~/bin/dmenu/display"
+    bindsym $mod+F5 exec --no-startup-id "~/bin/dmenu/display"
 
-# Move to scratchpad
-bindsym $mod+Shift+minus move scratchpad
-# Show scratchpad
-bindsym $mod+minus scratchpad show
+    ## Touchpad Toggle
+    bindsym XF86TouchpadToggle exec --no-startup-id "~/bin/toggle_toucpad.sh"
 
-# Toggle lang
-bindsym $mod+F7 exec --no-startup-id "~/dotfiles/scripts/toggle_xkb.sh"
+    ## printscreen
+    bindsym Print --release\
+                exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+    ## Vimwiki
+    bindsym $mod+n exec $term -T "Vimwiki" -e nvim "+:VimwikiIndex"
 
-# Power Management
-#http://www.michaelabrahamsen.com/posts/custom-lockscreen-i3lock/
-#set $Locker "xautolock -locknow"
-#set $Locker "~/bin/lockscreen/lockscreen.sh"
-set $Locker "playerctl pause; i3lock-fancy --pixelate -f ..."
-set $LockerSusp "systemctl suspend"
+    ## Ranger
+    bindsym $mod+e exec $term -T "Ranger" -e ranger
+    bindsym $mod+Shift+e exec "nautilus"
 
-## Display
-bindsym XF86Display exec --no-startup-id "~/bin/dmenu/display"
-bindsym $mod+F5 exec --no-startup-id "~/bin/dmenu/display"
+    ## Pavucontrol
+    bindsym $mod+s workspace $ws6; exec pavucontrol;
+## }}}
 
-## Touchpad Toggle
-bindsym XF86TouchpadToggle exec --no-startup-id "~/bin/toggle_toucpad.sh"
+## {{{ MediaKey
+    bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F1                 exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
 
-## System command
-bindsym Pause   exec --no-startup-id "~/bin/dmenu/systemcmd"
-bindsym $mod+F9 exec --no-startup-id "~/bin/dmenu/systemcmd"
+    bindsym $mod+Prior              exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F3                 exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioRaiseVolume    exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
 
-## MediaKey
-bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
-bindsym $mod+F1                 exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+    bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F2                 exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
 
-bindsym $mod+Prior              exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
-bindsym $mod+F3                 exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume    exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
-
-bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
-bindsym $mod+F2                 exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
-
-bindsym $mod+Up     exec playerctl play-stop
-bindsym $mod+Down   exec playerctl play-pause
-bindsym $mod+Right  exec playerctl next
-bindsym $mod+Left   exec playerctl previous
-
-## printscreen
-bindsym Print --release\
-            exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
-
-## Vimwiki
-bindsym $mod+n exec $term -T "Vimwiki" -e nvim "+:VimwikiIndex"
-
-## Ranger
-bindsym $mod+e exec $term -T "Ranger" -e ranger
-bindsym $mod+Shift+e exec "nautilus"
-
-## Pavucontrol
-bindsym $mod+s workspace $ws6; exec pavucontrol;
-
+    bindsym $mod+Up     exec playerctl play-stop
+    bindsym $mod+Down   exec playerctl play-pause
+    bindsym $mod+Right  exec playerctl next
+    bindsym $mod+Left   exec playerctl previous
+## }}}
 # }}}
 
-# {{{ App at startup
+# {{{ Startup apps
 
 # Wallpaper
 exec_always     feh --bg-fill -z ~/Pictures/wallpaper/
