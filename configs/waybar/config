@@ -69,7 +69,7 @@
     //     "format-alt": "{:%Y-%m-%d}"
     // },
     "custom/clock": {
-        "exec": "date +'%H:%M %S'",
+        "exec": "date +'%a %Y-%b-%d %H:%M:%S'",
         "interval": 5
     },
     "cpu": {
