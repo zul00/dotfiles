@@ -131,6 +131,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+    input "2:7:SynPS/2_Synaptics_TouchPad" {
+        natural_scroll enabled
+    }
 # }}}
 
 # {{{ Keybinding
@@ -284,6 +287,9 @@ for_window [title="dropdown"] move position center
 for_window [title="dropdown"] move scratchpad
 bindsym $mod+d [title="dropdown"] scratchpad show; move position center
 exec --no-startup-id $term -t dropdown -e tmux new-session -s dropdown
+
+exec --no-startup-id blueman-applet
+exec --no-startup-id nm-applet --indicator
 
 # }}}
 
