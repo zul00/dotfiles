@@ -215,12 +215,14 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
     # bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+v split toggle
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+Shift+t    layout toggle split
+    bindsym $mod+t          layout tabbed
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+    # bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -280,13 +282,18 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # {{{ Startup apps
 
-# Scratchpad
+# Scratchpad(s)
 for_window [title="dropdown"] floating enable
 for_window [title="dropdown"] resize set 800 800
 for_window [title="dropdown"] move position center
 for_window [title="dropdown"] move scratchpad
 bindsym $mod+d [title="dropdown"] scratchpad show; move position center
 exec --no-startup-id $term -t dropdown -e tmux new-session -s dropdown
+
+for_window [app_id="telegramdesktop"] floating enable
+for_window [app_id="telegramdesktop"] move scratchpad
+bindsym $mod+c [app_id="telegramdesktop"] scratchpad show; move position center
+exec --no-startup-id telegram-desktop
 
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet --indicator
