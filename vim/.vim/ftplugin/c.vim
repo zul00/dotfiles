@@ -22,11 +22,20 @@ nmap <F11> :TagbarToggle<CR>
 let g:netrw_list_hide = 'tags,.git/$,\.o$,\.ko$,\.mod.,\.cmd$,\.symvers$,\.order$,tmp_versions,\.swp'
 " }}}
 
-set foldmethod=syntax
+" Fold configuration (tree-sitter) {{{
+set foldminlines=3
+set foldmethod=expr
+set foldlevelstart=99
 set foldexpr=nvim_treesitter#foldexpr()
-let g:load_doxygen_syntax=1
-let g:c_syntax_for_h=1
 let g:c_no_comment_fold = 1
+" }}}
+
+" Treat .h as cpp file
+let g:load_doxygen_syntax=1
+if exists('g:c_syntax_for_h')
+  unlet g:c_syntax_for_h
+endif
+
 set tags+=tags;/
 
 " For office related works
@@ -52,16 +61,17 @@ set tags+=tags;/
 "  setlocal nomodifiable
 "endfunction
 
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap E :Evaluate<CR>
+nnoremap <silent> <c-]>         <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap E                      :Evaluate<CR>
 nnoremap <silent> <leader>lD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-"nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <c-k>         <cmd>lua vim.lsp.buf.signature_help()<CR>
+"nnoremap <silent> 1gD          <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <leader>lr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <leader>l0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <leader>lW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <leader>lq    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-nnoremap <silent> <leader>db    :Break<cr>
-nnoremap <silent> <leader>dc    :Clear<cr>
+nnoremap <silent> <leader>bb    :Break<cr>
+nnoremap <silent> <leader>bc    :Clear<cr>
+nnoremap <silent> <leader>bn    :Next<cr>
