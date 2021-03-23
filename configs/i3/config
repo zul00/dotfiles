@@ -202,25 +202,25 @@ bindsym $mod+q [class="MQTT-Explorer"] scratchpad show; move position center
 
 ## {{{ Moving around:
     # Change Focus
-    bindsym $mod+$left              focus left
-    bindsym $mod+$down              focus down
+    bindsym $mod+$left            focus left
+    bindsym $mod+$down            focus down
     bindsym $mod+$up              focus up
-    bindsym $mod+$right              focus right
+    bindsym $mod+$right           focus right
 
     # Move Focused Window
-    bindsym $mod+Shift+$left        move left 40px
-    bindsym $mod+Shift+$down        move down 40px
+    bindsym $mod+Shift+$left      move left 40px
+    bindsym $mod+Shift+$down      move down 40px
     bindsym $mod+Shift+$up        move up 40px
-    bindsym $mod+Shift+$right        move right 40px
+    bindsym $mod+Shift+$right     move right 40px
 
     # Resize
     bindsym $mod+y              resize shrink width 5 px or 5 ppt
     bindsym $mod+u              resize grow height 5 px or 5 ppt
     bindsym $mod+i              resize shrink height 5 px or 5 ppt
     bindsym $mod+o              resize grow width 5 px or 5 ppt
-## }}}
 
-bindsym $mod+Shift+Tab workspace back_and_forth
+    bindsym $mod+Shift+Tab workspace back_and_forth
+## }}}
 
 ## {{{ Workspaces:
     # Cycle through window
@@ -280,7 +280,6 @@ bindsym $mod+Shift+Tab workspace back_and_forth
     bindsym Pause   exec --no-startup-id "~/bin/dmenu/systemcmd"
     bindsym $mod+F9 exec --no-startup-id "~/bin/dmenu/systemcmd"
 ## }}}
-
 
 ## {{{ Scratchpad:
     # Move the currently focused window to the scratchpad
