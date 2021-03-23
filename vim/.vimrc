@@ -15,7 +15,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Plugin list
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'blindFS/vim-reveal'
 Plug 'Soares/base16.nvim'
@@ -29,10 +29,11 @@ Plug 'majutsushi/tagbar'
 Plug 'metakirby5/codi.vim'
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-pencil'
-Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'tpope/vim-commentary'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
@@ -58,6 +59,7 @@ Plug 'tools-life/taskwiki'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 
 
 call plug#end()
@@ -69,11 +71,12 @@ set cursorline
 "set guifont=monospace
 set colorcolumn=79
 set background=dark
-let base16colorspace=256
+"let base16colorspace=256
 colorscheme monokai
 set termguicolors
 hi ColorColumn ctermbg=black guibg=black
-hi Comment gui=NONE
+hi NormalFloat ctermbg=black guibg=black
+"hi Comment gui=NONE
 " }}}
 
 " Formatting {{{
@@ -164,11 +167,12 @@ endfunction
 
 
 " Git shortcuts
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gS :Telescope git_status<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gv :Gvdiff<CR>
 nnoremap <leader>gl :GV --all<CR>
-nnoremap <leader>gb :Git branch --all<CR>
+nnoremap <leader>gb :Telescope git_branches<CR>
 nnoremap <leader>gt :Git tag --list<CR>
 nnoremap <leader>0 :Vex<CR>
 nnoremap <leader>s :split<CR>
@@ -331,9 +335,13 @@ set conceallevel=0
 " }}}
 
 " {{{ FZF
+"nnoremap <C-p> :Telescope fzf_writer files<CR>
 nnoremap <C-p> :Files<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap <C-f> :lua require('telescope.builtin.git').files({recurse_submodules=true, show_untracked=false})<CR>
+
+nnoremap <leader>b :Telescope buffers<CR>
 nnoremap <leader>l :Lines<CR>
+nnoremap <leader>t :Telescope 
 " }}}
 
 " {{{ Statusline
