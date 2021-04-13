@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'blindFS/vim-reveal'
-Plug 'Soares/base16.nvim'
+Plug 'morhetz/gruvbox'
 Plug 'embear/vim-localvimrc'
 Plug 'itchyny/calendar.vim'
 Plug 'jreybert/vimagit'
@@ -29,7 +29,6 @@ Plug 'majutsushi/tagbar'
 Plug 'metakirby5/codi.vim'
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-pencil'
-Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'tpope/vim-commentary'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
@@ -45,10 +44,12 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rhysd/vim-clang-format'
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
 Plug 'tommcdo/vim-fubitive'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'wakatime/vim-wakatime'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -72,11 +73,10 @@ set cursorline
 set colorcolumn=79
 set background=dark
 "let base16colorspace=256
-colorscheme monokai
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark = 'hard'
+autocmd vimenter * ++nested colorscheme gruvbox
 set termguicolors
-hi ColorColumn ctermbg=black guibg=black
-hi NormalFloat ctermbg=black guibg=black
-"hi Comment gui=NONE
 " }}}
 
 " Formatting {{{
@@ -339,36 +339,9 @@ set conceallevel=0
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :lua require('telescope.builtin.git').files({recurse_submodules=true, show_untracked=false})<CR>
 
-nnoremap <leader>b :Telescope buffers<CR>
+nnoremap <C-b> :Telescope buffers<CR>
 nnoremap <leader>l :Lines<CR>
 nnoremap <leader>t :Telescope 
-" }}}
-
-" {{{ Statusline
-set laststatus=2
-let g:airline_mode_map = {
-            \ '__'     : '-',
-            \ 'c'      : 'C',
-            \ 'i'      : 'I',
-            \ 'ic'     : 'I',
-            \ 'ix'     : 'I',
-            \ 'n'      : 'N',
-            \ 'multi'  : 'M',
-            \ 'ni'     : 'N',
-            \ 'no'     : 'N',
-            \ 'R'      : 'R',
-            \ 'Rv'     : 'R',
-            \ 's'      : 'S',
-            \ 'S'      : 'S',
-            \ ''     : 'S',
-            \ 't'      : 'T',
-            \ 'v'      : 'V',
-            \ 'V'      : 'V',
-            \ ''     : 'V',
-            \ }
-" let g:airline_section_z = (line number, column number)
-
-" set statusline=%<%f\ %h%m%r%y%{FugitiveStatusline()}%=%{StatusDiagnostic()}%=%-14.(%l,%c%V%)\ %P
 " }}}
 
 " {{{ Highlight
@@ -393,9 +366,5 @@ augroup END
 let g:pencil#wrapModeDefault = 'soft'
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 22
-
-let g:airline_powerline_fonts = 1
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extensions#branch#format = 2
 
 set wildmode=list:longest,full
