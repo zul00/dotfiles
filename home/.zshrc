@@ -5,6 +5,11 @@ export PATH=$PATH:$HOME/src/ccls/Release/
 export PATH=$PATH:$HOME/scripts/
 export PATH=$PATH:$HOME/.local/bin
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/zul/.oh-my-zsh"
 
