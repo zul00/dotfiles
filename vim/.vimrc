@@ -70,7 +70,7 @@ call plug#end()
 syntax on
 set cursorline
 "set guifont=monospace
-set colorcolumn=79
+set colorcolumn=99
 set background=dark
 "let base16colorspace=256
 let g:gruvbox_italic=1
@@ -119,7 +119,7 @@ set noswapfile
 set showcmd
 set scrolloff=2
 set mouse=a
-set clipboard=unnamedplus,unnamed
+set clipboard+=unnamedplus
 " }}}
 
 " Key Remap {{{
