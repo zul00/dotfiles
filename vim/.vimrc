@@ -125,8 +125,9 @@ set clipboard+=unnamedplus
 " Key Remap {{{
 " Other key
 set pastetoggle=<F3>
-nnoremap <F10> :tabe $HOME/.vim/ftplugin<CR>
-nnoremap <F12> :tabe $HOME/dotfiles/vim/.vimrc<CR>
+nnoremap <F10> :vsplit $HOME/.vim/ftplugin<CR>
+nnoremap <F12> :vsplit $HOME/dotfiles/vim/.vimrc<CR>
+nnoremap <F12><F12> :vsplit $HOME/dotfiles/configs/nvim<CR>
 vnoremap <C-c> "*y
 inoremap jj <ESC>
 inoremap <C-c> <Esc>
