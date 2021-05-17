@@ -5,6 +5,11 @@ export PATH=$PATH:$HOME/src/ccls/Release/
 export PATH=$PATH:$HOME/scripts/
 export PATH=$PATH:$HOME/.local/bin
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/zul/.oh-my-zsh"
 
@@ -72,7 +77,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(ssh-agent git ripgrep taskwarrior zsh-syntax-highlighting)
+plugins=(ssh-agent git ripgrep taskwarrior)
 
 source $ZSH/oh-my-zsh.sh
 
