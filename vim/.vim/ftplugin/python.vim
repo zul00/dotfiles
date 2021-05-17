@@ -19,6 +19,7 @@ nnoremap <silent> <leader>l0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <leader>lW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <leader>ld    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <leader>lq    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+vnoremap <leader>f              :FormatLines<CR>
 
 set shiftwidth=2
 set tabstop=2
