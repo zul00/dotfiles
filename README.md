@@ -9,3 +9,7 @@ Dotfiles and scripts are deployed using `stow`. It is possible that there is con
 ```
 ./deploy.sh
 ```
+
+## LICENSE
+
+[MIT](https://en.wikipedia.org/wiki/MIT_License)
