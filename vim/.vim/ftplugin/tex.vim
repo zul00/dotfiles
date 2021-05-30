@@ -56,3 +56,18 @@ let g:vimtex_compiler_latexmk = {
 			\   '-interaction=nonstopmode',
 			\ ],
 			\}
+
+let g:vimtex_grammar_vlty = {'lt_directory': '~/src/LanguageTool-5.3/'}
+      let g:vimtex_grammar_vlty = {
+            \ 'lt_directory': '~/src/LanguageTool-5.3/',
+            \ 'lt_command': '',
+            \ 'lt_disable': 'WHITESPACE_RULE',
+            \ 'lt_enable': '',
+            \ 'lt_disablecategories': '',
+            \ 'lt_enablecategories': '',
+            \ 'server': 'lt',
+            \ 'shell_options': '',
+            \ 'show_suggestions': 1,
+            \ 'encoding': 'auto',
+            \}
+set spelllang=en_gb

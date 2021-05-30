@@ -143,6 +143,13 @@ snippet item "Itemize" b
 \end{itemize}
 endsnippet
 
+snippet itemt "Itemize in table" b
+\begin{itemize}[leftmargin=0em]
+  \item $0
+\end{itemize}
+endsnippet
+
+
 snippet desc "Description" b
 \begin{description}
   \item[$1] $0
@@ -190,25 +197,21 @@ endsnippet
 
 snippet sub "Subsection" b
 \subsection{${1:subsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
-
 $0
 endsnippet
 
 snippet sub* "Subsection" b
 \subsection*{${1:subsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
-
 $0
 endsnippet
 
 snippet ssub "Subsubsection" b
 \subsubsection{${1:subsubsection name}}\label{ssub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
-
 $0
 endsnippet
 
 snippet ssub* "Subsubsection" b
 \subsubsection*{${1:subsubsection name}}\label{sub:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}
-
 $0
 endsnippet
 
@@ -222,7 +225,6 @@ endsnippet
 snippet subp "Subparagraph" b
 \subparagraph{${1:subparagraph name}}%
 \label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-
 $0
 endsnippet
 
