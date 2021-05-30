@@ -109,9 +109,10 @@ font:
 
     # Default:
     #   - (macOS) Menlo
-    #   - (Linux/BSD) DejaVuSansMono Nerd Font Mono
+    #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: DejaVuSansMono Nerd Font Mono
+
     # The `style` can be specified to pick a specific face.
     style: Regular
 
@@ -121,8 +122,7 @@ font:
 
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: monospace
-    # family: DejaVuSansMono Nerd Font Mono
+    #family: monospace
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -133,8 +133,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: monospace
-    # family: DejaVuSansMono Nerd Font Mono
+    #family: monospace
 
     # The `style` can be specified to pick a specific face.
     style: Oblique
@@ -145,8 +144,7 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: monospace
-    # family: DejaVuSansMono Nerd Font Mono
+    #family: monospace
 
     # The `style` can be specified to pick a specific face.
     style: Bold Oblique
@@ -158,15 +156,15 @@ font:
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   offset:
-   x: 0
-   y: 0
+    x: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
   # right, increasing `y` moves the glyph upward.
   glyph_offset:
-   x: 0
-   y: 0
+    x: 0
+    y: 0
 
   # Thin stroke font rendering (macOS only)
   #
@@ -197,7 +195,7 @@ font:
   #
   # Colors which should be used to draw the terminal cursor.
   #
-  # Allowed values are CellForeground and CellBackground, which reference the
+  # Allowed values are CellForeground/CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
   #cursor:
   #  text: CellBackground
@@ -207,7 +205,7 @@ font:
   #
   # Colors for the cursor when the vi mode is active.
   #
-  # Allowed values are CellForeground and CellBackground, which reference the
+  # Allowed values are CellForeground/CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
   #vi_mode_cursor:
   #  text: CellBackground
@@ -217,7 +215,7 @@ font:
   #
   # Colors used for the search bar and match highlighting.
   #search:
-    # Allowed values are CellForeground and CellBackground, which reference the
+    # Allowed values are CellForeground/CellBackground, which reference the
     # affected cell, or hexadecimal colors like #ff00ff.
     #matches:
     #  foreground: '#000000'
@@ -230,7 +228,7 @@ font:
     #  background: '#c5c8c6'
     #  foreground: '#1d1f21'
 
-  # Keyboard hints
+  # Keyboard regex hints
   hints:
     # Fist character in the hint label
     #
@@ -480,8 +478,8 @@ hints:
     - MoveViModeCursor
         Move the vi mode cursor to the beginning of the hint.
   enabled:
-  - regex: "(mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
-            [^\u0000-\u001F\u007F-\u009F<>\" {-}\\^⟨⟩`]+"
+  - regex: "(magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+            [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
     command: xdg-open
     post_processing: true
     mouse:
@@ -594,8 +592,8 @@ hints:
 # - Vi mode exclusive actions:
 #
 #   - Open
-#       Open URLs at the cursor location with the launcher configured in
-#       `url.launcher`.
+#       Perform the action of the first matching hint under the vi mode cursor
+#       with `mouse.enabled` set to `true`.
 #   - ToggleNormalSelection
 #   - ToggleLineSelection
 #   - ToggleBlockSelection
