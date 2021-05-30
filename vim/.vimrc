@@ -157,6 +157,7 @@ vnoremap <leader>dg :diffget<CR>
 vnoremap <leader>dp :diffput<CR>
 nnoremap <leader>du :diffu<CR>
 nnoremap <leader>dw :call ToggleIgnoreWhiteDiff()<CR>
+vnoremap <leader>f  :FormatLines<CR>
 
 " Toggle ignore white in diff
 let g:diff_ignore_white = 0

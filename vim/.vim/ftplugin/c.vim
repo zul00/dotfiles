@@ -75,4 +75,3 @@ nnoremap <silent> <leader>lq    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <silent> <leader>bb    :Break<cr>
 nnoremap <silent> <leader>bc    :Clear<cr>
 nnoremap <silent> <leader>bn    :Next<cr>
-vnoremap <leader>f              :FormatLines<CR>
