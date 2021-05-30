@@ -214,10 +214,10 @@ bindsym $mod+q [class="MQTT-Explorer"] scratchpad show; move position center
     bindsym $mod+Shift+$right     move right 40px
 
     # Resize
-    bindsym $mod+y              resize shrink width 5 px or 5 ppt
-    bindsym $mod+u              resize grow height 5 px or 5 ppt
-    bindsym $mod+i              resize shrink height 5 px or 5 ppt
-    bindsym $mod+o              resize grow width 5 px or 5 ppt
+    bindsym $mod+y              resize shrink width 80 px or 80 ppt
+    bindsym $mod+u              resize grow height 80 px or 80 ppt
+    bindsym $mod+i              resize shrink height 80 px or 80 ppt
+    bindsym $mod+o              resize grow width 80 px or 80 ppt
 
     bindsym $mod+Shift+Tab workspace back_and_forth
 ## }}}
@@ -364,7 +364,7 @@ exec            --no-startup-id unclutter
 
 # Disable buzzer and switch escape with capslock
 exec_always     --no-startup-id xset b off
-exec_always     setxkbmap -option caps:swapescape
+#exec_always     setxkbmap -option caps:swapescape
 
 # Other apps
 exec            --no-startup-id $term -t dropdown -e tmux new-session -s dropdown
