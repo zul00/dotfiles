@@ -248,16 +248,16 @@ ${2:${VISUAL:code}}
 \end{minted}$0
 endsnippet
 
-snippet tt "texttt" 
-\texttt{${1:${VISUAL:text}}} $0
+snippet tt "texttt"
+\texttt{${1:${VISUAL:text}}}$0
 endsnippet
 
-snippet em "Emphasis" 
-\emph{${1:${VISUAL:words}}} $0
+snippet em "Emphasis"
+\emph{${1:${VISUAL:words}}}$0
 endsnippet
 
-snippet bf "Bold" 
-\textbf{${1:${VISUAL:words}}} $0
+snippet bf "Bold"
+\textbf{${1:${VISUAL:words}}}$0
 endsnippet
 
 snippet pack "usepackage" b
@@ -266,7 +266,7 @@ $0
 endsnippet
 
 snippet inlst "Inline Listing"
-\lstinline[style=${2:style}]{${1:text}} $0
+\lstinline[style=${2:style}]{${1:${VISUAL:text}}}$0
 endsnippet
 
 snippet "r" "Remark" br
@@ -289,6 +289,14 @@ snippet cite "citation" i
 ~\cite{${1:citation}}$0
 endsnippet
 
+snippet gls "glossary" i
+\gls{${1:glossary}}$0
+endsnippet
+
+snippet Gls "Glossary" i
+\Gls{${1:Glossary}}$0
+endsnippet
+
 snippet cite[ "citation[" i
 ~\cite[${2:detail}]{${1:citation}}$0
 endsnippet
@@ -304,7 +312,7 @@ snippet todo "TODO" b
 endsnippet
 
 snippet SI "SI" 
-\SI{${1:val}}{${2:unit}} $0
+\SI{${1:val}}{${2:unit}}$0
 endsnippet
 
 snippet tlist "TaskList" b
