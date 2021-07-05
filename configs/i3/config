@@ -368,7 +368,6 @@ exec_always     --no-startup-id xset b off
 
 # Other apps
 exec            --no-startup-id $term -t dropdown -e tmux new-session -s dropdown
-exec            --no-startup-id emacs --name org
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id Telegram
 exec            --no-startup-id clipmenud
@@ -379,5 +378,5 @@ exec            --no-startup-id caffeine-indicator
 exec            --no-startup-id solaar -w hide
 
 # Autolock
-exec            --no-startup-id xautolock -killer "systemctl suspend" -killtime 10 -notify 1 -notifier "notify-send 'soon suspend'" -detectsleep
+exec            --no-startup-id xautolock -time 1 -locker "i3lock-fancy --pixelate -f ..." -killer "systemctl suspend" -killtime 10 -notify 1 -notifier "notify-send 'soon suspend'" -detectsleep -corners 00+- -cornerdelay 3
 # }}}
