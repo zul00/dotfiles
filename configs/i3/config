@@ -173,6 +173,14 @@ for_window [class="MQTT-Explorer"] resize set 1000 800
 for_window [class="MQTT-Explorer"] move position center
 for_window [class="MQTT-Explorer"] move scratchpad
 bindsym $mod+q [class="MQTT-Explorer"] scratchpad show; move position center
+
+# gnome-clock
+for_window [class="Org.gnome.clocks"] floating enable
+for_window [class="Org.gnome.clocks"] resize set 1000 800
+for_window [class="Org.gnome.clocks"] move position center
+for_window [class="Org.gnome.clocks"] move scratchpad
+bindsym $mod+x [class="Org.gnome.clocks"] scratchpad show; move position center
+
 # }}}
 
 # {{{ Keybinding
