@@ -8,6 +8,7 @@
 [alias]
     co = checkout
     df = diff
+    dt = difftool --dir-diff
     cm = commit
     st = status
     lg = !"git lg1"
