@@ -65,7 +65,8 @@ Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 Plug 'hrsh7th/nvim-compe'
 Plug 'onsails/lspkind-nvim'
 Plug 'ray-x/lsp_signature.nvim'
-
+Plug 'kristijanhusak/orgmode.nvim'
+Plug 'puremourning/vimspector'
 
 call plug#end()
 "}}}
