@@ -28,7 +28,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   )
 
 require('lspconfig').jedi_language_server.setup{}
-require('lspconfig').pyls.setup{}
+require('lspconfig').pylsp.setup{}
 
 -- commented options are defaults
 require('lspkind').init({

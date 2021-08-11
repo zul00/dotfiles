@@ -8,7 +8,13 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 lua << EOF
 require('statusline')
+--require('org')
 require('lsp')
+require('orgmode').setup({
+  org_agenda_files = {'~/Documents/org/*'},
+  org_default_notes_file = '~/Documents/org/refile.org',
+})
+
 EOF
 
 lua << EOF
@@ -16,9 +22,9 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "rust" },  -- list of language that will be disabled
+    disable = { "rust", "tex", "latex" },  -- list of language that will be disabled
     },
-    }
+}
 EOF
 
 lua << EOF
@@ -33,7 +39,6 @@ require('telescope').setup{
       '--column',
       '--smart-case'
     },
-    prompt_position = "top",
     prompt_prefix = "> ",
     selection_caret = "> ",
     entry_prefix = "  ",
@@ -41,23 +46,18 @@ require('telescope').setup{
     selection_strategy = "reset",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
-    layout_defaults = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    shorten_path = true,
+    path_display = {
+        "shorten"
+    },
     winblend = 0,
-    width = 0.75,
-    preview_cutoff = 120,
-    results_height = 1,
-    results_width = 0.8,
+    layout_config = {
+        width = 0.75,
+        prompt_position = "top",
+        preview_cutoff = 120
+    },
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
@@ -71,8 +71,5 @@ require('telescope').setup{
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   }
 }
-
-
-
 
 EOF
