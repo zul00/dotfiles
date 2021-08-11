@@ -312,7 +312,8 @@ let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips/'
 " }}}
 
 " VimDiff {{{
-autocmd FilterWritePre * if &diff | setlocal wrap< | endif
+autocmd FilterWritePre * if &diff | windo setlocal wrap< | endif
+set diffopt+=followwrap
 " }}}
 
 " {{{ COC
