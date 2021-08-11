@@ -77,7 +77,7 @@ bar {
         status_command i3blocks
         position top
         mode dock
-        #tray_output $extdisp
+        #tray_output primary
 
         colors {
             background $base00
@@ -181,6 +181,9 @@ for_window [class="Org.gnome.clocks"] move position center
 for_window [class="Org.gnome.clocks"] move scratchpad
 bindsym $mod+x [class="Org.gnome.clocks"] scratchpad show; move position center
 
+# Slack
+for_window [class="Slack"] move container to workspace $ws9
+
 # }}}
 
 # {{{ Keybinding
@@ -190,6 +193,7 @@ bindsym $mod+x [class="Org.gnome.clocks"] scratchpad show; move position center
     bindsym $mod+Return         exec $term -e tmux new-session -A -s BASE
     bindsym $mod+m              exec --no-startup-id $HOME/bin/dmenu/mux
     bindsym $mod+b              exec $browser
+    bindsym $mod+Shift+b        exec $browser -p
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -378,6 +382,7 @@ exec_always     --no-startup-id xset b off
 exec            --no-startup-id $term -t dropdown -e tmux new-session -s dropdown
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id Telegram
+exec            --no-startup-id slack
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
@@ -386,5 +391,5 @@ exec            --no-startup-id caffeine-indicator
 exec            --no-startup-id solaar -w hide
 
 # Autolock
-exec            --no-startup-id xautolock -time 1 -locker "i3lock-fancy --pixelate -f ..." -killer "systemctl suspend" -killtime 10 -notify 1 -notifier "notify-send 'soon suspend'" -detectsleep -corners 00+- -cornerdelay 3
+exec            --no-startup-id xautolock -time 2 -locker "i3lock-fancy --pixelate -f ..." -killer "systemctl suspend" -killtime 10 -notify 30 -notifier "notify-send 'soon lock'" -detectsleep -corners 00+- -cornerdelay 3
 # }}}
