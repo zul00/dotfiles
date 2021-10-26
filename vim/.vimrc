@@ -67,6 +67,8 @@ Plug 'onsails/lspkind-nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'kristijanhusak/orgmode.nvim'
 Plug 'puremourning/vimspector'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'vim-test/vim-test'
 
 call plug#end()
 "}}}
@@ -190,6 +192,8 @@ command! -bang -bar -nargs=* Gpush execute 'Dispatch<bang> -dir=' .
       \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
 command! -bang -bar -nargs=* Gfetch execute 'Dispatch<bang> -dir=' .
       \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
+command! -bang -bar -nargs=* Gpull execute 'Dispatch<bang> -dir=' .
+      \ fnameescape(FugitiveGitDir()) 'git pull' <q-args>
 
 " Navigation
 nnoremap j gj
@@ -340,6 +344,10 @@ set signcolumn=yes
 
 " Disable conceal
 set conceallevel=0
+" }}}
+
+" {{{ Telescope
+nnoremap <M-p> :GitFiles<CR>
 " }}}
 
 " {{{ FZF
