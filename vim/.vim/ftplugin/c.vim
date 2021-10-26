@@ -1,6 +1,7 @@
 " @file:    c.vim
 " @author:  Zulkarnaen
 " @brief:   Setting for c filetype
+" vim:fdm=marker
 
 " Formatting {{{
 set shiftwidth=8
@@ -75,3 +76,10 @@ nnoremap <silent> <leader>lq    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <silent> <leader>bb    :Break<cr>
 nnoremap <silent> <leader>bc    :Clear<cr>
 nnoremap <silent> <leader>bn    :Next<cr>
+
+nnoremap <silent>  gr           <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent>  <space>e     <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent>  [d           <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent>  ]d           <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent>  <space>q     <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <silent>  <space>f      <cmd>lua vim.lsp.buf.formatting()<CR>
