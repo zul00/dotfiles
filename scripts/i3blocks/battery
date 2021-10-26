@@ -1,74 +1,93 @@
-#!/usr/bin/perl
+#!/usr/bin/env bash
 #
-# Copyright 2014 Pierre Mavro <deimos@deimos.fr>
-# Copyright 2014 Vivien Didelot <vivien@didelot.org>
-#
-# Licensed under the terms of the GNU GPL v3, or any later version.
-#
-# This script is meant to use with i3blocks. It parses the output of the "acpi"
-# command (often provided by a package of the same name) to read the status of
-# the battery, and eventually its remaining time (to full charge or discharge).
-#
-# The color will gradually change for a percentage below 85%, and the urgency
-# (exit code 33) is set if there is less that 5% remaining.
+#https://github.com/evolozzy/i3config/blob/master/blocks/battery
 
-use strict;
-use warnings;
-use utf8;
+battery="acpi -i"
+no=`$battery | grep capacity | awk '{for(i=1;i<=NF;i++)if($i=="Battery")print $(i+1)}' | sed 's/://'`
+batinfo=`$battery | grep "Battery $no" | grep -v capacity`
 
-my $acpi;
-my $status;
-my $percent;
-my $full_text;
-my $short_text;
-my $bat_number = $ENV{BLOCK_INSTANCE} || 1;
+batinfo=`echo ${batinfo#*: }`
+status=`echo $batinfo | cut -f1 -d","`
+status=`echo "$status" | awk '{print tolower($0)}'`
 
-# read the first line of the "acpi" command output
-open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
-$acpi = <ACPI>;
-close(ACPI);
+batinfo=`echo ${batinfo#*, }`
+capacity=`echo $batinfo | cut -f1 -d"," | sed 's/\%//'`
 
-# fail on unexpected output
-if ($acpi !~ /: (\w+), (\d+)%/) {
-	die "$acpi\n";
-}
 
-$status = $1;
-$percent = $2;
-$full_text = "$percent%";
+batinfo=`echo ${batinfo#*, }`
+hour=`echo $batinfo | awk '{print $1}' | sed 's/\:/ /g' | awk '{print $1}' | sed 's/^0*//'`
+min=`echo $batinfo | awk '{print $1}' | sed 's/\:/ /g' | awk '{print $2}' | sed 's/^0*//'`
 
-if ($status eq 'Discharging') {
-	$full_text .= ' DIS';
-} elsif ($status eq 'Charging') {
-	$full_text .= ' CHR';
-}
+if [ -z $hour ] ; then
+	shour=""
+	if [ -z $min ] ; then
+		smin=""
+	else
+		smin=$min"m"
+	fi
+else
+	shour=$hour"h"
+	if [ -z $min ] ; then
+		smin=""
+	else
+		shour="$shour "
+		smin=$min"m"
+	fi
+fi
 
-$short_text = $full_text;
+remaining=" ($shour$smin)"
+if [ $remaining = "(rateh)" ] ; then
+  remaining=""
+fi
 
-if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= " ($1)";
-}
+white="#FFFFFF"
+green="#00BB00"
+orange="#BA5000"
+red="#BB0000"
+yellow="#FDDC00"
 
-# print text
-print "$full_text\n";
-print "$short_text\n";
+color=$white
 
-# consider color and urgent flag only on discharge
-if ($status eq 'Discharging') {
+if [ $capacity -ge 75 ]; then
+	color=$green
+elif [ $capacity -ge 40 ]; then
+	color=$white
+elif [ $capacity -ge 25 ]; then
+	color=$yellow
+elif [ $capacity -ge 10 ]; then
+	color=$orange
+else
+	color=$red
+fi
 
-	if ($percent < 20) {
-		print "#FF0000\n";
-	} elsif ($percent < 40) {
-		print "#FFAE00\n";
-	} elsif ($percent < 60) {
-		print "#FFF600\n";
-	} elsif ($percent < 85) {
-		print "#A8FF00\n";
-	}
+[ "$status" = "charging" ] && color=$white
+if [ "$status" = "full" ] || [ "$status" = "unknown" ] || [ -z $status ] || [ $capacity -ne $capacity ] ;then
+        remaining=""
+fi
 
-	if ($percent < 5) {
-		exit(33);
-	}
-}
+case $status in
+	charging) cond="" ;;
+	"not charging") cond="" ;;
+	full) cond="" ;;
+	unknown) cond="" ;;
+	discharging)
+		if [ $capacity -ge 85 ] ; then
+                	cond=""
+        	elif [ $capacity -ge 60 ] ; then
+                	cond=""
+        	elif [ $capacity -ge 40 ] ; then
+                	cond=""
+        	elif [ $capacity -ge 15 ] ; then
+                	cond=""
+        	elif  [ $capacity -ge 0 ] ; then
+                	cond=""
+        	else
+                	cond="❗Unknown capacity, check acpi"
+        	fi
+		;;
+	*) cond="❗Unidentified battery status, check acpi" ;;
+esac
 
-exit(0);
+# echo "$cond <span color=\"${color}\">${capacity}%</span>${remaining}"
+# echo "$cond ${capacity}%${remaining}"
+echo "$cond ${capacity}%${remaining}"
