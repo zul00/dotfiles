@@ -16,8 +16,6 @@ stow home
 mkdir -p ~/bin
 stow scripts -t ~/bin
 
-stow taskwarrior
-
 stow tmux
 
 stow vim
