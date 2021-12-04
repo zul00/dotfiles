@@ -62,13 +62,23 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'folke/lsp-trouble.nvim'
 Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
-Plug 'hrsh7th/nvim-compe'
 Plug 'onsails/lspkind-nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'kristijanhusak/orgmode.nvim'
+Plug 'milisims/tree-sitter-org'
 Plug 'puremourning/vimspector'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'vim-test/vim-test'
+
+"Plug 'hrsh7th/nvim-compe' " TODO: Remove me!
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'nvim-lua/plenary.nvim' " don't forget to add this one if you don't have it yet!
+Plug 'ThePrimeagen/harpoon'
 
 call plug#end()
 "}}}
@@ -313,7 +323,9 @@ let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 " :UltiSnipsEdit opens to a split window.
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips/'
+" let g:UltiSnipsSnippetsDir="UltiSnips"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+" let g:UltiSnipsSnippetDirectories='/home/zul/dotfiles/vim/.vim/UltiSnips'
 " }}}
 
 " VimDiff {{{
@@ -348,16 +360,16 @@ set conceallevel=0
 
 " {{{ Telescope
 nnoremap <M-p> :GitFiles<CR>
+ nnoremap <M-b> :Telescope buffers<CR>
+
+nnoremap <leader>l :Lines<CR>
+nnoremap <leader>t :Telescope 
 " }}}
 
 " {{{ FZF
 "nnoremap <C-p> :Telescope fzf_writer files<CR>
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :lua require('telescope.builtin.git').files({recurse_submodules=true, show_untracked=false})<CR>
-
-nnoremap <C-b> :Telescope buffers<CR>
-nnoremap <leader>l :Lines<CR>
-nnoremap <leader>t :Telescope 
 " }}}
 
 " {{{ Highlight
@@ -386,36 +398,37 @@ let g:netrw_winsize = 22
 set wildmode=list:longest,full
 
 " {{{ Nvim-Compe
-set completeopt=menuone,noselect
+"set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect
 
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
+" let g:compe = {}
+" let g:compe.enabled = v:true
+" let g:compe.autocomplete = v:true
+" let g:compe.debug = v:false
+" let g:compe.min_length = 1
+" let g:compe.preselect = 'enable'
+" let g:compe.throttle_time = 80
+" let g:compe.source_timeout = 200
+" let g:compe.incomplete_delay = 400
+" let g:compe.max_abbr_width = 100
+" let g:compe.max_kind_width = 100
+" let g:compe.max_menu_width = 100
+" let g:compe.documentation = v:true
 
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:false
-let g:compe.source.ultisnips = v:true
+" let g:compe.source = {}
+" let g:compe.source.path = v:true
+" let g:compe.source.buffer = v:true
+" let g:compe.source.calc = v:true
+" let g:compe.source.nvim_lsp = v:true
+" let g:compe.source.nvim_lua = v:true
+" let g:compe.source.vsnip = v:false
+" let g:compe.source.ultisnips = v:true
 
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+" inoremap <silent><expr> <C-Space> compe#complete()
+" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+" inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+" inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+" inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
-highlight link CompeDocumentation NormalFloat
+" highlight link CompeDocumentation NormalFloat
 " }}}
