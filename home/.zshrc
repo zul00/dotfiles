@@ -131,3 +131,6 @@ export LEDGER_FILE="/home/zul/documents/ali_imran/budget_ai/main.journal"
 export LEDGER_FILE="/home/zul/private/budget_ai/main.journal"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
