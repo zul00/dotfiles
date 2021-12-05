@@ -15,7 +15,7 @@ local on_attach = function(client, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
@@ -96,26 +96,41 @@ cmp.setup {
 -- lsptrouble
 require("trouble").setup {}
 
--- {Loop through all LSP}
+-- {Loop through all LSP, generic configuration}
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = { 'pylsp', 'rust_analyzer', 'tsserver' }
+local servers = { 'rust_analyzer', 'tsserver' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
     },
+    on_attach = on_attach,
     capabilities = capabilities
   }
 end
 
 -- {Language specific configurations}
 lspconfig.pylsp.setup {
+    flags = {
+      debounce_text_changes = 150,
+    },
+  on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     pylsp = {
       configurationSources = {"flake8"}
     }
   }
+}
+
+lspconfig.ccls.setup {
+    flags = {
+      debounce_text_changes = 150,
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = lspconfig.util.root_pattern(".ccls");
+    init_options = { cache = { directory= ".ccls-cache"; } }
 }
