@@ -10,6 +10,8 @@
 call plug#begin('~/.vim/plugged')
 " Style
 Plug 'morhetz/gruvbox'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 
 " Git
 Plug 'tpope/vim-fugitive'

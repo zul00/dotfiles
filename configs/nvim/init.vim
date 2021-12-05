@@ -6,4 +6,5 @@ lua << EOF
 -- lua configurations
 require('lsp')
 require('treesitter')
+require('statusline')
 EOF
