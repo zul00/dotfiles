@@ -143,6 +143,11 @@ set undofile
 set undodir=/tmp
 " }}}
 
+" localvimrc {{{
+let g:localvimrc_sandbox = 0
+let g:localvimrc_whitelist='.lvimrc'
+" }}}
+
 " Others {{{
 set showcmd
 set scrolloff=2
