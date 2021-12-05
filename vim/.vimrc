@@ -94,8 +94,13 @@ set incsearch
 nnoremap <C-p> :Files<CR>
 " }}}
 
-" Others {{{
+" Swap + Buffer {{{
 set noswapfile
+set undofile
+set undodir=/tmp
+" }}}
+
+" Others {{{
 set showcmd
 set scrolloff=2
 set mouse=a
