@@ -51,6 +51,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " Nvim specific
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 
@@ -124,6 +125,8 @@ let mapleader = ','
 nnoremap <F10> :vsplit $HOME/.vim/ftplugin<CR>
 nnoremap <F12> :vsplit $HOME/dotfiles/vim/.vimrc<CR>
 nnoremap <F12><F12> :vsplit $HOME/dotfiles/configs/nvim<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>b :Telescope buffers<CR>
 
 " Git
 nnoremap <leader>g :Git<CR>
@@ -144,15 +147,12 @@ nnoremap <leader>h :noh<CR>
 nnoremap <leader>so :w<CR>:so %<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <F11> :TagbarToggle<CR>
+nnoremap <leader>t :Telescope<CR>
 " }}}
 
 " Search {{{
 set hlsearch
 set incsearch
-" }}}
-
-" {{{ FZF
-nnoremap <C-p> :Files<CR>
 " }}}
 
 " Swap + Buffer {{{

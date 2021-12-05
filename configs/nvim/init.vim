@@ -7,4 +7,5 @@ lua << EOF
 require('lsp')
 require('treesitter')
 require('statusline')
+require('telescope-config')
 EOF
