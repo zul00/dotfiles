@@ -43,6 +43,27 @@ autocmd vimenter * ++nested colorscheme gruvbox
 set termguicolors
 " }}}
 
+" Formatting {{{
+" Default indentation
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set autoindent
+set smarttab
+
+" Shows trailing spaces in insert mode
+set list
+" }}}
+
+" Behavior {{{
+" read/write file when switching buffers
+set autowrite
+set autoread
+
+" Reduce redraw rate while executing macros
+set lazyredraw
+" }}}
+
 " Numbering {{{
 set number
 set ruler
@@ -83,6 +104,7 @@ nnoremap <leader>du :diffu<CR>
 " Others
 nnoremap <leader>h :noh<CR>
 nnoremap <leader>so :w<CR>:so %<CR>
+nnoremap <leader>q :q<CR>
 " }}}
 
 " Search {{{
