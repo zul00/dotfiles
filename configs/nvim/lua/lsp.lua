@@ -64,25 +64,37 @@ sources = cmp.config.sources({
   -- { name = 'ultisnips' }, -- For ultisnips users.
   -- { name = 'snippy' }, -- For snippy users.
 }, {
-  { name = 'buffer' },
+  { name = 'buffer', keyword_length = 3 },
 })
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
-sources = {
-  { name = 'buffer' }
-}
+    sources = {
+        { name = 'buffer' }
+    }
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-sources = cmp.config.sources({
-  { name = 'path' }
-}, {
-  { name = 'cmdline' }
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    })
 })
-})
+
+-- lspkind -- LSP with pictogram
+local lspkind = require('lspkind')
+cmp.setup {
+
+  formatting = {
+    format = lspkind.cmp_format({with_text = true, maxwidth = 50})
+  }
+}
+
+-- lsptrouble
+require("trouble").setup {}
 
 -- {Loop through all LSP}
 -- Use a loop to conveniently call 'setup' on multiple servers and
