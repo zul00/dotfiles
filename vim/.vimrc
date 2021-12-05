@@ -40,13 +40,16 @@ Plug 'embear/vim-localvimrc'
 Plug 'majutsushi/tagbar'
 
 " Filetype specific
+"" LaTeX
 Plug 'lervag/vimtex'
-
 "" Python
 Plug 'metakirby5/codi.vim'
+"" Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " Nvim specific
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 call plug#end()
 "}}}

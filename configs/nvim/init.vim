@@ -5,4 +5,5 @@ source ~/.vimrc
 lua << EOF
 -- lua configurations
 require('lsp')
+require('treesitter')
 EOF
