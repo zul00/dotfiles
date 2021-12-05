@@ -150,7 +150,7 @@ nnoremap <F11> :TagbarToggle<CR>
 set hlsearch
 set incsearch
 " }}}
-"
+
 " {{{ FZF
 nnoremap <C-p> :Files<CR>
 " }}}
@@ -164,6 +164,11 @@ set undodir=/tmp
 " localvimrc {{{
 let g:localvimrc_sandbox = 0
 let g:localvimrc_whitelist='.lvimrc'
+" }}}
+
+" netrw {{{
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 22
 " }}}
 
 " Others {{{
