@@ -46,6 +46,7 @@ Plug 'lervag/vimtex'
 Plug 'metakirby5/codi.vim'
 
 " Nvim specific
+Plug 'neovim/nvim-lspconfig'
 
 call plug#end()
 "}}}

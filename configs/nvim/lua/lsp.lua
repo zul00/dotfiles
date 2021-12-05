@@ -1,161 +1,56 @@
 local lspconfig = require'lspconfig'
-local configs = require 'lspconfig/configs'
-local util = require 'lspconfig/util'
 
--- Setup nvim-cmp.
-local cmp = require'cmp'
+-- Generic configuration
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
-    end,
-  },
-  mapping = {
-    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
-    ['<C-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
-  }, {
-    { name = 'buffer' },
-  })
-})
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
--- -- Use buffer source for `/`.
--- cmp.setup.cmdline('/', {
---   sources = {
---     { name = 'buffer' }
---   }
--- })
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
 
--- -- Use cmdline & path source for ':'.
--- cmp.setup.cmdline(':', {
---   sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   })
--- })
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+end
 
-lspconfig.ccls.setup{
-    capabilities = capabilities;
-    on_attach=require'completion'.on_attach;
-    root_dir = lspconfig.util.root_pattern(".ccls");
-    init_options = { cache = { directory= ".ccls-cache"; } }
-}
-
-configs.pylsp = {
-  default_config = {
-    cmd = { 'pylsp' },
-    settings = {
-        configurationSources = {"flake8"}
-      },
-
-    -- configurationSources = {'flake8'},
-    -- plugins = {flake8 = {config = {'.flake8'}}},
-    filetypes = { 'python' },
-    root_dir = function(fname)
-      local root_files = {
-        'pyproject.toml',
-        'setup.py',
-        'setup.cfg',
-        'requirements.txt',
-        'Pipfile',
-        '.flake8',
-        '.git',
-      }
-      return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
-    end,
-  },
-  docs = {
-    description = [[
-https://github.com/python-lsp/python-lsp-server
-A Python 3.6+ implementation of the Language Server Protocol.
-The language server can be installed via `pipx install 'python-lsp-server[all]'`.
-Further instructions can be found in the [project's README](https://github.com/python-lsp/python-lsp-server).
-Note: This is a community fork of `pyls`.
-    ]],
-  },
-}
-
-lspconfig.pylsp.setup{
-    capabilities = capabilities;
-}
--- lspconfig.pyright.setup{}
-
-lspconfig.tsserver.setup{
-    on_attach=require'completion'.on_attach;
-    root_dir = lspconfig.util.root_pattern(".git");
-}
-
-require'lspconfig'.bashls.setup{}
-
-
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-lspconfig.jsonls.setup {
-  capabilities = capabilities,
-}
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      -- disable virtual text
-      virtual_text = false,
-
-      -- show signs
-      signs = true,
-
-      -- delay update diagnostics
-      update_in_insert = false,
-      -- display_diagnostic_autocmds = { "InsertLeave" },
-
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'pylsp', 'rust_analyzer', 'tsserver' }
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
     }
-  )
+  }
+end
 
-
--- commented options are defaults
-require('lspkind').init({
-    -- with_text = true,
-    -- symbol_map = {
-    --   Text = '',
-    --   Method = 'ƒ',
-    --   Function = '',
-    --   Constructor = '',
-    --   Variable = '',
-    --   Class = '',
-    --   Interface = 'ﰮ',
-    --   Module = '',
-    --   Property = '',
-    --   Unit = '',
-    --   Value = '',
-    --   Enum = '了',
-    --   Keyword = '',
-    --   Snippet = '﬌',
-    --   Color = '',
-    --   File = '',
-    --   Folder = '',
-    --   EnumMember = '',
-    --   Constant = '',
-    --   Struct = ''
-    -- },
-})
-
-require('lsp_signature').on_attach()
+-- Language specific configurations
+lspconfig.pylsp.setup {
+  settings = {
+    pylsp = {
+      configurationSources = {"flake8"}
+    }
+  }
+}
