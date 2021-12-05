@@ -16,7 +16,6 @@ set  pastetoggle=<F3>
 "nmap <F5> :!clear<CR><bar>:wa <bar> :Make<CR>
 "nmap <silent> <F8> :cexpr system('checkpatch.pl --terse --file --no-tree ' . shellescape(expand('%')))<CR>
 vmap <F9> :normal 0i//<CR>
-nmap <F11> :TagbarToggle<CR>
 " }}}
 
 " netrw {{{

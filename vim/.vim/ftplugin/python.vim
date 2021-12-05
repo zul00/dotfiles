@@ -6,7 +6,6 @@ nmap <F6> :wa<CR><bar>:!ipython2 -i %<CR>
 nmap <F7> k:SyntasticCheck<CR> 
 nmap <F8> :!ctags -R .<CR>
 nmap <F9> :wa<CR>:!python2 setup.py build_ext --inplace<CR>
-nmap <F11> :TagbarToggle<CR>
 
 nnoremap <silent> <c-]>         <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>

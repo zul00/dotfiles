@@ -14,6 +14,7 @@ Plug 'morhetz/gruvbox'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tommcdo/vim-fubitive'
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 
@@ -22,10 +23,29 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 
 " Tools
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'wakatime/vim-wakatime'
+Plug 'sirver/UltiSnips'
+Plug 'ntpeters/vim-better-whitespace'
+
+" Grammar
+Plug 'reedes/vim-lexical'
+
+" Others
+Plug 'embear/vim-localvimrc'
+Plug 'majutsushi/tagbar'
+
+" Filetype specific
+Plug 'lervag/vimtex'
+
+"" Python
+Plug 'metakirby5/codi.vim'
+
+" Nvim specific
 
 call plug#end()
 "}}}
@@ -105,6 +125,7 @@ nnoremap <leader>du :diffu<CR>
 nnoremap <leader>h :noh<CR>
 nnoremap <leader>so :w<CR>:so %<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <F11> :TagbarToggle<CR>
 " }}}
 
 " Search {{{
