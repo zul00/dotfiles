@@ -57,6 +57,7 @@ Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -129,7 +130,7 @@ nnoremap <C-p> :Files<CR>
 nnoremap <leader>b :Telescope buffers<CR>
 
 " Git
-nnoremap <leader>g :Git<CR>
+nnoremap <leader>gs :Git<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
 nnoremap <leader>gl :GV --all<CR>
