@@ -127,7 +127,11 @@ nnoremap <F10> :vsplit $HOME/.vim/ftplugin<CR>
 nnoremap <F12> :vsplit $HOME/dotfiles/vim/.vimrc<CR>
 nnoremap <F12><F12> :vsplit $HOME/dotfiles/configs/nvim<CR>
 nnoremap <C-p> :Files<CR>
-nnoremap <leader>b :Telescope buffers<CR>
+nnoremap <C-f> :Telescope buffers<CR>
+nnoremap <C-g> :Telescope git_files<CR>
+
+" Search
+nnoremap <leader>r :Rg 
 
 " Git
 nnoremap <leader>gs :Git<CR>
