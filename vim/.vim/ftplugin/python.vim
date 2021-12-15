@@ -31,3 +31,4 @@ set tabstop=2
 
 let test#python#runner = 'pyunit'
 set colorcolumn=120
+set textwidth=120

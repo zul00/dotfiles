@@ -74,6 +74,7 @@ call plug#end()
 syntax on
 set cursorline
 "set guifont=monospace
+set textwidth=99
 set colorcolumn=99
 set background=dark
 
