@@ -154,6 +154,18 @@ nnoremap <leader>so :w<CR>:so %<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <F11> :TagbarToggle<CR>
 nnoremap <leader>t :Telescope<CR>
+
+nnoremap <leader><leader> :call ToggleQuickfix()<cr>
+function! ToggleQuickfix()
+  for buffer in tabpagebuflist()
+    if bufname(buffer) == ''
+      " then it should be the quickfix window
+      cclose
+      return
+    endif
+  endfor
+  copen
+endfunction
 " }}}
 
 " Search {{{
