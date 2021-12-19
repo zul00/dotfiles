@@ -15,11 +15,11 @@ xterm.scrollBar: False
 xterm.depth:     24
 
 !! Transparency (0-1):
-st.alpha: 0.99
+st.alpha: 0.95
 st.alphaOffset: 0.05
 
 !! Set a default font and font size as below:
-st.font: DejaVuSansMono Nerd Font Mono-10;
+st.font: DejaVuSansMono Nerd Font Mono-11;
 
 !! gruvbox:
 *.color0: #1d2021
