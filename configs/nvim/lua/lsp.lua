@@ -56,9 +56,9 @@ cmp.setup({
 snippet = {
   -- REQUIRED - you must specify a snippet engine
   expand = function(args)
-    vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
     -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-    -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+    vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
   end,
 },
@@ -75,9 +75,10 @@ mapping = {
 },
 sources = cmp.config.sources({
   { name = 'nvim_lsp' },
-  { name = 'vsnip' }, -- For vsnip users.
+  { name = 'neorg' },
+  -- { name = 'vsnip' }, -- For vsnip users.
   -- { name = 'luasnip' }, -- For luasnip users.
-  -- { name = 'ultisnips' }, -- For ultisnips users.
+  { name = 'ultisnips' }, -- For ultisnips users.
   -- { name = 'snippy' }, -- For snippy users.
 }, {
   { name = 'buffer', keyword_length = 3 },
@@ -116,7 +117,7 @@ require("trouble").setup {}
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls' }
+local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     flags = {
@@ -129,14 +130,35 @@ end
 
 -- {Language specific configurations}
 lspconfig.pylsp.setup {
-    flags = {
-      debounce_text_changes = 150,
-    },
+  flags = {
+    debounce_text_changes = 150,
+  },
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     pylsp = {
-      configurationSources = {"flake8"}
+      configurationSources = {"flake8"},
+      plugins = {
+        -- jedi_completion = {enabled = true},
+        -- jedi_hover = {enabled = true},
+        -- jedi_references = {enabled = true},
+        -- jedi_signature_help = {enabled = true},
+        -- jedi_symbols = {enabled = true, all_scopes = true},
+        -- pycodestyle = {enabled = false},
+        -- flake8 = {
+        --   enabled = true,
+        --   ignore = {},
+        --   maxLineLength = 160
+        -- },
+        -- mypy = {enabled = false},
+        -- isort = {enabled = false},
+        -- yapf = {enabled = false},
+        -- pylint = {enabled = false},
+        pydocstyle = {enabled = false},
+        -- mccabe = {enabled = false},
+        -- preload = {enabled = false},
+        rope_completion = {enabled = false}
+      }
     }
   }
 }

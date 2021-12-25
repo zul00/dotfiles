@@ -8,4 +8,5 @@ require('lsp')
 require('treesitter')
 require('statusline')
 require('telescope-config')
+require('neorg-config')
 EOF

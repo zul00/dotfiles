@@ -27,6 +27,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 
+" Language specific
+Plug 'ledger/vim-ledger'
+
 " Tools
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -40,6 +43,7 @@ Plug 'reedes/vim-lexical'
 " Others
 Plug 'embear/vim-localvimrc'
 Plug 'majutsushi/tagbar'
+Plug 'nvim-neorg/neorg'
 
 " Filetype specific
 "" LaTeX
@@ -147,6 +151,12 @@ nnoremap <leader>do :diffoff!<CR>
 vnoremap <leader>dg :diffget<CR>
 vnoremap <leader>dp :diffput<CR>
 nnoremap <leader>du :diffu<CR>
+
+" UltiSnips
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
 " Others
 nnoremap <leader>h :noh<CR>
