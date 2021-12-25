@@ -45,7 +45,8 @@ client.background       $base07
 
 # {{{ Basic configurations
 # Variables
-set $term       /usr/local/bin/st
+# set $term       /usr/local/bin/st
+set $term       /usr/local/bin/alacritty
 set $browser    /usr/bin/firefox
 
 set $primdisp   eDP-1-1
