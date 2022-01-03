@@ -4,7 +4,7 @@
 " from latex-suite vim plugin.
 
 " Formatting {{{
-set noexpandtab
+set expandtab
 set shiftwidth=4
 set tabstop=4
 set autoindent
@@ -31,9 +31,9 @@ let g:vimtex_fold_enabled = 1
 " }}}
 
 " pencil setting {{{
-call pencil#init({'wrap': 'soft'})
+" call pencil#init({'wrap': 'soft'})
 "let g:pencil#wrapModeDefault = 'soft'
-let g:pencil#conceallevel = 0
+" let g:pencil#conceallevel = 0
 " }}}
 
 " Folding setting {{{
