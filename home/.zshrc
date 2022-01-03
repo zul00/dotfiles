@@ -4,6 +4,7 @@ export PATH=$HOME/bin:$PATH
 export PATH=$PATH:$HOME/src/ccls/Release/
 export PATH=$PATH:$HOME/scripts/
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/go/bin
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -114,7 +115,7 @@ alias book='nvim "+:cd ~/logbooks/"'
 
 # Preferred application
 export EDITOR='nvim'
-export TERMINAL='st'
+export TERMINAL='alacritty'
 export BROWSER='firefox'
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
