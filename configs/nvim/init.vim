@@ -9,4 +9,7 @@ require('treesitter')
 require('statusline')
 require('telescope-config')
 require('neorg-config')
+
+require("zk").setup()
+require("telescope").load_extension("zk")
 EOF

@@ -71,6 +71,9 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
 Plug 'folke/lsp-trouble.nvim'
 
+" Testing
+Plug 'mickael-menu/zk-nvim'
+
 call plug#end()
 "}}}
 
