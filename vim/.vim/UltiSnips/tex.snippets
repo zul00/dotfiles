@@ -80,6 +80,12 @@ snippet "b(egin)?" "begin{} / end{}" br
 \end{$1}
 endsnippet
 
+snippet "fr(ame)?" "begin{frame} / end{frame}" br
+\begin{frame}{${1:something}}
+	${0:${VISUAL}}
+\end{frame}
+endsnippet
+
 snippet abs "abstract environment" b
 \begin{abstract}
 	$0
