@@ -42,6 +42,7 @@ Plug 'szw/vim-maximizer'
 "" Debugger
 Plug 'mfussenegger/nvim-dap'
 Plug 'nvim-telescope/telescope-dap.nvim'
+Plug 'rcarriga/nvim-dap-ui'
 
 " Grammar
 Plug 'reedes/vim-lexical'
@@ -173,12 +174,13 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 " nvim-dap
 nnoremap <silent> <leader>gg :lua require'dap'.continue()<CR>
 nnoremap <silent> <leader>gt :Telescope dap 
+nnoremap <silent> <leader>gb :lua require("dapui").toggle()<CR>
 
 nnoremap <silent> <Right> :lua require'dap'.step_over()<CR>
 nnoremap <silent> <C-Right> :lua require'dap'.step_into()<CR>
 nnoremap <silent> <Left> :lua require'dap'.step_out()<CR>
-nnoremap <silent> <Up>   :lua require'dap'.up()<CR>
-nnoremap <silent> <Down> :lua require'dap'.down()<CR>
+nnoremap <silent> <C-Up>   :lua require'dap'.up()<CR>
+nnoremap <silent> <C-Down> :lua require'dap'.down()<CR>
 
 nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
