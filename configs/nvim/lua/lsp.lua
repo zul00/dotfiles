@@ -169,6 +169,6 @@ lspconfig.ccls.setup {
     },
     on_attach = on_attach,
     capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern(".ccls");
+    root_dir = lspconfig.util.root_pattern("compile_commands.json", ".ccls", ".git"),
     init_options = { cache = { directory= ".ccls-cache"; } }
 }
