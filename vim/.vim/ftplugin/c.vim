@@ -39,7 +39,3 @@ set tags+=tags;/
 "autocmd BufNewFile,BufRead ~/projects/**.[{cpp}h] source ~/.vim/ftplugin/c_twtg.vim
 
 nnoremap <C-s> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-nnoremap E                      :Evaluate<CR>
-nnoremap <silent> <leader>bb    :Break<cr>
-nnoremap <silent> <leader>bc    :Clear<cr>
-nnoremap <silent> <leader>bn    :Next<cr>

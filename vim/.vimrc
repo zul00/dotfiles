@@ -11,10 +11,13 @@ call plug#begin('~/.vim/plugged')
 " Style
 Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+" NOTE: Fork from original repo 'glepnir'
+Plug 'dsych/galaxyline.nvim' , {'branch': 'bugfix/diagnostics'}
+Plug 'folke/lsp-colors.nvim'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'junegunn/gv.vim'
@@ -27,15 +30,18 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 
-" Language specific
-Plug 'ledger/vim-ledger'
-
 " Tools
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'wakatime/vim-wakatime'
 Plug 'sirver/UltiSnips'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'junegunn/goyo.vim'
+Plug 'szw/vim-maximizer'
+
+"" Debugger
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-telescope/telescope-dap.nvim'
 
 " Grammar
 Plug 'reedes/vim-lexical'
@@ -52,6 +58,9 @@ Plug 'lervag/vimtex'
 Plug 'metakirby5/codi.vim'
 "" Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'plasticboy/vim-markdown'
+"" Ledger - plain text accounting
+Plug 'ledger/vim-ledger'
 
 " Nvim specific
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -161,10 +170,24 @@ let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
+" nvim-dap
+nnoremap <silent> <leader>dd :lua require'dap'.continue()<CR>
+nnoremap <silent> <F6> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F7> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F8> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+
+nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
+nnoremap <silent> E :lua require('dap.ui.widgets').hover()<CR>
+
+
 " Others
 nnoremap <leader>h :noh<CR>
 nnoremap <leader>so :w<CR>:so %<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <F3> :MaximizerToggle<CR>
 nnoremap <F11> :TagbarToggle<CR>
 nnoremap <leader>t :Telescope<CR>
 
