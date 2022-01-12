@@ -1,4 +1,5 @@
 local dap = require('dap')
+
 dap.configurations.python = {
   {
     type = 'python';
@@ -74,6 +75,11 @@ dap.configurations.cpp = {
     stopAtEntry= false,
   }
 }
--- local widgets = require('dap.ui.widgets')
--- local my_sidebar = widgets.sidebar(widgets.scopes)
--- my_sidebar.open()
+
+local widgets = require('dap.ui.widgets')
+local frame1 = widgets.sidebar(widgets.frames)
+local frame2 = widgets.sidebar(widgets.scopes)
+function _G.my_sidebar()
+  frame1.toggle() --(nil, 'aboveleft split') these parameters do not work!
+  frame2.toggle() --(nil, 'botright split')
+end
