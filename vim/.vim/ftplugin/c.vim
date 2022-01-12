@@ -12,8 +12,6 @@ set noexpandtab
 " Key Remap {{{
 nmap <F2> :!ctags -R *<CR>:!cscope -Rb<CR> :cscope add cscope.out<CR>
 set  pastetoggle=<F3>
-" nmap <F4> :!clear<CR><bar>:wa <bar> :make clean<CR>
-"nmap <F5> :!clear<CR><bar>:wa <bar> :Make<CR>
 "nmap <silent> <F8> :cexpr system('checkpatch.pl --terse --file --no-tree ' . shellescape(expand('%')))<CR>
 " }}}
 
@@ -40,6 +38,7 @@ set tags+=tags;/
 " For office related works
 "autocmd BufNewFile,BufRead ~/projects/**.[{cpp}h] source ~/.vim/ftplugin/c_twtg.vim
 
+nnoremap <C-s> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 nnoremap E                      :Evaluate<CR>
 nnoremap <silent> <leader>bb    :Break<cr>
 nnoremap <silent> <leader>bc    :Clear<cr>
