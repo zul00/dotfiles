@@ -171,10 +171,11 @@ let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
-" nvim-dap
-nnoremap <silent> <leader>gg :lua require'dap'.continue()<CR>
+" nvim-dap / debugging
+nnoremap <silent> <leader>c :lua require'dap'.continue()<CR>
+nnoremap <silent> <leader>C :lua require'dap'.close()<CR>
+nnoremap <silent> <leader>p :lua require'dap'.pause()<CR>
 nnoremap <silent> <leader>gt :Telescope dap 
-nnoremap <silent> <leader>gb :lua require("dapui").toggle()<CR>
 
 nnoremap <silent> <Right> :lua require'dap'.step_over()<CR>
 nnoremap <silent> <C-Right> :lua require'dap'.step_into()<CR>
@@ -186,7 +187,7 @@ nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
 
 nnoremap <silent> <leader>gr :lua require'dap'.repl.open()<CR>
-nnoremap <silent> <leader>gl :lua require'dap'.run_last()<CR>
+" nnoremap <silent> <leader>gl :lua require'dap'.run_last()<CR>
 nnoremap <silent> E :lua require('dap.ui.widgets').hover()<CR>
 
 
