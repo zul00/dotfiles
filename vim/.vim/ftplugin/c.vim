@@ -12,6 +12,7 @@ set noexpandtab
 " Key Remap {{{
 nmap <F2> :!ctags -R *<CR>:!cscope -Rb<CR> :cscope add cscope.out<CR>
 set  pastetoggle=<F3>
+nnoremap <F4> :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR>
 "nmap <silent> <F8> :cexpr system('checkpatch.pl --terse --file --no-tree ' . shellescape(expand('%')))<CR>
 " }}}
 
@@ -27,15 +28,10 @@ set foldexpr=nvim_treesitter#foldexpr()
 let g:c_no_comment_fold = 1
 " }}}
 
-" Treat .h as cpp file
-let g:load_doxygen_syntax=1
-if exists('g:c_syntax_for_h')
-  unlet g:c_syntax_for_h
-endif
 
 set tags+=tags;/
 
 " For office related works
-"autocmd BufNewFile,BufRead ~/projects/**.[{cpp}h] source ~/.vim/ftplugin/c_twtg.vim
+"autocmd BufNewFile,BufRead ~/projects/**.[{c}h] source ~/.vim/ftplugin/c_twtg.vim
 
-nnoremap <C-s> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+nnoremap <C-s> :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR>
