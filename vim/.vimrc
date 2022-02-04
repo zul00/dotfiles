@@ -51,6 +51,7 @@ Plug 'reedes/vim-lexical'
 Plug 'embear/vim-localvimrc'
 Plug 'majutsushi/tagbar'
 Plug 'nvim-neorg/neorg'
+Plug 'nvim-neorg/neorg-telescope'
 
 " Filetype specific
 "" LaTeX
