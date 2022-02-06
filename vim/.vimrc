@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 " NOTE: Fork from original repo 'glepnir'
-Plug 'dsych/galaxyline.nvim' , {'branch': 'bugfix/diagnostics'}
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'folke/lsp-colors.nvim'
 
 " Git
