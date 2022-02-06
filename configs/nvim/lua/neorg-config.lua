@@ -10,18 +10,30 @@ require('neorg').setup {
                 }
             },
         ["core.norg.completion"] = {
-            config = {
-                engine = "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
-            }
+          config = {
+              engine = "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
+          }
         },
         ["core.norg.dirman"] = { -- Manage your directories with Neorg
-        config = {
-            workspaces = {
-                my_workspace = "~/Documents/neorg"
+          config = {
+              workspaces = {
+                  twtg = "~/Documents/notes/twtg",
+                  private = "~/Documents/notes/private"
+                }
             }
-        }
-    }
-},
+        },
+        ["core.gtd.base"] = {
+          config = {
+            workspace = "twtg",
+          },
+        },
+        ["core.integrations.telescope"] = {
+          config = {},
+        },
+        ["core.norg.journal"] = {},
+        ["core.norg.qol.toc"] = {},
+        ["core.presenter"] = {}
+  },
 }
 
 local neorg_callbacks = require("neorg.callbacks")
