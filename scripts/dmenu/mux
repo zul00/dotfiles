@@ -7,5 +7,5 @@ LIST=`ls $HOME/.tmuxinator/ | awk -F '.' '{print $1}'`
 SESSION=$(echo "$LIST" | dmenu -i -p "session:")
 
 # st -e tmuxinator $SESSION
-alacritty -e tmuxinator $SESSION
-# kitty tmuxinator start $SESSION
+# alacritty -e tmuxinator $SESSION
+kitty tmuxinator $SESSION

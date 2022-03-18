@@ -46,8 +46,9 @@ client.background       $base07
 # {{{ Basic configurations
 # Variables
 # set $term       /usr/local/bin/st
-set $term       /usr/local/bin/alacritty
+# set $term       /usr/local/bin/alacritty
 set $browser    /usr/bin/firefox
+set $term       kitty
 
 set $primdisp   eDP-1-1
 set $extdisp    HDMI-1-1
@@ -381,7 +382,7 @@ exec_always     --no-startup-id xset b off
 #exec_always     setxkbmap -option caps:swapescape
 
 # Other apps
-exec            --no-startup-id $term -t dropdown -e tmux new-session -s dropdown
+exec            --no-startup-id $term -T dropdown -e tmux new-session -s dropdown
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id Telegram
 exec            --no-startup-id slack
