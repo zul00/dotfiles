@@ -22,6 +22,7 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'sindrets/diffview.nvim'
 
 " tpope's
 Plug 'tpope/vim-surround'
@@ -29,6 +30,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-eunuch'
 
 " Tools
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -52,6 +55,7 @@ Plug 'embear/vim-localvimrc'
 Plug 'majutsushi/tagbar'
 Plug 'nvim-neorg/neorg'
 Plug 'nvim-neorg/neorg-telescope'
+Plug 'folke/zen-mode.nvim'
 
 " Filetype specific
 "" LaTeX
