@@ -2,7 +2,13 @@ require('neorg').setup {
     -- Tell Neorg what modules to load
     load = {
         ["core.defaults"] = {}, -- Load all the default modules
-        ["core.norg.concealer"] = {}, -- Allows for use of icons
+        ["core.highlights"] = {}, -- Load all the default modules
+        ["core.norg.concealer"] = {
+          config = {
+            icon_preset = "varied",
+            markup_preset = "dimmed"
+          }
+        }, -- Allows for use of icons
         ["core.keybinds"] = { -- Configure core.keybinds
                 config = {
                     default_keybinds = true, -- Generate the default keybinds
@@ -53,3 +59,9 @@ neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, key
         noremap = true,
     })
 end)
+
+require("zen-mode").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }

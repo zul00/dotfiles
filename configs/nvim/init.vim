@@ -10,6 +10,7 @@ require('statusline')
 require('telescope-config')
 require('neorg-config')
 require('debugger')
+require('gitsigns').setup()
 
 require("zk").setup()
 require("telescope").load_extension("zk")

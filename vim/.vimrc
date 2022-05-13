@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 " NOTE: Fork from original repo 'glepnir'
-Plug 'nvim-lualine/lualine.nvim'
+Plug 'feline-nvim/feline.nvim', { 'branch': 'develop' }
 Plug 'folke/lsp-colors.nvim'
 
 " Git
@@ -21,8 +21,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'junegunn/gv.vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'sindrets/diffview.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 " tpope's
 Plug 'tpope/vim-surround'
@@ -169,6 +169,8 @@ nnoremap <leader>do :diffoff!<CR>
 vnoremap <leader>dg :diffget<CR>
 vnoremap <leader>dp :diffput<CR>
 nnoremap <leader>du :diffu<CR>
+nnoremap <leader>di :set diffopt+=iwhite<CR>
+nnoremap <leader>dI :set diffopt-=iwhite<CR>
 
 " UltiSnips
 let g:UltiSnipsJumpForwardTrigger='<c-b>'
@@ -185,8 +187,8 @@ nnoremap <silent> <leader>gt :Telescope dap
 nnoremap <silent> <Right> :lua require'dap'.step_over()<CR>
 nnoremap <silent> <C-Right> :lua require'dap'.step_into()<CR>
 nnoremap <silent> <Left> :lua require'dap'.step_out()<CR>
-nnoremap <silent> <C-Up>   :lua require'dap'.up()<CR>
-nnoremap <silent> <C-Down> :lua require'dap'.down()<CR>
+" nnoremap <silent> <C-Up>   :lua require'dap'.up()<CR>
+" nnoremap <silent> <C-Down> :lua require'dap'.down()<CR>
 
 nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
@@ -243,8 +245,10 @@ set showcmd
 set scrolloff=2
 set mouse=a
 set clipboard+=unnamedplus
+set laststatus=3
 " }}}
 
 " LSP {{{
-set completeopt=menu,menuone,noselect
+"set completeopt=menu,menuone,noselect
+set completeopt=menu,menuone
 " }}}
