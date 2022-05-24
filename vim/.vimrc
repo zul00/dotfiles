@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 " NOTE: Fork from original repo 'glepnir'
-Plug 'feline-nvim/feline.nvim', { 'branch': 'develop' }
+Plug 'feline-nvim/feline.nvim', { 'branch': 'master' }
 Plug 'folke/lsp-colors.nvim'
 
 " Git
