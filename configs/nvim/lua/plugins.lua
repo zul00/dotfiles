@@ -11,6 +11,9 @@ end
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  -- Theme
+  use 'morhetz/gruvbox'
+
   -- Git good
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
