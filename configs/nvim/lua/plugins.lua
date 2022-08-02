@@ -31,7 +31,8 @@ return require('packer').startup(function(use)
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
+  -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
