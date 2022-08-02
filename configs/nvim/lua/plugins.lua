@@ -14,6 +14,9 @@ return require('packer').startup(function(use)
   -- Theme
   use 'morhetz/gruvbox'
 
+  -- Project management
+  use 'embear/vim-localvimrc'
+
   -- Git good
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'

@@ -20,3 +20,6 @@ nnoremap('<leader>gd', "<cmd>Gvdiffsplit<cr>", { silent = true })
 -- Others
 nnoremap('<leader>h', "<cmd>noh<cr>", { silent = true })
 nnoremap('<leader>r', require('telescope.builtin').live_grep, { desc = '[G]rep [S]trings' })
+
+-- Manage nvim
+nnoremap('<leader>so', "<cmd>so<cr>", { silent = true })

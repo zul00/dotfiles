@@ -4,8 +4,8 @@ print("Hello from style.lua")
 vim.cmd [[colorscheme gruvbox]]
 
 -- Formatting
-vim.cmd [[set expandtab]]
-vim.cmd [[set shiftwidth=4]]
-vim.cmd [[set tabstop=4]]
-vim.cmd [[set autoindent]]
-vim.cmd [[set smarttab]]
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.autoindent = true
+vim.o.smarttab = true
