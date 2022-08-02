@@ -13,7 +13,6 @@ return require('packer').startup(function(use)
 
   -- Git good
   use 'tpope/vim-fugitive'
-  use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'shumphrey/fugitive-gitlab.vim'
   use 'tommcdo/vim-fubitive'
@@ -32,6 +31,7 @@ return require('packer').startup(function(use)
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable "make" == 1 }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
