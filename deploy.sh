@@ -17,5 +17,3 @@ mkdir -p ~/bin
 stow scripts -t ~/bin
 
 stow tmux -t ~
-
-stow vim -t ~
