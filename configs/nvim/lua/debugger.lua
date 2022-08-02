@@ -115,14 +115,26 @@ dap.configurations.cpp = {
 require('dap.ext.vscode').load_launchjs()
 
 require("dapui").setup({
-  sidebar = {
-     elements = {
-      { id = "scopes", size = 0.25, },
-      { id = "breakpoints", size = 0.25 },
-      { id = "stacks", size = 0.25 },
-      { id = "watches", size = 0.10 },
-    },
-  }
+    layouts = {
+        {
+            elements = {
+                'scopes',
+                'breakpoints',
+                'stacks',
+                'watches',
+            },
+            size = 40,
+            position = 'left',
+        },
+        {
+            elements = {
+                'repl',
+                'console',
+            },
+            size = 10,
+            position = 'bottom',
+        },
+    }
 })
 
 local dap, dapui = require("dap"), require("dapui")
