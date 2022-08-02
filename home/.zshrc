@@ -110,7 +110,7 @@ source $ZSH/oh-my-zsh.sh
 alias mux='tmuxinator'
 alias fd='fdfind'
 alias v='nvim'
-alias dot='nvim +:"cd ~/dotfiles/"'
+alias dot='nvim +:"cd ~/projects/dotfiles/"'
 alias book='nvim "+:cd ~/logbooks/"'
 
 # Preferred application

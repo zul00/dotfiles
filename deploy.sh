@@ -4,18 +4,18 @@ echo "Deploying dotfiles"
 
 stow configs -t ~/.config
 
-stow emacs
+stow emacs -t ~
 
 mkdir -p ~/.fonts
 stow fonts -t ~/.fonts
 
-stow git
+stow git -t ~
 
-stow home
+stow home -t ~
 
 mkdir -p ~/bin
 stow scripts -t ~/bin
 
-stow tmux
+stow tmux -t ~
 
-stow vim
+stow vim -t ~
