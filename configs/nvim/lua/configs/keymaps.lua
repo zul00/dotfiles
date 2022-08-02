@@ -2,10 +2,10 @@ print("from keymaps.lua")
 
 local Remap = require("remap")
 local nnoremap = Remap.nnoremap
-local vnoremap = Remap.vnoremap
-local inoremap = Remap.inoremap
-local xnoremap = Remap.xnoremap
-local nmap = Remap.nmap
+-- local vnoremap = Remap.vnoremap
+-- local inoremap = Remap.inoremap
+-- local xnoremap = Remap.xnoremap
+-- local nmap = Remap.nmap
 
 -- Files navigation
 nnoremap('<C-p>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
