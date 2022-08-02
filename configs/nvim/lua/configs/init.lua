@@ -1,1 +1,1 @@
-print("Hello from config/init.lua")
+require("configs.keymaps")
