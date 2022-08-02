@@ -13,6 +13,8 @@ return require('packer').startup(function(use)
 
   -- Theme
   use 'morhetz/gruvbox'
+  use 'feline-nvim/feline.nvim'
+  use 'kyazdani42/nvim-web-devicons'
 
   -- Project management
   use 'embear/vim-localvimrc'
