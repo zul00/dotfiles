@@ -31,3 +31,17 @@ vim.o.completeopt = 'menuone,noselect'
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ','
+
+-- Show trailing space
+vim.o.list = true
+
+-- Switch buffer behavior, enable autowrite
+vim.o.autowrite = true
+vim.o.autoread = true
+
+-- Numbering
+vim.o.number = true
+
+-- Others
+vim.g['netrw_liststyle'] = 3
+vim.o.scrolloff = 2
