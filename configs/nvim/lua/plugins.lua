@@ -45,6 +45,8 @@ require('packer').startup(function(use)
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
+    use 'folke/lsp-colors.nvim'
+    use 'folke/lsp-trouble.nvim'
 
     -- Completions
     use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }
@@ -54,6 +56,27 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-cmdline'
     use 'petertriho/cmp-git'
 
+    -- Tools
+    use 'wakatime/vim-wakatime'
+    use 'lukas-reineke/indent-blankline.nvim'
+    use 'majutsushi/tagbar'
+    use 'folke/zen-mode.nvim'
+
+    -- Neorg
+    use 'nvim-neorg/neorg'
+    use 'nvim-neorg/neorg-telescope'
+
+    -- Type specific plugins
+    -- LaTeX
+    use 'lervag/vimtex'
+    -- Markdown
+    -- install without yarn or npm
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+    -- Ledger
+    use 'ledger/vim-ledger'
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if is_bootstrap then
