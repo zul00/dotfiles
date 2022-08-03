@@ -42,7 +42,7 @@ local on_attach = function(client, bufnr)
 end
 
 
-local servers = { 'ccls', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua' }
+local servers = { 'pylsp', 'ccls', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua' }
 
 -- Ensure the servers above are installed
 require('nvim-lsp-installer').setup {
