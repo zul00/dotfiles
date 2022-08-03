@@ -1,9 +1,9 @@
 -- {Diagnositc config}
 vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  underline = true,
-  update_in_insert = true,
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = true,
 })
 --
 -- Mappings.
@@ -56,6 +56,87 @@ for _, lsp in ipairs(servers) do
         capabilities = capabilities,
     }
 end
+
+
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+cmp.setup {
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete({ config = { sources = { { name = 'nvim_lsp' } } } }),
+        ['<C-y>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+    }),
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    },
+}
+
+local lspkind = require('lspkind')
+cmp.setup {
+
+    formatting = {
+        format = lspkind.cmp_format({ with_text = true, maxwidth = 50 })
+    }
+}
+
+require('lspconfig').pylsp.setup {
+    flags = {
+        debounce_text_changes = 150,
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        pylsp = {
+            configurationSources = { "flake8" },
+            plugins = {
+                -- jedi_completion = {enabled = true},
+                -- jedi_hover = {enabled = true},
+                -- jedi_references = {enabled = true},
+                -- jedi_signature_help = {enabled = true},
+                -- jedi_symbols = {enabled = true, all_scopes = true},
+                -- pycodestyle = {enabled = false},
+                -- flake8 = {
+                --   enabled = true,
+                --   ignore = {},
+                --   maxLineLength = 160
+                -- },
+                -- mypy = {enabled = false},
+                -- isort = {enabled = false},
+                -- yapf = {enabled = false},
+                -- pylint = {enabled = false},
+                pydocstyle = { enabled = false },
+                -- mccabe = {enabled = false},
+                -- preload = {enabled = false},
+                rope_completion = { enabled = false }
+            }
+        }
+    }
+}
 
 -- local lsp_flags = {
 --   -- This is the default in Nvim 0.7+
