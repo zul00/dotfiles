@@ -14,7 +14,7 @@ nnoremap('<C-g>', require('telescope.builtin').git_files, { desc = '[S]earch [G]
 
 -- Git navigation
 nnoremap('<leader>gs', "<cmd>Git<cr>", { silent = true })
-nnoremap('<leader>gl', "<cmd>GV<cr>", { silent = true })
+nnoremap('<leader>gl', "<cmd>GV --all<cr>", { silent = true })
 nnoremap('<leader>gd', "<cmd>Gvdiffsplit<cr>", { silent = true })
 
 -- Others

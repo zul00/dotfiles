@@ -42,22 +42,6 @@ local on_attach = function(client, bufnr)
 end
 
 
-local servers = { 'pylsp', 'ccls', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua' }
-
--- Ensure the servers above are installed
-require('nvim-lsp-installer').setup {
-    ensure_installed = servers,
-}
-
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-for _, lsp in ipairs(servers) do
-    require('lspconfig')[lsp].setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    }
-end
-
-
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 cmp.setup {
@@ -96,6 +80,23 @@ cmp.setup {
     },
 }
 
+-- local servers = { 'pylsp', 'ccls', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua' }
+local servers = { 'ccls', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua' }
+
+-- Ensure the servers above are installed
+require('nvim-lsp-installer').setup {
+    ensure_installed = servers,
+}
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+for _, lsp in ipairs(servers) do
+    require('lspconfig')[lsp].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
+end
+
+
 local lspkind = require('lspkind')
 cmp.setup {
 
@@ -104,39 +105,39 @@ cmp.setup {
     }
 }
 
-require('lspconfig').pylsp.setup {
-    flags = {
-        debounce_text_changes = 150,
-    },
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        pylsp = {
-            configurationSources = { "flake8" },
-            plugins = {
-                -- jedi_completion = {enabled = true},
-                -- jedi_hover = {enabled = true},
-                -- jedi_references = {enabled = true},
-                -- jedi_signature_help = {enabled = true},
-                -- jedi_symbols = {enabled = true, all_scopes = true},
-                -- pycodestyle = {enabled = false},
-                -- flake8 = {
-                --   enabled = true,
-                --   ignore = {},
-                --   maxLineLength = 160
-                -- },
-                -- mypy = {enabled = false},
-                -- isort = {enabled = false},
-                -- yapf = {enabled = false},
-                -- pylint = {enabled = false},
-                pydocstyle = { enabled = false },
-                -- mccabe = {enabled = false},
-                -- preload = {enabled = false},
-                rope_completion = { enabled = false }
-            }
-        }
-    }
-}
+-- require('lspconfig').pylsp.setup {
+--     flags = {
+--         debounce_text_changes = 150,
+--     },
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         pylsp = {
+--             configurationSources = { "flake8" },
+--             plugins = {
+--                 -- jedi_completion = {enabled = true},
+--                 -- jedi_hover = {enabled = true},
+--                 -- jedi_references = {enabled = true},
+--                 -- jedi_signature_help = {enabled = true},
+--                 -- jedi_symbols = {enabled = true, all_scopes = true},
+--                 -- pycodestyle = {enabled = false},
+--                 -- flake8 = {
+--                 --   enabled = true,
+--                 --   ignore = {},
+--                 --   maxLineLength = 160
+--                 -- },
+--                 -- mypy = {enabled = false},
+--                 -- isort = {enabled = false},
+--                 -- yapf = {enabled = false},
+--                 -- pylint = {enabled = false},
+--                 pydocstyle = { enabled = false },
+--                 -- mccabe = {enabled = false},
+--                 -- preload = {enabled = false},
+--                 rope_completion = { enabled = false }
+--             }
+--         }
+--     }
+-- }
 
 -- local lsp_flags = {
 --   -- This is the default in Nvim 0.7+
@@ -158,3 +159,4 @@ require('lspconfig').pylsp.setup {
 --       ["rust-analyzer"] = {}
 --     }
 -- }
+--
