@@ -54,7 +54,7 @@ local on_attach = function(_, bufnr)
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     nmap('gr', require('telescope.builtin').lsp_references)
-    nmap('<space>f', vim.lsp.buf.formatting, "[F]ormatting")
+    nmap('<space>f', vim.lsp.buf.formatting_seq_sync, "[F]ormatting")
     vmap('<space>f', vim.lsp.buf.range_formatting, "[R]ange [F]ormatting")
 
     nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
