@@ -14,6 +14,8 @@ vim.o.mouse = 'a'
 
 -- Save undo history
 vim.o.undofile = true
+vim.o.undodir = '/tmp'
+vim.o.swapfile = false
 
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
@@ -45,3 +47,4 @@ vim.o.number = true
 -- Others
 vim.g['netrw_liststyle'] = 3
 vim.o.scrolloff = 2
+vim.cmd [[set clipboard+=unnamedplus]]
