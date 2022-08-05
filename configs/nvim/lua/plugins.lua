@@ -13,6 +13,7 @@ require('packer').startup(function(use)
 
     -- Theme
     use 'ellisonleao/gruvbox.nvim'
+    use 'folke/tokyonight.nvim'
     use 'feline-nvim/feline.nvim'
     use 'kyazdani42/nvim-web-devicons'
 
@@ -61,6 +62,7 @@ require('packer').startup(function(use)
     use 'lukas-reineke/indent-blankline.nvim'
     use 'majutsushi/tagbar'
     use 'folke/zen-mode.nvim'
+    use 'embear/vim-localvimrc'
 
     -- Neorg
     use 'nvim-neorg/neorg'

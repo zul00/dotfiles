@@ -68,7 +68,9 @@ end
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'pylsp', 'sumneko_lua', 'ccls' }
+-- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'pylsp', 'sumneko_lua', 'ccls' }
+local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
+    'ccls' }
 
 -- Ensure the servers above are installed
 require('nvim-lsp-installer').setup {
@@ -140,4 +142,15 @@ require('lspconfig').pylsp.setup {
             }
         }
     }
+}
+
+-- ccls
+require('lspconfig').ccls.setup {
+    flags = {
+        debounce_text_changes = 150,
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".ccls"),
+    init_options = { cache = { directory = ".ccls-cache"; } }
 }

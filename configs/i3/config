@@ -51,7 +51,7 @@ set $browser    /usr/bin/firefox
 set $term       kitty
 
 set $primdisp   eDP-1-1
-set $extdisp    HDMI-1-1
+set $extdisp    HDMI-1-2
 
 # Logo key. Use Mod1 for Alt.
 set $mod        Mod4
@@ -335,7 +335,7 @@ for_window [class="Slack"] move container to workspace $ws9
     bindsym $mod+Shift+e exec "nautilus"
 
     ## Pavucontrol
-    bindsym $mod+s workspace $ws6; exec pavucontrol;
+    bindsym $mod+s exec pavucontrol;
 ## }}}
 
 ## {{{ MediaKey
