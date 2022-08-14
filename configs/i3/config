@@ -339,6 +339,11 @@ for_window [class="Slack"] move container to workspace $ws9
 ## }}}
 
 ## {{{ MediaKey
+    # Brightness
+    bindsym $mod+F11                exec brightnessctl set 10%-
+    bindsym $mod+F12                exec brightnessctl set 10%+
+
+    # Volume
     bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
     bindsym $mod+F1                 exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
     bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
