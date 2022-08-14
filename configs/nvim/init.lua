@@ -6,3 +6,4 @@ require("configs.theme")
 
 vim.g['localvimrc_sandbox'] = 0
 vim.g['localvimrc_whitelist'] = '*/.lvimrc'
+require("luasnip.loaders.from_vscode").lazy_load()
