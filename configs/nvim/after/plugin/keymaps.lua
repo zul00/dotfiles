@@ -1,10 +1,14 @@
 local Remap = require("remap")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
+
+
 -- Navigation + Telescope
+nnoremap('<leader>t', '<cmd>Telescope<CR>', { silent = true, desc = '[T]elescope' })
 nnoremap('<C-p>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 nnoremap('<C-f>', require('telescope.builtin').buffers, { desc = '[F]ind existing [B]uffers' })
 nnoremap('<C-g>', require('telescope.builtin').git_files, { desc = '[S]earch [G]uffers [F]iles' })
+nnoremap('<leader>r', require('telescope.builtin').live_grep, { silent = true, desc = '[G]rep [S]trings' })
 vim.keymap.set('n', '<leader>/', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
     require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -34,5 +38,17 @@ nnoremap('<leader>dI', ":set diffopt-=iwhite<CR>", { silent = false })
 
 -- Others
 nnoremap('<leader>h', "<cmd>noh<cr>", { silent = true })
-nnoremap('<leader>r', require('telescope.builtin').live_grep, { desc = '[G]rep [S]trings' })
-nnoremap('<F11>', "<cmd>TagbarToggle<CR>", { desc = '[T]oggle [T]agbar' })
+nnoremap('<F11>', "<cmd>TagbarToggle<CR>", { silent = true, desc = '[T]oggle [T]agbar' })
+nnoremap('<leader>q', '<cmd>q<CR>', { silent = true, desc = '[S]ave and [Q]uit' })
+
+local function toggle_quickfix()
+    for _, buf_id in ipairs(vim.api.nvim_eval('tabpagebuflist()')) do
+        if (vim.api.nvim_eval('bufname(' .. buf_id .. ')')) == "" then
+            vim.cmd [[cclose]]
+            return
+        end
+    end
+    vim.cmd [[copen]]
+end
+
+vim.keymap.set('n', '<leader><leader>', toggle_quickfix, { silent = true, desc = '[T]oggle [Q]uickfix' })
