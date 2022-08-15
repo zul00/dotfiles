@@ -16,6 +16,7 @@ require('packer').startup(function(use)
     use 'folke/tokyonight.nvim'
     use 'feline-nvim/feline.nvim'
     use 'kyazdani42/nvim-web-devicons'
+    use 'folke/todo-comments.nvim'
 
     -- Git good
     use 'tpope/vim-fugitive'
