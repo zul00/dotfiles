@@ -70,7 +70,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- Enable the following language servers
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'pylsp', 'sumneko_lua', 'ccls' }
 local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
-    'ccls' }
+    'ccls', 'pyright' }
 
 -- Ensure the servers above are installed
 require('nvim-lsp-installer').setup {
@@ -118,27 +118,32 @@ require('lspconfig').pylsp.setup {
     capabilities = capabilities,
     settings = {
         pylsp = {
-            configurationSources = { "flake8" },
+            -- configurationSources = { "flake8" },
             plugins = {
                 -- jedi_completion = {enabled = true},
                 -- jedi_hover = {enabled = true},
                 -- jedi_references = {enabled = true},
                 -- jedi_signature_help = {enabled = true},
                 -- jedi_symbols = {enabled = true, all_scopes = true},
-                -- pycodestyle = {enabled = false},
-                -- flake8 = {
-                --   enabled = true,
-                --   ignore = {},
-                --   maxLineLength = 160
-                -- },
+                pycodestyle = { enabled = false },
+                flake8 = {
+                    enabled = false,
+                    ignore = {},
+                    maxLineLength = 120
+                },
                 -- mypy = {enabled = false},
                 -- isort = {enabled = false},
                 -- yapf = {enabled = false},
                 -- pylint = {enabled = false},
-                pydocstyle = { enabled = false },
-                -- mccabe = {enabled = false},
+                -- pydocstyle = { enabled = false },
+                mccabe = { enabled = false },
+                pyflakes = { enabled = false },
                 -- preload = {enabled = false},
-                rope_completion = { enabled = false }
+                -- rope_completion = { enabled = false },
+                black = {
+                    enabled = true,
+                    line_length = 120
+                }
             }
         }
     }
