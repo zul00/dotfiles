@@ -4,7 +4,7 @@ require('neorg').setup {
         ["core.norg.dirman"] = {
             config = {
                 workspaces = {
-                    work = "~/Documents/notes/work",
+                    twtg = "~/Documents/notes/twtg",
                     private = "~/Documents/notes/private",
                 }
             }
