@@ -1,4 +1,5 @@
 vim.g['mkdp_browser'] = 'firefox'
+vim.g['mkdp_theme'] = 'light'
 -- vim.cmd([[
 -- let g:mkdp_preview_options = {
 --     \ 'mkit': {},
