@@ -2,6 +2,11 @@
 vim.o.termguicolors = true
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd[[colorscheme tokyonight-night]]
+--
+-- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+-- require("catppuccin").setup()
+-- vim.cmd [[colorscheme catppuccin]]
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
@@ -22,6 +27,12 @@ require('gitsigns').setup {
     },
 }
 
+local hl = require("todo-comments.highlight")
+local highlight_win = hl.highlight_win
+hl.highlight_win = function(win, force)
+    pcall(highlight_win, win, force)
+end
+
 require("todo-comments").setup {
     keywords = {
         FIX = {
@@ -32,7 +43,7 @@ require("todo-comments").setup {
         },
         TODO = { icon = " ", color = "info" },
         HACK = { icon = " ", color = "warning" },
-        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "REVIEW" } },
         PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
         NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
     },
