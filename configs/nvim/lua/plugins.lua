@@ -17,6 +17,8 @@ require('packer').startup(function(use)
     use 'feline-nvim/feline.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'folke/todo-comments.nvim'
+    use 'rcarriga/nvim-notify'
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- Git good
     use 'tpope/vim-fugitive'
@@ -40,6 +42,9 @@ require('packer').startup(function(use)
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
+    -- Navigation
+    use 'ThePrimeagen/harpoon'
+
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -49,6 +54,11 @@ require('packer').startup(function(use)
     use 'williamboman/nvim-lsp-installer'
     use 'folke/lsp-colors.nvim'
     use 'folke/lsp-trouble.nvim'
+
+    -- DAP
+    use 'mfussenegger/nvim-dap'
+    use 'mfussenegger/nvim-dap-python'
+    use 'rcarriga/nvim-dap-ui'
 
     -- Completions
     use { 'hrsh7th/nvim-cmp', requires = { 'hrsh7th/cmp-nvim-lsp' } }
