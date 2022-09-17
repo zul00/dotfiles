@@ -44,6 +44,7 @@ vim.o.autoread = true
 
 -- Numbering
 vim.o.number = true
+vim.o.relativenumber = true
 
 -- Others
 vim.g['netrw_liststyle'] = 3
