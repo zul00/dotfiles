@@ -54,7 +54,7 @@ local on_attach = function(_, bufnr)
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     nmap('gr', require('telescope.builtin').lsp_references)
-    nmap('<space>f', vim.lsp.buf.formatting_seq_sync, "[F]ormatting")
+    nmap('<space>f', vim.lsp.buf.format, "[F]ormatting")
     vmap('<space>f', vim.lsp.buf.range_formatting, "[R]ange [F]ormatting")
 
     nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
@@ -69,8 +69,10 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 -- Enable the following language servers
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'pylsp', 'sumneko_lua', 'ccls' }
+-- local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
+--     'ccls', 'pyright' }
 local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
-    'ccls', 'pyright' }
+    'ccls', 'grammarly' }
 
 -- Ensure the servers above are installed
 require('nvim-lsp-installer').setup {
@@ -112,37 +114,62 @@ require('lspconfig').sumneko_lua.setup {
     },
 }
 
+require('lspconfig').grammarly.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = require('lspconfig').util.find_git_ancestor(),
+    settings = {
+        grammarly = {
+            filetype = { "markdown" }
+        },
+    },
+}
+
+require('lspconfig').tsserver.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".ccls"),
+    settings = {
+        tsserver = {
+            filetype = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact",
+                "typescript.tsx" }
+        },
+    },
+}
+
 -- pylsp
 require('lspconfig').pylsp.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
         pylsp = {
-            -- configurationSources = { "flake8" },
+            configurationSources = { "flake8" },
             plugins = {
-                -- jedi_completion = {enabled = true},
-                -- jedi_hover = {enabled = true},
-                -- jedi_references = {enabled = true},
-                -- jedi_signature_help = {enabled = true},
-                -- jedi_symbols = {enabled = true, all_scopes = true},
+                -- autopep8 = { enabled = true },
+                -- jedi_completion = { enabled = false },
+                -- jedi_hover = { enabled = false },
+                -- jedi_references = { enabled = false },
+                -- jedi_signature_help = { enabled = false },
+                -- jedi_symbols = { enabled = false, all_scopes = false },
                 pycodestyle = { enabled = false },
                 flake8 = {
-                    enabled = false,
+                    enabled = true,
                     ignore = {},
                     maxLineLength = 120
                 },
-                -- mypy = {enabled = false},
-                -- isort = {enabled = false},
-                -- yapf = {enabled = false},
-                -- pylint = {enabled = false},
+                -- mypy = { enabled = false },
+                -- isort = { enabled = false },
+                -- yapf = { enabled = false },
+                -- pylint = { enabled = false },
                 -- pydocstyle = { enabled = false },
                 mccabe = { enabled = false },
                 pyflakes = { enabled = false },
-                -- preload = {enabled = false},
+                -- preload = { enabled = false },
                 -- rope_completion = { enabled = false },
                 black = {
                     enabled = true,
-                    line_length = 120
+                    line_length = 120,
+                    preview = true
                 }
             }
         }
