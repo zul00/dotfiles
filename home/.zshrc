@@ -131,3 +131,8 @@ export LEDGER_FILE="/home/zul/private/budget_ai/main.journal"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# open project (ctrl+p)
+function launcher() { tmux_launcher; zle -reset-prompt; zle redisplay }
+zle -N launcher
+bindkey '^p' launcher
