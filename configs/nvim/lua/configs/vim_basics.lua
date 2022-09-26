@@ -50,3 +50,6 @@ vim.o.relativenumber = true
 vim.g['netrw_liststyle'] = 3
 vim.o.scrolloff = 2
 vim.cmd [[set clipboard+=unnamedplus]]
+
+-- Diff behavior
+vim.opt.diffopt:append({'followwrap'})
