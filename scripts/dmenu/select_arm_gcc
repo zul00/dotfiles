@@ -4,7 +4,6 @@
 
 # List of gcc compiler
 LIST=`find ~/src/gcc-arm-none-eabi -maxdepth 1 -type d -name "gcc-arm*"`
-#cecho $LIST
 
 # Current compiler
 CURRENT=`ls -l /usr/local/bin/arm-none-eabi-gcc`
@@ -21,6 +20,11 @@ sudo stow -D $CURRENT3 -t /usr/local
 
 # Install new compiler
 COMPILER=$(echo "$LIST" | fzf)
+
+if [[ -z $COMPILER ]]; then
+    exit 0;
+fi
+
 echo $COMPILER > /tmp/compiler
 COMP=`awk -F "/" '{print $6}' /tmp/compiler`
 sudo stow $COMP -t /usr/local
