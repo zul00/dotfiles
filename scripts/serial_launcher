@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ -z $1 ]];
+then
+    baud=115200
+else
+    baud=$1
+fi
+
+list+=`find /dev -iname "ttyACM*"`
+list+='
+'
+list+=`find /dev -iname "ttyUSB*"`
+
+selected=`echo "$list" | fzf`
+
+picocom $selected -b $baud
