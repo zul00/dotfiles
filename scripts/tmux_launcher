@@ -10,18 +10,22 @@ fi
 NAME=`echo ${SELECTED} | sed "s|^.*\(/.*/.*$\)|\1|g"`
 NAME=${NAME#/}
 
-# https://koenwoortman.com/tmux-sessions-should-be-nested-with-care-unset-tmux-to-force/
-# 1. First you check if a tmux session exists with a given name.
-tmux has-session -t=$NAME 2> /dev/null
+if [[ -z $1 ]]; then
+    # https://koenwoortman.com/tmux-sessions-should-be-nested-with-care-unset-tmux-to-force/
+    # 1. First you check if a tmux session exists with a given name.
+    tmux has-session -t=$NAME 2> /dev/null
 
-# 2. Create the session if it doesn't exists.
-if [[ $? -ne 0 ]]; then
-  TMUX='' tmux new-session -c "$SELECTED" -d -s "$NAME" -n "MAIN"
-fi
+    # 2. Create the session if it doesn't exists.
+    if [[ $? -ne 0 ]]; then
+      TMUX='' tmux new-session -c "$SELECTED" -d -s "$NAME" -n "MAIN"
+    fi
 
-# 3. Attach if outside of tmux, switch if you're in tmux.
-if [[ -z "$TMUX" ]]; then
-  tmux attach -t "$NAME"
-else
-  tmux switch-client -t "$NAME"
+    # 3. Attach if outside of tmux, switch if you're in tmux.
+    if [[ -z "$TMUX" ]]; then
+      tmux attach -t "$NAME"
+    else
+      tmux switch-client -t "$NAME"
+    fi
+elif [[ ${1} == "window" ]]; then
+    tmux new-window -n "$NAME" -c "$SELECTED"
 fi
