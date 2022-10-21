@@ -65,7 +65,7 @@ local on_attach = function(_, bufnr)
         { desc = 'Format current buffer with LSP' })
 end
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Enable the following language servers
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'pylsp', 'sumneko_lua', 'ccls' }
@@ -75,7 +75,14 @@ local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'su
     'ccls', 'grammarly' }
 
 -- Ensure the servers above are installed
-require('nvim-lsp-installer').setup {
+require("mason").setup {
+    ui = {
+        icons = {
+            package_installed = "✓"
+        }
+    }
+}
+require("mason-lspconfig").setup {
     ensure_installed = servers,
 }
 
