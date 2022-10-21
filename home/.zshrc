@@ -136,3 +136,8 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 function launcher() { tmux_launcher; zle -reset-prompt; zle redisplay }
 zle -N launcher
 bindkey '^p' launcher
+
+# open new window (ctrl+O)
+function launcher_window() { tmux_launcher window; zle -reset-prompt; zle redisplay }
+zle -N launcher_window
+bindkey '^o' launcher_window
