@@ -1,7 +1,7 @@
 #!/bin/bash
 # set -x
 
-PROJECTS=`find ~/Documents/notes/ ~/bin/ ~/projects/ ~/projects/support/ ~/projects/playground/ ~/projects/neon/firmwares/ ~/projects/neon/automated-test/ ~/projects/neon/valve/ ~/projects/neon/ditto/ -maxdepth 1 -mindepth 1 -type d`
+PROJECTS=`find ~/Documents/notes/ ~/bin/ ~/projects/ ~/projects/support/ ~/projects/playground/ ~/projects/neon/firmwares/ ~/projects/neon/automated-test/ ~/projects/neon/docs/ ~/projects/neon/valve/ ~/projects/neon/ditto/ ~/projects/neon/firmwares/bootloaders/ -maxdepth 1 -mindepth 1 -type d`
 SELECTED=`echo "$PROJECTS" | fzf`
 if [[ -z $SELECTED ]]; then
     exit 0
