@@ -4,8 +4,10 @@ vim.o.background = "dark" -- or "light" for light mode
 vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd[[colorscheme tokyonight-night]]
 --
--- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
--- require("catppuccin").setup()
+-- vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
+-- require("catppuccin").setup({
+--     transparent_background = true
+-- })
 -- vim.cmd [[colorscheme catppuccin]]
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
