@@ -50,8 +50,8 @@ client.background       $base07
 set $browser    /usr/bin/firefox
 set $term       kitty
 
-set $primdisp   eDP-1-1
-set $extdisp    HDMI-1-2
+set $primdisp   eDP
+set $extdisp    
 
 # Logo key. Use Mod1 for Alt.
 set $mod        Mod4
@@ -343,18 +343,20 @@ for_window [class="Slack"] move container to workspace $ws9
     bindsym $mod+F11                exec brightnessctl set 10%-
     bindsym $mod+F12                exec brightnessctl set 10%+
 
+    bindsym XF86MonBrightnessDown   exec brightnessctl set 10%-
+    bindsym XF86MonBrightnessUp     exec brightnessctl set 10%+
+
     # Volume
-    bindsym $mod+Shift+Next         exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
-    bindsym $mod+F1                 exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
-    bindsym XF86AudioMute           exec pulsemixer --toggle-mute && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F1                 exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioMute           exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
 
-    bindsym $mod+Prior              exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
-    bindsym $mod+F3                 exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
-    bindsym XF86AudioRaiseVolume    exec pulsemixer --unmute --change-volume +5 && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F3                 exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioRaiseVolume    exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
 
-    bindsym $mod+Next               exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
-    bindsym $mod+F2                 exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
-    bindsym XF86AudioLowerVolume    exec pulsemixer --unmute --change-volume -5 && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F2                 exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+    bindsym XF86AudioLowerVolume    exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+
+    bindsym XF86AudioMicMute    exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
     bindsym $mod+Up     exec playerctl play-stop
     bindsym $mod+Down   exec playerctl play-pause
@@ -366,7 +368,7 @@ for_window [class="Slack"] move container to workspace $ws9
 # {{{ Startup apps
 
 # Wallpaper
-exec_always     feh --bg-fill -z ~/Pictures/wallpaper/
+exec_always     feh --bg-fill -z ~/Pictures/wallpapers/
 
 # Dropbox exec            ~/.dropbox-dist/dropboxd
 
@@ -395,6 +397,7 @@ exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
 exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" "libinput Natural Scrolling Enabled" 1
+exec            --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
 exec            --no-startup-id caffeine-indicator
 exec            --no-startup-id solaar -w hide
 

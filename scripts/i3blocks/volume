@@ -1,18 +1,18 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-	1) setsid "$TERMINAL" -e pulsemixer & ;;
-	2) pulsemixer --toggle-mute ;;
-	4) pulsemixer --change-volume +5 ;;
-	5) pulsemixer --change-volume -5 ;;
+	1) pavucontrol & ;;
+	2) pactl set-sink-mute @DEFAULT_SINK@ toggle ;;
+	4) pactl set-sink-volume @DEFAULT_SINK@ +5% ;;
+	5) pactl set-sink-volume @DEFAULT_SINK@ -5% ;;
 	3) pgrep -x dunst >/dev/null && notify-send "📢 Volume module" "\- Shows volume 🔊, 🔇 if muted.
 - Middle click to mute.
 - Scroll to change."
 esac
 
-[ "$(pulsemixer --get-mute)" = "1" ] && printf "🔇\\n" && exit
+[ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ] && printf "🔇\\n" && exit
 
-vol=$(pulsemixer --get-volume | awk '{print $1}')
+vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
 
 if [ "$vol" -gt "70" ]; then
 	icon="🔊"
@@ -22,4 +22,4 @@ else
 	icon="🔉"
 fi
 
-printf "%s %s%%\\n" "$icon" "$vol"
+printf "%s %s\\n" "$icon" "$vol"
