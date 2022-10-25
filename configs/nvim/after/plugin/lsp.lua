@@ -72,7 +72,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
 --     'ccls', 'pyright' }
 local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
-    'ccls', 'grammarly' }
+    'grammarly' }
 
 -- Ensure the servers above are installed
 require("mason").setup {
@@ -85,6 +85,9 @@ require("mason").setup {
 require("mason-lspconfig").setup {
     ensure_installed = servers,
 }
+
+-- Insert server that is not supported by mason
+table.insert(servers, 'ccls')
 
 -- Setup generic LSP servers
 for _, lsp in ipairs(servers) do
