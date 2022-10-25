@@ -90,4 +90,9 @@ esac
 
 # echo "$cond <span color=\"${color}\">${capacity}%</span>${remaining}"
 # echo "$cond ${capacity}%${remaining}"
-echo "$cond ${capacity}%${remaining}"
+
+if [ "$status" == "not charging" ]; then
+    echo "$cond ${capacity}%"
+else
+    echo "$cond ${capacity}%${remaining}"
+fi
