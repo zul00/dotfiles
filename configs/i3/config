@@ -164,10 +164,10 @@ for_window [class="SpeedCrunch"] move scratchpad
 bindsym $mod+Shift+c [class="SpeedCrunch"] scratchpad show; move position center
 
 # Telegram desktop
-for_window [title="TelegramDesktop"] floating enable
-for_window [title="TelegramDesktop"] resize set 625 400
-for_window [title="TelegramDesktop"] move position center
-for_window [title="TelegramDesktop"] move scratchpad
+for_window [class="TelegramDesktop"] floating enable
+for_window [class="TelegramDesktop"] resize set 625 400
+for_window [class="TelegramDesktop"] move position center
+for_window [class="TelegramDesktop"] move scratchpad
 bindsym $mod+c [class="TelegramDesktop"] scratchpad show; move position center
 
 # mqtt-explorer
