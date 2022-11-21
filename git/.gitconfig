@@ -1,6 +1,6 @@
 [user]
     email = zul.zulkarnaen@gmail.com
-    name = zul
+    name = Zulkarnaen
 
 [includeIf "gitdir:~/projects/"] # job needs, like workspace/* so all included projects
     path = ~/.gitconfig-job
