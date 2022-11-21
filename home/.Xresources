@@ -6,7 +6,7 @@ Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-!Xft.dpi: 80
+Xft.dpi: 144
 
 ! XTerm
 xterm*VT100*width: true
