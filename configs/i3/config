@@ -47,11 +47,11 @@ client.background       $base07
 # Variables
 # set $term       /usr/local/bin/st
 # set $term       /usr/local/bin/alacritty
-set $browser    /usr/bin/firefox
+set $browser    /snap/bin/firefox
 set $term       kitty
 
-set $primdisp   eDP
-set $extdisp    
+set $primdisp   eDP-1
+set $extdisp    HDMI-1-0
 
 # Logo key. Use Mod1 for Alt.
 set $mod        Mod4
@@ -186,6 +186,7 @@ bindsym $mod+x [class="Org.gnome.clocks"] scratchpad show; move position center
 
 # Slack
 for_window [class="Slack"] move container to workspace $ws9
+for_window [class="Microsoft Teams - Preview"] move container to workspace $ws9
 
 # }}}
 
@@ -294,6 +295,7 @@ for_window [class="Slack"] move container to workspace $ws9
 ## {{{ System command
     bindsym Pause   exec --no-startup-id "~/bin/dmenu/systemcmd"
     bindsym $mod+F9 exec --no-startup-id "~/bin/dmenu/systemcmd"
+    bindsym $mod+F12 exec --no-startup-id "playerctl pause; xautolock -locknow"
 ## }}}
 
 ## {{{ Scratchpad:
@@ -340,9 +342,6 @@ for_window [class="Slack"] move container to workspace $ws9
 
 ## {{{ MediaKey
     # Brightness
-    bindsym $mod+F11                exec brightnessctl set 10%-
-    bindsym $mod+F12                exec brightnessctl set 10%+
-
     bindsym XF86MonBrightnessDown   exec brightnessctl set 10%-
     bindsym XF86MonBrightnessUp     exec brightnessctl set 10%+
 
@@ -393,11 +392,13 @@ exec            --no-startup-id $term -T dropdown -e tmux new-session -s dropdow
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id flatpak run org.telegram.desktop
 exec            --no-startup-id slack
+exec            --no-startup-id teams
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
 exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" "libinput Natural Scrolling Enabled" 1
 exec            --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+exec            --no-startup-id xinput set-prop "ELAN067A:00 04F3:3197 Touchpad" "libinput Natural Scrolling Enabled" 1
 exec            --no-startup-id caffeine-indicator
 exec            --no-startup-id solaar -w hide
 
