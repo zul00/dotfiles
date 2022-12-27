@@ -1,8 +1,14 @@
 #!/bin/bash
 # set -x
 
-PROJECTS=`find ~/Documents/notes/ ~/bin/ ~/projects/ ~/projects/support/ ~/projects/playground/ ~/projects/neon/firmwares/ ~/projects/neon/automated-test/ ~/projects/neon/docs/ ~/projects/neon/valve/ ~/projects/neon/ditto/ ~/projects/neon/firmwares/bootloaders/ -maxdepth 1 -mindepth 1 -type d`
-SELECTED=`echo "$PROJECTS" | fzf`
+PROJECTS=`find ~/Documents/notes/ ~/bin/ ~/projects/ ~/projects/espressif/ ~/projects/bitcraze/ ~/projects/tii/ ~/projects/greenwaves/ ~/projects/others/ ~/projects/coursera/real-time_embedded_systems_concepts_and_practices/assignments/ -maxdepth 1 -mindepth 1 -type d`
+
+if [[ ${1} == "window" ]]; then
+    SELECTED=`echo "$PROJECTS" | fzf --header "new-tmux-window" --layout=reverse`
+else
+    SELECTED=`echo "$PROJECTS" | fzf --header "tmux-session" --layout=reverse`
+fi
+
 if [[ -z $SELECTED ]]; then
     exit 0
 fi
