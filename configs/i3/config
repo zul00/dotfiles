@@ -132,6 +132,7 @@ for_window [class="Pavucontrol"]    floating enable
 for_window [class="mqtt-explorer"]  floating enable
 for_window [class="Solaar"]         floating enable
 for_window [class="Bitwarden"]      floating enable
+for_window [title="swarm sim"]      floating enable
 for_window [class="System-config-printer.py"] floating enable
 assign [class="Matplotlib"]         $ws9
 
