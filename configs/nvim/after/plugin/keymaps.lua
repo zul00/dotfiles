@@ -3,13 +3,20 @@ local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 
--- Navigation + Telescope
-nnoremap('<leader>t', '<cmd>Telescope<CR>', { silent = true, desc = '[T]elescope' })
-nnoremap('<C-p>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-nnoremap('<C-f>', require('telescope.builtin').buffers, { desc = '[F]ind existing [B]uffers' })
-nnoremap('<C-g>', "<cmd> lua require('telescope.builtin').git_files({recurse_submodules=true})<CR>", { desc = '[S]earch [G]it [F]iles' })
-nnoremap('<C-b>', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[S]earch in [C]urrent [B]uffers' })
+-- Navigation
+nnoremap('<leader>fp', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+nnoremap('<leader>ff', require('telescope.builtin').buffers, { desc = '[F]ind existing [B]uffers' })
+nnoremap('<leader>fb', require('telescope.builtin').current_buffer_fuzzy_find,
+    { desc = '[S]earch in [C]urrent [B]uffers' })
 nnoremap('<leader>gr', require('telescope.builtin').live_grep, { silent = true, desc = '[G]rep [S]trings' })
+
+vim.keymap.set('n', '<leader>fg', function()
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    require('telescope.builtin').git_files({
+        recurse_submodules = true
+    })
+end, { silent = true, desc = '[S]earch [G]it [F]iles' })
+
 vim.keymap.set('n', '<leader>/', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
     require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -17,6 +24,9 @@ vim.keymap.set('n', '<leader>/', function()
         previewer = false,
     })
 end, { desc = '[/] Fuzzily search in current buffer]' })
+
+-- Telescope
+nnoremap('<leader>t', '<cmd>Telescope<CR>', { silent = true, desc = '[T]elescope' })
 
 -- Git navigation
 nnoremap('<leader>gs', "<cmd>Git<cr>", { silent = true })
@@ -47,21 +57,28 @@ inoremap('<C-c>', "<Esc>", { silent = true })
 nnoremap('<leader>ha', require("harpoon.mark").add_file, { silent = true })
 nnoremap('<leader>hl', require("harpoon.ui").toggle_quick_menu, { silent = true })
 
+-- DAP
+nnoremap('<F5>', "<Cmd>lua require'dap'.continue()<CR>", { silent = true })
+nnoremap('<S-F5>', "<Cmd>lua require'dap'.terminate()<CR>", { silent = true })
+nnoremap('<F6>', require 'dap'.step_over, { silent = true })
+nnoremap('<F7>', require 'dap'.step_into, { silent = true })
+nnoremap('<F8>', require 'dap'.step_out, { silent = true })
+nnoremap('<Leader>b', "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
+nnoremap('<Leader>B', "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+    { silent = true })
+nnoremap('<Leader>lp', "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+    { silent = true })
+nnoremap('<Leader>dr', "<Cmd>lua require'dap'.repl.open()<CR>", { silent = true })
+nnoremap('<Leader>dl', "<Cmd>lua require'dap'.run_last()<CR>", { silent = true })
 
 -- Others
 nnoremap('<leader>h', "<cmd>noh<cr>", { silent = true })
 nnoremap('<F11>', "<cmd>TagbarToggle<CR>", { silent = true, desc = '[T]oggle [T]agbar' })
 nnoremap('<leader>q', '<cmd>q<CR>', { silent = true, desc = '[S]ave and [Q]uit' })
+nnoremap('<C-p>', "<Cmd>silent !tmux neww tmux_launcher<CR>", {})
 
-nnoremap('<F5>',  "<Cmd>lua require'dap'.continue()<CR>", { silent = true})
-nnoremap('<F6>', "<Cmd>lua require'dap'.step_over()<CR>", { silent = true})
-nnoremap('<F7>', "<Cmd>lua require'dap'.step_into()<CR>", { silent = true})
-nnoremap('<F8>', "<Cmd>lua require'dap'.step_out()<CR>", { silent = true})
-nnoremap('<Leader>b',  "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", { silent = true})
-nnoremap('<Leader>B',  "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { silent = true})
-nnoremap('<Leader>lp', "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", { silent = true})
-nnoremap('<Leader>dr', "<Cmd>lua require'dap'.repl.open()<CR>", { silent = true})
-nnoremap('<Leader>dl', "<Cmd>lua require'dap'.run_last()<CR>", { silent = true})
+
+
 
 local function toggle_quickfix()
     for _, buf_id in ipairs(vim.api.nvim_eval('tabpagebuflist()')) do

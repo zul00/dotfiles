@@ -1,4 +1,5 @@
 print("Hello from python.lua")
 
--- vim.o.colorcolumn = 120
-vim.cmd [[set colorcolumn=120]]
+-- DAP
+-- FIXME: There should be a definition for this path right???
+require('dap-python').setup('~/.local/share/nvim/mason/packages/debugpy/venv/bin/python')
