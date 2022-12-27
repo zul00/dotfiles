@@ -13,7 +13,6 @@ require('packer').startup(function(use)
 
     -- Theme
     use 'ellisonleao/gruvbox.nvim'
-    use 'folke/tokyonight.nvim'
     use 'feline-nvim/feline.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'folke/todo-comments.nvim'
@@ -51,11 +50,22 @@ require('packer').startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-context'
 
     -- LSP
-    use 'neovim/nvim-lspconfig'
-    use { "williamboman/mason.nvim" }
-    use { "williamboman/mason-lspconfig.nvim" }
-    use 'folke/lsp-colors.nvim'
-    use 'folke/lsp-trouble.nvim'
+    -- TODO: Use lsp-zero {https://www.youtube.com/watch?v=w7i4amO_zaE&t=1001s}
+    use { -- LSP Configuration & Plugins
+        'neovim/nvim-lspconfig',
+        requires = {
+            -- Automatically install LSPs to stdpath for neovim
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+
+            -- Useful status updates for LSP
+            'j-hui/fidget.nvim',
+
+            -- Additional lua configuration, makes nvim stuff amazing
+            'folke/lsp-colors.nvim',
+            'folke/lsp-trouble.nvim',
+        },
+    }
 
     -- DAP
     use 'mfussenegger/nvim-dap'

@@ -6,6 +6,9 @@ vim.diagnostic.config({
     update_in_insert = true,
 })
 
+-- Turn on lsp status information
+require('fidget').setup()
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -165,7 +168,7 @@ require('lspconfig').pylsp.setup {
                 flake8 = {
                     enabled = true,
                     ignore = {},
-                    maxLineLength = 120
+                    maxLineLength = 80
                 },
                 -- mypy = { enabled = false },
                 -- isort = { enabled = false },
@@ -178,7 +181,7 @@ require('lspconfig').pylsp.setup {
                 -- rope_completion = { enabled = false },
                 black = {
                     enabled = true,
-                    line_length = 120,
+                    line_length = 80,
                     preview = true
                 }
             }
