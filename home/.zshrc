@@ -112,6 +112,10 @@ alias fd='fdfind'
 alias v='nvim'
 alias dot='nvim +:"cd ~/projects/dotfiles/"'
 alias book='nvim "+:cd ~/logbooks/"'
+alias bat='batcat'
+alias get_idf='. /home/zulkarnaen/projects/espressif/esp-idf/export.sh'
+alias ll='exa -l'
+alias la='exa -la'
 
 # Preferred application
 export EDITOR='nvim'
