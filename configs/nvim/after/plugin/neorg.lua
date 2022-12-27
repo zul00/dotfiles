@@ -5,6 +5,7 @@ require('neorg').setup {
             config = {
                 workspaces = {
                     twtg = "~/Documents/notes/twtg",
+                    tii = "~/Documents/notes/tii",
                     private = "~/Documents/notes/private",
                 }
             }
@@ -16,6 +17,16 @@ require('neorg').setup {
         },
         ["core.integrations.telescope"] = {},
         ["core.norg.qol.toc"] = {
+            config = { -- Note that this table is optional and doesn't need to be provided
+                -- Configuration here
+            }
+        },
+        ["core.export"] = {
+            config = { -- Note that this table is optional and doesn't need to be provided
+                -- Configuration here
+            }
+        },
+        ["core.export.markdown"] = {
             config = { -- Note that this table is optional and doesn't need to be provided
                 -- Configuration here
             }
