@@ -70,6 +70,7 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
     use 'petertriho/cmp-git'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
 
     -- Tools
     use 'wakatime/vim-wakatime'
