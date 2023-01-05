@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+
+# set -x
+
+APPS='pavucontrol\nblueman-manager\ngnome-control-center\narandr\nsystem-config-printer\n'
+
+SELECT=$(echo ${APPS} | dmenu -i -p "GUI settings:")
+
+exec ${SELECT}

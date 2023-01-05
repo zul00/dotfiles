@@ -337,8 +337,8 @@ for_window [class="Microsoft Teams - Preview"] move container to workspace $ws9
     bindsym $mod+e exec $term -T "Ranger" -e ranger
     bindsym $mod+Shift+e exec "nautilus"
 
-    ## Pavucontrol
-    bindsym $mod+s exec pavucontrol;
+    ## GUI settings
+    bindsym $mod+s exec gui_settings;
 ## }}}
 
 ## {{{ MediaKey
