@@ -75,7 +75,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
 --     'ccls', 'pyright' }
 local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
-    'grammarly' }
+    'grammarly', 'clangd' }
 
 -- Ensure the servers above are installed
 require("mason").setup {
@@ -90,7 +90,7 @@ require("mason-lspconfig").setup {
 }
 
 -- Insert server that is not supported by mason
-table.insert(servers, 'ccls')
+-- table.insert(servers, 'ccls')
 
 -- Setup generic LSP servers
 for _, lsp in ipairs(servers) do
@@ -156,7 +156,7 @@ require('lspconfig').pylsp.setup {
     capabilities = capabilities,
     settings = {
         pylsp = {
-            configurationSources = { "flake8" },
+            -- configurationSources = { "flake8" },
             plugins = {
                 -- autopep8 = { enabled = true },
                 -- jedi_completion = { enabled = false },
@@ -190,12 +190,15 @@ require('lspconfig').pylsp.setup {
 }
 
 -- ccls
-require('lspconfig').ccls.setup {
-    flags = {
-        debounce_text_changes = 150,
-    },
-    on_attach = on_attach,
-    capabilities = capabilities,
-    root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".ccls"),
-    init_options = { cache = { directory = ".ccls-cache"; } }
-}
+-- require('lspconfig').ccls.setup {
+--     flags = {
+--         debounce_text_changes = 150,
+--     },
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".ccls", ".git"),
+--     init_options = {
+--         cache = { directory = ".ccls-cache"; cacheFormat = "json" };
+--         compilationDatabaseDirectory = "build";
+--     }
+-- }
