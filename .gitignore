@@ -1,3 +1,10 @@
 vim/.vim/.netrwhist
 vim/.vim/autoload/
 vim/.vim/plugged/
+
+# nvim
+configs/nvim/.luarc.json
+
+# node
+node_modules/*
+package-lock.json
