@@ -3,16 +3,16 @@
 # set -x
 
 DISPLAYS=`xrandr | awk '$2 ~ /\<connected/ {print $1}'`
-PRIMARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk '/LVDS|DP|DVI*/ {print}'`
+PRIMARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk '/eDP|LVDS|DP|DVI*/ {print;exit}'`
 SECONDARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk -v a="$PRIMARY" '$0 !~ a'`
 
 OPTIONS=$'single\nleft\nright\nabove\nbelow\nsame'
 POS=$(echo "$OPTIONS" | dmenu -i -p "$SECONDARY pos:")
 
-echo "DISPLAYS" $DISPLAYS
-echo "PRIMARY" $PRIMARY
-echo "SECONDARY" $SECONDARY
-echo "POS" $POS
+echo "DISPLAYS:" $DISPLAYS
+echo "PRIMARY:" $PRIMARY
+echo "SECONDARY:" $SECONDARY
+echo "POS:" $POS
 
 if [ $POS = "right" ]; then
     xrandr --output $SECONDARY --right-of	$PRIMARY --auto --rotate normal
