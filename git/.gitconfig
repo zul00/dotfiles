@@ -2,7 +2,10 @@
     email = zul.zulkarnaen@gmail.com
     name = Zulkarnaen
 
-[includeIf "gitdir:~/projects/"] # job needs, like workspace/* so all included projects
+[includeIf "gitdir:~/projects/tii/"] # job needs, like workspace/* so all included projects
+    path = ~/.gitconfig-job
+
+[includeIf "gitdir:~/Documents/notes/tii/"] # job needs, like workspace/* so all included projects
     path = ~/.gitconfig-job
 
 [alias]
