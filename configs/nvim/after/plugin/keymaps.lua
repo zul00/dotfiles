@@ -3,19 +3,20 @@ local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 
--- Navigation
-nnoremap('<leader>fp', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-nnoremap('<leader>ff', require('telescope.builtin').buffers, { desc = '[F]ind existing [B]uffers' })
-nnoremap('<leader>fb', require('telescope.builtin').current_buffer_fuzzy_find,
+-- File navigation
+nnoremap('<leader>hp', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+nnoremap('<leader>hf', require('telescope.builtin').buffers, { desc = '[F]ind existing [B]uffers' })
+nnoremap('<leader>hb', require('telescope.builtin').current_buffer_fuzzy_find,
     { desc = '[S]earch in [C]urrent [B]uffers' })
-nnoremap('<leader>gr', require('telescope.builtin').live_grep, { silent = true, desc = '[G]rep [S]trings' })
-
-vim.keymap.set('n', '<leader>fg', function()
+vim.keymap.set('n', '<leader>hg', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
     require('telescope.builtin').git_files({
         recurse_submodules = true
     })
 end, { silent = true, desc = '[S]earch [G]it [F]iles' })
+
+-- Grep
+nnoremap('<leader>gr', require('telescope.builtin').live_grep, { silent = true, desc = '[G]rep [S]trings' })
 
 vim.keymap.set('n', '<leader>/', function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
