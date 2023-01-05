@@ -16,6 +16,11 @@ require('neorg').setup {
             }
         },
         ["core.integrations.telescope"] = {},
+        ["core.integrations.treesitter"] = {
+           config = { -- Note that this table is optional and doesn't need to be provided
+               -- Configuration here
+           }
+        },
         ["core.norg.qol.toc"] = {
             config = { -- Note that this table is optional and doesn't need to be provided
                 -- Configuration here
