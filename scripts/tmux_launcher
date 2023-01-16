@@ -1,18 +1,12 @@
 #!/bin/bash
 # set -x
 
-
-PROJECTS=`find ~/Documents/notes/ -maxdepth 1 -mindepth 1 -type d`
-PROJECTS+=$'\n'"`find ~/projects/dotfiles -maxdepth 0 -mindepth 0 -type d`"
-PROJECTS+=$'\n'"`find ~/projects/espressif/ ~/projects/bitcraze/ ~/projects/tii/ ~/projects/greenwaves/ ~/projects/others/  -maxdepth 1 -mindepth 1 -type d`"
-PROJECTS+=$'\n'"`find ~/projects/playgrounds/  -maxdepth 1 -mindepth 1 -type d`"
-
-#~/projects/coursera/real-time_embedded_systems_concepts_and_practices/assignments/
+LIST=`cat /tmp/tmux_launcher`
 
 if [[ ${1} == "window" ]]; then
-    SELECTED=`echo "$PROJECTS" | fzf --header "new-tmux-window" --layout=reverse`
+    SELECTED=`echo "${LIST}" | fzf --header "new-tmux-window" --layout=reverse`
 else
-    SELECTED=`echo "$PROJECTS" | fzf --header "tmux-session" --layout=reverse`
+    SELECTED=`echo "${LIST}" | fzf --header "tmux-session" --layout=reverse`
 fi
 
 if [[ -z $SELECTED ]]; then

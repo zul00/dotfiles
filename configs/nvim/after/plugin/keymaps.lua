@@ -76,7 +76,7 @@ nnoremap('<Leader>dl', "<Cmd>lua require'dap'.run_last()<CR>", { silent = true }
 nnoremap('<leader>h', "<cmd>noh<cr>", { silent = true })
 nnoremap('<F11>', "<cmd>TagbarToggle<CR>", { silent = true, desc = '[T]oggle [T]agbar' })
 nnoremap('<leader>q', '<cmd>q<CR>', { silent = true, desc = '[S]ave and [Q]uit' })
-nnoremap('<C-p>', "<Cmd>silent !tmux neww tmux_launcher<CR>", {})
+nnoremap('<C-p>', "<Cmd>silent !tmux neww project_launcher<CR>", {})
 
 
 
