@@ -117,9 +117,11 @@ alias get_idf='. /home/zulkarnaen/projects/espressif/esp-idf/export.sh'
 alias ll='exa -l'
 alias la='exa -la'
 
+export TERM='screen-256color'
+
 # Preferred application
 export EDITOR='nvim'
-export TERMINAL='alacritty'
+export TERMINAL='kitty'
 export BROWSER='firefox'
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
