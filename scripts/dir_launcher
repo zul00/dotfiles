@@ -1,0 +1,6 @@
+#!/bin/bash
+# set -x
+
+find . -maxdepth 2 -mindepth 1 -type d -exec realpath {} \; > /tmp/tmux_launcher
+
+tmux_launcher window

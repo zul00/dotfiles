@@ -147,3 +147,8 @@ bindkey '^p' launcher
 function launcher_window() { project_launcher window; zle -reset-prompt; zle redisplay }
 zle -N launcher_window
 bindkey '^o' launcher_window
+
+# open dir (ctrl+f)
+function launcher_dir() { dir_launcher; zle -reset-prompt; zle redisplay }
+zle -N launcher_dir
+bindkey '^f' launcher_dir
