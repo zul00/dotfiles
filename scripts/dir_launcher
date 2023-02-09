@@ -1,6 +1,8 @@
 #!/bin/bash
 # set -x
 
-find . -maxdepth 2 -mindepth 1 -type d -exec realpath {} \; > /tmp/tmux_launcher
+find . -maxdepth 2 -mindepth 1 -type d -exec realpath {} \; > /tmp/tmux_launcher_tmp
+
+egrep "/\.\w*" -v /tmp/tmux_launcher_tmp > /tmp/tmux_launcher
 
 tmux_launcher window
