@@ -55,3 +55,6 @@ vim.cmd [[set clipboard+=unnamedplus]]
 
 -- Diff behavior
 vim.opt.diffopt:append({ 'followwrap' })
+
+-- Localvimrc
+vim.g.localvimrc_persistent = 2
