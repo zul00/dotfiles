@@ -359,10 +359,10 @@ for_window [class="Microsoft Teams - Preview"] move container to workspace $ws9
 
     bindsym XF86AudioMicMute    exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-    bindsym $mod+Up     exec playerctl play-stop
-    bindsym $mod+Down   exec playerctl play-pause
-    bindsym $mod+Right  exec playerctl next
-    bindsym $mod+Left   exec playerctl previous
+    bindsym $mod+Up     exec "playerctl -a stop"
+    bindsym $mod+Down   exec "playerctl --player=vlc,spotify,firefox play-pause"
+    bindsym $mod+Right  exec "playerctl --player=vlc,spotify,firefox next"
+    bindsym $mod+Left   exec "playerctl --player=vlc,spotify,firefox previous"
 ## }}}
 # }}}
 
