@@ -6,38 +6,4 @@ Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-Xft.dpi: 144
-
-! XTerm
-xterm*VT100*width: true
-xterm*VT100*faceName: inconsolata:size=9:antialias=false
-xterm.scrollBar: False
-xterm.depth:     24
-
-!! Transparency (0-1):
-st.alpha: 0.95
-st.alphaOffset: 0.05
-
-!! Set a default font and font size as below:
-st.font: DejaVuSansMono Nerd Font Mono-11;
-
-!! gruvbox:
-*.color0: #1d2021
-*.color1: #cc241d
-*.color2: #98971a
-*.color3: #d79921
-*.color4: #458588
-*.color5: #b16286
-*.color6: #689d6a
-*.color7: #a89984
-*.color8: #928374
-*.color9: #fb4934
-*.color10: #b8bb26
-*.color11: #fabd2f
-*.color12: #83a598
-*.color13: #d3869b
-*.color14: #8ec07c
-*.color15: #ebdbb2
-*.background: #282828
-*.foreground: white
-*.cursorColor: white
+Xft.dpi: 120
