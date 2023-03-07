@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# set -x
+set -x
 
-DISPLAYS=`xrandr | awk '$2 ~ /\<connected/ {print $1}'`
-PRIMARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk '/eDP|LVDS|DP|DVI*/ {print;exit}'`
-SECONDARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk -v a="$PRIMARY" '$0 !~ a'`
+DISPLAYS=`xrandr | awk '/\<connected/ {print $1}'`
+# PRIMARY=`xrandr | awk '$2 ~ /\<connected/ {print $1}' | awk '/eDP|LVDS|DP|DVI*/ {print;exit}'`
+PRIMARY=`xrandr | grep "primary" | awk '{print $1}'`
+SECONDARY=`xrandr | awk '/\<connected/ {print $1}' | awk -v a="$PRIMARY" '$0 !~ a {print;exit}'`
 
 OPTIONS=$'single\nleft\nright\nabove\nbelow\nsame'
 POS=$(echo "$OPTIONS" | dmenu -i -p "$SECONDARY pos:")
@@ -15,17 +16,22 @@ echo "SECONDARY:" $SECONDARY
 echo "POS:" $POS
 
 if [ $POS = "right" ]; then
-    xrandr --output $SECONDARY --right-of	$PRIMARY --auto --rotate normal
+    xrandr --output $PRIMARY --auto
+    xrandr --output $SECONDARY --auto --right-of	$PRIMARY --rotate normal
 elif [ $POS = "left" ]; then
-    xrandr --output $SECONDARY --left-of	$PRIMARY --auto --rotate normal
+    xrandr --output $PRIMARY --auto
+    xrandr --output $SECONDARY --auto --left-of	    $PRIMARY --rotate normal
 elif [ $POS = "above" ]; then
-    xrandr --output $SECONDARY --above		$PRIMARY --auto --rotate normal
+    xrandr --output $PRIMARY --auto
+    xrandr --output $SECONDARY --auto  --above		$PRIMARY --rotate normal
 elif [ $POS = "below" ]; then
-    xrandr --output $SECONDARY --below		$PRIMARY --auto --rotate normal
+    xrandr --output $SECONDARY --auto --below		$PRIMARY --rotate normal
 elif [ $POS = "same" ]; then
-    xrandr --output $SECONDARY --same-as	$PRIMARY --auto --rotate normal
+    xrandr --output $PRIMARY --auto
+    xrandr --output $SECONDARY --auto --same-as	$PRIMARY --rotate normal
 elif [ $POS = "single" ]; then
-    xrandr --output $SECONDARY --off		--output $PRIMARY --auto
+    xrandr --output $SECONDARY --off
+    xrandr --output $PRIMARY --auto
 fi&
 
 # Update display setting
