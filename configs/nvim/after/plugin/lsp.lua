@@ -76,7 +76,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'pylsp', 'sumneko_lua', 'ccls' }
 -- local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
 --     'ccls', 'pyright' }
-local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
+local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'lua_ls', 'vimls', 'texlab', 'pylsp',
     'grammarly', 'clangd' }
 
 -- Ensure the servers above are installed
@@ -108,7 +108,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
