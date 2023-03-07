@@ -321,7 +321,8 @@ for_window [class="Microsoft Teams - Preview"] move container to workspace $ws9
 
     ## Display
     bindsym XF86Display exec --no-startup-id "~/bin/dmenu/display"
-    bindsym $mod+F5 exec --no-startup-id "~/bin/dmenu/display"
+    bindsym $mod+F7         exec --no-startup-id "~/bin/dmenu/display"
+    bindsym $mod+Shift+F7   exec --no-startup-id "~/bin/dmenu/display_primary"
 
     ## Touchpad Toggle
     bindsym XF86TouchpadToggle exec --no-startup-id "~/bin/toggle_toucpad.sh"
