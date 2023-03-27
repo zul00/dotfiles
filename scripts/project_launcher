@@ -3,7 +3,7 @@
 
 find ~/Documents/notes/ -maxdepth 1 -mindepth 1 -type d > /tmp/tmux_launcher
 find ~/projects/dotfiles -maxdepth 0 -mindepth 0 -type d >> /tmp/tmux_launcher
-find ~/projects/espressif/ ~/projects/bitcraze/ -maxdepth 1 -mindepth 1 -type d >> /tmp/tmux_launcher
+find ~/projects/espressif/ ~/projects/bitcraze/ -maxdepth 2 -mindepth 1 -type d >> /tmp/tmux_launcher
 find ~/projects/tii/ ~/projects/greenwaves/ ~/projects/others/  -maxdepth 1 -mindepth 1 -type d >> /tmp/tmux_launcher
 find ~/projects/playgrounds/  -maxdepth 1 -mindepth 1 -type d >> /tmp/tmux_launcher
 
