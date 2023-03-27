@@ -394,7 +394,6 @@ exec            --no-startup-id $term -T dropdown -e tmux new-session -s dropdow
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id flatpak run org.telegram.desktop
 exec            --no-startup-id slack
-exec            --no-startup-id teams
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
