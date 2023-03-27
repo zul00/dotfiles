@@ -7,7 +7,7 @@ mode=$(echo "$option" | dmenu -i -p "System command:")
 #echo "Selected mode $mode"
 
 case $mode in
-    "lock")     playerctl pause; xautolock -locknow ;;
+    "lock")     xautolock -locknow ;;
     "suspend")  systemctl suspend ;;
     "poweroff") systemctl poweroff;;
     "reboot")   systemctl reboot ;;
