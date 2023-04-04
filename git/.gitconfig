@@ -28,7 +28,7 @@
 
 [core]
     editor = nvim
-    excludesfile = ~/.gitignore
+	excludesFile = ~/.gitignore
 
 [diff]
     tool = meld
