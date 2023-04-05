@@ -58,6 +58,9 @@ inoremap('<C-c>', "<Esc>", { silent = true })
 nnoremap('<leader>ha', require("harpoon.mark").add_file, { silent = true })
 nnoremap('<leader>hl', require("harpoon.ui").toggle_quick_menu, { silent = true })
 
+-- Undotree
+nnoremap('<leader>u', vim.cmd.UndotreeToggle, { silent = true })
+
 -- DAP
 nnoremap('<F5>', "<Cmd>lua require'dap'.continue()<CR>", { silent = true })
 nnoremap('<S-F5>', "<Cmd>lua require'dap'.terminate()<CR>", { silent = true })

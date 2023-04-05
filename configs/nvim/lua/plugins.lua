@@ -88,6 +88,7 @@ require('packer').startup(function(use)
     use 'majutsushi/tagbar'
     use 'folke/zen-mode.nvim'
     use 'embear/vim-localvimrc'
+    use 'mbbill/undotree'
 
     -- Neorg
     use 'nvim-neorg/neorg'
