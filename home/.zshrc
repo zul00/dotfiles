@@ -14,7 +14,7 @@ eval "$(pyenv init -)"
 
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/zul/.oh-my-zsh"
+export ZSH="/home/${USER}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -115,7 +115,7 @@ alias v='nvim'
 alias dot='nvim +:"cd ~/projects/dotfiles/"'
 alias book='nvim "+:cd ~/logbooks/"'
 alias bat='batcat'
-alias get_idf='. /home/zulkarnaen/projects/espressif/esp-idf/export.sh'
+alias get_idf='. /home/${USER}/projects/espressif/esp-idf/export.sh'
 alias ll='exa -l'
 alias la='exa -la'
 alias tb='docker run --rm -it -e "HOST_CW_DIR=${PWD}" -e "CALLING_HOST_NAME=$(hostname)" -e "CALLING_UID"=$UID -e "CALLING_OS"=$(uname) -v ${PWD}:/tb-module -v ${HOME}/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock bitcraze/toolbelt:37'
@@ -131,8 +131,8 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fdfind -I --type file'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export LEDGER_FILE="/home/zul/documents/ali_imran/budget_ai/main.journal"
-export LEDGER_FILE="/home/zul/private/budget_ai/main.journal"
+export LEDGER_FILE="/home/${USER}/documents/ali_imran/budget_ai/main.journal"
+export LEDGER_FILE="/home/${USER}/private/budget_ai/main.journal"
 
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 
