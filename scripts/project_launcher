@@ -1,11 +1,19 @@
 #!/bin/bash
 # set -x
 
-find ~/Documents/notes/ -maxdepth 1 -mindepth 1 -type d > /tmp/tmux_launcher
-find ~/projects/dotfiles -maxdepth 0 -mindepth 0 -type d >> /tmp/tmux_launcher
-find ~/projects/espressif/ ~/projects/bitcraze/ -maxdepth 2 -mindepth 1 -type d >> /tmp/tmux_launcher
-find ~/projects/tii/ ~/projects/greenwaves/ ~/projects/others/  -maxdepth 1 -mindepth 1 -type d >> /tmp/tmux_launcher
-find ~/projects/playgrounds/  -maxdepth 1 -mindepth 1 -type d >> /tmp/tmux_launcher
+TARGET_FILE='/tmp/tmux_launcher'
+
+find ~/Documents/notes/ -maxdepth 1 -mindepth 1 -type d > $TARGET_FILE
+find ~/projects/ -maxdepth 2 -mindepth 2 -type d >> $TARGET_FILE
+find ~/projects/dotfiles -maxdepth 0 -mindepth 0 -type d >> $TARGET_FILE
+find ~/projects/espressif/ ~/projects/bitcraze/ -maxdepth 2 -mindepth 1 -type d >> $TARGET_FILE
+find ~/projects/tii/ -maxdepth 2 -mindepth 1 -type d >> $TARGET_FILE
+find ~/projects/greenwaves/ ~/projects/others/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
+find ~/projects/playgrounds/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
+
+# Clean Up
+sort -u $TARGET_FILE -o $TARGET_FILE
+sed -i '/\.git/d' $TARGET_FILE
 
 if [[ ${1} == "window" ]]; then
     tmux_launcher window
