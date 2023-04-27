@@ -92,7 +92,7 @@ require("mason-lspconfig").setup {
 }
 
 -- Insert server that is not supported by mason
--- table.insert(servers, 'ccls')
+table.insert(servers, 'openscad_lsp')
 
 -- Setup generic LSP servers
 for _, lsp in ipairs(servers) do
@@ -139,6 +139,17 @@ require('lspconfig').grammarly.setup {
         },
     },
 }
+
+-- require'lspconfig'.openscad_lsp.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         openscad_lsp = {
+--             cmd = "openscad-lsp",
+--             fmt_style = "WebKit",
+--         },
+--     },
+-- }
 
 require('lspconfig').tsserver.setup {
     on_attach = on_attach,
