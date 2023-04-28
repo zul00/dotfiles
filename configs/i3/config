@@ -79,7 +79,7 @@ bar {
         status_command i3blocks
         position top
         mode dock
-        # tray_output $extdisp
+        tray_output   $primdisp
 
         colors {
             background $base00

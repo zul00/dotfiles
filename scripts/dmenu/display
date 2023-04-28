@@ -45,5 +45,12 @@ fi&
 sed -i -e "s/primdisp .*$/primdisp   $PRIMARY/" ~/.config/i3/config
 sed -i -e "s/extdisp .*$/extdisp    $SECONDARY/" ~/.config/i3/config
 
+# Update tray_output location depending whether external disp is available or not
+if [[ ! -z $SECONDARY ]]; then
+    sed -i -e "s/\(tray_output\s+\).+$/\1\$extdisp/" ~/.config/i3/config
+else
+    sed -i -e "s/\(tray_output\s+\).+$/\1\$primdisp/" ~/.config/i3/config
+fi
+
 # Reload i3 config
 i3-msg reload
