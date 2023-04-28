@@ -1,5 +1,4 @@
-# vim: set filetype zsh
-
+# vim: filetype=zsh
 
 alias mux='tmuxinator'
 alias fd='fdfind'
