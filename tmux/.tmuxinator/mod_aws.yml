@@ -1,0 +1,37 @@
+name: MOD_SESSION
+root: ~/projects/tii/netrob-aerial/ansible-playbooks/
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+pre_window:
+    - ros_setup
+
+ # Runs on project start, always
+on_project_start:
+    - ./mod_aws/utils/docker_run.sh /app/utils/build.sh
+
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
+
+windows:
+    - MAIN:
+        layout: main-horizontal
+        panes:
+            - ansible-playbook -i inventories/tii_drones --extra-vars "target=p01_dtc,p02_dtc,p03_dtc,p04_dtc proj_name=mod_aws" playbooks/project.yml --tags="synchronize,start_in_docker"
+            # - ansible-playbook -i inventories/tii_drones --extra-vars "target=p04_dtc proj_name=mod_aws" playbooks/project.yml --tags="synchronize,start_in_docker"
+            # - ansible-playbook -i inventories/tii_drones --extra-vars "target=p03_dtc proj_name=mod_aws" playbooks/project.yml --tags="synchronize,start_in_docker"
+            - ./mod_aws/utils/docker_run.sh /app/utils/start_mission_manager.sh
+    - SSH:
+        layout: tiled
+        panes:
+            - ssh tii01@192.168.0.101
+            - ssh tii01@192.168.0.102
+            - ssh tii01@192.168.0.103
+            - ssh tii01@192.168.0.104
+    - NETWORK:
+        layout: main-vertical
+        panes:
+            - watch ip addr
+            - ping 192.168.0.101
+            - ping 192.168.0.102  # 129
+            - ping 192.168.0.103  # 1xx
+            - ping 192.168.0.104  # 133
