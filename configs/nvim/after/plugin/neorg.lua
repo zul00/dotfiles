@@ -4,10 +4,10 @@ require('neorg').setup {
         ["core.dirman"] = {
             config = {
                 workspaces = {
-                    twtg = "~/Documents/notes/twtg",
-                    tii = "~/Documents/notes/tii",
-                    private = "~/Documents/notes/private",
-                }
+                    entry_ws = "~/Documents/notes",
+                },
+                default_workspace = "entry_ws",
+                index = "index.norg"
             }
         },
         ["core.concealer"] = {
