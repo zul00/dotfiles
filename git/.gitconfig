@@ -10,6 +10,7 @@
 
 [alias]
     co = checkout
+    sw = switch
     df = diff
     dt = difftool --dir-diff
     cm = commit
