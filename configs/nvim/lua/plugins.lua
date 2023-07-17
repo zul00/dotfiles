@@ -51,6 +51,7 @@ require('packer').startup(function(use)
 
     -- LSP
     -- TODO: Use lsp-zero {https://www.youtube.com/watch?v=w7i4amO_zaE&t=1001s}
+    use {'j-hui/fidget.nvim', tag='legacy'}
     use { -- LSP Configuration & Plugins
         'neovim/nvim-lspconfig',
         requires = {
@@ -59,7 +60,6 @@ require('packer').startup(function(use)
             'williamboman/mason-lspconfig.nvim',
 
             -- Useful status updates for LSP
-            'j-hui/fidget.nvim',
 
             -- Additional lua configuration, makes nvim stuff amazing
             'folke/lsp-colors.nvim',
