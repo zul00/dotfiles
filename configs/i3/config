@@ -243,10 +243,10 @@ for_window [class="Slack"] move container to workspace $ws9
     bindsym $mod+Shift+$right     move right 40px
 
     # Resize
-    bindsym $mod+y         resize shrink width 100 px or 2 ppt
-    bindsym $mod+u         resize grow height 100 px or 2 ppt
-    bindsym $mod+i         resize shrink height 100 px or 2 ppt
-    bindsym $mod+o         resize grow width 100 px or 2 ppt
+    bindsym $mod+u         resize shrink width 100 px or 2 ppt
+    bindsym $mod+i         resize grow height 100 px or 2 ppt
+    bindsym $mod+o         resize shrink height 100 px or 2 ppt
+    bindsym $mod+p         resize grow width 100 px or 2 ppt
 
     bindsym $mod+Shift+Tab workspace back_and_forth
 ## }}}
