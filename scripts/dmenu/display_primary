@@ -2,6 +2,14 @@
 set -x
 
 DISPLAYS=`xrandr | grep "\<connected" | awk '{print $1}'`
-SELECTED=$(echo "$DISPLAYS" | dmenu -i -p "Choose primary display:")
+NDISPLAYS=`echo ${DISPLAYS} | wc -w`
 
-xrandr --output $SELECTED --auto --primary
+if [[ $NDISPLAYS == 1 ]]; then
+    SELECTED=$DISPLAYS
+else
+    SELECTED=$(echo "$DISPLAYS" | dmenu -i -p "Choose primary display:")
+fi
+
+if [[ ! -z $SELECTED  ]]; then
+    xrandr --output $SELECTED --auto --primary
+fi
