@@ -48,7 +48,7 @@ client.background       $base07
 # set $term       /usr/local/bin/st
 # set $term       /usr/local/bin/alacritty
 set $browser    /snap/bin/firefox
-set $term       kitty
+set $term       wezterm
 
 set $primdisp   eDP-1
 set $extdisp    
