@@ -79,7 +79,8 @@ bar {
         status_command i3blocks
         position top
         mode dock
-        tray_output   $primdisp
+        output  primary
+        tray_output   primary
 
         colors {
             background $base00
@@ -109,16 +110,16 @@ set $ws9 "9"
 set $ws10 "10"
 
 # Assign workspace to disp
-workspace $ws1 output $extdisp
-workspace $ws2 output $extdisp
-workspace $ws3 output $extdisp
-workspace $ws4 output $extdisp
-workspace $ws5 output $primdisp
-workspace $ws6 output $primdisp
-workspace $ws7 output $extdisp
-workspace $ws8 output $extdisp
-workspace $ws9 output $extdisp
-workspace $ws10 output $extdisp
+workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws3 output primary
+workspace $ws4 output primary
+workspace $ws5 output nonprimary
+workspace $ws6 output nonprimary
+workspace $ws7 output primary
+workspace $ws8 output primary
+workspace $ws9 output primary
+workspace $ws10 output primary
 
 # }}}
 
