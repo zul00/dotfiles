@@ -396,7 +396,7 @@ exec_always     --no-startup-id xset b off
 #exec_always     setxkbmap -option caps:swapescape
 
 # Other apps
-exec            --no-startup-id $term -T dropdown -e tmux new-session -s dropdown
+exec            --no-startup-id $term -e tmux new-session -s dropdown
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id flatpak run org.telegram.desktop
 exec            --no-startup-id slack
