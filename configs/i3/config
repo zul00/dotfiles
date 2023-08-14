@@ -385,8 +385,8 @@ exec            /usr/bin/redshift
 # Udiskie
 exec            udiskie
 
-# Compton
-exec            --no-startup-id compton --xrender-sync-fence
+# Picom
+exec            --no-startup-id picom
 
 # Unclutter, hide mouse
 exec            --no-startup-id unclutter
