@@ -1,6 +1,9 @@
 print("Hello from init.lua")
 
 require("configs.vim_basics")
+-- FIXME: This should not be needed!
+vim.o.termguicolors = true
+vim.o.background = "dark" -- or "light" for light mode
 require("plugins")
 require("configs.theme")
 
