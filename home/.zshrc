@@ -61,7 +61,7 @@ source ~/.app_specific_rc
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# open project (ctrl+p)
+# open project (ctrl+P)
 function launcher() { project_launcher; zle -reset-prompt; zle redisplay }
 zle -N launcher
 bindkey '^p' launcher
@@ -71,7 +71,16 @@ function launcher_window() { project_launcher window; zle -reset-prompt; zle red
 zle -N launcher_window
 bindkey '^o' launcher_window
 
-# open dir (ctrl+f)
+# open dir (ctrl+F)
 function launcher_dir() { dir_launcher; zle -reset-prompt; zle redisplay }
 zle -N launcher_dir
-bindkey '^f' launcher_dir
+bindkey '^ff' launcher_dir
+
+# FZF open folder (ctrl+T)
+function open_dir() {
+    # local cmd="find -L . -type d -not -wholename '*/.git*' | fzf"
+    cmd=`find -L . -type d -not -wholename '*/.git*' | fzf`
+    cd $cmd
+}
+zle -N open_dir
+bindkey '^fo' open_dir
