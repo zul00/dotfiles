@@ -48,8 +48,6 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 source ~/.aliasrc
 
-export TERM='screen-256color'
-
 # Preferred application
 export EDITOR='nvim'
 export TERMINAL='kitty'
