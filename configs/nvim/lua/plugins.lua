@@ -20,6 +20,7 @@ local plugins = {
     -- { "folke/neoconf.nvim", cmd = "Neoconf" },
     -- "folke/neodev.nvim",
 
+    -- Theme
     { 'ellisonleao/gruvbox.nvim' },
     { 'feline-nvim/feline.nvim', lazy = false },
     { 'kyazdani42/nvim-web-devicons' },
@@ -33,8 +34,8 @@ local plugins = {
     { 'shumphrey/fugitive-gitlab.vim' },
     { 'tommcdo/vim-fubitive' },
     { 'junegunn/gv.vim' },
-    { 'sindrets/diffview.nvim' },
-    { 'lewis6991/gitsigns.nvim' },
+    { 'sindrets/diffview.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'nvim-lua/plenary.nvim' },
 
     -- tpope's
@@ -47,7 +48,7 @@ local plugins = {
     { 'tpope/vim-eunuch' },
 
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim' },
+    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
     -- Navigation
@@ -63,15 +64,18 @@ local plugins = {
     { 'j-hui/fidget.nvim', tag = 'legacy' },
     { -- LSP Configuration & Plugins
         'neovim/nvim-lspconfig',
+        dependencies = {
+            -- Automatically install LSPs to stdpath for neovim
+            { 'williamboman/mason.nvim', },
+            { 'williamboman/mason-lspconfig.nvim', },
+
+            -- Useful status updates for LSP
+
+            -- Additional lua configuration, makes nvim stuff amazing
+            { 'folke/lsp-colors.nvim', },
+            { 'folke/lsp-trouble.nvim', },
+        }
     },
-    { 'williamboman/mason.nvim', },
-    { 'williamboman/mason-lspconfig.nvim', },
-
-    -- Useful status updates for LSP
-
-    -- Additional lua configuration, makes nvim stuff amazing
-    { 'folke/lsp-colors.nvim', },
-    { 'folke/lsp-trouble.nvim', },
 
     -- DAP
     { 'mfussenegger/nvim-dap' },
@@ -79,10 +83,8 @@ local plugins = {
     { 'rcarriga/nvim-dap-ui' },
 
     -- Completions
-    { 'hrsh7th/nvim-cmp', },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'L3MON4D3/LuaSnip' },
-    { 'saadparwaiz1/cmp_luasnip' },
+    { 'hrsh7th/nvim-cmp', dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
+    { 'L3MON4D3/LuaSnip', dependencies = { 'saadparwaiz1/cmp_luasnip' } },
     { "rafamadriz/friendly-snippets" },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
