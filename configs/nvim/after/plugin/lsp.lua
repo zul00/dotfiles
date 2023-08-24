@@ -76,31 +76,57 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'pylsp', 'sumneko_lua', 'ccls' }
 -- local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
 --     'ccls', 'pyright' }
-local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'lua_ls', 'vimls', 'texlab', 'pylsp',
-    'grammarly', 'clangd' }
+local servers = {
+    rust_analyzer = {},
+    tsserver = {},
+    bashls = {},
+    jsonls = {},
+    yamlls = {},
+    lua_ls = {
+        Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+        }
+    },
+    vimls = {},
+    texlab = {},
+    pylsp = {},
+    grammarly = {},
+    clangd = {},
+},
 
--- Ensure the servers above are installed
-require("mason").setup {
-    ui = {
-        icons = {
-            package_installed = "✓"
+    -- Ensure the servers above are installed
+    require("mason").setup {
+        ui = {
+            icons = {
+                package_installed = "✓"
+            }
         }
     }
-}
 require("mason-lspconfig").setup {
-    ensure_installed = servers,
+    ensure_installed = vim.tbl_keys(servers),
 }
 
 -- Insert server that is not supported by mason
 table.insert(servers, 'openscad_lsp')
 
+require("mason-lspconfig").setup_handlers {
+    function(server_name)
+        require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers[server_name],
+        }
+    end,
+}
+
+
 -- Setup generic LSP servers
-for _, lsp in ipairs(servers) do
-    require('lspconfig')[lsp].setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    }
-end
+-- for _, lsp in ipairs(servers) do
+--     require('lspconfig')[lsp].setup {
+--         on_attach = on_attach,
+--         capabilities = capabilities,
+--     }
 
 -- Custom setup
 -- Lua
