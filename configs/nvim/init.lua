@@ -1,4 +1,4 @@
-print("Hello from init.lua")
+-- print("Hello from init.lua")
 
 require("configs.vim_basics")
 -- FIXME: This should not be needed!

@@ -61,7 +61,7 @@ local plugins = {
     { 'nvim-treesitter/nvim-treesitter-context' },
 
     -- LSP
-    -- TODO: { lsp-zero {https://www.youtube.com/watch?v=w7i4amO_zaE&t=1001s}
+    -- TODO: lsp-zero {https://www.youtube.com/watch?v=w7i4amO_zaE&t=1001s}
     { 'j-hui/fidget.nvim', tag = 'legacy' },
     { -- LSP Configuration & Plugins
         'neovim/nvim-lspconfig',
@@ -82,6 +82,7 @@ local plugins = {
     { 'mfussenegger/nvim-dap' },
     { 'mfussenegger/nvim-dap-python' },
     { 'rcarriga/nvim-dap-ui' },
+    { 'jedrzejboczar/nvim-dap-cortex-debug'},
 
     -- Completions
     { 'hrsh7th/nvim-cmp', dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
@@ -100,7 +101,6 @@ local plugins = {
     { 'folke/zen-mode.nvim' },
     { 'embear/vim-localvimrc' },
     { 'mbbill/undotree' },
-    { 'whleucka/reverb.nvim' },
 
     -- Neorg
     { 'nvim-neorg/neorg' },
@@ -108,7 +108,9 @@ local plugins = {
 
     -- Type specific plugins
     -- LaTeX
-    { 'lervag/vimtex' }
+    { 'lervag/vimtex' },
+    -- Markdown
+    { 'iamcco/markdown-preview.nvim', build = {function() vim.fn["mkdp#util#install"]() end} },
 }
 
 require("lazy").setup(plugins)
