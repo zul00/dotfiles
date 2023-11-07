@@ -8,4 +8,4 @@ SESSION=$(echo "$LIST" | dmenu -i -p "session:")
 
 # st -e tmuxinator $SESSION
 # alacritty -e tmuxinator $SESSION
-kitty tmuxinator $SESSION
+wezterm -e tmuxinator $SESSION
