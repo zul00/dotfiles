@@ -77,23 +77,29 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
 --     'ccls', 'pyright' }
 local servers = {
-    rust_analyzer = {},
-    tsserver = {},
-    bashls = {},
-    jsonls = {},
-    yamlls = {},
-    lua_ls = {
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        }
+        rust_analyzer = {},
+        tsserver = {},
+        bashls = {},
+        jsonls = {},
+        yamlls = {},
+        lua_ls = {
+            Lua = {
+                workspace = { checkThirdParty = false },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = { enable = false },
+            }
+        },
+        vimls = {},
+        texlab = {},
+        pylsp = {},
+        grammarly = {
+            -- NOTE: Grammarly works iff you use node>=v16.0.0. Use nvm to get the feature
+            grammarly = {
+                filetype = { "markdown" }
+            },
+        },
+        clangd = {},
     },
-    vimls = {},
-    texlab = {},
-    pylsp = {},
-    grammarly = {},
-    clangd = {},
-},
 
     -- Ensure the servers above are installed
     require("mason").setup {
@@ -130,41 +136,41 @@ require("mason-lspconfig").setup_handlers {
 
 -- Custom setup
 -- Lua
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
+-- local runtime_path = vim.split(package.path, ';')
+-- table.insert(runtime_path, 'lua/?.lua')
+-- table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').lua_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT)
-                version = 'LuaJIT',
-                -- Setup your lua path
-                path = runtime_path,
-            },
-            diagnostics = {
-                globals = { 'vim' },
-            },
-            workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = { enable = false, },
-        },
-    },
-}
+-- require('lspconfig').lua_ls.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         Lua = {
+--             runtime = {
+--                 -- Tell the language server which version of Lua you're using (most likely LuaJIT)
+--                 version = 'LuaJIT',
+--                 -- Setup your lua path
+--                 path = runtime_path,
+--             },
+--             diagnostics = {
+--                 globals = { 'vim' },
+--             },
+--             workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+--             -- Do not send telemetry data containing a randomized but unique identifier
+--             telemetry = { enable = false, },
+--         },
+--     },
+-- }
 
-require('lspconfig').grammarly.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    root_dir = require('lspconfig').util.find_git_ancestor(),
-    settings = {
-        grammarly = {
-            filetype = { "markdown" }
-        },
-    },
-}
+-- require('lspconfig').grammarly.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     root_dir = require('lspconfig').util.find_git_ancestor(),
+--     settings = {
+--         grammarly = {
+--             filetype = { "markdown" }
+--         },
+--     },
+-- }
 
 -- require'lspconfig'.openscad_lsp.setup {
 --     on_attach = on_attach,

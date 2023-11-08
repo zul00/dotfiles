@@ -4,7 +4,7 @@
 Dotfiles for my machine + some helpful scripts.
 
 ## Deployment
-Dotfiles and scripts are deployed using `stow`. It is possible that there is conflict there is an existing dotfiles. Solve accordingly.
+Dotfiles and scripts are deployed using `stow`. There may be a conflict if there are existing configuration files. Solve accordingly.
 
 ```
 ./deploy.sh
