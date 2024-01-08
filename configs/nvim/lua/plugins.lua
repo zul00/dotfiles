@@ -99,7 +99,7 @@ local plugins = {
 
     -- Tools
     { 'wakatime/vim-wakatime' },
-    { 'lukas-reineke/indent-blankline.nvim' },
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl",                                 opts = {} },
     { 'majutsushi/tagbar' },
     { 'folke/zen-mode.nvim' },
     { 'embear/vim-localvimrc' },
