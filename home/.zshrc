@@ -88,3 +88,6 @@ bindkey '^fo' open_dir
 docker_clean() {
     docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 }
+
+# Export SWARM_DOCKER_PATH
+export SWARM_DOCKER_PATH=/home/zulkarnaen/git/swarm_docker
