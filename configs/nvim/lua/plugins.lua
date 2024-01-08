@@ -84,8 +84,8 @@ local plugins = {
     -- DAP
     { 'mfussenegger/nvim-dap' },
     { 'mfussenegger/nvim-dap-python' },
+    { 'jedrzejboczar/nvim-dap-cortex-debug', dependencies = 'mfussenegger/nvim-dap' },
     { 'rcarriga/nvim-dap-ui' },
-    { 'jedrzejboczar/nvim-dap-cortex-debug'},
 
     -- Completions
     { 'hrsh7th/nvim-cmp',                    dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
