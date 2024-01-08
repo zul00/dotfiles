@@ -16,3 +16,6 @@ export LEDGER_FILE="/home/${USER}/private/budget_ai/main.journal"
 # less
 export LESS_TERMCAP_so=$'\E[97;100m'
 export LESS_TERMCAP_se=$'\E[0m'
+
+# bitcraze's toolbelt
+alias tb='docker run --rm -it -e "HOST_CW_DIR=${PWD}" -e "CALLING_HOST_NAME=$(hostname)" -e "CALLING_UID"=$UID -e "CALLING_OS"=$(uname) -v ${PWD}:/tb-module -v ${HOME}/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock bitcraze/toolbelt'
