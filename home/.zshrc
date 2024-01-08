@@ -82,3 +82,9 @@ function open_dir() {
 }
 zle -N open_dir
 bindkey '^fo' open_dir
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Docker Clean Function Marker
+docker_clean() {
+    docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+}
