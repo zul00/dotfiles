@@ -23,7 +23,10 @@ local plugins = {
 
     -- Theme
     { 'ellisonleao/gruvbox.nvim' },
-    { 'feline-nvim/feline.nvim', lazy = false },
+    {
+        'feline-nvim/feline.nvim',
+        lazy = false
+    },
     { 'kyazdani42/nvim-web-devicons' },
     { 'folke/todo-comments.nvim' },
     { 'rcarriga/nvim-notify' },
@@ -35,8 +38,8 @@ local plugins = {
     { 'shumphrey/fugitive-gitlab.vim' },
     { 'tommcdo/vim-fubitive' },
     { 'rbong/vim-flog' },
-    { 'sindrets/diffview.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-    { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'sindrets/diffview.nvim',                     dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'lewis6991/gitsigns.nvim',                    dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'nvim-lua/plenary.nvim' },
 
     -- tpope's
@@ -49,20 +52,20 @@ local plugins = {
     { 'tpope/vim-eunuch' },
 
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { 'nvim-telescope/telescope.nvim',              dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope-fzf-native.nvim',   build = 'make' },
 
     -- Navigation
     { 'ThePrimeagen/harpoon' },
 
     -- Treesitter
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter",            build = ":TSUpdate" },
     { 'nvim-treesitter/nvim-treesitter-textobjects' },
     { 'nvim-treesitter/nvim-treesitter-context' },
 
     -- LSP
     -- TODO: lsp-zero {https://www.youtube.com/watch?v=w7i4amO_zaE&t=1001s}
-    { 'j-hui/fidget.nvim', tag = 'legacy' },
+    { 'j-hui/fidget.nvim',                          tag = 'legacy' },
     { -- LSP Configuration & Plugins
         'neovim/nvim-lspconfig',
         dependencies = {
@@ -85,8 +88,8 @@ local plugins = {
     { 'jedrzejboczar/nvim-dap-cortex-debug'},
 
     -- Completions
-    { 'hrsh7th/nvim-cmp', dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
-    { 'L3MON4D3/LuaSnip', dependencies = { 'saadparwaiz1/cmp_luasnip' } },
+    { 'hrsh7th/nvim-cmp',                    dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
+    { 'L3MON4D3/LuaSnip',                    dependencies = { 'saadparwaiz1/cmp_luasnip' } },
     { "rafamadriz/friendly-snippets" },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
@@ -110,7 +113,7 @@ local plugins = {
     -- LaTeX
     { 'lervag/vimtex' },
     -- Markdown
-    { 'iamcco/markdown-preview.nvim', build = {function() vim.fn["mkdp#util#install"]() end} },
+    { 'iamcco/markdown-preview.nvim', build = { function() vim.fn["mkdp#util#install"]() end } },
 }
 
 require("lazy").setup(plugins)
