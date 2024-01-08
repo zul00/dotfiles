@@ -101,7 +101,19 @@ local plugins = {
     { 'wakatime/vim-wakatime' },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",                                 opts = {} },
     { 'majutsushi/tagbar' },
-    { 'folke/zen-mode.nvim' },
+    {
+        'folke/zen-mode.nvim',
+        opts = {
+            plugins = {
+                tmux = { enabled = true }, -- disables the tmux statusline
+                wezterm = {
+                    enabled = false,
+                    -- can be either an absolute font size or the number of incremental steps
+                    font = "+7", -- (10% increase per step)
+                },
+            },
+        },
+    },
     { 'embear/vim-localvimrc' },
     { 'mbbill/undotree' },
 
