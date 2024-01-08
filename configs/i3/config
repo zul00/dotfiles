@@ -79,7 +79,7 @@ bar {
         status_command i3blocks
         position top
         mode dock
-        output  primary
+        # output  primary
         tray_output   primary
 
         colors {
