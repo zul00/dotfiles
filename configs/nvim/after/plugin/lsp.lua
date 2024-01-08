@@ -93,9 +93,9 @@ local servers = {
         texlab = {},
         pylsp = {},
         grammarly = {
-            -- NOTE: Grammarly works iff you use node>=v16.0.0. Use nvm to get the feature
+            -- NOTE: Grammarly works if you use node>=v16.0.0. Use nvm to get the feature
             grammarly = {
-                filetype = { "markdown" }
+                filetype = { "markdown", "tex" }
             },
         },
         clangd = {},
