@@ -32,7 +32,7 @@ nnoremap('<leader>t', '<cmd>Telescope<CR>', { silent = true, desc = '[T]elescope
 -- Git navigation
 nnoremap('<leader>gs', "<cmd>Git<cr>", { silent = true })
 nnoremap('<leader>gw', "<cmd>Git write<cr>", { silent = true })
-nnoremap('<leader>gl', "<cmd>GV --all<cr>", { silent = true })
+nnoremap('<leader>gl', "<cmd>Flog -all<cr>", { silent = true })
 nnoremap('<leader>gd', "<cmd>Gvdiffsplit<cr>", { silent = true })
 nnoremap('<leader>go', ":DiffviewOpen ", { silent = true })
 nnoremap('<leader>gc', "<cmd>DiffviewClose<cr>", { silent = true })

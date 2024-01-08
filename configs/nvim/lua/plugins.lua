@@ -34,7 +34,7 @@ local plugins = {
     { 'tpope/vim-rhubarb' },
     { 'shumphrey/fugitive-gitlab.vim' },
     { 'tommcdo/vim-fubitive' },
-    { 'junegunn/gv.vim' },
+    { 'rbong/vim-flog' },
     { 'sindrets/diffview.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'nvim-lua/plenary.nvim' },
