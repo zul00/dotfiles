@@ -1,0 +1,17 @@
+# /home/zulkarnaen/.tmuxinator/single-path-chaining.yml
+
+name: single-path-chaining
+root: ~/projects/tii/single-path-chaining/
+
+windows:
+  - MAIN:
+      layout: main-vertical
+      panes:
+        - nvim
+        - clear
+  - CF:
+      root: ~/projects/tii/single-path-chaining/firmwares/crazyflie/
+  - NN:
+      root: ~/projects/tii/single-path-chaining/firmwares/nina/
+  - GP:
+      root: ~/projects/tii/single-path-chaining/firmwares/gap8/
