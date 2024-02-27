@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SELECTION=`ls ~/env | fzf`
+
+if [[ -n $SELECTION ]]; then
+    source ~/env/${SELECTION}/bin/activate
+fi
