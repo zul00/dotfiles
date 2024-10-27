@@ -3,41 +3,59 @@
 #https://github.com/evolozzy/i3config/blob/master/blocks/battery
 
 battery="acpi -i"
-no=`$battery | grep capacity | awk '{for(i=1;i<=NF;i++)if($i=="Battery")print $(i+1)}' | sed 's/://'`
-batinfo=`$battery | grep "Battery $no" | grep -v capacity`
+no=$($battery | grep capacity | awk '{for(i=1;i<=NF;i++)if($i=="Battery")print $(i+1)}' | sed 's/://')
 
-batinfo=`echo ${batinfo#*: }`
-status=`echo $batinfo | cut -f1 -d","`
-status=`echo "$status" | awk '{print tolower($0)}'`
+batinfo=$($battery | grep "Battery $no" | grep -v capacity)
 
-batinfo=`echo ${batinfo#*, }`
-capacity=`echo $batinfo | cut -f1 -d"," | sed 's/\%//'`
+batstatus=${batinfo#Battery 0: }
 
+# One line of raw data
+# echo $batstatus
+# Battery 0: Discharging, 88%, 04:25:28 remaining
+# Battery 0: Not charging, 88%
+# Battery 0: Charging, 71%, charging at zero rate - will never fully charge.
 
-batinfo=`echo ${batinfo#*, }`
-hour=`echo $batinfo | awk '{print $1}' | sed 's/\:/ /g' | awk '{print $1}' | sed 's/^0*//'`
-min=`echo $batinfo | awk '{print $1}' | sed 's/\:/ /g' | awk '{print $2}' | sed 's/^0*//'`
+state=$(echo "$batstatus" | awk -F ',' '{print tolower($1)}')
 
-if [ -z $hour ] ; then
-	shour=""
-	if [ -z $min ] ; then
-		smin=""
-	else
-		smin=$min"m"
-	fi
+capacity=$(echo "$batstatus" | awk -F ',' '{print tolower($2)}' | tr -d ' %')
+
+remark=$(echo "$batstatus" | awk -F ',' '{print tolower($3)}')
+
+if [[ "$remark" =~ [0-9][0-9]:[0-9][0-9].*$ ]]; then
+    time=$(echo "$remark" | tr -d ' ')
+
+    hour=$(echo "$time" | awk -F ':' '{print $1}' | sed 's/^0*//')
+    min=$(echo "$time" | awk -F ':' '{print $2}' | sed 's/^0*//')
+
+    if ! [[ "$hour" =~ ^[0-9]+$ ]]; then
+        shour="$hour"
+    else
+        if [ -z "$hour" ] ; then
+            shour=""
+            if [ -z "$min" ] ; then
+                smin=""
+            else
+                smin=$min"m"
+            fi
+        else
+            shour=$hour"h"
+
+            if [ -z "$min" ] ; then
+                smin=""
+            else
+                shour="$shour "
+                smin=$min"m"
+            fi
+        fi
+    fi
+
+    if [ -z "$smin" ] ; then
+        remaining=""
+    else
+        remaining=" ($shour$smin)"
+    fi
 else
-	shour=$hour"h"
-	if [ -z $min ] ; then
-		smin=""
-	else
-		shour="$shour "
-		smin=$min"m"
-	fi
-fi
-
-remaining=" ($shour$smin)"
-if [ $remaining = "(rateh)" ] ; then
-  remaining=""
+    remaining=$remark
 fi
 
 white="#FFFFFF"
@@ -48,51 +66,57 @@ yellow="#FDDC00"
 
 color=$white
 
-if [ $capacity -ge 75 ]; then
+if [ "$capacity" -ge 75 ]; then
 	color=$green
-elif [ $capacity -ge 40 ]; then
+elif [ "$capacity" -ge 40 ]; then
 	color=$white
-elif [ $capacity -ge 25 ]; then
+elif [ "$capacity" -ge 25 ]; then
 	color=$yellow
-elif [ $capacity -ge 10 ]; then
+elif [ "$capacity" -ge 15 ]; then
 	color=$orange
 else
 	color=$red
 fi
 
-[ "$status" = "charging" ] && color=$white
-if [ "$status" = "full" ] || [ "$status" = "unknown" ] || [ -z $status ] || [ $capacity -ne $capacity ] ;then
+[ "$state" = "charging" ] && color=$white
+if [ "$state" = "full" ] || [ "$state" = "unknown" ] || [[ -z $state ]]  || [ "$capacity" -ne "$capacity" ] ;then
         remaining=""
 fi
 
-case $status in
+case $state in
 	charging) cond="" ;;
 	"not charging") cond="" ;;
 	full) cond="" ;;
 	unknown) cond="" ;;
 	discharging)
-		if [ $capacity -ge 85 ] ; then
-                	cond=""
-        	elif [ $capacity -ge 60 ] ; then
-                	cond=""
-        	elif [ $capacity -ge 40 ] ; then
-                	cond=""
-        	elif [ $capacity -ge 15 ] ; then
-                	cond=""
-        	elif  [ $capacity -ge 0 ] ; then
-                	cond=""
-        	else
-                	cond="❗Unknown capacity, check acpi"
-        	fi
+		if [ "$capacity" -ge 85 ] ; then
+            cond=""
+        elif [ "$capacity" -ge 65 ] ; then
+            cond=""
+        elif [ "$capacity" -ge 40 ] ; then
+            cond=""
+        elif [ "$capacity" -ge 20 ] ; then
+            cond=""
+        elif  [ "$capacity" -ge 0 ] ; then
+            cond=""
+        else
+            cond="❗Unknown capacity, check acpi"
+        fi
 		;;
-	*) cond="❗Unidentified battery status, check acpi" ;;
+	*) cond="❗Unidentified battery state, check acpi" ;;
 esac
 
-# echo "$cond <span color=\"${color}\">${capacity}%</span>${remaining}"
-# echo "$cond ${capacity}%${remaining}"
 
-if [ "$status" == "not charging" ]; then
-    echo "$cond ${capacity}%"
-else
-    echo "$cond ${capacity}%${remaining}"
+# Verbose
+echo "$cond ${capacity}%${remaining}"
+
+# Short
+echo "$cond ${capacity}%"
+
+# color
+echo $color
+
+if [[ $capacity -lt 15 ]] && [[ "$state" == "discharging" ]] ; then
+    pactl set-sink-mute @DEFAULT_SINK@ false
+    paplay /usr/share/sounds/Yaru/stereo/battery-low.oga
 fi
