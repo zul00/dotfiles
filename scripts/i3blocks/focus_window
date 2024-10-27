@@ -1,0 +1,7 @@
+#!/bin/bash
+
+name=$(i3-msg -t get_tree | jq '.. | .nodes? // empty | .[] | select(.focused == true) | .name')
+clean_name=$(echo "$name" | sed "s/^\([\"']\)\(.*\)\1\$/\2/g" | tr -d '\\')
+
+echo "$clean_name"
+echo "$clean_name"
