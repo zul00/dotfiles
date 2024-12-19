@@ -75,7 +75,7 @@ default_border pixel 3
 # Status Bar:
 # Basic bar configuration using the Base16 variables.
 bar {
-        font pango:DejaVuSansMono Nerd Font Mono 13
+        font pango:DejaVuSansMono Nerd Font Mono 12
         status_command i3blocks
         position top
         mode dock
@@ -197,7 +197,7 @@ for_window [class="Org.gnome.clocks"] floating enable
 for_window [class="Org.gnome.clocks"] resize set 1000 800
 for_window [class="Org.gnome.clocks"] move position center
 for_window [class="Org.gnome.clocks"] move scratchpad
-bindsym $mod+x [class="Org.gnome.clocks"] scratchpad show; move position center
+#bindsym $mod+x [class="Org.gnome.clocks"] scratchpad show; move position center
 
 # Slack
 for_window [class="Slack"] move container to workspace $ws9
@@ -214,7 +214,8 @@ for_window [class="Slack"] move container to workspace $ws9
     bindsym $mod+Shift+b        exec $browser -p
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+Shift+q        kill
+    bindsym --release $mod+x    exec xdotool selectwindow windowkill
 
     # Start launcher
     bindsym $mod+r exec dmenu_run -fn 'DejaVuSansMono Nerd Font Mono-16'
