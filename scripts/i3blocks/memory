@@ -7,10 +7,11 @@ case $BLOCK_BUTTON in
 esac
 
 mem=`free -h | awk '/Mem/{print $3 "/" $2}'`
+mem_short=`free -h | awk '/Mem/{print $3}'`
 mem_ratio=`free | awk '/Mem/{print $3 / $2}'`
 
 echo $mem
-echo $mem_ratio
+echo $mem_short
 
 # Color
 if [ 1 -eq "$(echo "${mem_ratio} < 0.4" | bc)" ]; then

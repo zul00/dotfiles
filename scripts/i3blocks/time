@@ -4,4 +4,4 @@ case $BLOCK_BUTTON in
     1) pgrep -x dunst >/dev/null && notify-send "test" "$(cal)" ;;
 esac
 
-date '+%Y-%m-%d %H:%M:%S|'
+date '+%Y-%m-%d %H:%M:%S'
