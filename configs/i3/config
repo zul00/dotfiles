@@ -338,8 +338,11 @@ for_window [title="Live Caption"] floating enable
     bindsym XF86TouchpadToggle exec --no-startup-id "~/bin/toggle_toucpad.sh"
 
     ## printscreen
+    bindsym Shift+Print --release\
+        exec scrot --freeze -shole '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
+
     bindsym Print --release\
-                exec scrot -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
+                exec scrot --freeze -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
 
     ## Vimwiki
     bindsym $mod+n exec $term -T "Vimwiki" -e nvim "+:VimwikiIndex"
