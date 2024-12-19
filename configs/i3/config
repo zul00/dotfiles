@@ -202,6 +202,9 @@ for_window [class="Org.gnome.clocks"] move scratchpad
 # Slack
 for_window [class="Slack"] move container to workspace $ws9
 
+# Chrome live caption
+for_window [title="Live Caption"] floating enable
+
 # }}}
 
 # {{{ Keybinding
