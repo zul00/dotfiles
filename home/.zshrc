@@ -24,7 +24,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(ssh-agent git ripgrep taskwarrior virtualenv pip ros)
+plugins=(ssh-agent git taskwarrior virtualenv pip ros)
 
 source $ZSH/oh-my-zsh.sh
 
