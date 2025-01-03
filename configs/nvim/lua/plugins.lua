@@ -118,7 +118,15 @@ local plugins = {
     { 'mbbill/undotree' },
 
     -- Neorg
-    { 'nvim-neorg/neorg' },
+    {
+        "vhyrro/luarocks.nvim",
+        priority = 1000, -- We'd like this plugin to load first out of the rest
+        config = true,   -- This automatically runs `require("luarocks-nvim").setup()`
+    },
+    {
+        "nvim-neorg/neorg",
+        dependencies = { "luarocks.nvim" },
+    },
     { 'nvim-neorg/neorg-telescope' },
 
     -- Type specific plugins
@@ -126,6 +134,8 @@ local plugins = {
     { 'lervag/vimtex' },
     -- Markdown
     { 'iamcco/markdown-preview.nvim', build = { function() vim.fn["mkdp#util#install"]() end } },
+    -- PIO
+    { 'normen/vim-pio' },
 }
 
 require("lazy").setup(plugins)
