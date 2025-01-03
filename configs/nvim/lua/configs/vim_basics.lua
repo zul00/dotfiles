@@ -9,6 +9,8 @@ vim.opt.colorcolumn = "80"
 -- Search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+-- NOTE: Preview changes in split window
+vim.opt.inccommand = "split"
 
 -- Mouse
 vim.opt.mouse = 'a'
