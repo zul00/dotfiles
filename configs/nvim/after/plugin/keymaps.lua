@@ -36,6 +36,8 @@ nnoremap('<leader>gl', "<cmd>Flog -all<cr>", { silent = true })
 nnoremap('<leader>gd', "<cmd>Gvdiffsplit<cr>", { silent = true })
 nnoremap('<leader>go', ":DiffviewOpen ", { silent = true })
 nnoremap('<leader>gc', "<cmd>DiffviewClose<cr>", { silent = true })
+local gitsigns = require('gitsigns')
+nnoremap('<leader>gb', function() gitsigns.blame() end)
 
 -- Manage nvim
 nnoremap('<leader>so', "<cmd>so<cr>", { silent = true })
