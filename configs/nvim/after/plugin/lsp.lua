@@ -78,7 +78,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 --     'ccls', 'pyright' }
 local servers = {
         rust_analyzer = {},
-        tsserver = {},
+        ts_ls = {},
         bashls = {},
         jsonls = {},
         yamlls = {},
@@ -99,6 +99,7 @@ local servers = {
             },
         },
         clangd = {},
+        typos_lsp = {},
     },
 
     -- Ensure the servers above are installed
@@ -183,7 +184,7 @@ require("mason-lspconfig").setup_handlers {
 --     },
 -- }
 
-require('lspconfig').tsserver.setup {
+require('lspconfig').ts_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".ccls"),
