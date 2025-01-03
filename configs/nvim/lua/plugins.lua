@@ -38,8 +38,8 @@ local plugins = {
     { 'shumphrey/fugitive-gitlab.vim' },
     { 'tommcdo/vim-fubitive' },
     { 'rbong/vim-flog' },
-    { 'sindrets/diffview.nvim',                     dependencies = { 'nvim-lua/plenary.nvim' } },
-    { 'lewis6991/gitsigns.nvim',                    dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'sindrets/diffview.nvim',                   dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'lewis6991/gitsigns.nvim',                  dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'nvim-lua/plenary.nvim' },
 
     -- tpope's
@@ -52,8 +52,8 @@ local plugins = {
     { 'tpope/vim-eunuch' },
 
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim',              dependencies = { 'nvim-lua/plenary.nvim' } },
-    { 'nvim-telescope/telescope-fzf-native.nvim',   build = 'make' },
+    { 'nvim-telescope/telescope.nvim',            dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
     -- Navigation
     { 'ThePrimeagen/harpoon' },
@@ -85,7 +85,7 @@ local plugins = {
     { 'mfussenegger/nvim-dap' },
     { 'mfussenegger/nvim-dap-python' },
     { 'jedrzejboczar/nvim-dap-cortex-debug', dependencies = 'mfussenegger/nvim-dap' },
-    { 'rcarriga/nvim-dap-ui' },
+    { 'rcarriga/nvim-dap-ui',                dependencies = 'nvim-neotest/nvim-nio' },
 
     -- Completions
     { 'hrsh7th/nvim-cmp',                    dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
