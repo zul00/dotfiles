@@ -8,9 +8,12 @@ find ~/projects/ -maxdepth 2 -mindepth 2 -type d >> $TARGET_FILE
 find ~/projects/dotfiles -maxdepth 0 -mindepth 0 -type d >> $TARGET_FILE
 find ~/projects/espressif/ ~/projects/bitcraze/ -maxdepth 2 -mindepth 1 -type d >> $TARGET_FILE
 find ~/projects/tii/ -maxdepth 2 -mindepth 1 -type d >> $TARGET_FILE
+find ~/projects/tii/msm/codes -maxdepth 2 -mindepth 1 -type d >> $TARGET_FILE
 find ~/projects/greenwaves/ ~/projects/others/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
 find ~/projects/ros2/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
 find ~/projects/playgrounds/ ~/projects/playgrounds/python/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
+find ~/projects/playgrounds/ ~/projects/playgrounds/platformio/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
+find ~/projects/tii/wa_comm/codes/   -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
 
 # Clean Up
 sort -u $TARGET_FILE -o $TARGET_FILE
