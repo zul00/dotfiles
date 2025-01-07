@@ -1,15 +1,17 @@
 #!/bin/bash
 set -x
 
-DISPLAYS=`xrandr | grep "\<connected" | awk '{print $1}'`
-NDISPLAYS=`echo ${DISPLAYS} | wc -w`
+DISPLAYS=$(xrandr | grep "\<connected" | awk '{print $1}')
+NDISPLAYS=$(echo "$DISPLAYS" | wc -w)
 
 if [[ $NDISPLAYS == 1 ]]; then
-    SELECTED=$DISPLAYS
+	SELECTED=$DISPLAYS
 else
-    SELECTED=$(echo "$DISPLAYS" | dmenu -i -p "Choose primary display:")
+	SELECTED=$(echo "$DISPLAYS" | dmenu -i -p "Choose primary display:")
 fi
 
-if [[ ! -z $SELECTED  ]]; then
-    xrandr --output $SELECTED --auto --primary
+if [[ -n $SELECTED ]]; then
+	xrandr --output "$SELECTED" --auto --primary
 fi
+
+~/bin/dmenu/display
