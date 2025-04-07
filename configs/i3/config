@@ -205,6 +205,9 @@ for_window [class="Slack"] move container to workspace $ws9
 # Chrome live caption
 for_window [title="Live Caption"] floating enable
 
+for_window [class="KiCad" title="Footprint:"] floating enable
+
+
 # }}}
 
 # {{{ Keybinding
@@ -393,7 +396,7 @@ exec            /usr/bin/redshift
 exec            udiskie
 
 # Picom
-exec            --no-startup-id picom
+exec_always            --no-startup-id picom
 
 # Unclutter, hide mouse
 exec            --no-startup-id unclutter
