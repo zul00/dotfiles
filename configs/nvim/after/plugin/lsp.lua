@@ -77,9 +77,23 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
 --     'ccls', 'pyright' }
 local servers = {
+        arduino_language_server = {
+            root_dir = require('lspconfig').util.root_pattern(".ino"),
+        },
         rust_analyzer = {},
         ts_ls = {},
-        bashls = {},
+        bashls = {
+            settings = {
+                bashIde = {
+                    globPattern = "*@(.sh|.inc|.bash|.command)"
+                },
+                shfmt = {
+                    languageDialect = "auto",
+                    simplifyCode = true,
+                    caseIndent = true,
+                },
+            }
+        },
         jsonls = {},
         yamlls = {},
         lua_ls = {
@@ -98,7 +112,7 @@ local servers = {
                 filetype = { "markdown", "tex" }
             },
         },
-        clangd = {},
+        clangd = { filetypes = { "c", "cpp", "objc", "objcpp", "arduino" }, },
         typos_lsp = {},
     },
 
