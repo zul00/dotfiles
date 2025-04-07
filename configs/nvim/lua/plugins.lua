@@ -56,7 +56,15 @@ local plugins = {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
     -- Navigation
-    { 'ThePrimeagen/harpoon' },
+    {
+        "ThePrimeagen/harpoon",
+        -- branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        -- keys = {
+        -- {
+        --   "<leader>h", {function() require("harpoon"):list():add() end}
+        -- },
+    },
 
     -- Treesitter
     { "nvim-treesitter/nvim-treesitter",            build = ":TSUpdate" },
@@ -78,6 +86,23 @@ local plugins = {
             -- Additional lua configuration, makes nvim stuff amazing
             { 'folke/lsp-colors.nvim', },
             { 'folke/lsp-trouble.nvim', },
+        }
+    },
+
+    -- chatGPT
+    {
+        "jackMort/ChatGPT.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("chatgpt").setup({
+                api_key_cmd = "bw get password chatgpt.nvim"
+            })
+        end,
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "folke/trouble.nvim", -- optional
+            "nvim-telescope/telescope.nvim"
         }
     },
 
