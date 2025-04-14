@@ -207,6 +207,8 @@ for_window [title="Live Caption"] floating enable
 
 for_window [class="KiCad" title="Footprint:"] floating enable
 
+# Generic
+for_window [window_role="About"] floating enable
 
 # }}}
 
