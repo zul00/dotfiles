@@ -1,19 +1,14 @@
-require('neorg').setup {
+require("neorg").setup({
     load = {
-        ["core.defaults"] = {},
-        ["core.dirman"] = {
+        ["core.defaults"] = {}, -- Loads default behavior
+        ["core.concealer"] = {}, -- Adds pretty icons and folding
+        ["core.dirman"] = { -- Manages Neorg workspaces
             config = {
                 workspaces = {
-                    entry_ws = "~/Documents/notes",
+                    notes = "~/Documents/notes",
                 },
-                default_workspace = "entry_ws",
-                index = "index.norg"
-            }
-        },
-        ["core.concealer"] = {
-            config = { -- Note that this table is optional and doesn't need to be provided
-                -- Configuration here
-            }
+                default_workspace = "notes",
+            },
         },
         ["core.integrations.telescope"] = {},
         ["core.integrations.treesitter"] = {
@@ -37,4 +32,4 @@ require('neorg').setup {
             }
         }
     }
-}
+})

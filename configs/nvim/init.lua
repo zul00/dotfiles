@@ -1,10 +1,22 @@
 -- print("Hello from init.lua")
 
-require("configs.vim_basics")
 -- FIXME: This should not be needed!
 vim.o.termguicolors = true
 require("plugins")
 require("configs.theme")
+
+local function load_modules_from(dir)
+    local path = vim.fn.stdpath("config") .. "/lua/" .. dir
+    for _, file in ipairs(vim.fn.readdir(path)) do
+        if file:match("%.lua$") then
+            local module = dir:gsub("/", ".") .. "." .. file:gsub("%.lua$", "")
+            require(module)
+        end
+    end
+end
+
+load_modules_from("configs")
+load_modules_from("plugins")
 
 vim.g['localvimrc_sandbox'] = 0
 vim.g['localvimrc_whitelist'] = '*/.lvimrc'
