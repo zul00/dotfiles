@@ -1,4 +1,4 @@
-print("Hello from tex.lua")
+PrintCurrentFileName()
 
 -- Vimtex configuration
 vim.g.vimtex_view_method = "zathura" -- change as needed: 'zathura', 'skim', 'sioyek', etc.

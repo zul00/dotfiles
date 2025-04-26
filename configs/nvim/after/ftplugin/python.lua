@@ -1,4 +1,4 @@
-print("Hello from python.lua")
+PrintCurrentFileName()
 
 vim.opt.textwidth = 80
 

@@ -1,3 +1,5 @@
+PrintCurrentFileName()
+
 local nnoremap = require("remap").nnoremap
 
 nnoremap('<C-s>', '<cmd>Telescope neorg switch_workspace<CR>', { silent = true })

@@ -1,4 +1,5 @@
-print("Hello from netrw.lua")
+PrintCurrentFileName()
+
 -- local Remap = require("remap")
 -- local nnoremap = Remap.nnoremap
 

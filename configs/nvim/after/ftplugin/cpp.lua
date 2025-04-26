@@ -1,4 +1,4 @@
-print("Hello from cpp.lua")
+PrintCurrentFileName()
 
 local nnoremap = require("remap").nnoremap
 

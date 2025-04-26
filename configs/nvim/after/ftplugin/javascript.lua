@@ -1,4 +1,4 @@
-print("Hello from javascript.lua")
+PrintCurrentFileName()
 
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
