@@ -1,3 +1,8 @@
+-- PrintCurrentFileName()
+
+-- True color support
+vim.o.termguicolors = true
+
 -- Formatting
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4

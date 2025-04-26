@@ -1,15 +1,6 @@
--- print("Hello from theme")
--- Theme
 vim.o.termguicolors = true
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd [[colorscheme gruvbox]]
--- vim.cmd[[colorscheme tokyonight-night]]
---
--- vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
--- require("catppuccin").setup({
---     transparent_background = true
--- })
--- vim.cmd [[colorscheme catppuccin]]
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`

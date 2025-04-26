@@ -1,9 +1,10 @@
--- print("Hello from init.lua")
-
--- FIXME: This should not be needed!
-vim.o.termguicolors = true
-require("plugins")
-require("configs.theme")
+-- Helper functions
+function PrintCurrentFileName()
+    local info = debug.getinfo(2, "S") -- use level 2 to get the caller's file
+    local full_path = info.source:sub(2) -- remove '@'
+    local file_name = full_path:match("^.+/(.+)$") or full_path
+    print("Loading file: " .. file_name)
+end
 
 local function load_modules_from(dir)
     local path = vim.fn.stdpath("config") .. "/lua/" .. dir
@@ -15,13 +16,16 @@ local function load_modules_from(dir)
     end
 end
 
+
+-- Load basic configuration
+require("configs.vim_basics")
+
 load_modules_from("configs")
+require("plugins")
 load_modules_from("plugins")
 
-vim.g['localvimrc_sandbox'] = 0
-vim.g['localvimrc_whitelist'] = '*/.lvimrc'
+-- REVIEW: What was it for again?
 require("luasnip.loaders.from_vscode").lazy_load()
--- REVIEW: When treesitter is running, the dark configuration that was set in configs.theme is ignored and needs to be recalled. But if we have the line below, it works fine.
-vim.o.background = "dark" -- or "light" for light mode
 
+-- NOTE: Enable when needed
 -- vim.lsp.set_log_level("debug")
