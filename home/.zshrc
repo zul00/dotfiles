@@ -6,6 +6,7 @@ export PATH=$PATH:$HOME/scripts/
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/cuda/bin
+export PATH=$PATH:/opt/st/stm32cubeide_1.18.0
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
