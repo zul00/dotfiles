@@ -352,8 +352,7 @@ for_window [window_role="About"] floating enable
     ## Vimwiki
     bindsym $mod+n exec $term -T "Vimwiki" -e nvim "+:VimwikiIndex"
 
-    ## Ranger
-    bindsym $mod+e exec $term -T "Ranger" -e ranger
+    ## File explorer
     bindsym $mod+Shift+e exec "nautilus"
 
     ## GUI settings
@@ -375,7 +374,8 @@ for_window [window_role="About"] floating enable
     bindsym $mod+F2                 exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
     bindsym XF86AudioLowerVolume    exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
 
-    bindsym XF86AudioMicMute    exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bindsym XF86AudioMicMute        exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
+    bindsym $mod+F4                 exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+10 i3blocks
 
     bindsym $mod+Up     exec "playerctl -a stop"
     bindsym $mod+Down   exec "playerctl --player=vlc,spotify,firefox play-pause"
