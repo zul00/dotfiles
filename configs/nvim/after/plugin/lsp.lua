@@ -1,264 +1,245 @@
--- Diagnositc config
-vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-    underline = true,
-    update_in_insert = true,
-})
-
 -- Turn on lsp status information
 require('fidget').setup()
 
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+-- Enhanced on_attach function with modern LSP keymaps
+local on_attach = function(client, bufnr)
+    local opts = { buffer = bufnr, silent = true }
 
--- LSP settings.
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
-    -- In this case, we create a function that lets us more easily define mappings specific
-    -- for LSP related items. It sets the mode, buffer and description for us each time.
+    -- LSP keybindings
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition,
+        vim.tbl_extend("force", opts, { desc = "LSP: [G]oto [D]efinition" }))
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration,
+        vim.tbl_extend("force", opts, { desc = "LSP: [G]oto [D]eclaration" }))
+    vim.keymap.set("n", "gr", vim.lsp.buf.references,
+        vim.tbl_extend("force", opts, { desc = "LSP: [G]oto [R]eferences" }))
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation,
+        vim.tbl_extend("force", opts, { desc = "LSP: [G]oto [I]mplementation" }))
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition,
+        vim.tbl_extend("force", opts, { desc = "LSP: [G]oto [T]ype Definition" }))
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "LSP: Hover Documentation" }))
+    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help,
+        vim.tbl_extend("force", opts, { desc = "LSP: Signature Documentation" }))
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: [R]e[n]ame" }))
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action,
+        vim.tbl_extend("force", opts, { desc = "LSP: [C]ode [A]ction" }))
+    vim.keymap.set("n", "<leader>f", function()
+        vim.lsp.buf.format({ async = true })
+    end, vim.tbl_extend("force", opts, { desc = "LSP: [F]ormat buffer" }))
 
-    local nmap = function(keys, func, desc)
-        if desc then
-            desc = 'LSP: ' .. desc
-        end
+    -- Diagnostic keymaps
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev,
+        vim.tbl_extend("force", opts, { desc = "Go to [P]revious [D]iagnostic" }))
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next,
+        vim.tbl_extend("force", opts, { desc = "Go to [N]ext [D]iagnostic" }))
+    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float,
+        vim.tbl_extend("force", opts, { desc = "Show diagnostic [E]rror messages" }))
+    vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist,
+        vim.tbl_extend("force", opts, { desc = "Open diagnostic [Q]uickfix list" }))
 
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    -- Debug test keymap
+    vim.keymap.set("n", "<leader>xx", function()
+        print("LSP leader map works in buffer " .. bufnr .. " with client: " .. client.name)
+    end, { buffer = bufnr, desc = "Debug LSP attachment" })
+
+    -- Highlight references under cursor (if supported)
+    if client.supports_method("textDocument/documentHighlight") then
+        vim.api.nvim_create_augroup("lsp_document_highlight", { clear = false })
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            callback = vim.lsp.buf.clear_references,
+        })
     end
-
-    local vmap = function(keys, func, desc)
-        if desc then
-            desc = 'LSP: ' .. desc
-        end
-
-        vim.keymap.set('v', keys, func, { buffer = bufnr, desc = desc })
-    end
-
-
-    nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    nmap('<c-]>', vim.lsp.buf.definition, '[G]oto [D]efinition')
-    nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-    nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-    nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-    nmap('<leader>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, '[W]orkspace [L]ist Folders')
-
-    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-    nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    nmap('gr', require('telescope.builtin').lsp_references)
-    nmap('<space>f', vim.lsp.buf.format, "[F]ormatting")
-    vmap('<space>f', vim.lsp.buf.format, "[R]ange [F]ormatting")
-    nmap('<space>a', vim.lsp.buf.code_action, "[C]ode [A]ction")
-
-
-    nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-    nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-    -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_buf_create_user_command(bufnr, 'Format', vim.lsp.buf.format or vim.lsp.buf.formatting,
-        { desc = 'Format current buffer with LSP' })
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Enhanced capabilities with completion support
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
--- Enable the following language servers
--- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'pylsp', 'sumneko_lua', 'ccls' }
--- local servers = { 'rust_analyzer', 'tsserver', 'bashls', 'jsonls', 'yamlls', 'sumneko_lua', 'vimls', 'texlab', 'pylsp',
---     'ccls', 'pyright' }
+-- If you have nvim-cmp installed, uncomment the following:
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Enable folding capabilities for nvim-ufo if installed
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
+-- Configure diagnostic display
+vim.diagnostic.config({
+    virtual_text = {
+        spacing = 4,
+        prefix = "●",
+    },
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+    float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+    },
+})
+
+-- Customize diagnostic signs
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Server configurations
 local servers = {
-        arduino_language_server = {
-            root_dir = require('lspconfig').util.root_pattern(".ino"),
-        },
-        rust_analyzer = {},
-        ts_ls = {},
-        bashls = {
-            settings = {
-                bashIde = {
-                    globPattern = "*@(.sh|.inc|.bash|.command)"
-                },
-                shfmt = {
-                    languageDialect = "auto",
-                    simplifyCode = true,
-                    caseIndent = true,
-                },
-            }
-        },
-        jsonls = {},
-        yamlls = {},
-        lua_ls = {
-            Lua = {
-                workspace = { checkThirdParty = false },
-                -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = { enable = false },
-            }
-        },
-        vimls = {},
-        texlab = {},
-        pylsp = {},
-        grammarly = {
-            -- NOTE: Grammarly works if you use node>=v16.0.0. Use nvm to get the feature
-            grammarly = {
-                filetype = { "markdown", "tex" }
-            },
-        },
-        clangd = { filetypes = { "c", "cpp", "objc", "objcpp", "arduino" }, },
-        typos_lsp = {},
-    },
-
-    -- Ensure the servers above are installed
-    require("mason").setup {
-        ui = {
-            icons = {
-                package_installed = "✓"
-            }
-        }
-    }
-require("mason-lspconfig").setup {
-    ensure_installed = vim.tbl_keys(servers),
-}
-
--- Insert server that is not supported by mason
-table.insert(servers, 'openscad_lsp')
-
-require("mason-lspconfig").setup_handlers {
-    function(server_name)
-        require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-        }
-    end,
-}
-
-
--- Setup generic LSP servers
--- for _, lsp in ipairs(servers) do
---     require('lspconfig')[lsp].setup {
---         on_attach = on_attach,
---         capabilities = capabilities,
---     }
-
--- Custom setup
--- Lua
--- local runtime_path = vim.split(package.path, ';')
--- table.insert(runtime_path, 'lua/?.lua')
--- table.insert(runtime_path, 'lua/?/init.lua')
-
--- require('lspconfig').lua_ls.setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     settings = {
---         Lua = {
---             runtime = {
---                 -- Tell the language server which version of Lua you're using (most likely LuaJIT)
---                 version = 'LuaJIT',
---                 -- Setup your lua path
---                 path = runtime_path,
---             },
---             diagnostics = {
---                 globals = { 'vim' },
---             },
---             workspace = { library = vim.api.nvim_get_runtime_file('', true) },
---             -- Do not send telemetry data containing a randomized but unique identifier
---             telemetry = { enable = false, },
---         },
---     },
--- }
-
--- require('lspconfig').grammarly.setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     root_dir = require('lspconfig').util.find_git_ancestor(),
---     settings = {
---         grammarly = {
---             filetype = { "markdown" }
---         },
---     },
--- }
-
--- require'lspconfig'.openscad_lsp.setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     settings = {
---         openscad_lsp = {
---             cmd = "openscad-lsp",
---             fmt_style = "WebKit",
---         },
---     },
--- }
-
-require('lspconfig').ts_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".ccls"),
-    settings = {
-        tsserver = {
-            filetype = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact",
-                "typescript.tsx" }
-        },
-    },
-}
-
--- pylsp
-require('lspconfig').pylsp.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        pylsp = {
-            -- configurationSources = { "flake8" },
-            plugins = {
-                -- autopep8 = { enabled = true },
-                -- jedi_completion = { enabled = false },
-                -- jedi_hover = { enabled = false },
-                -- jedi_references = { enabled = false },
-                -- jedi_signature_help = { enabled = false },
-                -- jedi_symbols = { enabled = false, all_scopes = false },
-                pycodestyle = { enabled = false },
-                flake8 = {
-                    enabled = true,
-                    ignore = {},
-                    maxLineLength = 80
-                },
-                -- mypy = { enabled = false },
-                -- isort = { enabled = false },
-                -- yapf = { enabled = false },
-                -- pylint = { enabled = false },
-                -- pydocstyle = { enabled = false },
-                mccabe = { enabled = false },
-                pyflakes = { enabled = false },
-                -- preload = { enabled = false },
-                -- rope_completion = { enabled = false },
-                black = {
-                    enabled = true,
-                    line_length = 80,
-                    preview = true
+    -- Python
+    pyright = {
+        settings = {
+            python = {
+                analysis = {
+                    typeCheckingMode = "basic",
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
                 }
             }
         }
-    }
+    },
+
+    -- Add more servers as needed
+    -- lua_ls = {
+    --   settings = {
+    --     Lua = {
+    --       runtime = { version = "LuaJIT" },
+    --       diagnostics = { globals = { "vim" } },
+    --       workspace = {
+    --         library = vim.api.nvim_get_runtime_file("", true),
+    --         checkThirdParty = false
+    --       },
+    --       telemetry = { enable = false },
+    --     }
+    --   }
+    -- },
 }
 
--- ccls
--- require('lspconfig').ccls.setup {
---     flags = {
---         debounce_text_changes = 150,
---     },
---     on_attach = on_attach,
---     capabilities = capabilities,
---     root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".ccls", ".git"),
---     init_options = {
---         cache = { directory = ".ccls-cache"; cacheFormat = "json" };
---         compilationDatabaseDirectory = "build";
---     }
--- }
+-- Setup Mason
+require("mason").setup({
+    ui = {
+        border = "rounded",
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+-- Setup Mason-LSPConfig
+require("mason-lspconfig").setup({
+    ensure_installed = vim.tbl_keys(servers),
+    automatic_installation = true,
+})
+
+-- Setup each server (choose one method to avoid duplicates)
+local lspconfig = require("lspconfig")
+local mason_lspconfig = require("mason-lspconfig")
+
+if mason_lspconfig.setup_handlers then
+    -- Use mason-lspconfig handlers (newer versions)
+    mason_lspconfig.setup_handlers({
+        -- Default handler for servers not explicitly configured
+        function(server_name)
+            if not servers[server_name] then
+                lspconfig[server_name].setup({
+                    capabilities = capabilities,
+                    on_attach = on_attach,
+                })
+            end
+        end,
+
+        -- Configured servers
+        ["pyright"] = function()
+            local config = vim.tbl_deep_extend("force", {
+                capabilities = capabilities,
+                on_attach = on_attach,
+            }, servers.pyright or {})
+            lspconfig.pyright.setup(config)
+        end,
+
+        -- Add handlers for other servers as needed
+        -- ["lua_ls"] = function()
+        --   local config = vim.tbl_deep_extend("force", {
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        --   }, servers.lua_ls or {})
+        --   lspconfig.lua_ls.setup(config)
+        -- end,
+    })
+else
+    -- Fallback for older mason-lspconfig versions - setup servers directly
+    for server_name, server_config in pairs(servers) do
+        local config = vim.tbl_deep_extend("force", {
+            capabilities = capabilities,
+            on_attach = on_attach,
+        }, server_config)
+        lspconfig[server_name].setup(config)
+    end
+
+    -- Setup any other installed servers not in our config
+    local installed_servers = mason_lspconfig.get_installed_servers()
+    for _, server_name in ipairs(installed_servers) do
+        if not servers[server_name] then
+            lspconfig[server_name].setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+            })
+        end
+    end
+end
+
+-- Global leader test
+vim.keymap.set("n", "<leader>zz", function()
+    print("Leader works (global)")
+end, { desc = "Debug: leader global" })
+
+-- LSP attach notification and additional setup
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        local bufnr = args.buf
+
+        -- Notify when LSP attaches
+        vim.notify(("LSP attached: %s (buf %d)"):format(client.name, bufnr), vim.log.levels.INFO)
+
+        -- Enable inlay hints if supported (Neovim 0.10+)
+        if vim.lsp.inlay_hint and client.supports_method("textDocument/inlayHint") then
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
+            -- Toggle inlay hints
+            vim.keymap.set("n", "<leader>th", function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+            end, { buffer = bufnr, desc = "[T]oggle Inlay [H]ints" })
+        end
+    end,
+})
+
+-- Optional: Auto-format on save for specific filetypes
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*.py", "*.lua", "*.js", "*.ts" },
+--   callback = function()
+--     vim.lsp.buf.format({ async = false })
+--   end,
+-- })
+
+-- Optional: Workspace folders management
+vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "[W]orkspace [A]dd Folder" })
+vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "[W]orkspace [R]emove Folder" })
+vim.keymap.set("n", "<leader>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, { desc = "[W]orkspace [L]ist Folders" })
