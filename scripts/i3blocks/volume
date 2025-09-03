@@ -5,16 +5,16 @@ case $BLOCK_BUTTON in
 	2) pactl set-sink-mute @DEFAULT_SINK@ toggle ;;
 	4) pactl set-sink-volume @DEFAULT_SINK@ +5% ;;
 	5) pactl set-sink-volume @DEFAULT_SINK@ -5% ;;
-	3) pgrep -x dunst >/dev/null && notify-send "📢 Volume module" "\- Shows volume 🔊, 🔇 if muted.
-- Middle click to mute.
-- Scroll to change."
+	3) notify-send "🔈 Audio sink" "$(~/bin/which_audio_sink.sh)" ;;
 esac
 
-[ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ] && printf "🔇\\n" && exit
+# [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ] && printf "🔇\\n" && exit
 
 vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
 
-if [ "$vol" -gt "70" ]; then
+if [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ]; then
+    icon="🔇"
+elif [ "$vol" -gt "70" ]; then
 	icon="🔊"
 elif [ "$vol" -lt "30" ]; then
 	icon="🔈"
@@ -22,4 +22,10 @@ else
 	icon="🔉"
 fi
 
-printf "%s %s\\n" "$icon" "$vol"
+if [ "$(pactl get-source-mute @DEFAULT_SOURCE@)" = "Mute: yes" ]; then
+    micicon=""
+else
+    micicon=""
+fi
+
+printf "%s %s %s\\n" "$icon" "$vol" "$micicon"
