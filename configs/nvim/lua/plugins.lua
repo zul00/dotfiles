@@ -23,10 +23,7 @@ local plugins = {
 
     -- Theme
     { 'ellisonleao/gruvbox.nvim' },
-    {
-        'feline-nvim/feline.nvim',
-        lazy = false
-    },
+    { 'nvim-lualine/lualine.nvim', },
     { 'kyazdani42/nvim-web-devicons' },
     { 'folke/todo-comments.nvim' },
     { 'rcarriga/nvim-notify' },
