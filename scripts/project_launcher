@@ -1,23 +1,11 @@
 #!/bin/bash
 # set -x
-
 TARGET_FILE='/tmp/tmux_launcher'
 
-find ~/Documents/notes/ -maxdepth 1 -mindepth 1 -type d > $TARGET_FILE
-find ~/projects/ -maxdepth 2 -mindepth 2 -type d >> $TARGET_FILE
-find ~/projects/dotfiles -maxdepth 0 -mindepth 0 -type d >> $TARGET_FILE
-find ~/projects/espressif/ ~/projects/bitcraze/ -maxdepth 2 -mindepth 1 -type d >> $TARGET_FILE
-find ~/projects/tii/ -maxdepth 2 -mindepth 1 -type d >> $TARGET_FILE
-find ~/projects/tii/msm/codes -maxdepth 2 -mindepth 1 -type d >> $TARGET_FILE
-find ~/projects/greenwaves/ ~/projects/others/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
-find ~/projects/ros2/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
-find ~/projects/playgrounds/ ~/projects/playgrounds/python/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
-find ~/projects/playgrounds/ ~/projects/playgrounds/platformio/  -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
-find ~/projects/tii/wa_comm/codes/   -maxdepth 1 -mindepth 1 -type d >> $TARGET_FILE
-
-# Clean Up
-sort -u $TARGET_FILE -o $TARGET_FILE
-sed -i '/\.git/d' $TARGET_FILE
+# NOTE: Make sure to limit the maxdepth! 5 is still reasonable
+find ~/Documents/notes/ ~/projects/ -maxdepth 5 -type d -name ".git" 2>/dev/null | \
+    sed 's|/.git$||' | \
+    sort -u > $TARGET_FILE
 
 if [[ ${1} == "window" ]]; then
     tmux_launcher window
