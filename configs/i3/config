@@ -415,9 +415,13 @@ exec            --no-startup-id slack
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
+
+# Synaptics
 exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" "libinput Natural Scrolling Enabled" 1
 exec            --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+exec            --no-startup-id xinput set-prop "Synaptics TM3625-010" "libinput Natural Scrolling Enabled" 1
 exec            --no-startup-id xinput set-prop "ELAN067A:00 04F3:3197 Touchpad" "libinput Natural Scrolling Enabled" 1
+
 exec            --no-startup-id caffeine-indicator
 exec            --no-startup-id solaar -w hide
 
