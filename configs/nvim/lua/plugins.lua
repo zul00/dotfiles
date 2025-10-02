@@ -21,13 +21,13 @@ local plugins = {
     -- { "folke/neoconf.nvim", cmd = "Neoconf" },
     -- "folke/neodev.nvim",
 
-    -- Theme
+    -- Themes
     { 'ellisonleao/gruvbox.nvim' },
-    { 'nvim-lualine/lualine.nvim', },
+    { 'catppuccin/nvim' },
+    { 'nvim-lualine/lualine.nvim' },
     { 'kyazdani42/nvim-web-devicons' },
     { 'folke/todo-comments.nvim' },
     { 'rcarriga/nvim-notify' },
-    { "catppuccin/nvim" },
 
     -- Git good
     { 'tpope/vim-fugitive' },
@@ -37,7 +37,6 @@ local plugins = {
     { 'rbong/vim-flog' },
     { 'sindrets/diffview.nvim',                   dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'lewis6991/gitsigns.nvim',                  dependencies = { 'nvim-lua/plenary.nvim' } },
-    { 'nvim-lua/plenary.nvim' },
 
     -- tpope's
     { 'tpope/vim-surround' },
@@ -69,39 +68,17 @@ local plugins = {
     { 'nvim-treesitter/nvim-treesitter-context' },
 
     -- LSP
-    -- TODO: lsp-zero {https://www.youtube.com/watch?v=w7i4amO_zaE&t=1001s}
     { 'j-hui/fidget.nvim',                          tag = 'legacy' },
     { -- LSP Configuration & Plugins
         'neovim/nvim-lspconfig',
         dependencies = {
-            -- Automatically install LSPs to stdpath for neovim
-            { 'williamboman/mason.nvim', },
-            { 'williamboman/mason-lspconfig.nvim', },
-
-            -- Useful status updates for LSP
-
-            -- Additional lua configuration, makes nvim stuff amazing
+            { 'mason-org/mason.nvim', },
+            { 'mason-org/mason-lspconfig.nvim', },
             { 'folke/lsp-colors.nvim', },
             { 'folke/lsp-trouble.nvim', },
         }
     },
 
-    -- chatGPT
-    {
-        "jackMort/ChatGPT.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("chatgpt").setup({
-                api_key_cmd = "bw get password chatgpt.nvim"
-            })
-        end,
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "folke/trouble.nvim", -- optional
-            "nvim-telescope/telescope.nvim"
-        }
-    },
 
     -- DAP
     { 'mfussenegger/nvim-dap' },
@@ -112,7 +89,7 @@ local plugins = {
     -- Completions
     { 'hrsh7th/nvim-cmp',                    dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
     { 'L3MON4D3/LuaSnip',                    dependencies = { 'saadparwaiz1/cmp_luasnip' } },
-    { "rafamadriz/friendly-snippets" },
+    { 'rafamadriz/friendly-snippets' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/cmp-cmdline' },
