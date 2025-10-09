@@ -15,7 +15,7 @@ require('lualine').setup {
   options = {
     theme = 'auto', -- or 'gruvbox', 'tokyonight', etc., based on your colorscheme
     icons_enabled = true,
-    globalstatus = true, -- optional: makes the statusline span the entire width in Neovim 0.7+
+    globalstatus = false, -- optional: makes the statusline span the entire width in Neovim 0.7+
   },
   sections = {
     lualine_a = { {
