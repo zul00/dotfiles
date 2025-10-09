@@ -6,4 +6,4 @@ APPS='pavucontrol\nblueman-manager\ngnome-control-center\narandr\nsystem-config-
 
 SELECT=$(echo ${APPS} | dmenu -i -p "GUI settings:")
 
-exec ${SELECT}
+exec $(XDG_CURRENT_DESKTOP=GNOME exec ${SELECT})
