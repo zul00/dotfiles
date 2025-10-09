@@ -1,5 +1,6 @@
 font-feature=-calt
 gtk-titlebar=false
 background-opacity=0.96
-theme=GruvboxDark
+background-opacity-cells=true
+theme=Gruvbox Dark
 clipboard-paste-protection=false
