@@ -4,6 +4,7 @@ local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 
 -- File navigation
+nnoremap('-', ":Sexplore!<CR>", { desc = '[S]plit [E]explore' })
 nnoremap('<leader>hp', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 nnoremap('<leader>hf', require('telescope.builtin').buffers, { desc = '[F]ind existing [B]uffers' })
 nnoremap('<leader>hb', require('telescope.builtin').current_buffer_fuzzy_find,
