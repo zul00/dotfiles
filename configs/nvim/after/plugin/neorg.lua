@@ -1,8 +1,8 @@
 require("neorg").setup({
     load = {
-        ["core.defaults"] = {}, -- Loads default behavior
+        ["core.defaults"] = {},  -- Loads default behavior
         ["core.concealer"] = {}, -- Adds pretty icons and folding
-        ["core.dirman"] = { -- Manages Neorg workspaces
+        ["core.dirman"] = {      -- Manages Neorg workspaces
             config = {
                 workspaces = {
                     notes = "~/Documents/notes",
@@ -10,7 +10,7 @@ require("neorg").setup({
                 default_workspace = "notes",
             },
         },
-        ["core.integrations.telescope"] = {},
+        ["core.integrations.telescope"] = {}, -- Global search
         ["core.integrations.treesitter"] = {
             config = { -- Note that this table is optional and doesn't need to be provided
                 -- Configuration here
@@ -30,6 +30,9 @@ require("neorg").setup({
             config = { -- Note that this table is optional and doesn't need to be provided
                 -- Configuration here
             }
-        }
+        },
+        -- ["core.link"] = {},
+        -- ["core.todo"] = {},
+        ["core.summary"] = {},            -- Generate TODO summaries
     }
 })
