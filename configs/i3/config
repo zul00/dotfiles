@@ -347,7 +347,7 @@ for_window [window_role="About"] floating enable
         exec scrot --freeze -shole '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
 
     bindsym Print --release\
-                exec scrot --freeze -s '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
+                exec scrot --freeze --select '%Y-%m-%d_%HH-%MM-%SS_scrot.png' -e 'xclip -selection clipboard -target image/png -i $f && mv $f ~/Pictures/screenshots/'
 
     ## Vimwiki
     bindsym $mod+n exec $term -T "Vimwiki" -e nvim "+:VimwikiIndex"
