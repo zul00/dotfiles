@@ -1,6 +1,4 @@
--- [[ Core LSP Setup ]] --
-require('fidget').setup()
-
+-- [[ LSP Setup ]] --
 -- Diagnostic configuration
 vim.diagnostic.config({
     virtual_text = { spacing = 4, prefix = "●" },

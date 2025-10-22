@@ -68,7 +68,7 @@ local plugins = {
     { 'nvim-treesitter/nvim-treesitter-context' },
 
     -- LSP
-    { 'j-hui/fidget.nvim',                          tag = 'legacy' },
+    { 'j-hui/fidget.nvim',                          opts = {} },
     { -- LSP Configuration & Plugins
         'neovim/nvim-lspconfig',
         dependencies = {
@@ -78,7 +78,6 @@ local plugins = {
             { 'folke/lsp-trouble.nvim', }
         }
     },
-
 
     {
         "yetone/avante.nvim",
@@ -107,9 +106,9 @@ local plugins = {
                     api_key_name = "OPENAI_API_KEY",
                 },
                 copilot = {
-                    model = "claude-3-5-sonnet-20240620",  -- Default Copilot model (Claude 3.5 Sonnet); change to "gpt-4o" for OpenAI or others available in your Copilot sub
+                    model = "claude-3-5-sonnet-20240620", -- Default Copilot model (Claude 3.5 Sonnet); change to "gpt-4o" for OpenAI or others available in your Copilot sub
                     extra_request_body = {
-                        temperature = 0.0,  -- Lower for more deterministic responses
+                        temperature = 0.0,                -- Lower for more deterministic responses
                         max_tokens = 20480,
                     },
                 },
@@ -196,8 +195,8 @@ local plugins = {
     },
 
     -- Completions
-    { 'hrsh7th/nvim-cmp',                    dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
-    { 'L3MON4D3/LuaSnip',                    dependencies = { 'saadparwaiz1/cmp_luasnip' } },
+    { 'hrsh7th/nvim-cmp',                   dependencies = { 'hrsh7th/cmp-nvim-lsp' } },
+    { 'L3MON4D3/LuaSnip',                   dependencies = { 'saadparwaiz1/cmp_luasnip' } },
     { 'rafamadriz/friendly-snippets' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
@@ -208,7 +207,7 @@ local plugins = {
     -- Tools
     { 'wakatime/vim-wakatime', -- Wakatime plugin for time tracking
     },
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {}} ,
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     { 'majutsushi/tagbar', -- Display tags in a window
     },
     {
