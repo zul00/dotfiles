@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -euo pipefail
 
 DISPLAYS=$(xrandr | grep "\<connected" | awk '{print $1}')
 NDISPLAYS=$(echo "$DISPLAYS" | wc -w)
@@ -14,4 +14,5 @@ if [[ -n $SELECTED ]]; then
 	xrandr --output "$SELECTED" --auto --primary
 fi
 
-~/bin/dmenu/display
+SCRIPT_DIR=$(cd -- "$(dirname "$0")" && pwd)
+"$SCRIPT_DIR/display"
