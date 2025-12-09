@@ -219,7 +219,7 @@ for_window [window_role="About"] floating enable
     bindsym $mod+Return         exec $term -e tmux new-session -A -s BASE
     bindsym $mod+m              exec --no-startup-id $HOME/bin/dmenu/mux
     bindsym $mod+b              exec $browser
-    bindsym $mod+Shift+b        exec $browser -p
+    bindsym $mod+Shift+b        exec $browser --new-instance
 
     # Kill focused window
     bindsym $mod+Shift+q        kill
@@ -410,7 +410,7 @@ exec_always     --no-startup-id xset b off
 # Other apps
 exec            --no-startup-id $term -e tmux new-session -s dropdown
 exec            --no-startup-id speedcrunch
-exec            --no-startup-id flatpak run org.telegram.desktop
+exec            --no-startup-id telegram-desktop
 exec            --no-startup-id slack
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
