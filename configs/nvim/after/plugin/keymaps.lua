@@ -58,8 +58,9 @@ nnoremap('<leader>dI', ":set diffopt-=iwhite<CR>", { silent = false })
 inoremap('<C-c>', "<Esc>", { silent = true })
 
 -- Harpoons
-nnoremap('<leader>ha', require("harpoon.mark").add_file, { silent = true })
-nnoremap('<leader>hl', require("harpoon.ui").toggle_quick_menu, { silent = true })
+local harpoon = require("harpoon")
+nnoremap('<leader>ha', function() harpoon:list():add() end)
+nnoremap('<leader>hl', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 -- Undotree
 nnoremap('<leader>u', vim.cmd.UndotreeToggle, { silent = true })

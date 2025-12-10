@@ -54,7 +54,7 @@ local plugins = {
     -- Navigation
     {
         "ThePrimeagen/harpoon",
-        -- branch = "harpoon2",
+        branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
         -- keys = {
         -- {
