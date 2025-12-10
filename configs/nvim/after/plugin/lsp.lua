@@ -121,8 +121,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>rn", vim.lsp.buf.rename, "LSP: [R]e[n]ame")
         map("<leader>ca", vim.lsp.buf.code_action, "LSP: [C]ode [A]ction", { "n", "v" })
 
-        map("<leader>f", function() vim.lsp.buf.format({ async = true }) end,
-            "LSP: [F]ormat buffer", { "n", "v" })
+        map("<leader>f", function()
+            require("conform").format({ async = true, lsp_fallback = true })
+        end, "Format buffer", { "n", "v" })
 
         map("[d", vim.diagnostic.goto_prev, "Go to [P]revious [D]iagnostic")
         map("]d", vim.diagnostic.goto_next, "Go to [N]ext [D]iagnostic")

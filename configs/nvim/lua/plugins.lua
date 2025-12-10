@@ -205,6 +205,7 @@ local plugins = {
     { 'hrsh7th/cmp-nvim-lsp-signature-help' },
 
     -- Tools
+    { 'stevearc/conform.nvim' },
     { 'wakatime/vim-wakatime', -- Wakatime plugin for time tracking
     },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
