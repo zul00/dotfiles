@@ -8,12 +8,6 @@ export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/cuda/bin
 export PATH=$PATH:/opt/st/stm32cubeide_1.18.0
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/${USER}/.oh-my-zsh"
 
@@ -57,37 +51,64 @@ export BROWSER='firefox'
 # App specific RC
 source ~/.app_specific_rc
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 function load_api_keys() {
     export OPENAI_API_KEY="$(bw get password chatgpt.nvim)"
 }
 
+# Lazy-load pyenv only when needed; call load_pyenv before using pyenv-managed Pythons.
+load_pyenv() {
+    command -v pyenv >/dev/null 2>&1 || return
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init - --no-rehash)"
+}
+
+# Lazy-load nvm to avoid slowing shell startup; call `load_nvm` when you need it.
+function load_nvm() {
+    if command -v nvm >/dev/null 2>&1; then
+        return
+    fi
+
+    export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.nvm}"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+
 # open project (ctrl+P)
-function launcher() { project_launcher; zle -reset-prompt; zle redisplay }
+function launcher() {
+    project_launcher
+    zle -reset-prompt
+    zle redisplay
+}
 zle -N launcher
 bindkey '^p' launcher
 
 # open new window (ctrl+O)
-function launcher_window() { project_launcher window; zle -reset-prompt; zle redisplay }
+function launcher_window() {
+    project_launcher window
+    zle -reset-prompt
+    zle redisplay
+}
 zle -N launcher_window
 bindkey '^o' launcher_window
 
 # open dir (ctrl+F)
-function launcher_dir() { dir_launcher; zle -reset-prompt; zle redisplay }
+function launcher_dir() {
+    dir_launcher
+    zle -reset-prompt
+    zle redisplay
+}
 zle -N launcher_dir
 bindkey '^ff' launcher_dir
 
 # FZF open folder (ctrl+T)
 function open_dir() {
     # local cmd="find -L . -type d -not -wholename '*/.git*' | fzf"
-    cmd=`find -L . -type d -not -wholename '*/.git*' | fzf`
+    cmd=$(find -L . -type d -not -wholename '*/.git*' | fzf)
     cd $cmd
 }
 zle -N open_dir
 bindkey '^fo' open_dir
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Docker Clean Function Marker
 docker_clean() {
