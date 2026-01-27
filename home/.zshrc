@@ -52,7 +52,11 @@ export BROWSER='firefox'
 source ~/.app_specific_rc
 
 function load_api_keys() {
-    export OPENAI_API_KEY="$(bw get password chatgpt.nvim)"
+    local session
+    session="$(bw unlock --raw)"
+    OPENAI_API_KEY="$(BW_SESSION="$session" bw get password chatgpt-api-key)"
+    GEMINI_API_KEY="$(BW_SESSION="$session" bw get password gemini-api-key)"
+    unset session
 }
 
 # Lazy-load pyenv only when needed; call load_pyenv before using pyenv-managed Pythons.
