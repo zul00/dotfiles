@@ -137,6 +137,7 @@ for_window [title="swarm sim"]      floating enable
 for_window [class="System-config-printer.py"]   floating enable
 for_window [class="Viewer.py"]                  floating enable
 for_window [class="Viewer.py"]                  border normal
+for_window [class="SimpleScreenRecorder"]       floating enable
 
 for_window [class="explore_corridor.py"]        floating enable
 assign     [class="explore_corridor.py"]        $ws1
@@ -192,6 +193,14 @@ for_window [class="MQTT-Explorer"] move position center
 for_window [class="MQTT-Explorer"] move scratchpad
 bindsym $mod+q [class="MQTT-Explorer"] scratchpad show; move position center
 
+# Bitwarden
+for_window [class="Bitwarden"] floating enable
+for_window [class="Bitwarden"] resize set 1000 800
+for_window [class="Bitwarden"] move position center
+for_window [class="Bitwarden"] move scratchpad
+bindsym $mod+Shift+p [class="Bitwarden"] scratchpad show; move position center
+
+
 # gnome-clock
 for_window [class="Org.gnome.clocks"] floating enable
 for_window [class="Org.gnome.clocks"] resize set 1000 800
@@ -199,8 +208,9 @@ for_window [class="Org.gnome.clocks"] move position center
 for_window [class="Org.gnome.clocks"] move scratchpad
 #bindsym $mod+x [class="Org.gnome.clocks"] scratchpad show; move position center
 
-# Slack
-for_window [class="Slack"] move container to workspace $ws9
+# Slack an Teams
+for_window [class="slack"] move container to workspace $ws9
+for_window [class="teams-for-linux"] move container to workspace $ws9
 
 # Chrome live caption
 for_window [title="Live Caption"] floating enable
@@ -412,6 +422,7 @@ exec            --no-startup-id $term -e tmux new-session -s dropdown
 exec            --no-startup-id speedcrunch
 exec            --no-startup-id telegram-desktop
 exec            --no-startup-id slack
+exec            --no-startup-id teams-for-linux
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
