@@ -1,5 +1,8 @@
 -- PrintCurrentFileName()
 
+vim.opt.modeline = false
+vim.opt.modelines = 0
+
 -- True color support
 vim.o.termguicolors = true
 

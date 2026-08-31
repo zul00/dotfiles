@@ -7,5 +7,12 @@ conform.setup({
         sh = { "shfmt" },
         bash = { "shfmt" },
         zsh = { "shfmt" },
+        c = { "clang_format" },
+        cpp = { "clang_format" },
     },
+    formatters = {
+        clang_format = {
+            command = "clang-format-20",
+        }
+    }
 })

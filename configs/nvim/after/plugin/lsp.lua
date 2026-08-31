@@ -1,37 +1,14 @@
--- [[ LSP Setup ]] --
--- Diagnostic configuration
-vim.diagnostic.config({
-    virtual_text = { spacing = 4, prefix = "●" },
-    signs = true,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
-    float = {
-        focusable = false,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
-    },
-})
-
-local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 -- [[ Server Configurations ]] --
 local servers = {
     clangd = {
         cmd = {
-            "clangd",
+            "clangd-20",
             "--background-index",
             "--clang-tidy",
             "--header-insertion=iwyu",
             "--completion-style=detailed",
-            "--function-arg-placeholders",
+            "--function-arg-placeholders=true",
+            "--query-driver=/opt/st/stm32cubeide_2.0.0/plugins/**/tools/bin/arm-none-eabi-*",
         },
         init_options = {
             usePlaceholders = true,
@@ -39,7 +16,7 @@ local servers = {
             clangdFileStatus = true,
         },
         filetypes = { "c", "cpp", "objc", "objcpp" },
-        root_dir = require('lspconfig.util').root_pattern("compile_commands.json", ".git") or vim.fn.getcwd(),
+        root_markers = { "compile_commands.json", ".git" },
     },
     arduino_language_server = {
         cmd = {
@@ -48,7 +25,7 @@ local servers = {
             "-fqbn", "arduino:avr:uno",
         },
         filetypes = { "arduino" },
-        root_dir = require('lspconfig.util').root_pattern("platformio.ini", ".git") or vim.fn.getcwd(),
+        root_markers = { "platformio.ini", ".git" },
     },
     lua_ls = {
         settings = {
@@ -63,7 +40,7 @@ local servers = {
             },
         },
         filetypes = { "lua" },
-        root_dir = require('lspconfig.util').root_pattern(".luarc.json", ".git") or vim.fn.getcwd(),
+        root_markers = { ".luarc.json", ".git" },
     },
     pyright = {
         filetypes = { "python" },
@@ -76,7 +53,7 @@ local servers = {
                 },
             },
         },
-        root_dir = require('lspconfig.util').root_pattern("pyproject.toml", "setup.py", ".git") or vim.fn.getcwd(),
+        root_markers = { "pyproject.toml", "setup.py", ".git" },
     },
 }
 
@@ -94,12 +71,23 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
     ensure_installed = vim.tbl_keys(servers),
+    automatic_enable = false,
 })
+
+for server_name, config in pairs(servers) do
+    vim.lsp.config(server_name, config)
+    vim.lsp.enable(server_name)
+end
 
 -- [[ LSP Attach ]] --
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
     callback = function(event)
+        local function is_real_file_buffer(bufnr)
+            local name = vim.api.nvim_buf_get_name(bufnr)
+            return name ~= "" and not name:match("^%a[%w+.-]*://")
+        end
+
         local map = function(keys, func, desc, mode)
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
@@ -125,8 +113,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
             require("conform").format({ async = true, lsp_fallback = true })
         end, "Format buffer", { "n", "v" })
 
-        map("[d", vim.diagnostic.goto_prev, "Go to [P]revious [D]iagnostic")
-        map("]d", vim.diagnostic.goto_next, "Go to [N]ext [D]iagnostic")
+        map("[d", function()
+            vim.diagnostic.jump({ count = -1, float = true })
+        end, "Go to [P]revious [D]iagnostic")
+        map("]d", function()
+            vim.diagnostic.jump({ count = 1, float = true })
+        end, "Go to [N]ext [D]iagnostic")
         map("<leader>e", vim.diagnostic.open_float, "Show diagnostic [E]rror messages")
         map("<leader>fl", vim.diagnostic.setloclist, "Open diagnostic quick[F]ix [L]ist")
 
@@ -143,6 +135,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.name == "clangd" and not is_real_file_buffer(event.buf) then
+            vim.schedule(function()
+                if vim.api.nvim_buf_is_valid(event.buf) then
+                    vim.lsp.buf_detach_client(event.buf, client.id)
+                end
+            end)
+            return
+        end
+
         if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('user_lsp_highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
