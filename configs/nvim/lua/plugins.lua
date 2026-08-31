@@ -63,8 +63,8 @@ local plugins = {
     },
 
     -- Treesitter
-    { "nvim-treesitter/nvim-treesitter",            build = ":TSUpdate" },
-    { 'nvim-treesitter/nvim-treesitter-textobjects' },
+    { "nvim-treesitter/nvim-treesitter",            branch = "main", lazy = false, build = ":TSUpdate" },
+    { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
     { 'nvim-treesitter/nvim-treesitter-context' },
 
     -- LSP
