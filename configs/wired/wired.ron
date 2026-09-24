@@ -155,7 +155,7 @@
 
                 // Allow auto height
                 dimensions: (
-                    width: (min: 150, max: 250),
+                    width: (min: 150, max: 360),
                     height: (min: 0, max: 500),
                 ),
 
