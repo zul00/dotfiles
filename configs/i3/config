@@ -132,7 +132,6 @@ for_window [class="Matplotlib"]     floating disable
 for_window [class="Pavucontrol"]    floating enable
 for_window [class="mqtt-explorer"]  floating enable
 for_window [class="Solaar"]         floating enable
-for_window [class="Bitwarden"]      floating enable
 for_window [title="swarm sim"]      floating enable
 for_window [class="System-config-printer.py"]   floating enable
 for_window [class="Viewer.py"]                  floating enable
@@ -194,11 +193,11 @@ for_window [class="MQTT-Explorer"] move scratchpad
 bindsym $mod+q [class="MQTT-Explorer"] scratchpad show; move position center
 
 # Bitwarden
-for_window [class="Bitwarden"] floating enable
-for_window [class="Bitwarden"] resize set 1000 800
-for_window [class="Bitwarden"] move position center
-for_window [class="Bitwarden"] move scratchpad
-bindsym $mod+Shift+p [class="Bitwarden"] scratchpad show; move position center
+for_window [class="bitwarden"] floating enable
+for_window [class="bitwarden"] resize set 1000 800
+for_window [class="bitwarden"] move position center
+for_window [class="bitwarden"] move scratchpad
+bindsym $mod+Shift+p [class="bitwarden"] scratchpad show; move position center
 
 
 # gnome-clock
@@ -219,6 +218,7 @@ for_window [class="KiCad" title="Footprint:"] floating enable
 
 # Generic
 for_window [window_role="About"] floating enable
+for_window [class="Tk"] floating enable
 
 # }}}
 
@@ -426,6 +426,7 @@ exec            --no-startup-id teams-for-linux
 exec            --no-startup-id clipmenud
 exec            --no-startup-id nm-applet
 exec            --no-startup-id blueman-applet
+exec            --no-startup-id bitwarden
 
 # Synaptics
 exec            --no-startup-id xinput set-prop "MSFT0004:01 06CB:7F28 Touchpad" "libinput Natural Scrolling Enabled" 1
