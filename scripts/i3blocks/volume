@@ -5,7 +5,7 @@ case $BLOCK_BUTTON in
 	2) pactl set-sink-mute @DEFAULT_SINK@ toggle ;;
 	4) pactl set-sink-volume @DEFAULT_SINK@ +5% ;;
 	5) pactl set-sink-volume @DEFAULT_SINK@ -5% ;;
-	3) notify-send "🔈 Audio sink" "$(~/bin/which_audio_sink.sh)" ;;
+	3) notify-send "Audio devices" "$(printf 'O: %s\nI: %s' "$(~/bin/which_audio_sink.sh)" "$(~/bin/which_audio_source.sh)")" ;;
 esac
 
 # [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ] && printf "🔇\\n" && exit
@@ -13,13 +13,13 @@ esac
 vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
 
 if [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ]; then
-    icon="🔇"
+    icon=""
 elif [ "$vol" -gt "70" ]; then
-	icon="🔊"
+	icon=""
 elif [ "$vol" -lt "30" ]; then
-	icon="🔈"
+	icon=""
 else
-	icon="🔉"
+	icon=""
 fi
 
 if [ "$(pactl get-source-mute @DEFAULT_SOURCE@)" = "Mute: yes" ]; then
