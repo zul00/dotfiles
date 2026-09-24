@@ -70,9 +70,9 @@ signal=10
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu]
-label=💻 CPU
+label=
 interval=10
-separator=false
+separator=true
 
 # [memory]
 # label=MEM
@@ -110,6 +110,9 @@ separator=true
 #interval=10
 #separator=true
 
+[tailscale]
+interval=5
+
 #[load_average]
 #interval=10
 
@@ -117,7 +120,7 @@ separator=true
 #
 # The battery instance defaults to 0.
 [battery]
-label=🔋
+label=
 #label=⚡
 interval=2
 

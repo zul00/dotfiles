@@ -1,0 +1,35 @@
+#!/bin/sh
+
+status() {
+    state=$(tailscale status --json 2>/dev/null | jq -r '.BackendState // "Unknown"' 2>/dev/null)
+
+    case $state in
+        Running)
+            printf '%s\n%s\n%s\n' ' on' ' on' '#00FF00'
+            ;;
+        Stopped)
+            printf '%s\n%s\n%s\n' ' off' ' off' '#FF0000'
+            ;;
+        Starting)
+            printf '%s\n%s\n%s\n' ' starting' ' starting' '#FFAA00'
+            ;;
+        NeedsLogin)
+            printf '%s\n%s\n%s\n' ' login' ' login' '#FFAA00'
+            ;;
+        *)
+            printf '%s\n%s\n%s\n' ' error' ' error' '#FF0000'
+            ;;
+    esac
+}
+
+case $BLOCK_BUTTON in
+    1)
+        state=$(tailscale status --json 2>/dev/null | jq -r '.BackendState // "Unknown"' 2>/dev/null)
+        case $state in
+            Running) tailscale down >/dev/null 2>&1 ;;
+            Stopped) tailscale up --timeout=10s >/dev/null 2>&1 ;;
+        esac
+        ;;
+esac
+
+status
