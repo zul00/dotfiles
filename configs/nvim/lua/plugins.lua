@@ -25,7 +25,7 @@ local plugins = {
     { 'ellisonleao/gruvbox.nvim' },
     { 'catppuccin/nvim' },
     { 'nvim-lualine/lualine.nvim' },
-    { 'kyazdani42/nvim-web-devicons' },
+    { 'nvim-tree/nvim-web-devicons' },
     { 'folke/todo-comments.nvim' },
     { 'rcarriga/nvim-notify' },
 
@@ -165,14 +165,7 @@ local plugins = {
                     },
                 },
             },
-            {
-                -- Make sure to set this up properly if you have lazy=true
-                'MeanderingProgrammer/render-markdown.nvim',
-                opts = {
-                    file_types = { "markdown", "Avante" },
-                },
-                ft = { "markdown", "Avante" },
-            },
+            "MeanderingProgrammer/render-markdown.nvim",
         },
     },
 
@@ -244,6 +237,14 @@ local plugins = {
     { 'lervag/vimtex' },
     -- Markdown
     { 'iamcco/markdown-preview.nvim', build = { function() vim.fn["mkdp#util#install"]() end } },
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
+        opts = {
+            file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+    },
     -- PIO
     { 'normen/vim-pio' },
 }

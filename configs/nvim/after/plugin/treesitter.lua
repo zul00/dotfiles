@@ -15,6 +15,7 @@ local parsers = {
     "query",
     "markdown",
     "markdown_inline",
+    "beancount",
 }
 
 local highlight_filetypes = {
@@ -33,6 +34,7 @@ local highlight_filetypes = {
     "vimdoc",
     "query",
     "markdown",
+    "beancount",
 }
 
 require("nvim-treesitter").setup({
