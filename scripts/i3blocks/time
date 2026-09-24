@@ -1,7 +1,30 @@
 #!/bin/sh
 
+month_calendar() {
+    first_day=$(date '+%Y-%m-01')
+    days_in_month=$(date -d "$first_day +1 month -1 day" '+%-d')
+    first_weekday=$(date -d "$first_day" '+%w')
+    today=$(date '+%-d')
+
+    printf '%s\nSu  Mo  Tu  We  Th  Fr  Sa\n' "$(date '+%B %Y')"
+    [ "$first_weekday" -gt 0 ] && printf '%*s' "$((first_weekday * 4))" ''
+
+    day=1
+    while [ "$day" -le "$days_in_month" ]; do
+        if [ "$day" -eq "$today" ]; then
+            printf '▶%2d ' "$day"
+        else
+            printf '%2d  ' "$day"
+        fi
+        [ $(((first_weekday + day) % 7)) -eq 0 ] && printf '\n'
+        day=$((day + 1))
+    done
+
+    [ $(((first_weekday + days_in_month) % 7)) -ne 0 ] && printf '\n'
+}
+
 case $BLOCK_BUTTON in
-    1) pgrep -x dunst >/dev/null && notify-send "test" "$(cal)" ;;
+    1) notify-send -t 10000 "Calendar" "$(month_calendar)" ;;
 esac
 
 date '+%Y-%m-%d %H:%M:%S'
