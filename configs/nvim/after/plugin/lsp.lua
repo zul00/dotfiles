@@ -8,7 +8,7 @@ local servers = {
             "--header-insertion=iwyu",
             "--completion-style=detailed",
             "--function-arg-placeholders=true",
-            "--query-driver=/opt/st/stm32cubeide_2.0.0/plugins/**/tools/bin/arm-none-eabi-*",
+            "--query-driver=/opt/st/stm32cubeide_2.0.0/plugins/**/tools/bin/arm-none-eabi-*,/home/zulkarnaen/.espressif/tools/xtensa-esp-elf/esp-15.2.0_20251204/xtensa-esp-elf/bin/xtensa-esp32s3-elf-*",
         },
         init_options = {
             usePlaceholders = true,
