@@ -43,6 +43,40 @@ nnoremap('<leader>gb', function() gitsigns.blame() end)
 -- Manage nvim
 nnoremap('<leader>so', "<cmd>so<cr>", { silent = true })
 
+-- Hand a selected code range and an instruction to the Codex tmux window.
+vim.keymap.set('x', '<leader>ai', function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local path = vim.api.nvim_buf_get_name(bufnr)
+    if path == '' or vim.bo[bufnr].buftype ~= '' then
+        vim.notify('Save this file before sending it to Codex', vim.log.levels.WARN)
+        return
+    end
+    if vim.bo[bufnr].modified then
+        vim.notify('Save changes before sending this selection to Codex', vim.log.levels.WARN)
+        return
+    end
+
+    local first_line = math.min(vim.fn.line('v'), vim.fn.line('.'))
+    local last_line = math.max(vim.fn.line('v'), vim.fn.line('.'))
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'nx', false)
+    vim.ui.input({ prompt = 'Comment for Codex: ' }, function(comment)
+        if not comment or vim.trim(comment) == '' then
+            return
+        end
+
+        local request = string.format(
+            'Review %s:%d-%d. My comment: %s\nExplain the issue and propose the smallest fix. Do not edit yet.',
+            path, first_line, last_line, vim.trim(comment)
+        )
+        local ok, err = pcall(vim.fn.setreg, '+', request)
+        if ok then
+            vim.notify('Codex request copied; paste it in your tmux window')
+        else
+            vim.notify('Could not copy Codex request: ' .. tostring(err), vim.log.levels.ERROR)
+        end
+    end)
+end, { desc = '[A]sk Codex about selected code' })
+
 -- Diffs
 nnoremap('<leader>dt', "<cmd>diffthis<CR>", { silent = true })
 nnoremap('<leader>db', "<cmd>windo diffthis<CR>", { silent = true })
