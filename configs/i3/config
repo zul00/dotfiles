@@ -84,7 +84,7 @@ bar {
 
         colors {
             background $base00
-            separator  $base01
+            separator  $base02
             statusline $base04
 
             # State             Border  BG      Text
@@ -137,6 +137,7 @@ for_window [class="System-config-printer.py"]   floating enable
 for_window [class="Viewer.py"]                  floating enable
 for_window [class="Viewer.py"]                  border normal
 for_window [class="SimpleScreenRecorder"]       floating enable
+for_window [class="Blueman-manager"]            floating enable
 
 for_window [class="explore_corridor.py"]        floating enable
 assign     [class="explore_corridor.py"]        $ws1
