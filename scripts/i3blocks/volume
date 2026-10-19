@@ -11,12 +11,13 @@ esac
 # [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ] && printf "🔇\\n" && exit
 
 vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
+vol_num=${vol%\%}
 
 if [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ]; then
     icon=""
-elif [ "$vol" -gt "70" ]; then
+elif [ "$vol_num" -gt "70" ]; then
 	icon=""
-elif [ "$vol" -lt "30" ]; then
+elif [ "$vol_num" -lt "30" ]; then
 	icon=""
 else
 	icon=""
@@ -28,4 +29,21 @@ else
     micicon=""
 fi
 
-printf "%s %s %s\\n" "$icon" "$vol" "$micicon"
+profile_marker=
+sink=$(pactl get-default-sink)
+case $sink in
+    bluez_output.*|bluez_sink.*)
+        device=${sink#*.}
+        card=bluez_card.${device%%.*}
+        profile=$(pactl list cards | awk -v card="$card" '
+            $1 == "Name:" { found = ($2 == card) }
+            found && $1 == "Active" && $2 == "Profile:" { print $3; exit }
+        ')
+        case $profile in
+            a2dp*) profile_marker=A ;;
+            headset-head-unit*|headset_head_unit*|handsfree-head-unit*|handsfree_head_unit*) profile_marker=H ;;
+        esac
+        ;;
+esac
+
+printf "%s%s %s %s\\n" "$icon" "$profile_marker" "$vol" "$micicon"

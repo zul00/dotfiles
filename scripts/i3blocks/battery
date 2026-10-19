@@ -7,7 +7,7 @@ no=$($battery | grep capacity | awk '{for(i=1;i<=NF;i++)if($i=="Battery")print $
 
 batinfo=$($battery | grep "Battery $no" | grep -v capacity)
 
-batstatus=${batinfo#Battery 0: }
+batstatus=${batinfo#*: }
 
 # One line of raw data
 # echo $batstatus
@@ -85,7 +85,7 @@ fi
 
 case $state in
 	charging) cond="" ;;
-	"not charging") cond="" ;;
+	"not charging") cond="" ;;
 	full) cond="" ;;
 	unknown) cond="" ;;
 	discharging)
